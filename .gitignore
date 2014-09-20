@@ -213,3 +213,6 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+_db/db_paho.php
+db_mysql_localhost.php
+_db/db_proethos.php
