@@ -1,0 +1,1 @@
+<?php/* Data Base - Config */$base='mysqlPDO';$base_host='localhost';$base_name='proethos2';$base_user='root';$base_pass='';$ok = db_connect();?>
