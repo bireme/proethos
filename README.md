@@ -1,5 +1,5 @@
 ******************************************************
-ProEthos
+<h1>ProEthos</h1>
 
 
 ProEthos is an innovative platform for ethics review of human subjects research. 
