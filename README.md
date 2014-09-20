@@ -1,5 +1,5 @@
 ******************************************************
-<h1>ProEthos</h1>
+<h3>ProEthos</h3>
 
 
 ProEthos is an innovative platform for ethics review of human subjects research. 
@@ -19,7 +19,7 @@ but the entity downloading the system will have access to it.
 http://www.paho.org/proethos/
 
 *******************************************************
-Install
+<h3>Install</h3>
 
 Required
 - Hostserver Apache / PHP
