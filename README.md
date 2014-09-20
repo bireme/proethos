@@ -28,6 +28,6 @@ Required
 - Free space at 20 Gigabytes Data
 - Internet connection
 
-- Download and copy to your server in a folder visible in Internet
+To install read the "PROETHOS Install.pdf" in folder "_documents"
 
 
