@@ -1,6 +1,6 @@
 ******************************************************
-* ProEthos
-******************************************************
+ProEthos
+
 
 ProEthos is an innovative platform for ethics review of human subjects research. 
 ProEthos was developed by PAHO in collaboration with the Pontifical Catholic University of Paraná (Brazil) 
@@ -19,8 +19,7 @@ but the entity downloading the system will have access to it.
 http://www.paho.org/proethos/
 
 *******************************************************
-* Install
-*******************************************************
+Install
 
 Required
 - Hostserver Apache / PHP
