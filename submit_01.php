@@ -69,7 +69,6 @@ array_push($cp,array('$H8','doc_xml','',False,True));
 array_push($cp,array('$H8','doc_caae','',False,True));
 
 
-
 $tela = $form->editar($cp,$tabela);
 
 if ($form->saved > 0)

@@ -80,7 +80,7 @@ while ($line = db_read($rlt))
 		$CP2 .= '<br><FONT CLASS="lt0"><FONT color="#ff8888">'.$CP3;
 		}
 		
-	/* Outras Informa��es */
+	/* Outras Informacoes */
 	$obriga = trim($line['sub_obrigatorio']);
 	$tips = trim($line['sub_informacao']);
 	if ((strlen($tips) > 0) and (substr($CP1,0,2) != '$F'))

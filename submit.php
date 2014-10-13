@@ -77,7 +77,7 @@ $proj->le($protocolo);
 		echo '<fieldset><legend>'.msg('submit').'</legend>';
 		echo '<Table width="'.$tab_max.'" cellpadding=0 cellspacing=0 class="lt1" align="center" >';
 		$pag_max = 6;
-		
+
 		switch ($proj->doc_tipo)
 			{
 			/* EMENDA */

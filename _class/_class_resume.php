@@ -139,12 +139,13 @@ class resume
 			$tp = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 			$us = strzero(round($ss->user_id),7);				
 					
+			/* Troca PP por PR */
 			$sql = "select count(*) as total from cep_parecer
-					inner join cep_protocolos on pp_protocolo = cep_protocol
+					inner join cep_protocolos on pr_protocol = cep_protocol
 					where 
 					 (cep_status = '@' or cep_status = 'A' or cep_status = 'B' or cep_status = 'C' or cep_status = 'D')
-					 and pp_avaliador = '$us' 
-					 and (pp_status <> 'B' and pp_status <> 'X') 
+					 and pr_relator = '$us' 
+					 and (pr_status <> 'B' and pr_status <> 'X') 
 					";
 					
 			$rlt = db_query($sql);
