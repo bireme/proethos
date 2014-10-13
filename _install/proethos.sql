@@ -842,6 +842,8 @@ CREATE TABLE _committee (
   cm_site char(150) NOT NULL,
   cm_admin_name char(100) NOT NULL,
   cm_admin_email char(100) NOT NULL,
+  cm_admin_email_tipo char(5) NOT NULL,
+  cm_admin_email_pass char(30) NOT NULL,
   cm_committe char(8) NOT NULL,
   cm_admin_key char(40) NOT NULL,
   cm_admin_key_harveting char(40) NOT NULL,
@@ -1167,12 +1169,6 @@ INSERT INTO cep_amendment_type (id_amt, amt_codigo, amt_descrip, amt_ativo, amt_
 (6, '006', 'amendment_006', 1, '00006', 0),
 (7, '007', 'amendment_007', 1, '00007', 9);
 
-INSERT INTO cep_comment (id_cepc, cepc_codigo, cepc_user, cepc_comment, cepc_data, cepc_hora, cepc_avaliation) VALUES
-(1, '0000098', '0000008', 'iuy iuy iuy iy ui', 20130214, '13:57:46', '1'),
-(2, '0000101', '0000008', 'este estudo foi apresentado em outro comite no Peru, lá não foi aprovado. Rever com cuidade....', 20130319, '10:34:37', '1'),
-(3, '1000001', '0000018', 'asdfasdfasdfsadf', 20130531, '12:28:07', '1'),
-(4, '0000004', '0000018', 'tests', 20140708, '16:55:41', '1');
-
 INSERT INTO cep_email (id_email, email_research, email_data, email_hora, email_assunto, email_texto, email_protocolo, email_status, email_log, email_id_msg, email_read) VALUES
 (0, '', 20130124, '12:12:37', 'accept_rejected', 'Problem in your protocol, please insert team members.', '0000091', 'A', '', '', 'A'),
 (0, '', 20130124, '12:15:03', 'accept_rejected', 'continus problens', '0000091', 'A', '', '', 'A'),
@@ -1181,17 +1177,6 @@ INSERT INTO cep_email (id_email, email_research, email_data, email_hora, email_a
 (0, '', 20130319, '10:36:17', 'Comitê da PUCPR - 0000101', 'pro....', '0000101', 'A', '', '', 'A'),
 (0, '', 20130822, '03:20:10', 'Proyecto rechazado', 'Não foram postados os arquivos anexos', '0000105', 'A', '', '', 'A'),
 (0, '', 20131017, '13:33:32', 'PAHO Committee Ethics - ProEthos - 0000117', 'propuesta recibida....', '0000117', 'A', '', '', 'A');
-
-INSERT INTO cep_ged_documento (id_doc, doc_dd0, doc_tipo, doc_ano, doc_filename, doc_status, doc_data, doc_hora, doc_arquivo, doc_extensao, doc_size, doc_ativo, doc_versao) VALUES
-(1, '0000004', 'REEAD', '2014', 'nome.pdf', 'A', 20140613, '07:52', '/home/sisdocco/public_html/paho/document/2014/06/0000004-805fa-nome.pdf', 'pdf', 285197, 1, ''),
-(2, '0000004', 'PROJ', '2014', 'Proposal_000001_v1.pdf', 'A', 20140613, '07:53', 'document/2014/06/0000004-90fb3-1-project.pdf', 'pdf', 4634, 1, ''),
-(3, '000001', 'REEAD', '2014', 'nome.pdf', 'A', 20140613, '07:53', '/home/sisdocco/public_html/paho/document/2014/06/0000004-805fa-nome.pdf', 'pdf', 285197, 1, '1'),
-(4, '000001', 'PROJ', '2014', 'Proposal_000001_v1.pdf', 'A', 20140613, '07:53', 'document/2014/06/0000004-90fb3-1-project.pdf', 'pdf', 4634, 1, '1'),
-(5, '0000006', 'PROJ', '2014', 'Proposal_000002_v1.pdf', 'A', 20140617, '01:45', 'document/2014/06/0000006-ce83e-1-project.pdf', 'pdf', 4368, 1, ''),
-(6, '000002', 'PROJ', '2014', 'Proposal_000002_v1.pdf', 'A', 20140617, '01:45', 'document/2014/06/0000006-ce83e-1-project.pdf', 'pdf', 4368, 1, '1'),
-(7, '0000007', 'PROJ', '2014', 'Proposal_000003_v1.pdf', 'A', 20140708, '16:46', 'document/2014/07/0000007-5b138-1-project.pdf', 'pdf', 4252, 1, ''),
-(8, '000003', 'PROJ', '2014', 'Proposal_000003_v1.pdf', 'A', 20140708, '16:46', 'document/2014/07/0000007-5b138-1-project.pdf', 'pdf', 4252, 1, '1'),
-(9, '000001', 'DICT', '2014', 'Revisiones20140708_1702.pdf', '@', 20140708, '17:02', 'document/2014/07/000001104ad_dictamen.pdf', 'pdf', 7448, 1, '');
 
 INSERT INTO cep_ged_documento_tipo (id_doct, doct_nome, doct_codigo, doct_publico, doct_avaliador, doct_autor, doct_restrito, doct_ativo) VALUES
 (1, 'Proposal', 'PROJ', 0, 1, 0, 0, 1),
@@ -1398,7 +1383,7 @@ INSERT INTO register_unit (id_ru, ru_codigo, ru_name, ru_obs, ru_ativo, ru_type)
 (17, '00017', 'Anvisa', '', 0, 'S');
 
 INSERT INTO usuario (id_us, us_codigo, us_nome, us_login, us_nivel, us_status, us_senha, us_cracha, us_md5, us_niver, us_ativo, us_email, us_email_alt, us_email_ativo, us_endereco, us_genero, us_instituition, us_empresa, us_country, us_confirmed, us_mother, us_nasc, us_perfil, us_cadastro) VALUES
-(1, '0000001', 'ProEthos Admin', 'active', 0, '', 'laguna', '0000008', 0, 0, 1, 'renefgj@gmail.com', 'rene@sisdoc.com.br', 1, 'Rua Padre Agostinho, 2885\r\nAp. 1203 - Torre Barigui\r\nCuritiba - Paraná - Brasil\r\n55 41 8811.9061', '', 'PUCPR', '', '00040', 0, '', 0, '#RES#ADM#MST#MEM', 0);
+(1, '0000001', 'ProEthos Admin', 'active', 0, '', 'proethos', '0000001', 0, 0, 1, 'admin', '', 1, '', '', 'PAHO', '', '00040', 0, '', 0, '#RES#ADM#MST#MEM', 0);
 
 INSERT INTO usuario_perfil (id_usp, usp_codigo, usp_descricao, usp_ativo) VALUES
 (6, '#ADM', 'Admin', 1),
@@ -1415,11 +1400,7 @@ INSERT INTO institutions (id_it, it_codigo, it_nome, it_nome_abrev, it_tipo, it_
 (3, '0000003', 'Universidade Federal do Paraná', '', '2', '', 'Rua XV de Novembro, 1299', 'Centro', '', '0000001', 'V', '', 1, '0000017', 'UFPR', '', '', '', 'ufpr@ufpr.br', 'www.ufprbr', '', ''),
 (2, '0000002', 'Pontifícia Universidade Católica do Paraná', '', '2', '', 'Rua Imaculada Conceição, 1155', 'Bairro Prado Velho', '', '0000001', 'V', '', 1, '0000017', 'PUCPR', '', '', '', 'pucpr@pucpr.br', 'www.pucpr.br', '', ''),
 (4, '0000004', 'Universidade de São Paulo', '', '2', '', '', '', 'São Paulo', '0000001', '', '', 1, '0000017', 'USP', '', '', '', '', 'www.usp.br', '', ''),
-(5, '0000005', 'Universidade de Brasilia', '', '2', '', '', '', 'Brasília', '0000001', '', '', 1, '0000017', 'UnB', '', '', '', '', 'www.unb.br', '', ''),
-(6, '0000006', 'Rene Faustino Gabriel Junior', '', '1', '', '', '', '', '0000001', '', '', 1, '0000017', '', '', '', '', 'rene@sisdoc.com.br', '', '', ''),
-(7, '0000007', 'Sergio Surugi de Siqueira', '', '1', '', '', '', '', '0000001', '', '', 1, '0000017', '', '', '', '', 'sergio.surugi@gmail.com', '', '', ''),
-(8, '0000008', 'PAHO', '', '2', '', '', '', '', '0000007', 'V', '', 1, '0000017', 'PAHO', '', '', '', 'REVEIZL@PAHO', 'REVEIZL@PAHO', '', ''),
-(9, '0000009', 'Ricardo Gamarski', '', '1', '', '', '', '', '0000002', '', '', 1, '0000017', 'RG', '', '', '', 'ricardo.gamarski@gmail.com', '', '', '');
+(5, '0000005', 'Universidade de Brasilia', '', '2', '', '', '', 'Brasília', '0000001', '', '', 1, '0000017', 'UnB', '', '', '', '', 'www.unb.br', '', '');
 
 INSERT INTO institution_action (id_ia, ia_codigo, ia_descricao, ia_ativo) VALUES
 (37, '00001', '#SPONSOR', 1),
