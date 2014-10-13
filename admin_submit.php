@@ -9,8 +9,6 @@
   * @subpackage Unit Register
  */
 require("cab.php");
-require($include.'sisdoc_form2.php');
-require($include.'sisdoc_debug.php');
 
 require("_class/_class_submit_manuscrito_field.php");
 

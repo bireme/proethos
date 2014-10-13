@@ -8,6 +8,10 @@
   * @package Proethos
   * @subpackage Protocol
  */
+ 
+/* Add Styles */
+$style_add = array('proethos_form.css');
+
 require("cab.php");
 require($include.'sisdoc_data.php');
 require('_class/_class_cep.php');
@@ -20,11 +24,12 @@ $submit=new submit;
 require('_class/_class_cep_email.php');
 $comm = new comunication;
 
+/* recupara ID do projeto */
 $ID = strzero($dd[0],7);
 $submit->le($ID);
 $doc_tipo = $submit->doc_tipo;
 
-/* ACtion */
+/* Action */
 $acao = $dd[5];
 if ($acao == 'TO_SUBMIT')
 	{
@@ -33,6 +38,7 @@ if ($acao == 'TO_SUBMIT')
 	}
 	
 
+echo '<h1>Protocolo: '.$submit->status_show($submit->doc_status).'</h1>';
 
 echo $submit->protocolo_mostrar();
 $status = trim($submit->doc_status);
@@ -56,7 +62,7 @@ if (trim($status) == '$')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_SUBMIT">';
-	echo '<input type="submit" value="'.msg('submit_send_to_edit').'">';
+	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="form_submit">';
 	echo '</form>';
 	}
 
@@ -71,7 +77,7 @@ if (trim($status) == '@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_SUBMIT">';
-	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="botton_action_01">';
+	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="form_submit">';
 	echo '</form>';
 
 	echo '<TD>';
@@ -80,7 +86,7 @@ if (trim($status) == '@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_CANCEL_ASK">';
-	echo '<input type="submit" value="'.msg('cancel_this_project').'" class="botton_action_01">';
+	echo '<input type="submit" value="'.msg('cancel_this_project').'" class="form_submit">';
 	echo '</form>';
 	}
 	
@@ -94,7 +100,7 @@ if (trim($status) == '@@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_CANCEL">';
-	echo '<input type="submit" value="'.msg('confirm_cancel').'" class="botton_action_01">';
+	echo '<input type="submit" value="'.msg('confirm_cancel').'" class="form_submit">';
 	echo '</form>';
 
 	echo '<TD>';
@@ -103,7 +109,7 @@ if (trim($status) == '@@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="">';
-	echo '<input type="submit" value="'.msg('botton_return').'" class="botton_action_01">';
+	echo '<input type="submit" value="'.msg('botton_return').'" class="form_submit">';
 	echo '</form>';
 	}	
 	

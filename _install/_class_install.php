@@ -5,7 +5,7 @@
 	 * @copyright Copyright (c) 2011 - sisDOC.com.br
 	 * @access public
      * @version v0.14.38
-	 * @package Systema
+	 * @package Systema	
 	 * @subpackage Install DB
     */
 class install

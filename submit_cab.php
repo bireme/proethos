@@ -22,15 +22,15 @@ for ($r=1;$r < 7;$r++)
 		if ($protocolo != '0000000') { echo '<A HREF="submit.php?dd91='.$r.'">'; }
 		echo '<center><font class="'.$class_name.'">';
 		echo $op; 
-		echo '</A>';
+		echo '</A></center>';
 		echo '<TD class="'.$class_name.'" width="20">';
 		echo '<img src="img/topmenu_sp.png">';
 	}
 echo '</table>';
 $edit_mode = $edit_mode_old;
-echo '<center><H3>'.msg("submit_process").'</h3></center>';
+echo '<H1>'.msg("submit_process").'</h1>';
 $proj->le($protocolo);
-echo $proj->resumo_cab();
+echo $proj->protocolo_mostrar();
 
 $clinic = round($proj->doc_clinic);
 ?>

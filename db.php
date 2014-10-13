@@ -3,6 +3,7 @@ ob_start();
 session_start();
 
 //$path_info = trim($_SERVER['PATH_INFO']);
+date_default_timezone_set('GMT');
 
 ini_set('display_errors', 1);
 ini_set('error_reporting', 7);

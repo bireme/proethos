@@ -44,7 +44,7 @@ $tela = $form->editar($cp,'');
 echo $tela;
 
 echo '<div id="answer">';
-echo '<div id="answer_field"></div>';
+echo '<div id="answer_main"></div>';
 echo '<div id="config_file"></div>';
 echo '</div>';
 

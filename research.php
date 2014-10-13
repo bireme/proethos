@@ -28,7 +28,8 @@ $proj = new submit;
 /* Ajusta protocolos perdidos */
 $sql = "update ".$proj->tabela." set doc_status = '@' where doc_status = '' ";
 $rlt = db_query($sql);
-/* */
+
+/* Buscar projetos do pesquisador */
 $proj->doc_autor_principal = $ss->user_codigo;
 $pta = $proj->protocolos_todos($dd[1]);  
 
@@ -44,6 +45,8 @@ echo $rs->resume();
 echo '<BR>';
 echo '<h1>'.msg('caption_status_'.$dd[1]).'</h1>';
 
+echo '<fieldset>';
+
 echo '<table width="100%" class="lt1" border=0><TR><TD>';
 
 echo '<font class="lt1">'.msg('caption_status_'.$dd[1].'_inf').'</font>';
@@ -58,6 +61,8 @@ echo '</table>';
 /* Approved Research */
 $cep->autor_principal = $ss->user_codigo;
 echo $cep->protocol_in_investigation();
+
+echo '</fieldset>';
 
 echo '</div>';
 echo $hd->foot();	
