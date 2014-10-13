@@ -24,17 +24,16 @@ require ("cab.php");
 require ($include . '_class_windows.php');
 require ($include . '_class_form.php');
 $form = new form;
-?>
+echo '
 <table border=0 align="center">
 	<tr VALIGN="TOP"><td width="300">
-		<img src="repositorio/layout/proethos_logo_2.png" width="200" border=0>
-		<BR>
-	<?=msg('about_cep'); ?>
-
+		<img src="'.logo(3).'" width="200" border=0>
+		<BR>'.msg('about_cep').'
 	<td>
-	<img src="repositorio/layout/proethos_logo_1.png">
+	<img src="'.logo(2).'">
 	<BR><BR>
-
+';
+?>
 <!--- Login form -->
 	<div id="loginform">
 		<div id="facebook"><i class="fa fa-facebook"></i><div id="connect">Connect with</div>

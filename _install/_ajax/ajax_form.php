@@ -61,13 +61,14 @@ if (strlen($ok) > 0)
 		echo 'ok';
 		$file = '../../_db/db_proethos.php';
 		$inst->createfile_db($file,$base,$base_host,$base_name,$base_user,$base_pass);
-		echo '<BR><font class="successful">Config file was create</font>';	
+		echo '<BR><font class="successful">Config file was create</font>';
+		echo '<BR>';
+		echo '<A HREF="../">Return to Proethos</A>';			
 		echo '<BR>';
 		require($file);
 		$inst->install_sql();
 
-		echo '<BR>';
-		echo '<A HREF="../">Return to Proethos</A>';	
+	
 	}
 
 ?>

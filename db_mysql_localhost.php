@@ -1,21 +1,23 @@
 <?php	
-				$site='http://www.pucpr.br/pesquisacientifica/comitespesquisa/cep/';
-				$institution_name='Comite de Etica em Pesquisa da PUCPR - ProEthos';
-				$institution_site='http://www.pucpr.br/pesquisacientifica/comitespesquisa/cep/';
-				$institution_address='Rua Imaculada Conceicao, 1157 Campus Curitiba - Predio Administrativo - 3. Andar';
-				$institution_city='Curitiba';
-				$institution_country='Brazil';
-				$institution_phone='55(41)3271-2103';
+				$site='http://www.paho.org/proethos/';
+				$institution_name='Committee - ProEthos';
+				$institution_site='http://www.paho.org/proethos/';
+				$institution_address='Regional Office for the Americas of the World Health Organization
+525 Twenty-third Street, N.W., Washington, D.C. 20037
+United States of America';
+				$institution_city='Washington';
+				$institution_country='United States of America';
+				$institution_phone='+1 (202) 974-3000';
 				
 				$harvestig='0';
 				$harvesting_key='';
 				$institution_logo='';
-				$admin_nome='Naim Akel Filho';
-				$admin_email='nep@pucpr.br';
-				$email_adm='nep@pucpr.br';
-				$committe='BR0020';
+				$admin_nome='Proethos';
+				$admin_email='proethos@paho.org';
+				$email_adm='proethos@paho.org';
+				$committe='PAHO';
 				
-				$language='es';
+				$language='en_US';
 				$commite_type='CEP';
 
 				/* Screen - Config */

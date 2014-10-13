@@ -1394,7 +1394,7 @@ INSERT INTO usuario_perfil (id_usp, usp_codigo, usp_descricao, usp_ativo) VALUES
 (11, '#ADC', 'Ad Hoc', 1);
 
 INSERT INTO _committee (id_cm, cm_name, cm_site, cm_admin_name, cm_admin_email, cm_committe, cm_admin_key, cm_admin_key_harveting, cm_charcode, cm_address, cm_city, cm_country, cm_phone, cm_type, cm_language, cm_lat, cm_long) VALUES
-(1, 'Comitê de Ética em Pesquisa da PUCPR - ProEthos', 'http://www.pucpr.br/pesquisacientifica/comitespesquisa/cep/', 'Naim Akel Filho', 'nep@pucpr.br', 'BR0020', '0', '', 'utf-8', 'Rua Imaculada Conceição, 1157 Câmpus Curitiba - Prédio Administrativo - 3º Andar', 'Curitiba', 'Brazil', '55(41)3271-2103', 'CEP', 'es', '-25.451987', '-49.250866');
+(1, 'Committee - ProEthos', 'http://www.paho.org/proethos/', 'Proethos', 'pahoerc@paho.org', 'PAHO', '+1 (202) 974-3000', '', 'utf-8', '', 'Washington', 'United States of America', '', 'CEP', 'en_US', '38.896736', '-77.0484035');
 
 INSERT INTO institutions (id_it, it_codigo, it_nome, it_nome_abrev, it_tipo, it_estrangeiro, it_endereco, it_bairro, it_cidade, it_pais, it_status, it_id_fiscal, it_ativo, it_author, it_abreviatura, it_contato, it_telefone, it_fax, it_email, it_site, it_obs, it_search) VALUES
 (3, '0000003', 'Universidade Federal do ParanÃ¡', '', '2', '', 'Rua XV de Novembro, 1299', 'Centro', '', '0000001', 'V', '', 1, '0000017', 'UFPR', '', '', '', 'ufpr@ufpr.br', 'www.ufprbr', '', ''),
