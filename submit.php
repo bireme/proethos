@@ -7,12 +7,15 @@ $active_page = 'research';
 $style_add = array('proethos_form.css');
 
 require("cab.php");
+require($include.'sisdoc_tips.php');
 
 /* Load Class */
 require("_class/_class_cep_submit.php");
 
 /* Load Includes */
 require($include.'sisdoc_data.php');
+
+require($include.'sisdoc_debug.php');
 
 /* Load Formulario Class */
 require($include.'_class_form.php');
@@ -69,13 +72,12 @@ $popup=1;
 $proj->le($protocolo);
 
 	{
-		require("submit_cab.php");
-		
+		require("submit_cab.php");		
 		
 		echo '<form method="post" action="'.page().'">';
 		echo '<BR>';
-		echo '<fieldset><legend>'.msg('submit').'</legend>';
-		echo '<Table width="'.$tab_max.'" cellpadding=0 cellspacing=0 class="lt1" align="center" >';
+		//echo '<fieldset><legend>'.msg('submit').'</legend>';
+		//echo '<Table width="'.$tab_max.'" cellpadding=0 cellspacing=0 class="lt1" align="center" >';
 		$pag_max = 6;
 
 		switch ($proj->doc_tipo)
@@ -96,12 +98,20 @@ $proj->le($protocolo);
 				if ($pag_page == 5) { require("submit_05.php"); }
 				if ($pag_page == 6) { require("submit_06.php"); }
 				break;
+			case 'PROJE':
+				if ($pag_page == 1) { require("submit_01.php"); }
+				if ($pag_page == 2) { require("submit_02.php"); }
+				if ($pag_page == 3) { require("submit_03.php"); }
+				if ($pag_page == 4) { require("submit_04.php"); }
+				if ($pag_page == 5) { require("submit_05.php"); }
+				if ($pag_page == 6) { require("submit_06.php"); }
+				break;				
 			default:
 				echo 'OPS:'.$proj->proj_doc_tipo;
 				break;
 			}
-		echo '</table>';
-		echo '</fieldset>';
+		//echo '</table>';
+		//echo '</fieldset>';
 		echo '</form>';
 	}
 echo '</div>';

@@ -31,10 +31,10 @@ if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS'))) {
 		array_push($menu, array(msg('admin_perfil'), msg('perfil_member'), 'admin_perfil_member.php'));
 	}
 
-	echo '<div class="border1 pad5 ml2 mt20">';
 	echo '<h1>' . msg('secretary_menu') . '</h1>';
+	echo '<fieldset>';
 	$tela = menus($menu, "3");
 	echo $tela;
-	echo '</div>';
+	echo '</fieldset>';
 }
 ?>

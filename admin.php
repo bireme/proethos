@@ -35,8 +35,10 @@ if (!($perfil -> valid('#ADM'))) {
 	}
 
 	echo '<h1>' . msg('admin_menu') . '</h1>';
+	echo '<fieldset>';
 	$tela = menus($menu, "3");
 	echo $tela;
+	echo '</fieldset>';
 }
 
 /* Admin Common */
@@ -59,8 +61,10 @@ if (($perfil -> valid('#ADM'))) {
 	array_push($menu, array(msg('admin_update'), msg('system_update'), 'update.php'));
 
 	echo '<h1>' . msg('admin_menu_special') . '</h1>';
+	echo '<fieldset>';
 	$tela = menus($menu, "3");
 	echo $tela;
+	echo '</fieldset>';
 }
 echo '</div>';
 

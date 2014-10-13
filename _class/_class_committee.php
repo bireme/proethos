@@ -49,7 +49,9 @@ class committee
 				global $dd;
 				$cp = array();
 				if (strlen($dd[2]) < 4) { $msgcode = '<font color="red"></font>'; }
-				
+				$tp = ' : ';
+				$tp .= '&MAIL:'.msg('send_by_email');
+				$tp .= '&AUTH:'.msg('send_by_email_authentic');
 				
 				array_push($cp,array('$H8','id_cm','',False,True));
 				array_push($cp,array('${','',msg('about_committee'),False,True));
@@ -76,6 +78,8 @@ class committee
 				array_push($cp,array('$S40','cm_phone',msg('phone'),True,True));
 				array_push($cp,array('$S100','cm_admin_name',msg('admin_name'),True,True));
 				array_push($cp,array('$S100','cm_admin_email',msg("admin_email"),True,True));
+				array_push($cp,array('$O '.$tp,'cm_admin_email_tipo',msg("admin_email_tipo"),True,True));
+				array_push($cp,array('$P20','cm_admin_email_pass',msg("admin_email_password"),False,True));
 				array_push($cp,array('$}','','',False,True));
 				
 				array_push($cp,array('${','',msg('contact_param'),False,True));

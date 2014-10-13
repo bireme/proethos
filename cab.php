@@ -2,6 +2,7 @@
 require("db.php");
 require("_db/db_proethos.php");
 
+require($include.'sisdoc_debug.php');
 /* Sistema de Mensagens */
 require("_class/_class_message.php");
 $message = 'messages/msg_'.$LANG.'.php';

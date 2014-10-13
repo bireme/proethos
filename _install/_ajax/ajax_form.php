@@ -65,6 +65,7 @@ if (strlen($ok) > 0)
 		echo '<BR>';
 		require($file);
 		$inst->install_sql();
+
 		echo '<BR>';
 		echo '<A HREF="../">Return to Proethos</A>';	
 	}

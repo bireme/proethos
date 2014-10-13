@@ -11,20 +11,10 @@
 
  
  /* TIPS */
-$CP5 = '<span id="dv5a"><img src="img/icone_information.png" height="20px"></span>';
-$CP5 .= '<div id="dv5" style="display: none;" class="lt_info">'.msg('title_main_inf').'</div>';
-$js .= chr(13).'$("#dv5a").click( function() {';
-$js .= '$("#dv5").fadeIn("slow"); '; 
-$js .= '$("#dv5a").fadeOut("fast"); ';
-$js .= '}); '.chr(13);
-
-
-$CP7 = '<span id="dv7a"><img src="img/icone_information.png" height="20px"></span>';
-$CP7 .= '<div id="dv7" style="display: none;" class="lt_info">'.msg('title_public_inf').'</div>';
-$js .= chr(13).'$("#dv7a").click( function() {';
-$js .= '$("#dv7").fadeIn("slow"); '; 
-$js .= '$("#dv7a").fadeOut("fast"); ';
-$js .= '}); '.chr(13);
+$CP5 = '<img src="img/icone_information.png" height="20px" tips="A">';
+$CP5 = tips($CP5,msg('title_main_inf'),'id1');
+$CP7 = tips($CP5,msg('title_public_inf'),'id2');
+$CP8 = tips($CP5,msg('title_acronym_inf'),'id3');
 
 $cp = array();
 $tabela = $proj->tabela;
@@ -36,9 +26,11 @@ array_push($cp,array('$HV','doc_human',1,False,True));
 
 if ($commite_type != 'CEUA')
 	{
+		/* Use only Human Committee */
 		array_push($cp,array('$A','',msg('q_clinic_study'),False,False));
 		array_push($cp,array('$R 1:#yes&0:#no','doc_clinic',msg('q_clinic_study'),True,True));
 	} else {
+		/* Use only Aminals Committee */
 		array_push($cp,array('$HV','doc_clinic',0,True,True));
 	}
 
@@ -60,13 +52,18 @@ array_push($cp,array('$HV','doc_hora',date("H:i"),True,True));
 array_push($cp,array('$U8','doc_dt_atualizado','',True,True));
 array_push($cp,array('$H8','doc_protocolo','',False,True));
 
-array_push($cp,array('$HV','doc_autor_principal',trim($ss->user_codigo),True,True));
+/* Anacronico */
+array_push($cp,array('$S50','doc_acronym',msg('title_acronym').$CP8,False,True));
+
+array_push($cp,array('$HV','doc_autor_principal',trim($ss->user_codigo),False,True));
 array_push($cp,array('$B8','',msg('#save_next'),False,True));
 
-array_push($cp,array('$H8','doc_tipo','',False,True));
+array_push($cp,array('$HV','doc_tipo','PROJE',False,True));
 array_push($cp,array('$H8','doc_type','',False,True));
 array_push($cp,array('$H8','doc_xml','',False,True));
 array_push($cp,array('$H8','doc_caae','',False,True));
+
+
 
 
 $tela = $form->editar($cp,$tabela);
@@ -93,6 +90,7 @@ if ($form->saved > 0)
 	} else {
 		echo $tela;
 	}
+	
 $dd5=troca(msg('title_main_inf'),chr(13),'');
 $dd5=troca($dd5,chr(10),'');
 

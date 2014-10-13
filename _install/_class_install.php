@@ -32,10 +32,16 @@ class install
 							}
 						fclose($flt);
 						
+						$ln = splitx(';',$sql.';');
 						/* Executa criacao das tabelas */
-						if (strlen($sql) > 0)
+						for ($r=0;$r < count($ln);$r++)
 							{
-								$rlt = db_query($sql);
+								echo '<BR>'.substr($ln[$r],0,strpos('(',$ln[$r]));
+								$sql = trim($ln[$r]);
+								if (strlen($sql) > 10)
+									{
+										$rlt = db_query($sql);
+									}
 							}
 						echo '<BR>Database install!!';
 					}

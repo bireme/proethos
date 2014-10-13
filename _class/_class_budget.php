@@ -23,8 +23,8 @@ class budget
 			$it = 0;
 			$tot = 0;
 			$toti = 0;
-			$sx .= '<table width="'.$tab_max.'" class="lt1">';
-			$sx .= '<TR>';
+			$sx .= '<table width="100%" class="tabela01 lt1" cellpadding=5> ';
+			$sx .= '<TR class="lt0">';
 			$sx .= '<TH width="5%">'.msg('budget_item');
 			$sx .= '<TH>'.msg('budget_desc');
 			$sx .= '<TH width="8%">'.msg('budget_vlr');
@@ -40,9 +40,9 @@ class budget
 					$sx .= '<TR '.coluna().'>';
 					$sx .= '<TD align="center">'.$it;
 					$sx .= '<TD align="left">'.trim($line['sorca_descricao']);
-					$sx .= '<TD align="right">'.number_format($line['sorca_valor'],2);
-					$sx .= '<TD align="right">'.number_format($line['sorca_unid'],0);
-					$sx .= '<TD align="right">'.number_format($line['sorca_valor'] * $line['sorca_unid'],2);
+					$sx .= '<TD align="right">'.number_format($line['sorca_valor'],2,',','.');
+					$sx .= '<TD align="right">'.number_format($line['sorca_unid'],0,',','.');
+					$sx .= '<TD align="right">'.number_format($line['sorca_valor'] * $line['sorca_unid'],2,',','.');
 					$sx .= '<TD align="right" width="10">';
 					$sx .= $link;
 					$sx .= '<img src="img/icone_remove.png" border=0>';
@@ -50,8 +50,8 @@ class budget
 				}
 			$sx .= '<TR><TD>';
 			$sx .= '<TD align="right" colspan=2><B><I>'.number_format($it,0).' '.msg('budget_item');
-			$sx .= '<TD align="right"><B><I>'.number_format($toti,0);
-			$sx .= '<TD align="right"><B><I>'.number_format($tot,2);
+			$sx .= '<TD align="right"><B><I>'.number_format($toti,0,',','.');
+			$sx .= '<TD align="right"><B><I>'.number_format($tot,2,',','.');
 			$sx .= '</table>';
 			return($sx);
 		}
@@ -90,17 +90,7 @@ class budget
 		}
 	function form_budget()
 		{
-			$sx .= '<table width="100%" class="lt0">';
-			$sx .= '<TR>';
-			$sx .= '<TD>'; 
-			$sx .= '</table>';
-
-			$sx .= '<table width="100%"  class="lt0" border=1>';
-			$sx .= '<TR bgcolor="#C0C0C0"><TH width=5%>'.msg('budget_item');
-			$sx .= '<TH width=60%>'.msg('budget_desc');
-			$sx .= '<TH>'.msg('budget_vlr');
-			$sx .= '<TH>'.msg('budget_qt');
-			$sx .= '<TH>'.msg('budget_vlrt');
+			$sx .= '<table width="50%" class="tabela01" border=0 align="right">';
 
 			
 			/* Form */
@@ -112,10 +102,10 @@ class budget
 			</style>';
 			$sx .= '<TR>';
 			$sx .= '<TD>';
-			$sx .= gets('dd3a',$dd[3],'$S80',$dd[3],0,1,'','form_textarea_full','');
-			$sx .= gets('dd5a',$dd[5],'$N8'.$op,'','','');
-			$sx .= gets('dd4a',$dd[4],'$I8'.$op,'','','');
-			$sx .= '<TD><input type="button" id="budget_post" value="'.msg('budget_post').'">';
+			$sx .= gets('dd3a',$dd[3],'$S80',msg('budget_desc'),0,1,'','','');
+			$sx .= gets('dd5a',$dd[5],'$I8'.$op,msg('budget_vlr'),'','');
+			$sx .= gets('dd4a',$dd[4],'$I8'.$op,msg('budget_qt'),'','');
+			$sx .= '<TR><TD colspan=2><input type="button" id="budget_post" value="'.msg('budget_post').'">';
 			$sx .= '</table>';
 			$sx .= '</div>';
 			

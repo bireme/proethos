@@ -16,6 +16,7 @@ echo '<TR><TD colspan=2>';
 $dx=0;
 $ok = 1;
 $cops = array();
+
 $js = ''; //* Comandos Java Script */
 $botton_submit = 0;
 $xcdo = "X";
@@ -28,7 +29,7 @@ while ($line = db_read($rlt))
 	if ($xcod != $name_id)
 	{
 		$xcod = $name_id;	
-	/* Recupera dados gravados se n�o tem a��o */
+	/* Recupera dados gravados se nao tem acao */
 	if (strlen($acao) == 0) 
 		{
 			$value = trim($line['spc_content']); 
@@ -44,6 +45,7 @@ while ($line = db_read($rlt))
 	$CP2a = $CP2;
 	$mmm = (trim(trim($line['sub_descricao']).'_inf'));
 	$mmm = msg($mmm);
+	
 	/* Se for botão anula mensagem de informação */
 	if (substr($CP1,0,2) == '$B') { $mmm = ''; }
 	if (strpos($mmm,'_inf') > 0) { $mmm = ''; }
@@ -54,11 +56,14 @@ while ($line = db_read($rlt))
 		{ array_push($cops,array($line['sub_codigo'],$value)); }
 	else { $botton_submit = 1; }
 
-	/* Se existir coment�rios */
+	/* Se existir comentarios */
 	if (strlen($mmm) > 0)
 		{
 		$CP3 = '<div id="dv'.$line['id_sub'].'" style="display: none;" class="lt_info">'.$mmm.'</div>';
-		$CP3 .= '<span id="dv'.$line['id_sub'].'a"><img src="img/icone_information.png" height="20px"></span>';
+		if (strlen($mmm) > 0)
+			{
+				$CP3 .= tips('<img src="img/icone_information.png" height="20px">',$mmm);
+			}
 		$js .= chr(13).
 				'$("#dv'.$line['id_sub'].'a").click( function() {';
 		$js .= '$("#dv'.$line['id_sub'].'").fadeIn("slow"); '; 
@@ -73,11 +78,13 @@ while ($line = db_read($rlt))
 	
 	/* informaivo com HR */
 	if ((substr($CP1,0,2) != '$A') and (substr($CP1,0,2) != '$B'))
-		{ $CP2 = '<font class="lt2">'.$CP2; } else
-		{ $CP2 = '<font class="lt0">'.$CP2; }
+		{ $CP2 = ''.$CP2; } else
+		{ $CP2 = ''.$CP2; }
+		
+	/* Dados Adicionais */	
 	if (strlen($CP3) > 0)
 		{
-		$CP2 .= '<br><FONT CLASS="lt0"><FONT color="#ff8888">'.$CP3;
+		$CP2 .= '<br><FONT CLASS="lt0"><FONT color="#ff8888">'.$CP3.'</font></font>';
 		}
 		
 	/* Outras Informacoes */
@@ -103,15 +110,13 @@ while ($line = db_read($rlt))
 	//if ($CP1=='$PDF') 
 	//	{ require("submit_phase_pdf.php"); $ed = true; }
 		
-	/* Gerar Opcao para PDF */
+	/* Gerar TEAM */
 	if ($CP1=='$TEAM') 
 		{
 			/* Cronograma */
 			$s .= '<TR><TD colspan=2>';
-			$s .= '<fieldset><legend>'.msg('team').'</legend>';
 			$s .= '<div id="team">';
 			$s .= '</div>';
-			$s .= '</fieldset>';
 			
 			$s .= chr(13).'<script type="text/javascript">';
 			$s .= chr(13).'var $tela = $.ajax({ url: "team_ajax.php", type: "POST", ';

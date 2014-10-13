@@ -141,11 +141,11 @@ class resume
 					
 			/* Troca PP por PR */
 			$sql = "select count(*) as total from cep_parecer
-					inner join cep_protocolos on pr_protocol = cep_protocol
+					inner join cep_protocolos on pp_protocolo = cep_protocol
 					where 
 					 (cep_status = '@' or cep_status = 'A' or cep_status = 'B' or cep_status = 'C' or cep_status = 'D')
-					 and pr_relator = '$us' 
-					 and (pr_status <> 'B' and pr_status <> 'X') 
+					 and pp_avaliador = '$us' 
+					 and (pP_status <> 'B' and pp_status <> 'X') 
 					";
 					
 			$rlt = db_query($sql);

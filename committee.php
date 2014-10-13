@@ -17,6 +17,8 @@ require("cab.php");
 require($include.'sisdoc_menus.php');
 require("_class/_class_resume.php");
 require("_class/_class_cep.php");
+
+require($include.'sisdoc_debug.php');
 $cep = new cep;
 
 $rs = new resume;

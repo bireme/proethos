@@ -16,6 +16,8 @@ require("cab.php");
 
 require($include."_class_email.php");
 require($include."sisdoc_data.php");
+
+require($include."sisdoc_debug.php");
 //require($include."sisdoc_autor.php");
 
 require('_class/_class_oms.php');

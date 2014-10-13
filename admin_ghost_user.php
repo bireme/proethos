@@ -10,9 +10,6 @@
  */
 require("cab.php");
 
-require($include.'cp2_gravar.php');
-require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
 require($include.'sisdoc_debug.php');
 
 //$sql = "delete from _messages where 1=1";
@@ -35,9 +32,7 @@ require($include.'sisdoc_debug.php');
 	$busca = true;
 	$offset = 20;
 	//$pre_where = " e_mailing = '".$cl->mail_codigo."' ";
-	
 
-	
 	$order  = "us_nome";
 	
 	echo '<H2>'.msg('ghost_top').'</h2>';

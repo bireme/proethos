@@ -13,6 +13,8 @@ require($include.'sisdoc_menus.php');
 require($include.'sisdoc_data.php');
 
 echo '<h2>'.msg('assign_to_user_profile').'</h2>';
+echo '<fieldset><legend>'.msg('assign_to_user_profile').'</legend>';
+
 if (($perfil->valid('#ADM')) or ($perfil->valid('#MAS'))) 
 	{
 		echo $perfil->perfil_atribui_form();

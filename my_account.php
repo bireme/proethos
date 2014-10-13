@@ -29,7 +29,8 @@ $uss->id = $dd[0];
 
 $tabela = 'usuario';
 
-echo '<h3>'.msg('my_account').'</h3>';
+echo '<h1>'.msg('my_account').'</h1>';
+echo '<fieldset><legend>'.msg('my_account').'</legend>';
 $tela = $form->editar($cp,$uss->tabela);
 
 if ($form->saved > 0)

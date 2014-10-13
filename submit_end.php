@@ -3,9 +3,9 @@ require("cab.php");
 require("_class/_class_cep_submit.php");
 require("_class/_class_team.php");
 require($include.'sisdoc_data.php');
-require($include.'sisdoc_form2.php');
+
 require($include.'_class_email.php');
-require($include.'cp2_gravar.php');
+
 require('_class/_class_ic.php');
 $ic = new ic;
 

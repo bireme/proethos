@@ -24,6 +24,16 @@ require('submit_checklist.php');
 		echo '<a href="javascript:newxy2(\'submit_pdf.php?dd0='.$protocolo.'&dd90='.checkpost($protocolo.$secu).'\',900,800);">';
 		echo msg('create_PDF');
 		echo '</A>';
+		
+		$sx = '<span id="create_pdf" class="form_submit">'.msg('create_PDF').'</span>';
+		$sx .= '
+				<script>
+				$("#create_pdf").click(function() {
+					window.open(\'submit_pdf.php?dd0='.$protocolo.'&dd90='.checkpost($protocolo.$secu).'\', \'pdf\', \'create pdf\');
+				});
+				</script>
+				';	
+		echo $sx;
 
 echo '<BR><BR>';
 /* Compromisso */
@@ -43,7 +53,7 @@ if ($xok == 1)
 		echo msg('submit_term_accepted');
 		echo '</B>';
 		echo '<BR>';
-		echo '<input type="submit" value="'.msg('#save_next').'" class="big_botton">';
+		echo '<input type="submit" value="'.msg('#save_next').'" class="form_submit">';
 		echo '</form>';		
 	} else {
 		echo msg('exist_pending_submit');
