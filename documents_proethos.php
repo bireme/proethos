@@ -7,8 +7,11 @@ $link4 = '<A HREF="" class="link lt2">';
 $link5 = '<A HREF="" class="link lt2">';
 
 $sx = '
-<h2>'.msg('proethos_files').'</h2>
-<table class="table_file" width="100%" border=0 >
+<h1>'.msg('proethos_files').'</h1>
+<BR>';
+$sx .= '<fieldset>';
+
+$sx .= '<table class="table_file" width="100%" border=0 >
 	<tbody>
 		<TR class="lt2" valign="top">
 			<td>'.$link1.msg('proethos_doc_guia').'</A>
@@ -23,5 +26,6 @@ $sx = '
 			<uL>
 		</table>		
 </table>';
+$sx .= '</fieldset>';
 echo $sx;
 ?>

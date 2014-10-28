@@ -24,6 +24,26 @@ class header {
 	var $http = '';
 	var $path = '';
 
+	function change_language() {
+		//$sel = 'selected';
+		$lang_name = array('English', 'Espa&ntilde;ol', 'Fran&ccedil;ais', 'Português');
+		$lang_code = array('en_US', 'es', 'fr', 'pt_BR');
+		$sx = '
+			<!-- begin language switcher -->
+    			<div id="LanguageSwitcher">
+					<form action="#">
+					<select id="LanguageSwitcher">';
+		for ($r = 0; $r < count($lang_name); $r++) {
+			$sx .= '<option value="' . $lang_code[$r] . '" ' . $sel . '>' . $lang_name[$r] . '</option>';
+		}
+		$sx .= '</select></form>
+			</div>
+			<script type="text/javascript" src="js/proethos-select-language.js"></script>
+			<!-- end language switcher -->
+			';
+		return ($sx);
+	}
+
 	function mount_button($name, $link) {
 		$cr = chr(13) . chr(10);
 		$link = '<A HREF="' . $link . '"  class="topmenu"><nobr>';
@@ -39,7 +59,7 @@ class header {
 				<script>
 					document.write(\'java - ok\');
 				</script>
-				FIM';		
+				FIM';
 		return ($sx);
 	}
 
@@ -60,7 +80,7 @@ class header {
 		$sx .= '<link rel="shortcut icon" type="image/x-icon" href="' . $http . 'favicon.ico" />' . $cr;
 
 		/* Add Style File */
-		$style = array('proethos_style.css', 'proethos_cabmenu_styles.css', 'proethos_style.css', 'proethos_main.css', 'font_roboto.css','google_css.css');
+		$style = array('proethos_form.css', 'proethos_style.css', 'proethos_cabmenu_styles.css', 'proethos_style.css', 'proethos_main.css', 'font_roboto.css', 'google_css.css');
 		for ($r = 0; $r < count($style); $r++) { $sx .= '<link rel="STYLESHEET" type="text/css" href="' . $http . 'css/' . $style[$r] . '">' . $cr;
 		}
 
@@ -72,7 +92,8 @@ class header {
 
 		/* Add Java script */
 		$js = array('jquery.js');
-		for ($r = 0; $r < count($js); $r++) { $sx .= '<script type="text/javascript" src="' . $http . 'js/' . $js[$r] . '"></script>' . $cr;
+		for ($r = 0; $r < count($js); $r++) 
+			{ $sx .= '<script type="text/javascript" src="' . $http . 'js/' . $js[$r] . '"></script>' . $cr;
 		}
 
 		/* Style Additional */

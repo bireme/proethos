@@ -30,6 +30,7 @@ $sx .= '<div class="right lpad5 rmarg5">';
 				} else {
 					$sx .= '<TD width="*"></td>';
 				}
+$sx .= $hd->change_language();				
 $sx .= '</div>';
 
 /* Proethos Image */
