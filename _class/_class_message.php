@@ -167,7 +167,7 @@ class message
 		if (strlen($lg) > 0) 
 		{
 			$_SESSION['language'] = $lg;
-			redirecina(page_link());	
+			redirecina('../'.page());	
 			exit;	
 		}
 		return (1);

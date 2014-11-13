@@ -45,7 +45,7 @@ class country
 		}		
 	function form_country()
 			{
-			$sx .= '<table width="100%"  class="lt0" border=1>';
+			$sx .= '<table width="100%"  class="lt0" border=0>';
 			$sx .= '<TR bgcolor="#C0C0C0"><TH width=5%>'.msg('country_item');
 			$sx .= '<TH width=60%>'.msg('country_desc');
 			$sx .= '<TH>'.msg('country_sample_size');
@@ -59,9 +59,9 @@ class country
 			</style>';
 			$sx .= '<TR>';
 			$sx .= '<TD>';
-			$sx .= gets('dd3a',$dd[3],'$Q pais_nome:pais_codigo:select * from ajax_pais where pais_idioma = \'en_US\' and pais_ativo=1 order by pais_nome',$dd[3],0,1,'','form_textarea_full','');
-			$sx .= gets('dd4a',$dd[4],'$I4',$dd[4],0,1,'','form_textarea_full','');
-			$sx .= '<TD><input type="button" id="country_post" value="'.msg('country_post').'">';
+			$sx .= gets('dd3a',$dd[3],'$Q pais_nome:pais_codigo:select * from ajax_pais where pais_idioma = \'en_US\' and pais_ativo=1 order by pais_nome',mst('country'),0,1,'','form_textarea_full','');
+			$sx .= gets('dd4a',$dd[4],'$I4',mst('size'),0,1,'','form_textarea_full','Size','');
+			$sx .= '<TD><input type="button" id="country_post" value="'.msg('country_post').'" class="form_submit">';
 			$sx .= '</table>';
 			$sx .= '</div>';
 			

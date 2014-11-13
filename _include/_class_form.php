@@ -42,6 +42,7 @@ function gets($a1,$a2,$a3,$a4,$a5)
 		$cp = array($a3,'',$a4,$a5,True); 
 		$form->name = $a1;
 		$form->value = $a2;
+		$form->caption = $a4;
 		$sx = $form->process($cp);
 		return($sx);
 	}
@@ -85,6 +86,7 @@ class form
 		var $class_memo = '';
 		var $class_select = '';
 		var $class_select_option = '';
+		var $class_textarea = '';
 
 	/* AJAX */
 	function ajax($id,$protocolo)
@@ -177,7 +179,7 @@ class form
 						
 						/* Mostra campos para o ajax */
 						$vars = ''; $data = ''; $ks = '';
-						for ($r=0;$r < (count($cp)+3); $r++)
+						for ($r=0;$r < (count($cp)+2); $r++)
 							{
 								
 								/* Novo */
@@ -517,7 +519,13 @@ class form
 				$this->required = $cp[3];
 				$this->caption = $cp[2];
 				$this->caption_original = $cp[2];
-				$this->caption_placeholder = troca($cp[2],'"','');
+				$placeholder = troca($cp[2],'"','');
+				if (strpos($placeholder,'<') > 0)
+					{
+						$placeholder = substr($placeholder,0,strpos($placeholder,'<'));
+					}
+					
+				$this->caption_placeholder = $placeholder;
 				$this->fieldset = $cp[1];
 				$size = sonumero($cp[0]);
 				$this->maxlength = $size;
@@ -550,15 +558,15 @@ class form
 				
 				$sx .= chr(13).'<TR valign="top">';
 							
-				$sh = '<TD align="right">'.$this->caption.'<TD>';
+				$sh = '<TD align="right" width="10%">'.$this->caption.'<TD>';
 				if (strlen(trim($this->caption_original)) == 0)
 					{ $sh = '<TD colspan=2 align="left">'; }
 				if (substr($i,0,1)=='T')
 					{
-						$sh = '<TD colspan=2 align="left">';
+						//$sh = '<TD colspan=2 align="right">';
 						$sh .= $this->caption; 
 					}
-
+				
 				switch ($i) 
 				{
 					/* Field Sets */
@@ -588,7 +596,8 @@ class form
 					case 'C':  $sx .= '<TR><TD colspan=2>'.$this->type_C() . $this->caption; break;					
 										
 					/* Date */
-					case 'D':  $sx .= $sh. $this->type_D(); break;
+					case 'D':  
+						$sx .= $sh. $this->type_D(); break;
 					/* EAN13 */
 					case 'EAN':  $sx .= $sh. $this->type_EAN(0); break;
 										
@@ -653,7 +662,7 @@ class form
 					case 'T':
 						$this->cols = sonumero(substr($cp[0],0,strpos($cp[0],':')));
 						$this->rows = sonumero(substr($cp[0],strpos($cp[0],':'),100));
-						$sx .= $sh. '<TR><TD colspan=2>'. $this->type_T(); 
+						$sx .= '<TD align="right">'.$this->caption.'<TD>'. $this->type_T(); 
 						break;
 					/* String Simple */
 					case 'TOKEN':
@@ -752,7 +761,7 @@ class form
 				<select name="'.$this->name.'" id="'.$this->name.'" size="1" class="'.$this->class_select.'">
 					'.$this->class.' 
 					id="'.$this->name.'" >';
-				$sx .= '<option value="">'.msg('select_option').'</option>';
+				$sx .= '<option value="" class="'.$this->class_select_option.'">'.msg('select_option').'</option>';
 				if ($dec==0)
 					{									
 						for ($nnk=round($par[0]);$nnk <= round($par[1]);$nnk++)
@@ -850,7 +859,7 @@ class form
 
 				$sql = "Select * from ajax_pais where pais_ativo > 0 order by pais_prefe desc, pais_ativo desc, pais_nome ";
 				$rrr = db_query($sql); 
-				$opt = '<option value="">'.msg('select_your_country').'</option>';
+				$opt = '<option value="" class="'.$this->class_select_option.'">'.msg('select_your_country').'</option>';
 				while ($line = db_read($rrr))
 				{
 					$check = '';
@@ -902,7 +911,7 @@ class form
 				<input 
 					type="text" name="'.$this->name.'" size="13"
 					value = "'.$this->value.'"
-					maxlength="10" class="'.$this->class_textbox.'" 
+					maxlength="10" class="'.$this->class_string.'" 
 					id="'.$this->name.'"
 					'.$msk.' />&nbsp;';
 				$sx .= $this->requerido();
@@ -1040,6 +1049,7 @@ class form
 					type="text" name="'.$this->name.'" size="18"
 					value = "'.$this->value.'"
 					maxlength="15" '.$this->class.' 
+					class="'.$this->class_string.'"
 					id="'.$this->name.'"
 					'.$msk.' />&nbsp;';
 				
@@ -1160,7 +1170,13 @@ class form
 						if (strlen(trim($this->class_select_option)) > 0) 
 							{ $sx .= ' class="'.$this->class_select_option.'"'; }
 						$sx .= '>';
-						$sx .= trim(substr($so,strpos($so,':')+1,strlen($so)));
+						$tx = trim(substr($so,strpos($so,':')+1,strlen($so)));
+						
+						if (substr($tx,0,1) == '#')
+							{
+								$tx = msg($tx);
+							} 
+						$sx .= $tx;
 						$sx .= '</option>'.chr(13);
 					}
 				$sx .= '</select>';
@@ -1220,9 +1236,11 @@ class form
 				if (round($this->rows)==0) { $this->rows = 5; }
 				$sx = '
 				<TEXTAREA 
-					type="text" name="'.$this->name.'" size="'.$this->size.'"
+					name="'.$this->name.'" 
+					class="'.$this->class_textarea.'"
 					cols="'.$this->cols.'"
-					rows="'.$this->rows.'" class="'.$this->class_textarea.'" 
+					rows="'.$this->rows.'" 
+					 
 					id="'.$this->name.'" />';
 				$sx .= $this->value;
 				$sx .= '</textarea>';

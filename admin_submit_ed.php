@@ -3,9 +3,10 @@ require("cab.php");
 require("_class/_class_submit_manuscrito_field.php");
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
+require($include.'_class_form.php');
+$form = new form;
+require("form_css.php");
 
 	$cl = new fields;
 	$cp = $cl->cp();
@@ -17,17 +18,16 @@ require($include.'sisdoc_form2.php');
 
 	/** Comandos de Edi��o */
 	
-	echo '<CENTER><font class=lt5>'.msg('titulo').'</font></CENTER>';
-	?><TABLE width="<?=$tab_max;?>" align="center" bgcolor="<?=$tab_color;?>"><TR><TD><?
-	editar();
-	?></TD></TR></TABLE><?	
+	$tela = $form->editar($cp,$tabela);	
 	
 	/** Caso o registro seja validado */
-	if ($saved > 0)
+	if ($form->saved > 0)
 		{
 			echo 'Salvo';
 			$cl->updatex();
 			redirecina('admin_submit.php');
+		} else {
+			echo $tela;
 		}
 	echo '</div>';
 echo $hd->foot();

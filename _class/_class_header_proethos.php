@@ -25,6 +25,7 @@ class header {
 	var $path = '';
 
 	function change_language() {
+		global $LANG;
 		//$sel = 'selected';
 		$lang_name = array('English', 'Espa&ntilde;ol', 'Fran&ccedil;ais', 'Português');
 		$lang_code = array('en_US', 'es', 'fr', 'pt_BR');
@@ -34,6 +35,7 @@ class header {
 					<form action="#">
 					<select id="LanguageSwitcher">';
 		for ($r = 0; $r < count($lang_name); $r++) {
+			if ($LANG == $lang_code[$r]) { $sel = 'selected'; } else { $sel = ''; }
 			$sx .= '<option value="' . $lang_code[$r] . '" ' . $sel . '>' . $lang_name[$r] . '</option>';
 		}
 		$sx .= '</select></form>
@@ -91,7 +93,7 @@ class header {
 		}
 
 		/* Add Java script */
-		$js = array('jquery.js');
+		$js = array('jquery.js','jquery.maskedit.js','jquery.maskmoney.js');
 		for ($r = 0; $r < count($js); $r++) 
 			{ $sx .= '<script type="text/javascript" src="' . $http . 'js/' . $js[$r] . '"></script>' . $cr;
 		}
