@@ -16,9 +16,7 @@ $tp = new message;
 
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
 require($include.'sisdoc_debug.php');
 
 	$clx = new cep;
@@ -39,12 +37,14 @@ require($include.'sisdoc_debug.php');
 	
 	
 	
-	echo '<h1>'.msg('cep').'</h1>';
-	echo '<TABLE width="'.$tab_max.'" align="center"><TR><TD>';
-
+	echo '<h1>'.msg('cep_protocol').'</h1>';
+	echo '<fieldset><legend>'.msg('protocol').'</legend>';
+	echo '<TABLE width="100%" align="center"><TR><TD>';
 	require($include.'sisdoc_row.php');
 	
-	echo '</table>';	
+	echo '</table>';
+	echo '</fieldset>';
+		
 	echo '</div>';
 
 echo $hd->foot();		

@@ -292,14 +292,15 @@ class submit {
 	function protocolos_mostrar($rst) {
 		global $colunas;
 		$sx = '';
-		$sx .= '<table class="tabela00 lt1" width="100%">';
-		$sx .= '<TR><TH width="10%">' . msg('caae');
+		$sx .= '<table class="tabela00 lt3" width="100%">';
+		$sx .= '<TR class="lt1"><TH width="10%">' . msg('caae');
 		$sx .= '<TH>' . msg('protocol_title');
 		$sx .= '<TH width="7%"><nobr>' . msg('last_update');
 		$sx .= '<TH width="7%">' . msg('status');
 		$xsta = "X";
 		$id = 0;
 		//$sx .= '<TR bgcolor="#B0B0B0"><TD colspan=4 align="center"><font class="lt3">'.msg('approved_protocols').'</font>';
+		
 		for ($r = 0; $r < count($rst); $r++) {
 			$id++;
 			$line = $rst[$r];
@@ -310,8 +311,10 @@ class submit {
 			if ($sta == '$') { $asta = '<font color="red">' . msg('problem') . '</font>';
 			}
 			if ($sta == '@') { $asta = '<font color="green">' . msg('status_@');
+			$img = '<img src="img/icone_edit.png" height="50" title="view">';
 			}
 			if ($sta == 'A') { $asta = msg('status_A');
+			$img = '<img src="img/icone_view.png" height="50" title="view">';
 			}
 			if ($sta == 'X') { $asta = msg('status_X');
 			}
@@ -350,6 +353,7 @@ class submit {
 
 			$sx .= '<TD><nobr>' . $link . $cor;
 			$sx .= $asta;
+			$sx .= '<TD width="10">'.$link . $img;
 		}
 		if (count($rst) == 0) { $sx = '';
 		}

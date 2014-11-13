@@ -363,8 +363,10 @@ class cep
 	function protocol_show($rlt)
 		{
 			$id = 0;
-			$sx .= '<table class="tabela00" width="100%" bgcolor="#FFFFFF">';
-			$sx .= '<TR bgcolor="#B0B0B0"><TD colspan=4 align="center"><font class="lt3">'.msg('approved_protocols').'</font>';
+			$sx .= '<table class="tabela00" width="100%" bgcolor="#FFFFFF" class="lt3">';
+			$sx .= '<TR>
+						<TD colspan=4 align="center">
+							<font class="lt3">'.msg('approved_protocols').'</font>';
 			$sx .= '<TR><TH width="10%">'.msg('caae');	
 			$sx .= '<TH>'.msg('protocol_title');
 			$sx .= '<TH width="7%"><nobr>'.msg('last_update');
@@ -375,7 +377,7 @@ class cep
 					$id++;
 					$link = '<A HREF="protocol_detalhe_investigator.php?dd0='.$line['id_cep'].'&dd90='.checkpost($line['id_cep']).'" class="link">';
 					$sx .= chr(13);
-					$sx .= '<TRvalign="top" bgcolor="#FFFFFF">';
+					$sx .= '<TR valign="top" bgcolor="#FFFFFF">';
 					$sx .= '<TD class="tabela01">'.$link;
 					$sx .= $line['cep_caae'];
 					$sx .= '<TD class="tabela01">'.$link;	

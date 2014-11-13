@@ -25,13 +25,15 @@ global $messa;
 $file = '../messages/msg_faq.php';
 if (file_exists($file)) { require($file); }
 
-/* Sess�o e p�gina da Submissao */
+/* Sess�o e pagina da Submissao */
 
 echo '<H1>'.msg('faq_title').'</h1>';
+echo '<fieldset><legend>'.msg('faq').'</legend>';
 echo '<Table width="'.$tab_max.'" class="lt1" align="center" >';
 echo '<TR><TD>';
 echo $faq->faq();
 echo '</table>';
+echo '</fieldset>';
 echo '</div>';
 
 echo $hd->foot();

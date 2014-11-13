@@ -44,7 +44,7 @@ $nocab = $vars['nocab'];
 //-------------------------------------- Determina o Idioma de Navega��o
 $idv = $vars['idioma'];
 //-------------------------------------------- Biblioteca
-$tab_max = '95%';
+$tab_max = '100%';
 
 $db_config = '_db/db_proethos.php';
 if ($install != 1) 

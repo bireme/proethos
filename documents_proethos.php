@@ -11,12 +11,15 @@ $sx = '
 <table class="table_file" width="100%" border=0 >
 	<tbody>
 		<TR class="lt2" valign="top">
-			<td>'.$link1.msg('proethos_doc_guia').'</A>
-			<br>'.$link2.msg('proethos_doc_adve').'</A>
+			<td>
+				<ul class="documents">
+				<li>'.$link1.msg('proethos_doc_guia').'</A></li>
+				<li>'.$link2.msg('proethos_doc_adve').'</A></li>
+				</ul>
 			
 			</td>			
 			<td rowspan=5><B>'.msg('proethos_doc_dict').'</B>		
-			<uL>
+			<uL class="documents">
 				<li>'.$link3.msg('proethos_doc_diap').'</A></li>
 				<li>'.$link4.msg('proethos_doc_diac').'</A></li>
 				<li>'.$link5.msg('proethos_doc_dina').'</A></li>

@@ -29,6 +29,7 @@ $documents = new documents;
 /* Sessao e pagina da Submissao */
 
 echo '<H1>'.msg('documents_title').'</h1>';
+echo '<fieldset>';
 echo '<div>';
 echo '<div style="float: left; margin-right: 5px;">Sort by:</div>';
 echo '<div style="float: left; margin-right: 5px; text-decoration: underline;">DATE</div>';
@@ -57,11 +58,16 @@ while ($line = db_read($rlt))
 	if ($ged->total_files > 0) { echo ($sx); }
 }
 echo '</table>';
-
+echo '</fieldset>';
+echo '<BR>';
+echo '<H1>'.msg('documents_title').'</h1>';
+echo '<fieldset>';
 require("documents_proethos.php");
 echo '</div>';
+echo '</fieldset>';
 
 echo $hd->foot();
+
 ?>
 <script>
 	
