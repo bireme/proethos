@@ -25,6 +25,7 @@ if (strlen($idio) > 0)
 	}
 
 $lg = new message;
+
 $lg -> language_set($idio_valid);
 $LANG = $lg -> language_read();
 

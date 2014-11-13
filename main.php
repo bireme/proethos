@@ -80,7 +80,9 @@ if ($perfil->valid('#MEM'))
 
 /* Show Calender */
 echo '<BR>';
+echo '<fieldset>';
 echo $rs->calender();
+echo '</fieldset>';
 
 echo '</div>';	
 	

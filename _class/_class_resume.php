@@ -124,7 +124,7 @@ class resume
 				$sx .=  '<Table width="100%" class="lt1" align="center" border=0 >';
 				$sx .= '<TR><TD>';
 				$sx .= '<form action="submit.php">';
-				$sx .= '<input type="submit" value="'.msg('submit_new_project').'" class="botao-geral">';	
+				$sx .= '<input type="submit" value="'.msg('submit_new_project').'" class="form_submit">';	
 				$sx .= '<input type="hidden" name="dd90" value="new">';
 				$sx .= '</form>';
 				$sx .= '</table>';
