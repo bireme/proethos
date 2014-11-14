@@ -190,7 +190,7 @@ function format_fld($zq1,$zq2)
 //					$zqr .= '<TR><TD colspan="15" height="1" bgcolor="#c0c0c0"></TD></TR>';
 					$zqr .= '<TR><TD  bgcolor="#FFFFFF" colspan="15" class="lt2" align="left"><HR size="1"><B>'.$zq1v.'</TD></TR>';
 					$hd = trim($zq1);
-					$zqr = $zqr . '<TR '.coluna().'><TD></TD>';
+					$zqr = $zqr . '<TR><TD></TD>';
 					}
 				} 
 			if ($zq2 == 'H1') ////// ENFATIZADO

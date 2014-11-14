@@ -37,7 +37,7 @@ class budget
 					$it++;
 					$toti = $toti + $line['sorca_unid'];
 					$tot = $tot + $line['sorca_unid']*$line['sorca_valor'];
-					$sx .= '<TR '.coluna().'>';
+					$sx .= '<TR>';
 					$sx .= '<TD align="center">'.$it;
 					$sx .= '<TD align="left">'.trim($line['sorca_descricao']);
 					$sx .= '<TD align="right">'.number_format($line['sorca_valor'],2,',','.');
@@ -167,7 +167,7 @@ class budget
 					$df = $line['scrono_date_end'];
 					$di = substr($di,4,2).'/'.substr($di,0,4);
 					$df = substr($df,4,2).'/'.substr($df,0,4); 			
-					$sx .= '<TR '.coluna().'>';
+					$sx .= '<TR>';
 					$sx .= '<TD align="center">'.$it;
 					$sx .= '<TD align="left">'.trim($line['scrono_descricao']);
 					$sx .= '<TD align="right">'.$di;

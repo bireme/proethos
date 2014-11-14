@@ -113,7 +113,7 @@ class country
 					$it++;
 					$toti = $toti + $line['sorca_unid'];
 					$tot = $tot + $line['sorca_unid']*$line['sorca_valor'];
-					$sx .= '<TR '.coluna().'>';
+					$sx .= '<TR>';
 					$sx .= '<TD align="center">'.$it;
 					$sx .= '<TD align="left">'.trim($line['pais_nome']);
 					$sx .= '<TD align="center">'.trim($line['ctr_target']);

@@ -963,7 +963,7 @@ class cep
 							enviaremail('renefgj@gmail.com','',$subject,$txt);					
 						}
 											
-					$sx .= '<TR '.coluna().'>';
+					$sx .= '<TR>';
 					$sx .= '<TD width="5">';
 					$sx .= '<input type="checkbox" name="dda'.$id.'" value=1 '.$dds.'>';
 					$sx .= '<TD>';
@@ -1265,7 +1265,7 @@ class cep
 							enviaremail('renefgj@gmail.com','',$subject,$txt);					
 						}
 											
-					$sx .= '<TR '.coluna().'>';
+					$sx .= '<TR>';
 					$sx .= '<TD width="5">';
 					$sx .= '<input type="checkbox" name="dda'.$id.'" value=1 '.$dds.'>';
 					$sx .= '<TD>';
@@ -1434,7 +1434,7 @@ class cep
 			$ic = new ic;
 			$msg = $ic->ic('survey_email');
 			
-			$title = $this->$line['cep_titulo'];
+			$title = $this->line['cep_titulo'];
 			
 			$email_title = $msg['title'];
 			$email_body = $msg['text'];
@@ -2080,7 +2080,7 @@ class cep
 					$name = trim($line['ps_nome']);
 					if (strlen($name)==0) { $name = $line['cep_status']; }
 					$line = $rst[$r];
-					$sc .= '<TR '.coluna().'>';
+					$sc .= '<TR>';
 					$sc .= '<TD align="center"><B>';
 					$sc .= $line['total'];
 					$sc .= '<TD>';

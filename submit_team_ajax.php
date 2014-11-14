@@ -64,7 +64,7 @@ $linkr = 'register_unit_ajax.php?dd1='.$protocol.'&dd2=del&dd3='.$autor.'&dd4='.
 	for ($r=0;$r < count($regs);$r++)
 		{
 			$line = $regs[$r];
-			echo '<TR '.coluna().'>';
+			echo '<TR>';
 			echo '<TD>'.$line['ru_name'];
 			echo '<TD>'.$line['csru_number'];
 			echo '<TD align="center">';
