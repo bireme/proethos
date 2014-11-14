@@ -19,16 +19,9 @@ if (!function_exists('enviaremail')) {
 		$em -> user_name = $hd->email_name;
 		$em -> user_password  = $hd->email_pass;
 		$em -> user_smtp  = $hd->email_smtp;
+		$em -> method  = 'A';	
 		
-		switch ($hd->email_type)
-			{
-			case 'AUTH':
-				$em->enviar_email_autenticado($to, $subject, $messagem, $to_name);
-				break;
-			case 'MAIL':
-				$em->method_mail($to, $subject, $messagem, $to_name);
-				break;
-			}
+		$em->enviar_email($to, $subject, $messagem, $to_name);
 	}
 
 }
@@ -87,7 +80,7 @@ class email {
 		return ($sx);
 	}
 
-	function enviar_email_autenticado($to = '', $subject = '', $messagem = '', $to_name = '') {
+	function enviar_email($to = '', $subject = '', $messagem = '', $to_name = '') {
 		global $hd;
 		$this -> to_email = $to;
 		$this -> to_name = $to_name;
@@ -98,7 +91,10 @@ class email {
 		return (1);
 	}
 
-	function method_mail($to, $subject, $body, $to_name) {
+	function method_mail() {
+		$to = $this -> to;
+		$subject = $e3;
+		$body = $e4;
 
 		$headers = $this -> header();
 
