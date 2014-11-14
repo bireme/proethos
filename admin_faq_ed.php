@@ -15,9 +15,8 @@ require('_class/_class_faq.php');
 $ln = new message;
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
+require($include.'_class_form.php');
 require($include.'sisdoc_data.php');
 require($include.'sisdoc_debug.php');
 
