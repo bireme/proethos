@@ -14,7 +14,9 @@ require("_class/_class_register_unit.php");
 global $acao,$dd,$cp,$tabela;
 require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
+require($include.'_class_form.php');
+$form = new form;
+
 
 	$cl = new register_unit;
 	$cp = $cl->cp();
