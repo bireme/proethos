@@ -157,6 +157,9 @@ class email {
 			 	$senha = $this->user_password;
 			 	$Remetente_name = $this->user_name;
 				$Remetente_email = $this->user_email;
+				$smtp_port = $this->smtp_port;
+				//if ($smtp_port == 0) { $smtp_port = 587; }
+				if ($smtp_port == 0) { $smtp_port = 25; }
 				
 				$assunto = $this->subject; 				
  				$nomeDestinatario = trim($this->to_name);
@@ -200,7 +203,7 @@ class email {
 				
 				/* Inicialização */
 				ini_set('php_flag mail_filter', 0);
-				$conexao = fsockopen($dados['email']['servidor'], 587, $errno, $errstr, 10) 
+				$conexao = fsockopen($dados['email']['servidor'], $smtp_port, $errno, $errstr, 10) 
 					or die("<font color='red'>ERRO DE ENVIO!</font>");
 				fgets($conexao, 512);
 				$dados['destinatarios'] = explode(',', $destinatarios);
