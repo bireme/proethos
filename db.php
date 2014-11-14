@@ -13,17 +13,21 @@ header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("Cache-Control: private",false);
 
-$include = '../_include/';
-$inc = $include;
-for ($r=0;$r < 10;$r++)
+
+/* Find Include Directory */
+$path = array('_include/','../_include/','../../_include/');
+for ($r=0;$r < count($path);$r++)
 	{
-		if (file_exists($inc.'sisdoc_char.php')) { $include = $inc; $r=99; }
-		$inc = '../'.$inc;
+		if (is_dir($path[$r]))
+			{
+				$include = $path[$r];
+				$r = 99;
+			}
 	}
 //-------------------------------------- Paramentros para DEBUG
-//$debug = true;
 
 global $user_id,$user_nome,$dd,$user_nivel;
+
 require($include."sisdoc_char.php");
 require($include.'sisdoc_sql.php');
 
