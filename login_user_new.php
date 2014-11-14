@@ -18,6 +18,7 @@ $form = new form;
 			$form -> class_button_submit = 'login_submit';
 			$form -> class_form_standard = 'login_table';
 			$form -> class_select = 'login_string';
+			$form -> class_textarea = 'login_textarea';
 
 /* Login data */
 $nw = new users;

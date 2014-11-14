@@ -26,6 +26,11 @@ echo '<div class="border1 pad5">';
 echo '<h2>Save File and Create Directory</h2>';
 if (!(file_exists('repositorio/_temp'))) {
 	echo 'Create directory';
+	if (!is_dir('repositorio'))
+		{
+			mkdir('repositorio');		
+		}
+	
 	mkdir('repositorio/_temp');
 	echo ' <font color="green">ok!</font>';
 }

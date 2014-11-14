@@ -27,9 +27,9 @@
 	width: 85%;
 	padding: 12px 20px 12px 10px;
 	border: none;
-	color: #303030;
+	color: #FFFFFF;
 	box-shadow: inset 0px 1px 5px #272727;
-	font-size: 0.8em;
+	font-size: 14px;
 	-webkit-transition: 0.5s ease;
 	-moz-transition: 0.5s ease;
 	-o-transition: 0.5s ease;
@@ -38,12 +38,29 @@
 }
 
 .login_string:focus {
+	color: #FFFFFF;
 	-webkit-transition: 0.5s ease;
 	-moz-transition: 0.5s ease;
 	-o-transition: 0.5s ease;
 	-ms-transition: 0.5s ease;
 	transition: 0.5s ease;
 	box-shadow: 0px 0px 5px 1px #161718;
+}
+.login_textarea {
+	font-size: 14px;
+	margin: 0px auto 15px;
+	border-radius: 5px;
+	background: #8CB1E1;
+	width: 85%;
+	padding: 12px 20px 12px 10px;
+	border: none;
+	color: #FFFFFF;
+	box-shadow: inset 0px 1px 5px #272727;
+	-webkit-transition: 0.5s ease;
+	-moz-transition: 0.5s ease;
+	-o-transition: 0.5s ease;
+	-ms-transition: 0.5s ease;
+	transition: 0.5s ease;
 }
 
 .login_submit {
