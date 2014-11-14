@@ -14,11 +14,12 @@ require('_class/_class_dictamen.php');
 $ln = new message;
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
+require($include.'_class_form.php');
 require($include.'sisdoc_data.php');
 require($include.'sisdoc_debug.php');
+$form = new form;
+require("form_css.php");
 
 	$cl = new dictamen;
 	$cp = $cl->cp_modelo();
@@ -30,19 +31,20 @@ require($include.'sisdoc_debug.php');
 
 	/** Comandos de Edi��o */
 	echo '<CENTER><font class=lt5>'.msg('titulo').'</font></CENTER>';
-	?><TABLE width="<?=$tab_max;?>" align="center" bgcolor="<?=$tab_color;?>"><TR><TD><?
-	editar();
+	echo '<table width="100%"><TR><TD>';
+	$tela = $form->editar($cp,$tabela);
 	
-	echo '</TD></TR></TABLE>';	
-	echo '</div>';
 	
 	/** Caso o registro seja validado */
 	if ($saved > 0)
 		{
-			echo 'Salvo';
 			$cl->updatex();
 			redirecina('admin_parecer_modelo.php');
+		} else {
+			echo $tela;
 		}
+	echo '</table>';
+	echo '</div>';
 echo $hd->foot();	
 ?>
 
