@@ -163,7 +163,7 @@ class parecer_avaliation
 						$rrr = db_query($sql);
 						if ((strlen($err)==0) and ($dd[29]=='1'))
 							{
-								redirecina('protocolo_detalhe.php?dd90='.$dd[90].'&dd91=');
+								redirecina('protocol_detalhe.php?dd90='.$dd[90].'&dd91=');
 							}
 					}
 				$sa .= '<BR>'.msg('question_1').'<BR>';
