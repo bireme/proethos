@@ -28,7 +28,9 @@ $ln = new message;
 global $acao,$dd,$cp,$tabela;
 require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
+require($include.'_class_form.php');
+$form = new form;
+require("form_css.php");
 require($include.'sisdoc_debug.php');
 
 	$cl = new message;
@@ -37,9 +39,7 @@ require($include.'sisdoc_debug.php');
 	$tabela = '';
 	///********************** SALVAR **/
 	if (strlen($acao) > 0)
-		{
-		echo 'SAVE'	;
-		
+		{		
 		for ($r=0;$r < count($cps);$r++)
 			{			
 				if (round($cps[$r][0]) > 0)

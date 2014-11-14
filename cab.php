@@ -58,7 +58,8 @@ $perfil = new user_perfil;
 /* Header Class */
 require ("_class/_class_header_proethos.php");
 $hd = new header;
-
+/* load configuration committe */
+$hd->load_committe();
 /* security */
 $page = ' ' . page();
 $nosec = round(strpos($page, 'login.php')) + $nosec;

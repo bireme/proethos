@@ -16,7 +16,7 @@ require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
 require($include.'_class_form.php');
 $form = new form;
-
+require("form_css.php");
 
 	$cl = new register_unit;
 	$cp = $cl->cp();

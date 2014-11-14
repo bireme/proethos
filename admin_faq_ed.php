@@ -17,6 +17,9 @@ $ln = new message;
 global $acao,$dd,$cp,$tabela;
 require($include.'sisdoc_colunas.php');
 require($include.'_class_form.php');
+$form = new form;
+require("form_css.php");
+
 require($include.'sisdoc_data.php');
 require($include.'sisdoc_debug.php');
 
@@ -30,9 +33,8 @@ require($include.'sisdoc_debug.php');
 	
 	/** Comandos de Edicao */
 	echo '<CENTER><h2>'.$tit.'</h2></CENTER>';
-	?><TABLE width="<?=$tab_max;?>" align="center" bgcolor="<?=$tab_color;?>"><TR><TD><?
-	editar();
-	?></TD></TR></TABLE><?	
+	$tela = $form->editar($cp,$form);
+	
 	echo '</div>';
 	/** Caso o registro seja validado */
 	if ($saved > 0)
@@ -40,6 +42,8 @@ require($include.'sisdoc_debug.php');
 			echo 'Salvo';
 			$cl->updatex();
 			redirecina($tabela.'.php');
+		} else {
+			echo $tela;
 		}
 echo $hd->foot();	
 ?>

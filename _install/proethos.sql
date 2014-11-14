@@ -844,6 +844,8 @@ CREATE TABLE _committee (
   cm_admin_email char(100) NOT NULL,
   cm_admin_email_tipo char(5) NOT NULL,
   cm_admin_email_pass char(30) NOT NULL,
+  cm_admin_email_smtp char(100) NOT NULL,
+  cm_admin_email_port char(10) NOT NULL,
   cm_committe char(8) NOT NULL,
   cm_admin_key char(40) NOT NULL,
   cm_admin_key_harveting char(40) NOT NULL,
@@ -922,7 +924,7 @@ INSERT INTO ajax_pais (id_pais, pais_nome, pais_codigo, pais_ativo, pais_use, pa
 (61, 'Congo', '00061', 1, NULL, 'en_US'),
 (62, 'Cook Iislands', '00062', 1, NULL, 'en_US'),
 (63, 'Costa Rica', '00063', 1, NULL, 'en_US'),
-(64, 'Côte D´ivoire (Ivory Coast)', '00064', 1, NULL, 'en_US'),
+(64, 'Cï¿½te Dï¿½ivoire (Ivory Coast)', '00064', 1, NULL, 'en_US'),
 (65, 'Croatia', '00065', 1, NULL, 'en_US'),
 (66, 'Cuba', '00066', 1, NULL, 'en_US'),
 (67, 'Cyprus', '00067', 1, NULL, 'en_US'),
@@ -985,11 +987,11 @@ INSERT INTO ajax_pais (id_pais, pais_nome, pais_codigo, pais_ativo, pais_use, pa
 (124, 'Kazakhstan', '00124', 1, NULL, 'en_US'),
 (125, 'Kenya', '00125', 1, NULL, 'en_US'),
 (126, 'Kiribati', '00126', 1, NULL, 'en_US'),
-(127, 'Korea, Democratic People´s Rep', '00127', 1, NULL, 'en_US'),
+(127, 'Korea, Democratic Peopleï¿½s Rep', '00127', 1, NULL, 'en_US'),
 (128, 'Korea, Republic of', '00128', 1, NULL, 'en_US'),
 (129, 'Kuwait', '00129', 1, NULL, 'en_US'),
 (130, 'Kyrgyzstan', '00130', 1, NULL, 'en_US'),
-(131, 'Lao People´s Democratic Republ', '00131', 1, NULL, 'en_US'),
+(131, 'Lao Peopleï¿½s Democratic Republ', '00131', 1, NULL, 'en_US'),
 (132, 'Latvia', '00132', 1, NULL, 'en_US'),
 (133, 'Lebanon', '00133', 1, NULL, 'en_US'),
 (134, 'Lesotho', '00134', 1, NULL, 'en_US'),
@@ -1047,7 +1049,7 @@ INSERT INTO ajax_pais (id_pais, pais_nome, pais_codigo, pais_ativo, pais_use, pa
 (186, 'Portugal', '00186', 1, NULL, 'en_US'),
 (187, 'Puerto Rico', '00187', 1, NULL, 'en_US'),
 (188, 'Qatar', '00188', 1, NULL, 'en_US'),
-(189, 'Réunion', '00189', 1, NULL, 'en_US'),
+(189, 'Rï¿½union', '00189', 1, NULL, 'en_US'),
 (190, 'Romania', '00190', 1, NULL, 'en_US'),
 (191, 'Russian Federation', '00191', 1, NULL, 'en_US'),
 (192, 'Rwanda', '00192', 1, NULL, 'en_US'),
@@ -1118,14 +1120,14 @@ INSERT INTO ajax_pais (id_pais, pais_nome, pais_codigo, pais_ativo, pais_use, pa
 
 INSERT INTO apoio_idioma (id_i, i_codigo, i_nome, i_ativo) VALUES
 (1, 'pt_BR', 'Portugues (Brasil)', 1),
-(2, 'en', 'Inglês', 1),
-(3, 'fr', 'Francês', 1),
+(2, 'en', 'Inglï¿½s', 1),
+(3, 'fr', 'Francï¿½s', 1),
 (4, 'es', 'Espanhol', 1),
-(5, 'ger', 'Alemão', 1),
-(6, '---', '-não definido-', 1);
+(5, 'ger', 'Alemï¿½o', 1),
+(6, '---', '-nï¿½o definido-', 1);
 
 INSERT INTO apoio_titulacao (id_ap_tit, ap_tit_codigo, ap_tit_titulo, ap_tit_idioma, at_tit_ativo, ap_ordem) VALUES
-(1, '008', 'Pós-Grad.', 'pt_BR', 1, 0),
+(1, '008', 'Pï¿½s-Grad.', 'pt_BR', 1, 0),
 (2, '007', 'Esp.a', 'pt_BR', 1, 0),
 (3, '001', 'Msc.', 'pt_BR', 1, 0),
 (4, '003', 'Dra.', 'pt_BR', 1, 0),
@@ -1210,12 +1212,12 @@ INSERT INTO cep_status (id_ess, ess_status, ess_codigo, ess_encaminhar, ess_acom
 (40, 'D', '00004', NULL, NULL, NULL, 'pesq_reunion', 'pesq_reunion', 'pesq_reunion', 'pesq_reunion', NULL, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '');
 
 INSERT INTO cep_submit_documentos_obrigatorio (id_sdo, sdo_codigo, sdo_descricao, sdo_content, sdo_info, sdo_ativo, sdo_obrigatorio, sdo_tipo, sdo_upload, sdo_modelo, sdo_ordem) VALUES
-(1, '00004', 'Parecer', 'Clique aqui para visualizar ou imprimir o parecer de seu protocolo.', 'Só são disponibilizados via internet os pareceres considerados com pendências. Se o seu parecer tiver outro tipo de resultado de apreciação, você deverá buscá-lo na secretaria do CEP PUCPR nos horários e atendimento externo.', 1, 0, 'PAR', 1, '', 20),
-(2, '00007', 'Compromissso do Pesquisador e Delegação de Poderes', '<font color="#366FF">Declaração de compromisso do pesquisador responsável e termo de delegação de poderes para o acompanhamento do projeto por terceiros.</font>\r\n<p><font color="#366FF">ESTE DOCUMENTO É NECESSÁRIO PARA QUE OUTRAS PESSOAS, ALÉM DO PESQUISADOR RESPONSÀVEL, POSSAM ACOMPANHAR O ANDAMENTO DO PROCESSO NO CEP, INCLUINDO A RETIRADA DE PARECERES. SEU ENVIO É OBRIGATÓRIO, MESMO QUE O PESQUISADOR NÃO DESEJE DELEGAR O DIREITO DE ACOMPANHAR O PROCESSO NO CEP.</font></p>', 'Esta declaração é obrigatória e somente as pessoas cujos nomes constarem no documento, poderão acompanhar o andamento do processo no CEP PUCPR, incluindo a retirada de pareceres na Secretaria do Comitê.', 1, 0, 'JPG', 1, 'http://www.pucpr.br/pesquisa_cientifica/cep/documentos/SPAT.doc', 5),
-(3, '00002', 'Termo de Compromisso de Utilização de Dados', '<font color="#366FF">A apresentação do TCUD é <b>obrigatória</b> para todos os projetos nos quais será realizada qualquer tipo de pesquisa em um banco de dados. Relacione no documento todos os pesquisadores que poderão acessar os arquivos.</font> \r\n<p><font color="#366FF"> A FALTA INJUSTIFICADA DA APRESENTAÇÃO DESTE TERMO OU DO TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO, CONFORME O CASO, IMPLICARÁ NA REJEIÇÃO DA SUBMISSÃO DE SEU PROTOCOLO".</font></p>', 'Anexe aqui o modelo de seu Termo de Compromisso de Utilização de Dados. Você poderá usar o modelo sugerido que pode ser obtido clicando na opção "baixe um modelo deste documento". Tenha claro que é obrigatória a apresentação deste documento em protocolos nos quais serão pesquisados documentos que constam de banco de dados, como arquivos de prontuários médicos e de outros documentos que contenham dados de pessoas. Relacione no documento todos os pesquisadores que poderão acessar os arquivos.', 1, -2, 'TCUD', 1, 'http://www.pucpr.br/pesquisa_cientifica/cep/documentos/compromisso.doc', 2),
-(4, '00006', 'Outros documentos', '<font color="#366FF">Carregue aqui outros documentos digitalizados que julgar importante como parte do protocolo do estudo.</font>', 'Aqui você poderá anexar ao seu protocolo qualquer outro documento que não se enquadre como TCLE ou Termo de Compromisso de Uso de Dados, como por exemplo uma declaração de responsabilidade pelo financiamento do orçamento ou uma autorização especial para alguma atividade do projeto.', 1, -1, '', 1, '', 12),
-(5, '00005', 'Formulário ou questionário', '<font color="#366FF">Se houver, anexe o formulário de pesquisa ou o questionário que será aplicado aos sujeitos do estudo. Quando se aplicar, a apresentação do conteúdo do instrumento de pesquisa é <b>obrigatória</b></font>.', 'Se você for submeter um questionário ou outro tipo de instrumento de pesquisa aos sujeitos, é <b>obrigatória</b> a apresentação do seu conteúdo ao CEP. Neste espaço você poderá anexá-lo ao seu protocolo.', 1, -1, 'FOR', 1, '', 10),
-(7, '00001', 'Termo de Consentimento Livre e Esclarecido', '<font color="#366FF">A apresentação do TCLE é <b>obrigatória</b> para todos os projetos nos quais será realizada qualquer tipo de abordagem direta a seres humanos, mesmo que seja somente uma entrevista com sujeitos.</font> \r\n<p> <font color="#366FF">A FALTA INJUSTIFICADA DA APRESENTAÇÃO DESTE TERMO OU DO TERMO DE COMPROMISSO DE UTILIZAÇÃO DE DADOS, CONFORME O CASO, IMPLICARÁ NA REJEIÇÃO DA SUBMISSÃO DE SEU PROTOCOLO".</font></p>', 'Envie o modelo do TCLE de seu projeto. A apresentação deste documento é obrigatória para todos os projetos nos quais será realizada qualquer tipo de abordagem a seres humanos. Clicando em "baixe um modelo deste documento" você poderá acessar o modelo sugerido de TCLE . Não esqueça de adaptar o modelo para as peculiaridades de seu projeto.', 1, -2, 'TCLE', 1, 'http://www.pucpr.br/arquivosUpload/1237436911258119968.doc', 2);
+(1, '00004', 'Parecer', 'Clique aqui para visualizar ou imprimir o parecer de seu protocolo.', 'Sï¿½ sï¿½o disponibilizados via internet os pareceres considerados com pendï¿½ncias. Se o seu parecer tiver outro tipo de resultado de apreciaï¿½ï¿½o, vocï¿½ deverï¿½ buscï¿½-lo na secretaria do CEP PUCPR nos horï¿½rios e atendimento externo.', 1, 0, 'PAR', 1, '', 20),
+(2, '00007', 'Compromissso do Pesquisador e Delegaï¿½ï¿½o de Poderes', '<font color="#366FF">Declaraï¿½ï¿½o de compromisso do pesquisador responsï¿½vel e termo de delegaï¿½ï¿½o de poderes para o acompanhamento do projeto por terceiros.</font>\r\n<p><font color="#366FF">ESTE DOCUMENTO ï¿½ NECESSï¿½RIO PARA QUE OUTRAS PESSOAS, ALï¿½M DO PESQUISADOR RESPONSï¿½VEL, POSSAM ACOMPANHAR O ANDAMENTO DO PROCESSO NO CEP, INCLUINDO A RETIRADA DE PARECERES. SEU ENVIO ï¿½ OBRIGATï¿½RIO, MESMO QUE O PESQUISADOR Nï¿½O DESEJE DELEGAR O DIREITO DE ACOMPANHAR O PROCESSO NO CEP.</font></p>', 'Esta declaraï¿½ï¿½o ï¿½ obrigatï¿½ria e somente as pessoas cujos nomes constarem no documento, poderï¿½o acompanhar o andamento do processo no CEP PUCPR, incluindo a retirada de pareceres na Secretaria do Comitï¿½.', 1, 0, 'JPG', 1, 'http://www.pucpr.br/pesquisa_cientifica/cep/documentos/SPAT.doc', 5),
+(3, '00002', 'Termo de Compromisso de Utilizaï¿½ï¿½o de Dados', '<font color="#366FF">A apresentaï¿½ï¿½o do TCUD ï¿½ <b>obrigatï¿½ria</b> para todos os projetos nos quais serï¿½ realizada qualquer tipo de pesquisa em um banco de dados. Relacione no documento todos os pesquisadores que poderï¿½o acessar os arquivos.</font> \r\n<p><font color="#366FF"> A FALTA INJUSTIFICADA DA APRESENTAï¿½ï¿½O DESTE TERMO OU DO TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO, CONFORME O CASO, IMPLICARï¿½ NA REJEIï¿½ï¿½O DA SUBMISSï¿½O DE SEU PROTOCOLO".</font></p>', 'Anexe aqui o modelo de seu Termo de Compromisso de Utilizaï¿½ï¿½o de Dados. Vocï¿½ poderï¿½ usar o modelo sugerido que pode ser obtido clicando na opï¿½ï¿½o "baixe um modelo deste documento". Tenha claro que ï¿½ obrigatï¿½ria a apresentaï¿½ï¿½o deste documento em protocolos nos quais serï¿½o pesquisados documentos que constam de banco de dados, como arquivos de prontuï¿½rios mï¿½dicos e de outros documentos que contenham dados de pessoas. Relacione no documento todos os pesquisadores que poderï¿½o acessar os arquivos.', 1, -2, 'TCUD', 1, 'http://www.pucpr.br/pesquisa_cientifica/cep/documentos/compromisso.doc', 2),
+(4, '00006', 'Outros documentos', '<font color="#366FF">Carregue aqui outros documentos digitalizados que julgar importante como parte do protocolo do estudo.</font>', 'Aqui vocï¿½ poderï¿½ anexar ao seu protocolo qualquer outro documento que nï¿½o se enquadre como TCLE ou Termo de Compromisso de Uso de Dados, como por exemplo uma declaraï¿½ï¿½o de responsabilidade pelo financiamento do orï¿½amento ou uma autorizaï¿½ï¿½o especial para alguma atividade do projeto.', 1, -1, '', 1, '', 12),
+(5, '00005', 'Formulï¿½rio ou questionï¿½rio', '<font color="#366FF">Se houver, anexe o formulï¿½rio de pesquisa ou o questionï¿½rio que serï¿½ aplicado aos sujeitos do estudo. Quando se aplicar, a apresentaï¿½ï¿½o do conteï¿½do do instrumento de pesquisa ï¿½ <b>obrigatï¿½ria</b></font>.', 'Se vocï¿½ for submeter um questionï¿½rio ou outro tipo de instrumento de pesquisa aos sujeitos, ï¿½ <b>obrigatï¿½ria</b> a apresentaï¿½ï¿½o do seu conteï¿½do ao CEP. Neste espaï¿½o vocï¿½ poderï¿½ anexï¿½-lo ao seu protocolo.', 1, -1, 'FOR', 1, '', 10),
+(7, '00001', 'Termo de Consentimento Livre e Esclarecido', '<font color="#366FF">A apresentaï¿½ï¿½o do TCLE ï¿½ <b>obrigatï¿½ria</b> para todos os projetos nos quais serï¿½ realizada qualquer tipo de abordagem direta a seres humanos, mesmo que seja somente uma entrevista com sujeitos.</font> \r\n<p> <font color="#366FF">A FALTA INJUSTIFICADA DA APRESENTAï¿½ï¿½O DESTE TERMO OU DO TERMO DE COMPROMISSO DE UTILIZAï¿½ï¿½O DE DADOS, CONFORME O CASO, IMPLICARï¿½ NA REJEIï¿½ï¿½O DA SUBMISSï¿½O DE SEU PROTOCOLO".</font></p>', 'Envie o modelo do TCLE de seu projeto. A apresentaï¿½ï¿½o deste documento ï¿½ obrigatï¿½ria para todos os projetos nos quais serï¿½ realizada qualquer tipo de abordagem a seres humanos. Clicando em "baixe um modelo deste documento" vocï¿½ poderï¿½ acessar o modelo sugerido de TCLE . Nï¿½o esqueï¿½a de adaptar o modelo para as peculiaridades de seu projeto.', 1, -2, 'TCLE', 1, 'http://www.pucpr.br/arquivosUpload/1237436911258119968.doc', 2);
 
 INSERT INTO cep_submit_manuscrito_field (id_sub, sub_pos, sub_field, sub_css, sub_descricao, sub_ativo, sub_codigo, sub_pag, sub_obrigatorio, sub_editavel, sub_informacao, sub_projeto_tipo, sub_ordem, sub_pdf_title, sub_pdf_mostra, sub_pdf_align, sub_pdf_font_size, sub_pdf_space, sub_limite, sub_caption, sub_id) VALUES
 (1, 5, '$T70:8', 'form_textarea_full', 'health_condition', 1, '00001', '3', 1, 1, '', '00001', 5, 'health_condition', 1, 'J', 12, 12, '0', '', 'CLINIC'),
@@ -1344,15 +1346,15 @@ INSERT INTO ic_noticia (id_nw, nw_dt_cadastro, nw_secao, nw_link, nw_fonte, nw_t
 (6, 20131021, 1, '', '', 'Â¿OlvidÃ³ su contraseÃ±a?', 'Estimado investigador,\r\nTal como lo solicito, se le ha enviado un email con la informaciÃ³n de su contraseÃ±a.\r\nSaludos,\r\nComitÃ© de Ã‰tica', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'es', 0, 0),
 (7, 20131021, 1, '', '', 'Instructions email', 'Dear $name,\r\n\r\nA new proposal was recently submitted to this committee and you have been selected as evaluator of the project titled. "$title".\r\n\r\nProtocol: <B>$protocol</B>\r\n\r\nTo access this project, please log into the system. If you have any questions or comments, please contact us at pahoerc@paho.org \r\n\r\nKind regards,\r\n\r\n<B>Ethics Committee</B>\r\n\r\n$link', 19000101, 19000101, NULL, NULL, 'indicate_email', NULL, 'en_US', 0, 0),
 (8, 20130918, 1, '', '', 'Email para asignar revisor', 'Estimado $name,\r\n\r\nRecientemente se presentÃ³ una nueva propuesta a este comitÃ© y usted ha sido seleccionado como evaluador de este proyecto con el tÃ­tulo. "$title".\r\n\r\nProtocol: <B>$protocol</B>\r\n\r\nPara tener acceso a este proyecto, por favor ingrese al sistema. Si tiene cualquier pregunta o duda, contÃ¡ctenos a pahoerc@paho.org \r\n\r\nSaludos cordiales,\r\n\r\n<B>ComitÃ© de Ã‰tica</B>\r\n\r\n$link', 19000101, 19000101, NULL, NULL, 'indicate_email', NULL, 'es', 0, 0),
-(9, 20130511, 1, '', '', 'Senha do sistema', 'Prezado Investigador,\r\n\r\nConforme sua solicitaçãoo foi encaminho um e-mail com sua senha.', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'pt_BR', 0, 0),
+(9, 20130511, 1, '', '', 'Senha do sistema', 'Prezado Investigador,\r\n\r\nConforme sua solicitaï¿½ï¿½oo foi encaminho um e-mail com sua senha.', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'pt_BR', 0, 0),
 (10, 20131101, 1, '', '', 'Propuesta devuelta para correciones', 'Estimado investigador,\r\n\r\nSu propuesta presenta algunos problemas y necesitamos que la revise y la presente nuevamente cuando ya este corregida.\r\n\r\nSaludos cordiales,\r\n\r\nComitÃ© de Ã‰tica', 19000101, 19000101, NULL, NULL, 'communicate_investig', NULL, 'es', 0, 0),
 (11, 20131101, 1, '', '', 'Proposal returned for corrections', 'Dear Investigator,\r\n\r\nYour proposal presents certain issues and we need you to verify them, revise them and resubmit it when corrected.\r\n\r\nKind regards,\r\n\r\nEthics Committee', 19000101, 19000101, NULL, NULL, 'communicate_investig', NULL, 'en_US', 0, 0);
 
 INSERT INTO institution (id_i, i_name, i_name_2, i_name_3, i_address_1, i_address_2, i_address_3, i_city, i_fone, i_fax, i_email, i_cordenation, i_information, i_system, i_opas_cod, i_date_format) VALUES
-(1, 'CEP - PUCPR', '', '', 'Rua Imaculada Conceição', 'Curitiba - Paraná - Brasil', 'CEP 80.000-000', 'Curitiba', '41 3271-0000', '', 'nep@pucpr.br', 'Nain', '', 'CEP', '55.001', 'DD/MM/AAAA');
+(1, 'CEP - PUCPR', '', '', 'Rua Imaculada Conceiï¿½ï¿½o', 'Curitiba - Paranï¿½ - Brasil', 'CEP 80.000-000', 'Curitiba', '41 3271-0000', '', 'nep@pucpr.br', 'Nain', '', 'CEP', '55.001', 'DD/MM/AAAA');
 
 INSERT INTO nucleo (id_n, n_codigo, n_descricao, n_ativo) VALUES
-(1, 'CEP', 'Comitê de Ética em Pesquisa', 1);
+(1, 'CEP', 'Comitï¿½ de ï¿½tica em Pesquisa', 1);
 
 INSERT INTO parecer_modelo (id_pm, pm_name, pm_message, pm_type, pm_decision, pm_codigo, pm_approved, pm_0, pm_1, pm_2, pm_3, pm_4, pm_5, pm_6, pm_7, pm_8, pm_accompaniment) VALUES
 (1, 'Approved', '', 'PRO', 'APR', '00001', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1),
@@ -1813,7 +1815,7 @@ INSERT INTO _messages (id_msg, msg_pag, msg_language, msg_field, msg_content, ms
 (3940, '', 'fr', 'save_next', 'Enregistrer et Suivant', 1, 0),
 (3941, '', 'pt_BR', 'introduction_inf', 'introduction_inf', 1, 0),
 (3942, '', 'en_US', 'introduction_inf', '', 1, 0),
-(5281, '', 'pt_BR', 'Desabilitado mode de edição', 'Desabilitado mode de edição', 1, 0),
+(5281, '', 'pt_BR', 'Desabilitado mode de ediï¿½ï¿½o', 'Desabilitado mode de ediï¿½ï¿½o', 1, 0),
 (3943, '', 'es', 'introduction_inf', 'InformaciÃ³n introductoria', 1, 0),
 (3944, '', 'fr', 'introduction_inf', 'Information prÃ©liminaire', 1, 0),
 (3945, '', 'pt_BR', 'health_condition', 'condiÃ§Ãµes de saÃºde dos sujeitos de pesquisa', 1, 0),
@@ -3075,9 +3077,9 @@ INSERT INTO _messages (id_msg, msg_pag, msg_language, msg_field, msg_content, ms
 (5278, '', 'en_US', '#save_next_inf', 'Save and Next', 1, 0),
 (5279, '', 'es', '#save_next_inf', '#save_next_inf', 1, 0),
 (5280, '', 'fr', '#save_next_inf', '#save_next_inf', 1, 0),
-(5282, '', 'en_US', 'Desabilitado mode de edição', 'Editing Mode Disabled', 1, 0),
-(5283, '', 'es', 'Desabilitado mode de edição', 'Modo de ediciÃ³n deshabilitado ', 1, 0),
-(5284, '', 'fr', 'Desabilitado mode de edição', 'Mode Edition handicapÃ©s', 1, 0),
+(5282, '', 'en_US', 'Desabilitado mode de ediï¿½ï¿½o', 'Editing Mode Disabled', 1, 0),
+(5283, '', 'es', 'Desabilitado mode de ediï¿½ï¿½o', 'Modo de ediciÃ³n deshabilitado ', 1, 0),
+(5284, '', 'fr', 'Desabilitado mode de ediï¿½ï¿½o', 'Mode Edition handicapÃ©s', 1, 0),
 (5285, '', 'pt_BR', 'reference_inf', 'reference_inf', 1, 0),
 (5286, '', 'en_US', 'reference_inf', '', 1, 0),
 (5287, '', 'es', 'reference_inf', 'reference_inf', 1, 0),
@@ -3200,10 +3202,10 @@ INSERT INTO _messages (id_msg, msg_pag, msg_language, msg_field, msg_content, ms
 (5422, '', 'en_US', 'no_projects', '** No projects registered **', 1, 0),
 (5423, '', 'es', 'no_projects', 'no_projects', 1, 0),
 (5424, '', 'fr', 'no_projects', '**Pas de projets enregistrÃ©s**', 1, 0),
-(5425, '', 'pt_BR', 'Tipo de documento inválido', 'Tipo de documento invÃ¡lido', 1, 0),
-(5426, '', 'en_US', 'Tipo de documento inválido', 'Invalid type of document', 1, 0),
-(5427, '', 'es', 'Tipo de documento inválido', 'Tipo de documento invÃ¡lido', 1, 0),
-(5428, '', 'fr', 'Tipo de documento inválido', 'Type de document invalide', 1, 0),
+(5425, '', 'pt_BR', 'Tipo de documento invï¿½lido', 'Tipo de documento invÃ¡lido', 1, 0),
+(5426, '', 'en_US', 'Tipo de documento invï¿½lido', 'Invalid type of document', 1, 0),
+(5427, '', 'es', 'Tipo de documento invï¿½lido', 'Tipo de documento invÃ¡lido', 1, 0),
+(5428, '', 'fr', 'Tipo de documento invï¿½lido', 'Type de document invalide', 1, 0),
 (5429, '', 'pt_BR', 'references', 'Referencias', 1, 0),
 (5430, '', 'en_US', 'references', 'References', 1, 0),
 (5431, '', 'es', 'references', 'Referencias', 1, 0),
@@ -5133,10 +5135,10 @@ INSERT INTO _messages (id_msg, msg_pag, msg_language, msg_field, msg_content, ms
 (8182, '', 'en_US', 'Perfil de investigador', 'Perfil de investigador', 1, 0),
 (8183, '', 'es', 'Perfil de investigador', 'Perfil de investigador', 1, 0),
 (8184, '', 'fr', 'Perfil de investigador', 'Perfil de investigador', 1, 0),
-(8185, '', 'pt_BR', 'Perfil de comité', 'Perfil de comité', 1, 0),
-(8186, '', 'en_US', 'Perfil de comité', 'Perfil de comité', 1, 0),
-(8187, '', 'es', 'Perfil de comité', 'Perfil de comité', 1, 0),
-(8188, '', 'fr', 'Perfil de comité', 'Perfil de comité', 1, 0),
+(8185, '', 'pt_BR', 'Perfil de comitï¿½', 'Perfil de comitï¿½', 1, 0),
+(8186, '', 'en_US', 'Perfil de comitï¿½', 'Perfil de comitï¿½', 1, 0),
+(8187, '', 'es', 'Perfil de comitï¿½', 'Perfil de comitï¿½', 1, 0),
+(8188, '', 'fr', 'Perfil de comitï¿½', 'Perfil de comitï¿½', 1, 0),
 (8189, '', 'pt_BR', 'Mi cuenta', 'Mi cuenta', 1, 0),
 (8190, '', 'en_US', 'Mi cuenta', 'Mi cuenta', 1, 0),
 (8191, '', 'es', 'Mi cuenta', 'Mi cuenta', 1, 0),

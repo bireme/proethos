@@ -10,8 +10,9 @@
  */
 require("cab.php");
 require($include.'sisdoc_data.php');
-require($include.'sisdoc_form2.php');
-require($include.'cp2_gravar.php');
+require($include.'_class_form.php');
+$form = new form;
+require("form_css.php");
 $uss = new users;
 $cp = $uss->cp_myaccount();
 

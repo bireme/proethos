@@ -58,6 +58,7 @@ if (($perfil -> valid('#ADM'))) {
 	array_push($menu, array(msg('admin_tables'), msg('admin_submission'), 'admin_submit.php'));
 
 	array_push($menu, array(msg('admin_update'), msg('system_teste'), '_system_test.php'));
+	array_push($menu, array(msg('admin_update'), msg('system_test_email'), '_system_email_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_update'), 'update.php'));
 
 	echo '<h1>' . msg('admin_menu_special') . '</h1>';

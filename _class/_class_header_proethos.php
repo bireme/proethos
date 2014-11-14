@@ -23,6 +23,25 @@ class header {
 	var $description = '';
 	var $http = '';
 	var $path = '';
+	
+	var $email = '';
+	var $email_type = '';
+	var $email_name = '';
+	var $email_smtp = '';
+	
+	function load_committe()
+		{
+			$sql = "select * from _committee";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					$this->email = trim($line['cm_admin_email']);
+					$this->email_type = trim($line['cm_admin_email_tipo']);
+					$this->email_pass = trim($line['cm_admin_email_pass']);
+					$this->email_smtp = trim($line['cm_admin_email_smtp']);
+					$this->email_name = $line['cm_name'];
+				}
+		}
 
 	function change_language() {
 		global $LANG;
