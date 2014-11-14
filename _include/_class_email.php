@@ -9,6 +9,7 @@
  * @subpackage E-mail
  */
 
+ 
  /* Verifica se não existe esta funcao criada */
 if (!function_exists('enviaremail')) {
 	function enviaremail($to = '', $a2 = '', $subject = '', $messagem = '', $a5 = '', $a6 = '', $a7 = '') {
