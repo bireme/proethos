@@ -1400,9 +1400,10 @@ class cep
 			/* Seleciona Action */
 			$sql = "select * from cep_action 
 				inner join cep_action_permission on action_code = actionp_action 
-			where action_status = '$ac' and action_ativa = 1 and actionp_ativa = 1
+			where action_status = '$ac' and action_ativa = 1
 			order by actionp_action
 			";
+
 			$rlt = db_query($sql);
 			while ($line = db_read($rlt))
 				{
@@ -1422,6 +1423,7 @@ class cep
 			return($bt);
 			
 		}
+				
 	function communication_research($msg)
 		{
 			return(True);

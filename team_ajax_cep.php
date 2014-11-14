@@ -1,7 +1,7 @@
 <?
 require("db.php");
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_email.php');
+require($include.'_class_email.php');
 require("_class/_class_message.php");
 $file = 'messages/msg_'.$LANG.'.php';
 

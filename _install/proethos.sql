@@ -5160,10 +5160,22 @@ INSERT INTO _messages (id_msg, msg_pag, msg_language, msg_field, msg_content, ms
 (8207, '', 'es', 'Contacto', 'Contacto', 1, 0),
 (8208, '', 'fr', 'Contacto', 'Contacto', 1, 0);
 
-INSERT INTO cep_action_permission (id_actionp, actionp_action, actionp_perfil, actionp_ativa) VALUES
-(1, '001', '#ADM', 1),
-(2, '001', '#SCR', 1),
-(5, '001', '#MEM', 1);
+INSERT INTO cep_action_permission (actionp_action, actionp_perfil, actionp_ativa) VALUES
+('001', '#ADM', 1),
+('001', '#SCR', 1),
+('001', '#MEM', 1)
+('009', '#ADM', 1),
+('003', '#ADM', 1),
+('005', '#ADM', 1),
+('002', '#ADM', 1),
+('011', '#ADM', 1),
+('012', '#ADM', 1),
+('013', '#ADM', 1),
+('014', '#ADM', 1),
+('015', '#ADM', 1),
+('016', '#ADM', 1),
+('017', '#ADM', 1);
+
 
 INSERT INTO usuario_perfis_ativo (id_up, up_perfil, up_usuario, up_data, up_data_end, up_ativo) VALUES
 (1, '#MAS', '0000001', 20120906, 19000101, 1),

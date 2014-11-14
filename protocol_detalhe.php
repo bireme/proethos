@@ -186,6 +186,7 @@ echo $pos->show($status);
 	echo '<table width="100%" border=0 class="table_normal" >';
 	echo '<TR><TD>';
 	$bt = $cep->action_options($cep->status);
+	
 	if (count($bt) > 0)
 	{
 		echo '<div id="action">';
