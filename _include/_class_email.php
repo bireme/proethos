@@ -165,11 +165,11 @@ class email {
 				$assunto = $this->subject; 				
  				$nomeDestinatario = trim($this->to_name);
 				
-				if (strlen($this->replay_name) > 0)
-					{
-						$Remetente_email = trim($this->replay_email);
-						$Remetente_name = trim($this->replay_name);	
-					}
+				//if (strlen($this->replay_name) > 0)
+				//	{
+				//		$Remetente_email = trim($this->replay_email);
+				//		$Remetente_name = trim($this->replay_name);	
+				//	}
 			//
 			$destinatarios = $this->to_email;
  			$tela .= '(tela)';			
@@ -242,12 +242,13 @@ class email {
 							{ $dados['5'] = "< ".implode(', ', $dados['5'])." >"; }
 						fwrite($conexao, $dados['2'].$dados['4'].$dados['5']."\r\n", 512).'<br>';
 							fgets($conexao, 512);
+						echo '<BR>'.$dados['2'].$dados['4'].$dados['5']."\r\n";							
 					}
 				} else {
 				$dados['2'] = empty($dados['2']) ? '' : $dados['2'];
 				$dados['3'] = empty($dados['3']) ? '' : $dados['3'];
 				$dados['2'] = is_numeric($dados['2']) ? '' : $dados['2'];
-				
+				echo '<BR>'.$dados['2'].$dados['4'].$dados['5']."\r\n";
 				if ($dados['2'] == 'Subject: ')
 				{
 					fwrite($conexao, $dados['2'].$dados['3']."\r\n", 512).'<br>';

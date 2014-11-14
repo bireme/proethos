@@ -11,8 +11,8 @@
 				$harvesting_key='';
 				$institution_logo='';
 				$admin_nome='Proethos';
-				$admin_email='rene@fonzaghi.com.br';
-				$email_adm='rene@fonzaghi.com.br';
+				$admin_email='suporte@bireme.br';
+				$email_adm='suporte@bireme.br';
 				$committe='PAHO';
 				
 				$language='en_US';

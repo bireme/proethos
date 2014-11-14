@@ -14,6 +14,10 @@ array_push($breadcrumbs,array('','project'));
 
 require("cab.php");
 
+require($include.'_class_form.php');
+$form = new form;
+require("form_css.php");
+
 require($include."_class_email.php");
 require($include."sisdoc_data.php");
 

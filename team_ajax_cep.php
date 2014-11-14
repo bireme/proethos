@@ -55,7 +55,7 @@ if ($dd[10]=='add')
 		
 		
 	}
-echo '===>'.$tm->erro.'--'.$tabela;
+//echo '===>'.$tm->erro.'--'.$tabela;
 echo $tm->team_list($tm->protocol,$tabela);
 echo $tm->team_form_add();
 

@@ -1,9 +1,9 @@
 <?php
 /**
-* Esta classe é a responsável pela conexão com o banco de dados.
+* Esta classe ï¿½ a responsï¿½vel pela conexï¿½o com o banco de dados.
 * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
 * @version 0.14.15
-* @copyright Copyright © 2011, Rene F. Gabriel Junior.
+* @copyright Copyright ï¿½ 2011, Rene F. Gabriel Junior.
 * @access public
 * @package INCLUDEs
 * @subpackage sisdoc_char
@@ -66,16 +66,16 @@ function newwin($link,$szh=50,$szv=50)
  */
 function nocr($text)
 	{
-		$text = troca($text,chr(13),'¢¢¢');
+		$text = troca($text,chr(13),'ï¿½ï¿½ï¿½');
 		$text = troca($text,chr(10),'');
-		$text = troca($text,'.¢¢¢','.'.chr(13));
-		$text = troca($text,'!¢¢¢','!'.chr(13));
-		$text = troca($text,'?¢¢¢','?'.chr(13));
-		$text = troca($text,'¢¢¢',' ');
+		$text = troca($text,'.ï¿½ï¿½ï¿½','.'.chr(13));
+		$text = troca($text,'!ï¿½ï¿½ï¿½','!'.chr(13));
+		$text = troca($text,'?ï¿½ï¿½ï¿½','?'.chr(13));
+		$text = troca($text,'ï¿½ï¿½ï¿½',' ');
 		return($text);
 	}
 /**
- * Função de formatação em padrão Brasileiro
+ * Funï¿½ï¿½o de formataï¿½ï¿½o em padrï¿½o Brasileiro
  */
 function fmt($vlr,$dec=2)
 	{
@@ -87,8 +87,8 @@ function fmt($vlr,$dec=2)
 	}
 
 /** 
-* Função para formatar número
-* Esta função está vinculada a biblioteca sisdoc_row.php
+* Funï¿½ï¿½o para formatar nï¿½mero
+* Esta funï¿½ï¿½o estï¿½ vinculada a biblioteca sisdoc_row.php
 */
 ////////////////////////////////////////
 function url_exists($url){
@@ -286,12 +286,12 @@ function customError($errno, $errstr, $errfile, $errline, $errcontext)
 		$tee = '<table width="600" bordercolor="#ff0000" border="3" align="center">';
 		$tee .= '<TR><TD bgcolor="#ff0000" align="center"><FONT class="lt2"><FONT COLOR=white><B>ERRO  -['.$base.']-'.$base_name.'-</B></TD></TR>';
 		$tee .= '<TR><TD align="center"><B><TT>';
-		$tee .= 'Erro Número #'.$errno;
+		$tee .= 'Erro Nï¿½mero #'.$errno;
 		$tee .= '<TR><TD><TT>';
 		$tee .= '<BR>Remote Address: '.$_SERVER['REMOTE_ADDR'];
 		$tee .= '<BR>Metodo: '.$_SERVER['REQUEST_METHOD'];
-		$tee .= '<BR>Nome da página: '.$_SERVER['SCRIPT_NAME'];
-		$tee .= '<BR>Domínio: '.$_SERVER['SERVER_NAME'];
+		$tee .= '<BR>Nome da pï¿½gina: '.$_SERVER['SCRIPT_NAME'];
+		$tee .= '<BR>Domï¿½nio: '.$_SERVER['SERVER_NAME'];
 		$tee .= '<BR>Data: '.date("d/m/Y H:i:s");
 		
 		if (strlen(trim($user_log)) > 0) { $tee .= '<TR><TD><TT>'; $tee .= 'User: '.$user_log; }
@@ -313,7 +313,7 @@ function customError($errno, $errstr, $errfile, $errline, $errcontext)
 		
 		$tee .= '</table>';
 		if ($debug == 1) { echo $tee; }
-//		if ($debug == 3) { echo 'Muitas conexões, aguarde....'; }
+//		if ($debug == 3) { echo 'Muitas conexï¿½es, aguarde....'; }
 		
 		$headers = '';	
 		$headers .= 'To: Rene (Monitoramento) <rene@fonzaghi.com.br>' . "\r\n";
@@ -340,7 +340,7 @@ function checkform()
 	if ($chkp == $dd[90]) 
 		{ return( 1 ); } 
 	else { 
-		$msg="Erro na transmissão dos dados, tente novamente";
+		$msg="Erro na transmissï¿½o dos dados, tente novamente";
 		echo '<CENTER><BR><BR>';
 		echo msg_erro($msg);
 		$msg = '';
@@ -377,7 +377,7 @@ function sonumero($it)
 function dsp_sn($y)
 	{
 	global $LANG;
-	$SIM = "SIM"; $NAO = 'NÃO';
+	$SIM = "SIM"; $NAO = 'Nï¿½O';
 	if ($LANG == 'en') { $SIM = 'YES'; $NAO = 'NO'; }
 	$yy = $NAO;
 	if ($y=='1') { $yy = $SIM; }
@@ -458,24 +458,24 @@ function char_ISO_Latin_2($str)
 	    '/&ordm;/');
 	 
 	    $acentos = array(
-	    'À','Á','Â','Ã','Ä','Å',
-	    'à','á','â','ã','ä','å',
-	    'Ç',
-	    'ç',
-	    'È','É','Ê','Ë',
-	    'è','é','ê','ë',
-	    'Ì','Í','Î','Ï',
-	    'ì','í','î','ï',
-	    'Ñ',
-	    'ñ',
-	    'Ò','Ó','Ô','Õ','Ö',
-	    'ò','ó','ô','õ','ö',
-	    'Ù','Ú','Û','Ü',
-	    'ù','ú','û','ü',
-	    'Ý',
-	    'ý','ÿ',
-	    'ª',
-	    'º');
+	    'ï¿½','ï¿½','ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½',
+	    'ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½',
+	    'ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½','ï¿½','ï¿½','ï¿½',
+	    'ï¿½',
+	    'ï¿½','ï¿½',
+	    'ï¿½',
+	    'ï¿½');
 	 
 return preg_replace($codigo_acentos, $acentos, $str);
 }
@@ -485,110 +485,110 @@ function char_ISO_Latin_1($ddv)
 	////// ISO Latin-1 Characters and Control Characters
 	$ddr = '?';
 	if ($ddv == '&#160;') { $ddr = ' '; }
-	if ($ddv == '&#161;') { $ddr = '¡'; }
-	if ($ddv == '&#162;') { $ddr = '¢'; }
-	if ($ddv == '&#163;') { $ddr = '£'; }
-	if ($ddv == '&#164;') { $ddr = '¤'; }
-	if ($ddv == '&#165;') { $ddr = '¥'; }
-	if ($ddv == '&#166;') { $ddr = '¦'; }
-	if ($ddv == '&#167;') { $ddr = '§'; }
-	if ($ddv == '&#168;') { $ddr = '¨'; }
-	if ($ddv == '&#169;') { $ddr = '©'; }
+	if ($ddv == '&#161;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#162;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#163;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#164;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#165;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#166;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#167;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#168;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#169;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#170;') { $ddr = 'ª'; }
-	if ($ddv == '&#171;') { $ddr = '«'; }
-	if ($ddv == '&#172;') { $ddr = '¬'; }
+	if ($ddv == '&#170;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#171;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#172;') { $ddr = 'ï¿½'; }
 	if ($ddv == '&#173;') { $ddr = ' '; }
-	if ($ddv == '&#174;') { $ddr = '®'; }
-	if ($ddv == '&#175;') { $ddr = '¯'; }
-	if ($ddv == '&#176;') { $ddr = '·'; }
-	if ($ddv == '&#177;') { $ddr = '±'; }
-	if ($ddv == '&#178;') { $ddr = '²'; }
-	if ($ddv == '&#179;') { $ddr = '³'; }
+	if ($ddv == '&#174;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#175;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#176;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#177;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#178;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#179;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#180;') { $ddr = '´'; }
-	if ($ddv == '&#181;') { $ddr = 'µ'; }
-	if ($ddv == '&#182;') { $ddr = '¶'; }
-	if ($ddv == '&#183;') { $ddr = '·'; }
-	if ($ddv == '&#184;') { $ddr = '¸'; }
-	if ($ddv == '&#185;') { $ddr = '¹'; }
-	if ($ddv == '&#186;') { $ddr = 'º'; }
-	if ($ddv == '&#187;') { $ddr = '»'; }
-	if ($ddv == '&#188;') { $ddr = '¼'; }
-	if ($ddv == '&#189;') { $ddr = '½'; }
+	if ($ddv == '&#180;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#181;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#182;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#183;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#184;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#185;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#186;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#187;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#188;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#189;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#190;') { $ddr = '¾'; }
-	if ($ddv == '&#191;') { $ddr = '¿'; }
-	if ($ddv == '&#192;') { $ddr = 'À'; }
-	if ($ddv == '&#193;') { $ddr = 'Á'; }
-	if ($ddv == '&#194;') { $ddr = 'Â'; }
-	if ($ddv == '&#195;') { $ddr = 'Ã'; }
-	if ($ddv == '&#196;') { $ddr = 'Ä'; }
-	if ($ddv == '&#197;') { $ddr = 'Å'; }
-	if ($ddv == '&#198;') { $ddr = 'Æ'; }
-	if ($ddv == '&#199;') { $ddr = 'Ç'; }
+	if ($ddv == '&#190;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#191;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#192;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#193;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#194;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#195;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#196;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#197;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#198;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#199;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#200;') { $ddr = 'È'; }
-	if ($ddv == '&#201;') { $ddr = 'É'; }
-	if ($ddv == '&#202;') { $ddr = 'Ê'; }
-	if ($ddv == '&#203;') { $ddr = 'Ë'; }
-	if ($ddv == '&#204;') { $ddr = 'Ì'; }
-	if ($ddv == '&#205;') { $ddr = 'Í'; }
-	if ($ddv == '&#206;') { $ddr = 'Î'; }
-	if ($ddv == '&#207;') { $ddr = 'Ï'; }
-	if ($ddv == '&#208;') { $ddr = 'Ð'; }
-	if ($ddv == '&#209;') { $ddr = 'Ñ'; }
+	if ($ddv == '&#200;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#201;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#202;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#203;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#204;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#205;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#206;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#207;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#208;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#209;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#210;') { $ddr = 'Ò'; }
-	if ($ddv == '&#211;') { $ddr = 'Ó'; }
-	if ($ddv == '&#212;') { $ddr = 'Ô'; }
-	if ($ddv == '&#213;') { $ddr = 'Õ'; }
-	if ($ddv == '&#214;') { $ddr = 'Ö'; }
-	if ($ddv == '&#215;') { $ddr = '×'; }
-	if ($ddv == '&#216;') { $ddr = 'Ø'; }
-	if ($ddv == '&#217;') { $ddr = 'Ù'; }
-	if ($ddv == '&#218;') { $ddr = 'Ú'; }
-	if ($ddv == '&#219;') { $ddr = 'Û'; }
+	if ($ddv == '&#210;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#211;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#212;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#213;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#214;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#215;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#216;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#217;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#218;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#219;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#220;') { $ddr = 'Ü'; }
-	if ($ddv == '&#221;') { $ddr = 'Ý'; }
-	if ($ddv == '&#222;') { $ddr = 'Þ'; }
-	if ($ddv == '&#223;') { $ddr = 'ß'; }
-	if ($ddv == '&#224;') { $ddr = 'à'; }
-	if ($ddv == '&#225;') { $ddr = 'á'; }
-	if ($ddv == '&#226;') { $ddr = 'â'; }
-	if ($ddv == '&#227;') { $ddr = 'ã'; }
-	if ($ddv == '&#228;') { $ddr = 'ä'; }
-	if ($ddv == '&#229;') { $ddr = 'å'; }
+	if ($ddv == '&#220;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#221;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#222;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#223;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#224;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#225;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#226;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#227;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#228;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#229;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#230;') { $ddr = 'æ'; }
-	if ($ddv == '&#231;') { $ddr = 'ç'; }
-	if ($ddv == '&#232;') { $ddr = 'è'; }
-	if ($ddv == '&#233;') { $ddr = 'é'; }
-	if ($ddv == '&#234;') { $ddr = 'ê'; }
-	if ($ddv == '&#235;') { $ddr = 'ë'; }
-	if ($ddv == '&#236;') { $ddr = 'ì'; }
-	if ($ddv == '&#237;') { $ddr = 'í'; }
-	if ($ddv == '&#238;') { $ddr = 'î'; }
-	if ($ddv == '&#239;') { $ddr = 'ï'; }
+	if ($ddv == '&#230;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#231;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#232;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#233;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#234;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#235;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#236;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#237;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#238;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#239;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#240;') { $ddr = 'ð'; }
-	if ($ddv == '&#241;') { $ddr = 'ñ'; }
-	if ($ddv == '&#242;') { $ddr = 'ò'; }
-	if ($ddv == '&#243;') { $ddr = 'ó'; }
-	if ($ddv == '&#244;') { $ddr = 'ô'; }
-	if ($ddv == '&#245;') { $ddr = 'õ'; }
-	if ($ddv == '&#246;') { $ddr = 'ö'; }
-	if ($ddv == '&#247;') { $ddr = '÷'; }
-	if ($ddv == '&#248;') { $ddr = 'ø'; }
-	if ($ddv == '&#249;') { $ddr = 'ù'; }
+	if ($ddv == '&#240;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#241;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#242;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#243;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#244;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#245;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#246;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#247;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#248;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#249;') { $ddr = 'ï¿½'; }
 
-	if ($ddv == '&#250;') { $ddr = 'ú'; }
-	if ($ddv == '&#251;') { $ddr = 'û'; }
-	if ($ddv == '&#252;') { $ddr = 'ü'; }
-	if ($ddv == '&#253;') { $ddr = 'ý'; }
-	if ($ddv == '&#254;') { $ddr = 'þ'; }
-	if ($ddv == '&#255;') { $ddr = 'ÿ'; }
+	if ($ddv == '&#250;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#251;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#252;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#253;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#254;') { $ddr = 'ï¿½'; }
+	if ($ddv == '&#255;') { $ddr = 'ï¿½'; }
 	
 	return($ddr);
 	}
@@ -611,34 +611,34 @@ function utf8_detect($utt)
 	{
 	$utt = ' '.$utt;
 	$xok = 0;
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ã')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('É')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Í')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ó')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ú')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('á')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('é')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('í')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ó')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ú')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ñ')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ñ')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
 	
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ã')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('õ')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Â')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ê')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Î')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ô')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Û')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('â')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ê')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('î')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ô')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('û')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
 		
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ç')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ç')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ï¿½')); }
 
 		if ($xok > 0)
 			{
@@ -678,7 +678,7 @@ function CharE($rr)
 	
 function UpperCaseSQL($d)
 	{
-	$qch1="ÁÉÍÓÚáéíóúàèìòùÀÈÌÒÙÂÊÎÔÛâêîôûÇçäëïöüÄËÏÖÜÃÕãõªº";
+	$qch1="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 	$qch2="AEIOUaeiouaeiouAEIOUAEIOUaeiouCcaeiouAEIOUAOAOao";
 	for ($qk=0;$qk < strlen($qch2);$qk++)
 		{
@@ -691,8 +691,8 @@ function UpperCaseSQL($d)
 
 function UpperCase($dx)
 	{
-	$qch1='ÁÉÍÓÚáéíóúàèìòùÀÈÌÒÙÂÊÎÔÛâêîôûÇçäëïöüÄËÏÖÜÃÕãõ';
-	$qch2='ÁÉÍÓÚÁÉÍÓÚÀÈÌÒÙÀÈÌÒÙÂÊÎÔÛÂÊÎÔÛÇÇÄËÏÖÜÄËÏÖÜÃÕÃÕ';
+	$qch1='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+	$qch2='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 	
 	$dx = strtoupper($dx);
 	
@@ -707,8 +707,8 @@ function UpperCase($dx)
 function LowerCase($d)
 	{
 	$d = $d . ' ';
-	$qch1='ÁÉÍÓÚáéíóúàèìòùÀÈÌÒÙÂÊÎÔÛâêîôûÇçäëïöüÄËÏÖÜÃÕãõ';
-	$qch2='áéíóúáéíóúàèìòùàèìòùâêîôûâêîôûççäëïöüäëïöüãõãõ';
+	$qch1='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
+	$qch2='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 	
 	$d = strtolower($d);
 	for ($qk=0;$qk < strlen($qch2);$qk++)
@@ -721,7 +721,7 @@ function LowerCase($d)
 		
 function LowerCaseSQL($d)
 	{
-	$qch1="ÁÉÍÓÚáéíóúàèìòùÀÈÌÒÙÂÊÎÔÛâêîôûÇçäëïöüÄËÏÖÜÃÕãõªº";
+	$qch1="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 	$qch2="aeiouaeiouaeiouaeiouaeiouaeiouccaeiouaeiouaoaoao";
 	
 	for ($qk=0;$qk < strlen($qch2);$qk++)

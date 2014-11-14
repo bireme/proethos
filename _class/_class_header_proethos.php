@@ -80,7 +80,7 @@ class header {
 	}
 
 	function head() {
-		global $LANG, $http, $style_add, $js_add;
+		global $LANG, $http, $style_add, $js_add,$include;
 		$cr = chr(13) . chr(10);
 		$pth = $this -> path;
 
@@ -107,7 +107,7 @@ class header {
 		}
 
 		/* Add Java script */
-		$js = array('jquery.js','jquery.maskedit.js','jquery.maskmoney.js');
+		$js = array('jquery.js','jquery.maskedit.js','jquery.maskmoney.js','windows.js');
 		for ($r = 0; $r < count($js); $r++) 
 			{ $sx .= '<script type="text/javascript" src="' . $http . 'js/' . $js[$r] . '"></script>' . $cr;
 		}
