@@ -11,9 +11,10 @@
 require("cab.php");
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
+require($include.'_class_form.php');
+$form = new form;
+require('form_css.php');
 
 	$cl = new users;
 	$cp = $cl->cp_admin();
@@ -25,16 +26,14 @@ require($include.'sisdoc_form2.php');
 	/** Comandos de Edicao */
 	
 	echo '<CENTER><h2>'.msg('users').'</h2></CENTER>';
-	?><TABLE width="<?=$tab_max;?>" align="center" bgcolor="<?=$tab_color;?>"><TR><TD><?
-	editar();
-	?></TD></TR></TABLE><?	
-	
+	$tela = $form->editar($cp,$tabela);	
 	/** Caso o registro seja validado */
-	if ($saved > 0)
+	if ($form->saved > 0)
 		{
-			echo 'Salvo';
 			$cl->updatex();
 			redirecina('admin_user.php');
+		} else {
+			echo $tela;
 		}
 	echo '</div>';
 echo $hd->foot();

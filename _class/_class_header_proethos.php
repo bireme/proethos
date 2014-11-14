@@ -56,12 +56,7 @@ class header {
 	}
 
 	function foot() {
-		$sx = '&copy;';
-		$sx .= ' FIM
-				<script>
-					document.write(\'java - ok\');
-				</script>
-				FIM';
+		$sx = '&copy; '.date("Y").'- Pan American Health Organization ';
 		return ($sx);
 	}
 

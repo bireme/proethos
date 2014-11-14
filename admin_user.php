@@ -10,9 +10,7 @@
  */
 require("cab.php");
 
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
 require($include.'sisdoc_debug.php');
 
 //$sql = "delete from _messages where 1=1";

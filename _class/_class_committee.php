@@ -40,7 +40,6 @@ class committee {
 
 	function config_exist() {
 		$sql = "select * from " . $this -> tabela . " order by id_cm limit 1";
-		echo $sql;
 		$rlt = db_query($sql);
 		if ($line = db_read($rlt)) {
 			$this -> id = $line['id_cm'];
@@ -117,7 +116,8 @@ class committee {
 		array_push($cp, array('$S40', 'cm_admin_key_harveting', msg('harvesting_key'), False, True));
 		array_push($cp, array('$M', '', msg('harvesting_info'), false, True));
 		array_push($cp, array('$}', '', '', False, True));
-		array_push($cp, array('$O utf-8:utf-8', 'cm_charcode', 'Encoding Char Type', True, True));
+		///array_push($cp, array('$O utf-8:utf-8', 'cm_charcode', 'Encoding Char Type', True, True));
+		array_push($cp, array('$HV', 'cm_charcode', 'utf-8', True, True));
 
 		array_push($cp, array('$B8', '', msg('update'), False, True));
 

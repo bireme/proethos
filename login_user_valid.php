@@ -13,7 +13,6 @@ if ($chk == $dd[90])
 		echo msg('chk_email_ok');	
 		$sql = "update ".$nw->tabela." set us_ativo = 1, us_confirmed = 1 ";
 		$sql .= " where us_email = '".trim($dd[1])."' ";
-		echo $sql;
 		$rlt = db_query($sql);
 	} else {
 		echo '<h2>'.msg('chk_email_erro_tit').'</h2>';

@@ -14,7 +14,9 @@ $ln = new message;
 global $acao,$dd,$cp,$tabela;
 require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
-require($include.'sisdoc_form2.php');
+require($include.'_class_form.php');
+$form = new form;
+
 require($include.'sisdoc_data.php');
 require($include.'sisdoc_debug.php');
 
@@ -29,20 +31,17 @@ require($include.'sisdoc_debug.php');
 
 	/** Comandos de Edicao */
 	echo '<CENTER><font class=lt5>'.msg('titulo').'</font></CENTER>';
+	$tela = $form->editar($cp,$tabela);
 	
-	?><TABLE width="<?=$tab_max;?>" align="center" bgcolor="<?=$tab_color;?>"><TR><TD><?
-	
-	editar();
-
-	echo '</TD></TR></TABLE>';
 	echo '</div>';
 		
 	/** Caso o registro seja validado */
-	if ($saved > 0)
+	if ($form->saved > 0)
 		{
-			echo 'Salvo';
 			$ged->updatex();
 			redirecina('admin_docs_type.php');
+		} else {
+			echo $tela;
 		}
 echo $hd->foot();	
 ?>
