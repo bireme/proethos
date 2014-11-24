@@ -30,4 +30,7 @@ Required
 
 To install read the "PROETHOS Install.pdf" in folder "_documents"
 
+24/11/2014
+FIX BUG - Link to uploaded file does not work on the detail of the protocol
+
 
