@@ -1,4 +1,4 @@
-CREATE TABLE ajax_pais (
+﻿CREATE TABLE ajax_pais (
   id_pais serial NOT NULL,
   pais_nome char(30) DEFAULT NULL,
   pais_codigo char(7) DEFAULT NULL,
@@ -5175,7 +5175,19 @@ INSERT INTO cep_action_permission (actionp_action, actionp_perfil, actionp_ativa
 ('014', '#ADM', 1),
 ('015', '#ADM', 1),
 ('016', '#ADM', 1),
-('017', '#ADM', 1);
+('017', '#ADM', 1),
+('001', '#SCR', 1),
+('009', '#SCR', 1),
+('003', '#SCR', 1),
+('005', '#SCR', 1),
+('002', '#SCR', 1),
+('011', '#SCR', 1),
+('012', '#SCR', 1),
+('013', '#SCR', 1),
+('014', '#SCR', 1),
+('015', '#SCR', 1),
+('016', '#SCR', 1),
+('017', '#SCR', 1);
 
 
 INSERT INTO usuario_perfis_ativo (id_up, up_perfil, up_usuario, up_data, up_data_end, up_ativo) VALUES

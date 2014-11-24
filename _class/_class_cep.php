@@ -1178,7 +1178,7 @@ class cep
 			 				type: "POST",
 			 				data: { dd1: "'.$caae.'", dd41: "'.$tipo.'", dd90: v2  }
 			 		 }) 
-					.fail(function() { alert("error"); })
+					.fail(function() { alert("error #05"); })
 			 		.success(function(data) { $("#dictame").html(data); });
 			</script>
 			';
@@ -1674,6 +1674,7 @@ class cep
 				where his_protocol = '".$this->protocolo."' 
 				order by his_data desc, his_time desc, id_his ";
 			$rlt = db_query($sql);
+			
 			$sx .= '<table width="100%" class="lt1" cellpadding=2 cellspacing=0 border=1>';
 			$sx .= '<TR>';
 			$sx .= '<TH width="7%">'.msg('hd_data');

@@ -11,8 +11,8 @@
 				$harvesting_key='';
 				$institution_logo='';
 				$admin_nome='Proethos';
-				$admin_email='suporte@bireme.br';
-				$email_adm='suporte@bireme.br';
+				$admin_email='rene@sisdoc.com.br';
+				$email_adm='rene@sisdoc.com.br';
 				$committe='PAHO';
 				
 				$language='en_US';

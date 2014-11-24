@@ -81,7 +81,7 @@ class country
 			 				type: "POST",
 			 				data: { dd1: v1, dd2: v2, dd10: "country" ,dd11: "'.$this->protocol.'", dd12: "DEL" }
 			 		 }) 
-					.fail(function() { alert("error"); })
+					.fail(function() { alert("error #01"); })
 			 		.success(function(data) { $("#country").html(data); });
 					} 
 				});
@@ -129,7 +129,7 @@ class country
 			$s .= chr(13).'var $tela = $.ajax({ url: "submit_ajax.php", type: "POST", ';
 			$s .= chr(13).'data: { dd0: id, dd10: "country" ,dd12 :"DEL" ,dd11: "'.$protocol.'" }';
 			$s .= chr(13).'})';
-			$s .= chr(13).'.fail(function() { alert("error"); })';
+			$s .= chr(13).'.fail(function() { alert("error #02"); })';
 			$s .= chr(13).'.success(function(data) { $("#country").html(data); });';
 			$s .= chr(13).'}';
 			$s .= chr(13).'</script>';		

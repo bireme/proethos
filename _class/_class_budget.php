@@ -132,7 +132,7 @@ class budget
 			 				type: "POST",
 			 				data: { dd1: v1, dd2: v2, dd3: v3 , dd10: "budget" ,dd11: "'.$this->protocol.'" }
 			 		 }) 
-					.fail(function() { alert("error"); })
+					.fail(function() { alert("error #03"); })
 			 		.success(function(data) { $("#budget").html(data); });
 					} 
 				});
@@ -273,7 +273,7 @@ class budget
 			 				type: "POST",
 			 				data: { dd1: v1, dd2: v2, dd3: v3 , dd10: "crono" ,dd11: "'.$this->protocol.'" }
 			 		 }) 
-					.fail(function() { alert("error"); })
+					.fail(function() { alert("error #04"); })
 			 		.success(function(data) { $("#crono").html(data); });
 					} 
 				});

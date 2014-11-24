@@ -33,7 +33,7 @@
 	}
 #content
 	{
-		border: 0px solid #202020;
+		border: 1px solid #202020;
 		margin-left: 20px;
 		margin-right: 20px;
 		margin-top: 20px;
@@ -42,6 +42,12 @@
 		text-align: left;
 		max-width: 1024px;
 	}
+	
+#the_history
+    {
+       border: 1px solid #202020; 
+       padding: 10px;
+    }	
 /* Table */
 
 .table_proj 

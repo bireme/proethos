@@ -59,7 +59,7 @@ $status = $cep->line['cep_status'];
 //$pcor = $cep->cep_cores();
 //$scor = $cep->status_cor($status);
 
-/* Pareceres tempor�rios */
+/* Pareceres temporarios */
 require('_class/_class_cep_parecer_avaliation.php');
 $parav = new parecer_avaliation;
 $parav->protocolo = $cep->protocolo;
@@ -88,7 +88,7 @@ echo $pos->show($status);
 		echo '</table>';
 	echo '</div>';
 	echo '</div>';
-	/* Bloqueio E�tico */
+	/* Bloqueio Etico */
 	$bloqueio = $cep->bloqueio_etico();
 	
 	if ($bloqueio)
@@ -105,9 +105,10 @@ echo $pos->show($status);
 	echo '<TR><TD>';
 		$ged->protocol = $cep->protocolo;
 		echo $ged->filelist();
-		echo $LANG;
-		/* Enable UPload File to the Perfis */
-	if ($perfil->valid('#SCR#MAS#COO#ADM')) { echo $ged->upload_botton_with_type($protocolo); }
+		//echo $LANG;
+	/* Enable UPload File to the Perfis */
+	if ($perfil->valid('#SCR#MAS#COO#ADM'))
+	 { echo $ged->upload_botton_with_type($protocolo); }
 	echo '</table>';
 	echo '<BR>';
 	
@@ -170,10 +171,13 @@ echo $pos->show($status);
 	if (strlen($sm) > 0)
 		{
 			echo '<BR>';
+			echo '<table width="100%" cellspacing=0 cellpading=0 border=0">
+					<TR><TD>';
 			echo '<div id="the_dictame">';
 			echo '<center><font class="lt4">'.msg("my_dictame").'</font></center>';
 			echo $sm;
-			echo '</div>';			
+			echo '</div>';	
+			echo '</table>';		
 			echo '<BR>';
 		}
 
@@ -212,6 +216,8 @@ echo $pos->show($status);
 	echo '<TR class="hd"><TD>'.msg('historic');
 	echo '</table>';
 	
+	
+	/* Mostra Historico */
 	echo '<div id="the_history">';
 		echo '<div id="bha" style="text-align: left;">'.msg('show_historic').'</div>';
 		echo '<div id="the_history_show" style="display:none;">';
@@ -226,7 +232,9 @@ echo $pos->show($status);
 	echo '</fieldset>';
 
 	
-	echo '<script>'.chr(13);
+	echo '<script>
+			
+	'.chr(13);
 	echo ' function clicar(vlr)'.chr(13);
 	echo ' {
 			 if (forma.dd2.checked)
@@ -257,13 +265,6 @@ echo '</div>';
 echo $hd->foot();
 ?>
 <script>
-	$("#the_projects").corner();
-	$("#the_files").corner();
-	$("#the_history").corner();
-	$("#the_dictame").corner();
-	$("#comments").corner();
-	$("#mail").corner();
-	$("#action").corner();
 	$("#bha").click(function () 
 		{ 
 			$("#the_history_show").fadeIn("slow");

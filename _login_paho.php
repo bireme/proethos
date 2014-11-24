@@ -133,7 +133,6 @@ echo $hd -> foot();
 		$('#div_msg').fadeOut('slow', function() {
 		});
 	});
-	$("#div_newuser").corner();
 </script>
 
 <?

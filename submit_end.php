@@ -83,7 +83,7 @@ if ($ok == 1)
 	echo '</div>';
 	}	
 ?>
-
+echo '</div>';
 <script>
 	
 </script>

@@ -30,6 +30,7 @@ if ($cmt->config_exist_file()!=0)
 	{ require_once($cmt->file); }
 
 echo $hd->head();
+$hd->load_committe();
 
 require('_class/_class_message.php');
 $ln = new message;

@@ -44,28 +44,25 @@ $cp = $nw->cp();
 		} else {
 			$cp[6][2] = '<font color="red">'.msg('is_not_valid_email').'</font>';
 		}
-		
-
-echo '<Table width="'.$tab_max.'" class="lt1" align="center"  border=0 >';
-echo '<TR><TD>';
-echo '<h1>'.mst(msg('new_user_info')).'</h1>';
-
-echo '<TR><TD>';
+echo '<h1>'.msg('user_new').'</h1>';
 	
 $tela = $form->editar($cp,$nw->tabela);
+
 
 if ($form->saved > 0)
 	{
 		$nw->updatex();
-
-		echo mst(msg('confirm_email'));
+		
+		
+		echo '<div class="lt2">';
+		echo ''.mst(msg('confirm_email')).'';
 		$texto = '<BR>'.$dd[3];
 		$texto .= '<BR>'.$dd[5].'<BR><BR>';
 		if (substr($site,strlen($site),1)=='/')
 			{
-				$valid = $site.'login_user_valid.php?dd1='.$dd[5].'&dd90='.checkpost($dd[5]);
+				$valid = $hd->site.'login_user_valid.php?dd1='.$dd[5].'&dd90='.checkpost($dd[5]);
 			} else {
-				$valid = $site.'/login_user_valid.php?dd1='.$dd[5].'&dd90='.checkpost($dd[5]);	
+				$valid = $hd->site.'/login_user_valid.php?dd1='.$dd[5].'&dd90='.checkpost($dd[5]);	
 			}
 		
 		$link = '<A HREF="'.$valid.'">';
@@ -80,15 +77,12 @@ if ($form->saved > 0)
 			$email = trim($line['us_email']);		
 			enviaremail($email,'',msg('confirm_email_title'),$texto);
 			echo '<BR><BR>Send mail to '.$email;
-			$email = 'renefgj@gmail.com';		
-			enviaremail($email,'',msg('confirm_email_title'),$texto);
-			//echo '<BR>Send mail to '.$email;
 			}
-		echo '</table>';
+		echo '</div>';
 	} else {
-		echo $tela;	
-		echo '</table>';	
+		echo $tela;
+		echo '</div>';		
 	}
-
+echo '</div>';
 echo $hd->foot();
 ?>
