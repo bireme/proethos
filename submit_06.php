@@ -46,7 +46,9 @@ if ($xok == 1)
 		/* Termo */
 		echo '<form action="submit.php">';
 		echo '<BR>';
+		echo '<table width="!00%"><TR><TD>';
 		echo mst(msg('submit_term'));
+		echo '</table>';
 
 		echo '<BR><B>';
 		echo '<input type="checkbox" name="dd81" value="1">';

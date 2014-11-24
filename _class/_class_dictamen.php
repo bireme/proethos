@@ -12,7 +12,21 @@
 class dictamen
 	{
 	var $protocol='';	
-	var $tabela = "cep_parecer";
+	var $tabela = "cep_dictamen ";
+	
+	function le_parecer($id)
+		{
+			$sql = "select * from cep_parecer 
+					inner join cep_protocolos on pr_protocol = cep_protocol
+					inner join usuario on cep_pesquisador = us_codigo
+					left join parecer_modelo on (pm_decision = pr_situacao) and (pm_type = cep_tipo)
+					where  pr_protocol = '".$id."' ";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					$this->line = $line;
+				}
+		}	
 		
 	function le($id)
 		{
@@ -117,7 +131,6 @@ class dictamen
 			$sql = "select * from cep_protocolos 
 					inner join cep_parecer on cep_protocol = pr_protocol 
 					where cep_protocol = '$caae' ";
-
 			$rlt = db_query($sql);
 			
 			if ($line = db_read($rlt))
@@ -146,8 +159,8 @@ class dictamen
 			$ver = round($ver);
 			if ($ver == 0) { $ver = 1;}
 			$caae = $dd[1];
-			$sql = "select * from cep_parecer where pr_protocol = '$caae' ";
-			$rlt = db_query($sql);
+			$sql = "select * from cep_dictamen where pr_protocol = '$caae' ";
+				$rlt = db_query($sql);
 			
 			$data = date("Ymd"); $hora = date("H:i");
 			$situacao = $dd[31];
@@ -215,7 +228,7 @@ class dictamen
 						 * salva arquivo no GED
 						 */
 						
-						$sql = "select * from cep_parecer 
+						$sql = "select * from cep_dictamen  
 								inner join cep_protocolos on cep_caae = pr_protocol
 								inner join parecer_modelo on pm_decision = pr_situacao
 								inner join usuario on us_codigo = cep_pesquisador
@@ -293,7 +306,7 @@ class dictamen
 			/* Mostra formularios */
 			$pos = 0;
 			
-			/* monta formul�rio Selecr */
+			/* monta formulario Select */
 			$sa .= '<input type="hidden" id="dd1" name="dd1" value="'.$dd[1].'">';
 			$sa .= '<select id="dd27" name="dd27">';
 			$jb = '';
@@ -451,7 +464,7 @@ class dictamen
 			$destino = $this->filemane;
 			
 			$dic = new dictamen;
-			$dic->le($caae);
+			$dic->le_parecer($caae);
 
 			require("dictamen_pdf_projeto.php");
 			$sx = '<A HREF="dictamen_pdf.php?dd1='.$caae.'" target="new">';

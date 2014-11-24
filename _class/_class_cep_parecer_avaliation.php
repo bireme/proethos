@@ -39,7 +39,7 @@ class parecer_avaliation
 			$proto = $this->protocolo;
 			$us = strzero(round($ss->user_id),7);
 					
-				$sql = "select * from cep_parecer where 
+				$sql = "select * from cep_dictamen where 
 						pp_avaliador = '$us' 
 						and pp_protocolo = '$proto'
 						and (pp_status = '@' or pp_status = 'A') ";
@@ -55,7 +55,7 @@ class parecer_avaliation
 			
 		function le($id='')
 			{
-				$sql = "select * from cep_parecer where id_pp = ".round($id);
+				$sql = "select * from cep_dictamen where id_pp = ".round($id);
 				$rlt = db_query($sql);
 				if ($line = db_read($rlt))
 					{
@@ -67,7 +67,7 @@ class parecer_avaliation
 		function mostra()
 			{
 				global $messa,$ss;
-				$sql = "select * from cep_parecer where id_pp = ".round($this->id);
+				$sql = "select * from cep_dictamen where id_pp = ".round($this->id);
 				$rlt = db_query($sql);
 				if ($line = db_read($rlt))
 					{
@@ -106,7 +106,7 @@ class parecer_avaliation
 				$us = strzero(round($ss->user_id),7);
 				if (strlen($acao) == 0)
 					{
-						$sql = "select * from cep_parecer 
+						$sql = "select * from cep_dictamen 
 								where pp_avaliador = '$us' 
 								and pp_protocolo = '$proto' "; 
 						$rrr = db_query($sql);
@@ -124,7 +124,7 @@ class parecer_avaliation
 					}
 								
 				$sa .= '<div style="text-align: left; padding 5px 5px 5px 5px; width: 95%;">';
-				$sa .= '<a name="par">';
+				$sa .= '<a name="par"></A>';
 				$sa .= '<form method="post" action="'.page().'#par">';
 				$sa .= '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 				$sa .= '<input type="hidden" name="dd2" value="'.$dd[2].'">';
@@ -145,7 +145,7 @@ class parecer_avaliation
 							{
 								$sa .= '<center><div style="background-color: #FFC0C0; width:90%; padding: 5px 5px 5px 5px;">'.$err.'</div></center>';
 							} 
-						$sql = "update cep_parecer set 
+						$sql = "update cep_dictamen set 
 								pp_abe_01 = '".$dd[20]."',
 								pp_abe_02 = '".$dd[21]."',
 								pp_abe_03 = '".$dd[22]."',
@@ -192,7 +192,7 @@ class parecer_avaliation
 			$proto = $this->protocolo;
 						
 			$sql = "select * from usuario 
-					inner join cep_parecer on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
+					inner join cep_dictamen	on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
 					left join institutions on it_codigo = us_empresa ";
 			$rlt = db_query($sql);
 			$sel = 0;
@@ -200,7 +200,7 @@ class parecer_avaliation
 			while ($line = db_read($rlt))
 				{
 					$sel++;			
-					$sx .= '<TRclass="lt0">';
+					$sx .= '<TR class="lt1">';
 					$sx .= '<TD>';
 					$sx .= $line['us_nome'];
 					$sx .= '<TD>';
@@ -245,7 +245,7 @@ class parecer_avaliation
 			$proto = $this->protocolo;
 			print_r($_POST);
 			$sql = "select * from usuario 
-					left join cep_parecer on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
+					left join cep_dictamen on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
 					left join institutions on it_codigo = us_empresa
 					where us_ativo = 1 ";
 
@@ -263,7 +263,7 @@ class parecer_avaliation
 							$hora = date("H:i");
 							$avaliador = $line['us_codigo'];
 							$dds = 'checked' ; $sel++; 
-							$sql = "select * from cep_parecer 
+							$sql = "select * from cep_dictamen 
 										where pp_avaliador = '$avaliador' and
 										pp_protocolo = '$proto' ";
 							$rrlt = db_query($sql);
@@ -271,7 +271,7 @@ class parecer_avaliation
 								{
 								$this->cep_historic_append('010',msg('indicate_avaliation_to').' '.$line['us_nome']);
 								/** Indicate new avaliation */
-								$sql = "insert into cep_parecer 
+								$sql = "insert into cep_dictamen 
 									( pp_nrparecer, pp_tipo, pp_protocolo,
 									  pp_protocolo_mae, pp_avaliador, pp_revisor,
 									  pp_status, pp_pontos, pp_pontos_pp,
@@ -287,7 +287,7 @@ class parecer_avaliation
 								} else {
 								$this->cep_historic_append('011',msg('renew_avaliation_to').' '.$line['us_nome']);
 								/* Renew avaliation */
-									$sql = "update cep_parecer 
+									$sql = "update cep_dictamen 
 											set pp_status = '@',
 											pp_data = $data,
 											pp_hora = '$hora'

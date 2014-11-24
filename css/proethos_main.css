@@ -32,7 +32,13 @@
 		text-shadow: 1px 1px 2px #505050;
 		background-color: #F8F8F8;
 	}
-
+.table_resume_td_sel
+    {
+        font-size: 12px;
+        text-decoration: none;
+        color: black;
+        background-color: #C8C8f8;
+    }
 h1, h2, h3, h4, h5, h6 
 	{
 		font-family: RobotoThin, Arial, Helvetica, sans-serif;

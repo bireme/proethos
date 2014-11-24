@@ -644,11 +644,20 @@ class cep
 			$sx .= '</Table>'.chr(13);
 			return($sx);
 		}
+	function cep_update_date_dictamen($nt)
+		{
+			$protocolo = $this->protocolo;
+			$sql = "update ".$this->tabela." set cep_dt_parecer = ".$nt." 
+				where cep_protocol = '".$protocolo."' ";	
+			$rlt = db_query($sql);
+		}
+
 	function approved_documment($nt)
 		{
 			$protocolo = $this->protocolo;
 			$sql = "update ".$this->tabela." set cep_approved = ".$nt." 
-				where cep_protocolo = '".$protocolo."' ";	
+				where cep_protocol = '".$protocolo."' ";
+			$rlt = db_query($sql);	
 		}
 	function surver_resume()
 		{
@@ -890,7 +899,7 @@ class cep
 			$proto = $this->protocolo;
 			$author = $this->line['cep_pesquisador'];
 			$sql = "select * from usuario 
-					left join cep_parecer on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
+					left join cep_dictamen on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
 					left join institutions on it_codigo = us_empresa
 					where us_ativo = 1 and us_perfil like '%#ADC%' 
 					and us_codigo <> '$author'
@@ -909,7 +918,7 @@ class cep
 							$hora = date("H:i");
 							$avaliador = $line['us_codigo'];
 							$dds = 'checked' ; $sel++; 
-							$sql = "select * from cep_parecer 
+							$sql = "select * from cep_dictamen 
 										where pp_avaliador = '$avaliador' and
 										pp_protocolo = '$proto' ";
 							$rrlt = db_query($sql);
@@ -933,7 +942,7 @@ class cep
 								} else {
 									$this->cep_historic_append('011',msg('renew_avaliation_to'));
 								/* Renew avaliation */
-									$sql = "update cep_parecer 
+									$sql = "update cep_dictamen
 											set pp_status = '@',
 											pp_data = $data,
 											pp_hora = '$hora'
@@ -1074,6 +1083,8 @@ class cep
 			$sx .= '<BR>';
 			$sx .= '<input type="submit" name="acao" value="'.$act.'"  class="botao-submit">';
 			$sx .= '</form>';
+			
+			$sx .= '<br>'.'<A HREF="admin_calender.php">'.msg("change").' '.msg('scheduled_meeting').'</A>';
 			$sx .= '</fieldset>';
 			return($sx);
 		}	
@@ -1192,7 +1203,7 @@ class cep
 			$proto = $this->protocolo;
 			$author = $this->line['cep_pesquisador'];
 			$sql = "select * from usuario 
-					left join cep_parecer on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
+					left join cep_dictamen on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
 					left join institutions on it_codigo = us_empresa
 					where us_ativo = 1 and us_perfil like '%#MEM%' 
 					and us_codigo <> '$author'
@@ -1211,7 +1222,7 @@ class cep
 							$hora = date("H:i");
 							$avaliador = $line['us_codigo'];
 							$dds = 'checked' ; $sel++; 
-							$sql = "select * from cep_parecer 
+							$sql = "select * from cep_dictamen 
 										where pp_avaliador = '$avaliador' and
 										pp_protocolo = '$proto' ";
 							$rrlt = db_query($sql);
@@ -1219,7 +1230,7 @@ class cep
 								{
 								$this->cep_historic_append('010',msg('indicate_avaliation_to'));
 								/** Indicate new avaliation */
-								$sql = "insert into cep_parecer 
+								$sql = "insert into cep_dictamen 
 									( pp_nrparecer, pp_tipo, pp_protocolo,
 									  pp_protocolo_mae, pp_avaliador, pp_revisor,
 									  pp_status, pp_pontos, pp_pontos_pp,
@@ -1235,7 +1246,7 @@ class cep
 								} else {
 									$this->cep_historic_append('011',msg('renew_avaliation_to'));
 								/* Renew avaliation */
-									$sql = "update cep_parecer 
+									$sql = "update cep_dictamen 
 											set pp_status = '@',
 											pp_data = $data,
 											pp_hora = '$hora'
@@ -1852,13 +1863,13 @@ class cep
 				$sp .= '<Td align="rigth" class="table_proj"><center>'.$protocol_id;
 				
 				/* Inser new investigator */
-				$sp .= '<TR><TD colspan=6>';
+				$sp .= '<TR><TD colspan=7>';
 				$sp .= '<div id="team" style="display: none; ">';
 				$sp .= '</div>';
 				
 				/* INstitution */
 				$sp .= '<TR><Td colspan=3 width="50%" class="lt0">'.msg('institution');
-				$sp .= '<Td align="right" colspan=2 width="50%" class="lt0" width="10%">'.msg('country');
+				$sp .= '<Td align="left" colspan=2 width="50%" class="lt0" width="10%">'.msg('country');
 				$sp .= '<TR><Td colspan=3 class="table_proj">';
 				$sp .= trim($line['us_instituition']);
 				$sp .= '&nbsp;'.chr(13);
@@ -1873,26 +1884,29 @@ class cep
 					}
 					
 				$sp .= '<TR>';
-				$sp .= '<TD>'.msg('date_accept');
-				$sp .= '<TD>'.msg('date_update');
-				$sp .= '<TD>'.msg('meet_data');
-				$sp .= '<TD>'.msg('dictamen_date');
+				$sp .= '<TD width="10%">'.msg('date_accept');
+				$sp .= '<TD width="10%">'.msg('date_update');
+				$sp .= '<TD width="10%">'.msg('meet_data');
+				$sp .= '<TD width="10%">'.msg('dictamen_date');
 				
-				$sp .= '<TD>'.msg('aware_date');
-				$sp .= '<TD>'.msg('date_amendment');	
+				$sp .= '<TD width="10%">'.msg('aware_date');
+				$sp .= '<TD width="10%">'.msg('date_amendment');
+				$sp .= '<TD>'.msg('monitoring');	
 				
-				$sp .= '<TR>';
-				$sp .= '<Td class="table_proj" align="center"><center>';
+				$sp .= '<TR class="lt2">';
+				$sp .= '<Td class="lt2" align="left">';
 				$sp .= '&nbsp;'.stodbr($line['cep_data']);
-				$sp .= '<Td class="table_proj" align="center"><center>';
+				$sp .= '<Td class="lt2" align="left">';
 				$sp .= '&nbsp;'.stodbr($line['cep_atualizado']);
-				$sp .= '<Td class="table_proj" align="center"><center>';
+				$sp .= '<Td class="lt2" align="left">';
 				$sp .= '&nbsp;'.stodbr($line['cep_reuniao']);
-				$sp .= '<Td class="table_proj" align="center"><center>';
-				$sp .= '&nbsp;'.stodbr($line['cep_data_parecer']);
-				$sp .= '<Td class="table_proj" align="center"><center>';
+				$sp .= '<Td class="lt2" align="left">';
+				$sp .= '&nbsp;'.stodbr($line['cep_dt_parecer']);
+				$sp .= '<Td class="lt2" align="left">';
 				$sp .= '&nbsp;'.stodbr($line['cep_dt_ciencia']);
-				$sp .= '<Td class="table_proj" align="center"><center>';					
+				$sp .= '<Td class="lt2" align="left">';
+				$sp .= '&nbsp;'.stodbr($line['cep_dt_liberacao']);
+				$sp .= '<Td class="lt2" align="right"><center>';					
 				$sp .= '&nbsp;'.stodbr($line['cep_monitoring']);
 				
 				$sp .= '</table>';
@@ -1934,7 +1948,7 @@ class cep
 			if ($sta == 'Z')
 			{
 				$sql = "select * from ".$this->tabela." 
-					 inner join cep_parecer on pp_protocolo = cep_protocol 
+					 inner join cep_dictamen on pp_protocolo = cep_protocol 
 					 where 
 					 (cep_status = '@' or cep_status = 'A' or cep_status = 'B' or cep_status = 'C' or cep_status = 'D')
 					 and pp_avaliador = '$us' 

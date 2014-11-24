@@ -1,5 +1,6 @@
 <?
 require("db.php");
+require($include.'sisdoc_debug.php');
 global $messa;
 
 require('_class/_class_ged.php');
@@ -42,11 +43,12 @@ if (strlen($acao) > 0)
 				$cep->caae = $dd[1];
 				
 				$cep->cep_status_alter('E');
+				$cep->cep_update_date_dictamen(date("Ymd"));
 			}
 		echo '</A>';			
 		echo '
 			<script>
-				$(window.location).attr(\'href\', \'protocolo_detalhe.php\');
+				$(window.location).attr(\'href\', \'protocol_detalhe.php\');
 			</script>
 		';			
 		exit;

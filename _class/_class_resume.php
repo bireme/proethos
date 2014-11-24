@@ -140,7 +140,7 @@ class resume
 			$us = strzero(round($ss->user_id),7);				
 					
 			/* Troca PP por PR */
-			$sql = "select count(*) as total from cep_parecer
+			$sql = "select count(*) as total from cep_dictamen 
 					inner join cep_protocolos on pp_protocolo = cep_protocol
 					where 
 					 (cep_status = '@' or cep_status = 'A' or cep_status = 'B' or cep_status = 'C' or cep_status = 'D')
@@ -245,7 +245,7 @@ class resume
 			$tp = array(0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 			$us = strzero(round($ss->user_id),7);				
 									
-			$sql = "select count(*) as total from cep_parecer
+			$sql = "select count(*) as total from cep_dictamen 
 					inner join cep_protocolos on pp_protocolo = cep_protocol
 					where 
 					 (cep_status = '@' or cep_status = 'A' or cep_status = 'B' or cep_status = 'C' or cep_status = 'D')
