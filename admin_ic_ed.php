@@ -14,7 +14,6 @@ require('_class/_class_ic.php');
 $ln = new message;
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
 require($include.'_class_form.php');
 $form = new form;
@@ -31,18 +30,17 @@ require($include.'sisdoc_debug.php');
 	$http_redirect = '';
 	$tit = msg("tit".$tabela);
 	
-	/** Comandos de Edi��o */
-	echo '<CENTER><h2>'.$tit.'</h2></CENTER>';
-	?><TABLE width="<?=$tab_max;?>" align="center" bgcolor="<?=$tab_color;?>"><TR><TD><?
-	editar();
-	?></TD></TR></TABLE><?	
-	echo '</div>';
+	/** Comandos de Edicao */
+	$tela = $form->editar($cp,$tabela);
+
 	/** Caso o registro seja validado */
-	if ($saved > 0)
+	if ($form->saved > 0)
 		{
 			echo 'Salvo';
 			//$cl->updatex();
 			redirecina('admin_ic.php');
+		} else {
+			echo $tela;
 		}
 echo $hd->foot();	
 ?>
