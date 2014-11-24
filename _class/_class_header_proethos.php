@@ -40,6 +40,7 @@ class header {
 					$this->email_pass = trim($line['cm_admin_email_pass']);
 					$this->email_smtp = trim($line['cm_admin_email_smtp']);
 					$this->email_name = $line['cm_name'];
+					$this->email_replay = $line['cm_replay'];
 				}
 		}
 

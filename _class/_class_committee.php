@@ -99,6 +99,7 @@ class committee {
 		array_push($cp, array('$S40', 'cm_phone', msg('phone'), True, True));
 		array_push($cp, array('$S100', 'cm_admin_name', msg('admin_name'), True, True));
 		array_push($cp, array('$S100', 'cm_admin_email', msg("admin_email"), True, True));
+		array_push($cp, array('$S100', 'cm_email_replay', msg("admin_email_replay"), False, True));
 		array_push($cp, array('$O ' . $tp, 'cm_admin_email_tipo', msg("admin_email_tipo"), True, True));
 		array_push($cp, array('$S100', 'cm_admin_email_smtp', msg("admin_email_smtp"), True, True));
 		array_push($cp, array('$P20', 'cm_admin_email_pass', msg("admin_email_password"), False, True));

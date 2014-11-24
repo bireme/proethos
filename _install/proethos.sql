@@ -845,6 +845,7 @@ CREATE TABLE _committee (
   cm_admin_email_tipo char(5) NOT NULL,
   cm_admin_email_pass char(30) NOT NULL,
   cm_admin_email_smtp char(100) NOT NULL,
+  cm_email_replay char(100) NOT NULL,
   cm_admin_email_port char(10) NOT NULL,
   cm_committe char(8) NOT NULL,
   cm_admin_key char(40) NOT NULL,
