@@ -10,7 +10,6 @@
  */
 require("cab.php");
 
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
 require($include.'sisdoc_debug.php');
 

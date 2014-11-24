@@ -12,7 +12,6 @@ require("cab.php");
 require("_class/_class_register_unit.php");
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
 require($include.'_class_form.php');
 $form = new form;
@@ -26,19 +25,18 @@ require("form_css.php");
 	$http_redirect = '';
 	$tit = msg("tit_".$cl->tabela);
 
-	/** Comandos de Edi��o */
+	/** Comandos de Edicao */
 	
-	echo '<CENTER><font class=lt5>'.msg('titulo').'</font></CENTER>';
-	?><TABLE width="<?=$tab_max;?>" align="center" bgcolor="<?=$tab_color;?>"><TR><TD><?
-	editar();
-	?></TD></TR></TABLE><?	
+	$tela = $form->editar($cp,$tabela);
 	
 	/** Caso o registro seja validado */
-	if ($saved > 0)
+	if ($form->saved > 0)
 		{
 			echo 'Salvo';
 			$cl->updatex();
-			redirecina('admin_submit.php');
+			redirecina('admin_register_unit.php');
+		} else {
+			echo $tela;
 		}
 	echo '</div>';
 echo $hd->foot();
