@@ -29,10 +29,10 @@ require("form_css.php");
 	/** Comandos de Edicao */
 	
 	echo '<CENTER><font class=lt5>'.msg('titulo').'</font></CENTER>';
-	$tela = $form->editar($cp,$tela);
+	$tela = $form->editar($cp,$tabela);
 	
 	/** Caso o registro seja validado */
-	if ($saved > 0)
+	if ($form->saved > 0)
 		{
 			$cl->updatex();
 			redirecina('admin_calender_type.php');

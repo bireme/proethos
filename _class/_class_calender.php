@@ -187,9 +187,9 @@ class calendar
 		function updatex()
 			{
 				global $base;
-				$c = 'cal';
+				$c = 'calt';
 				$c1 = 'id_'.$c;
-				$c2 = $c.'_cod';
+				$c2 = $c.'_codigo';
 				$c3 = 3;
 				$sql = "update ".$this->tabela_type." set $c2 = lpad($c1,$c3,0) 
 						where $c2='' or 1=1";
