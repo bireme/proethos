@@ -8,25 +8,41 @@
   * @package Proethos
   * @subpackage Scheduled
  */
-require("db.php");
-?>
-<head>
-	<title>:: <?php echo $institution_name;?> :: ProEthos ::</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $charset;?>"/>
-	<link rel="shortcut icon" type="image/x-icon" href="<?php echo $institution_site;?>favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="css/letras_pr.css" />
-</head>
-<?
-/* Class Printer */
+require ("db.php");
+require ("_db/db_proethos.php");
+
+require ($include . 'sisdoc_debug.php');
+/* Sistema de Mensagens */
+require ("_class/_class_message.php");
+$message = 'messages/msg_' . $LANG . '.php';
+if (file_exists($message)) {
+	require ($message);
+}
+
+/* User Class */
+require ('_class/_class_user.php');
+$ss = new users;
+
+require ('_class/_class_user_perfil.php');
+$perfil = new user_perfil;
+
+/* Header Class */
+require ("_class/_class_header_proethos.php");
+$hd = new header;
+/* load configuration committe */
+$hd->load_committe();
+
+echo $hd->head();
+
+//* Class Printer */
+require($include.'_class_email.php');
+
+//* Class Printer */
 require('_class/_class_printer.php');
 $pr = new printer;
 
 require($include.'sisdoc_data.php');
 /* Mensagens do sistema */
-require("_class/_class_message.php");
-$file = 'messages/msg_'.$LANG.'.php';
-$LANG = $lg->language_read();
-if (file_exists($file)) { require($file); } else { echo 'message not found '.$file; }
 
 require("_class/_class_meeting.php");
 $mt = new meeting;

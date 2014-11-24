@@ -33,13 +33,16 @@ if ((strlen($acao)==0) or (strlen($dd[1]) < 10))
 	$tela = $form->editar($cp,$tabela);
 	echo '</table>';
 	} else {
-		$saved = 1;
+		$form->saved = 1;
 	}	
 
 if ($form->saved > 0)
 	{
-	$data = brtos($dd[1]);
-	echo $mt->mostra($data,$dd[2]);
+		echo $tela;
+		$data = brtos($dd[1]);
+		echo $mt->mostra($data,$dd[2]);
+	} else {
+		echo $tela;
 	}
 
 echo $mt->mostra_proximas();
