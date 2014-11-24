@@ -926,7 +926,7 @@ class cep
 								{
 								$this->cep_historic_append('010',msg('indicate_avaliation_to'));
 								/** Indicate new avaliation */
-								$sql = "insert into cep_parecer 
+								$sql = "insert into cep_dictamen 
 									( pp_nrparecer, pp_tipo, pp_protocolo,
 									  pp_protocolo_mae, pp_avaliador, pp_revisor,
 									  pp_status, pp_pontos, pp_pontos_pp,
