@@ -35,7 +35,7 @@ require('form_css.php');
 		{
 			echo 'Salvo';
 			$cl->updatex();
-			redirecina('admin_submit.php');
+			redirecina('admin_country.php');
 		} else {
 			echo $tela;
 		}
