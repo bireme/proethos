@@ -31,6 +31,7 @@ Required
 To install read the "PROETHOS Install.pdf" in folder "_documents"
 
 24/11/2014
-FIX BUG - Link to uploaded file does not work on the detail of the protocol
+FIX #20 - BUG - Link to uploaded file does not work on the detail of the protocol
+FIX #19 - BUG - The link to "Mostrar comunicaciones con el autor" does not work
 
 

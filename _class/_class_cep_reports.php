@@ -30,7 +30,7 @@ class cep_reports
 				while ($line = db_read($rlt))
 				{
 						$st = '<h2>'.trim($line['usp_descricao']).'</h2>';
-						$sx .= '<TR '.coluna().' valign="top">';
+						$sx .= '<TR valign="top">';
 						$sx .= '<TD>'.$line['us_nome'];
 						$sx .= '<TD>'.$line['us_instituition'];
 						$sx .= '<TD>'.$line['us_email'];
@@ -55,7 +55,7 @@ class cep_reports
 				$rlt = db_query($sql);
 				while ($line = db_read($rlt))
 				{
-						$sx .= '<TR '.coluna().' valign="top">';
+						$sx .= '<TR valign="top">';
 						$sx .= '<TD>'.$line['us_nome'];
 						$sx .= '<TD>'.$line['us_instituition'];
 						$sx .= '<TD>'.$line['us_email'];
@@ -93,7 +93,7 @@ class cep_reports
 						$id++;
 						$link = '<A HREF="protocolo_detalhe_investigator.php?dd0='.$line['id_cep'].'&dd90='.checkpost($line['id_cep']).'">';
 						$sx .= chr(13);
-						$sx .= '<TR '.coluna().' valign="top">';
+						$sx .= '<TR valign="top">';
 						$sx .= '<TD>'.$link;
 						$sx .= $line['cep_caae'];
 						$sx 	.= '<TD>'.$link;	

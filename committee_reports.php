@@ -18,11 +18,11 @@ if (($perfil->valid('#ADM')) or ($perfil->valid('#MAS')))
 	array_push($menu,array(msg('committee_reports'),msg('report_003'),'report_003.php'));
 	array_push($menu,array(msg('committee_reports'),msg('report_004'),'report_004.php'));
 	
-	array_push($menu,array(msg('committee_reports_cust'),msg('report_011'),'report_011.php'));
+	//array_push($menu,array(msg('committee_reports_cust'),msg('report_011'),'report_011.php'));
 	}
 
 	array_push($menu,array(msg('committee_reports_secr'),msg('scheduled_meeting'),'meeting_scheduled.php'));
-	array_push($menu,array(msg('committee_reports_secr'),msg('report_021'),'report_021.php'));
+	//array_push($menu,array(msg('committee_reports_secr'),msg('report_021'),'report_021.php'));
 
 	echo '<div class="border1 pad5 ml2 mt20">';
 	echo '<h1>' . msg('report_menu') . '</h1>';
