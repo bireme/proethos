@@ -32,7 +32,7 @@ $sx .= '<div class="right lpad5 rmarg5">';
 				}
 $sx .= $hd->change_language();				
 $sx .= '</div>';
-
+if (empty($active_page)) { $active_page = ''; }
 /* Proethos Image */
 for ($r=0;$r < count($menuc);$r++)
 	{

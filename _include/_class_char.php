@@ -41,7 +41,7 @@ function ShowLink($link,$tipo='0',$target='',$label='')
 		return($lk);
 	}
 	
-function customError($errno, $errstr, $errfile, $errline, $errcontext)
+function customError_old($errno, $errstr, $errfile, $errline, $errcontext)
   {
   global $secu,$base,$base_name,$user_log,$debug,$ttsql,$rlt,$sql_query;
   if ($errno != '8')

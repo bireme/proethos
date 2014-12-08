@@ -16,7 +16,6 @@ if (strlen($include) == 0) { exit; }
 /** Define o time zone, opcional para alguns servidores; */
 //date_default_timezone_set('UTC'); 
 /**/
-set_error_handler("customError"); 
 
 function email_restrition($s)
 	{
@@ -277,7 +276,7 @@ function chkmd5($dq)
 		return(md5($dp.$secu));
 	}
 	
-function customError($errno, $errstr, $errfile, $errline, $errcontext)
+function customError_olds($errno, $errstr, $errfile, $errline, $errcontext)
   {
   global $secu,$base,$base_name,$user_log,$debug,$ttsql,$rlt,$sql_query;
   if ($errno != '8')

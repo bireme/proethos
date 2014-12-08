@@ -24,7 +24,31 @@ echo '
 		
 		
 	';
-	
+if (!(function_exists("cpf")))
+	{
+	function cpf($cpf)
+	{
+		$cpf = sonumero($cpf);
+		if (strlen($cpf) <> 11) { return(false); } 
+		
+		$soma1 = ($cpf[0] * 10) + ($cpf[1] * 9) + ($cpf[2] * 8) + ($cpf[3] * 7) + 
+			 	($cpf[4] * 6) + ($cpf[5] * 5) + ($cpf[6] * 4) + ($cpf[7] * 3) + 
+			 	($cpf[8] * 2); 
+		$resto = $soma1 % 11; 
+		$digito1 = $resto < 2 ? 0 : 11 - $resto; 
+		
+		$soma2 = ($cpf[0] * 11) + ($cpf[1] * 10) + ($cpf[2] * 9) + 
+			 	($cpf[3] * 8) + ($cpf[4] * 7) + ($cpf[5] * 6) + 
+			 	($cpf[6] * 5) + ($cpf[7] * 4) + ($cpf[8] * 3) + 
+			 	($cpf[9] * 2); 
+			 	
+		$resto = $soma2 % 11; 
+		$digito2 = $resto < 2 ? 0 : 11 - $resto; 
+		if (($cpf[9] == $digito1) and ($cpf[10] == $digito2))
+			{ return(true); } else
+			{ return(false); }
+		}
+	}
 function gets($a1,$a2,$a3,$a4,$a5)
 	{
 		global $form;
@@ -87,6 +111,7 @@ class form
 		var $class_select = '';
 		var $class_select_option = '';
 		var $class_textarea = '';
+		var $class_field = '';
 
 	/* AJAX */
 	function ajax($id,$protocolo)
@@ -142,7 +167,10 @@ class form
 			{
 				global $secu;
 				$key = md5(microtime() . $secu . rand());
-				$keysid = trim($_SESSION['token_field']);
+				if (!(empty($_SESSION['token_field'])))
+					{ $keysid = trim($_SESSION['token_field']); } else {
+						{ $keyid = ''; }
+					}
 				$keys = trim($_SESSION['token']);
 				if (strlen($keys) > 0)
 					{
@@ -260,7 +288,7 @@ class form
 				/**
 				 * Recupera informacoes do arquivo
 				 */
-				
+				if (empty($filename)) { $filename = ''; }
 				if ((strlen($filename) > 0) and
 						($file == 1) and 
 						(strlen($acao)==0))
@@ -279,6 +307,8 @@ class form
 				$this->saved = 1;
 				$this->rq = '';
 				//echo '<BR>'.date("Y-m-d H:i:s");	
+				if (empty($sx)) { $sx = ''; }
+				if (empty($sh)) { $sh = ''; }
 				$sx .= '<form id="'.$this->form_name.'" method="post" action="'.$post.'">'.chr(13);
 				$sh .= '<table class="'.$this->class_form_standard.'" width="100%" border=0 >'.chr(13);
 				
@@ -286,8 +316,9 @@ class form
 					{
 						if ($recupera == 1) 
 							{
-								$fld = $cp[$r][1]; 
-								$dd[$r] = trim($this->line[$fld]);
+								$fld = $cp[$r][1];
+								if (!(empty($this->line[$fld])))
+									{ $dd[$r] = trim($this->line[$fld]); }
 								if (substr($cp[$r][0],0,2)=='$D')
 									{
 										$dd[$r] = stodbr($this->line[$fld]);		
@@ -556,6 +587,7 @@ class form
 				if ((substr($i,0,1)=='T') and ($i != 'TOKEN')) { $i = 'T'; }
 				if (substr($i,0,1)=='[') { $i = '['; }
 				
+				if (empty($sx)) { $sx = ''; }
 				$sx .= chr(13).'<TR valign="top">';
 							
 				$sh = '<TD align="right" width="10%">'.$this->caption.'<TD>';
@@ -639,7 +671,7 @@ class form
 					/* MEnsagens */
 					case 'M':  $sx .= $this->type_M(); break;
 					/* Valor com dias casas */
-					case 'N':  $sx .= $this->type_N(); break;
+					case 'N':  $sx .= $sh. $this->type_N(); break;
 					/* Options */
 					case 'O':  
 						$this->par = substr($cp[0],2,strlen($cp[0]));
@@ -695,7 +727,7 @@ class form
 					{ 
 					$vcol = 0;
 					$sx .= '<TR><TD colspan="2">';
-					$sx .= '<fieldset '.$this->class.'>';
+					$sx .= '<fieldset '.$this->fieldset.'>';
 					$sx .= '<legend><font class="lt1"><b>'.$this->caption.'</b></legend>';
 					$sx .= '<table cellpadding="0" cellspacing="0" class="lt2" width="100%">';
 					$sx .= '<TR valign="top">';

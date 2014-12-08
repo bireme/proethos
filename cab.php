@@ -61,7 +61,8 @@ $hd = new header;
 /* load configuration committe */
 $hd->load_committe();
 /* security */
-$page = ' ' . page();
+$page = ' ' . page(); 
+if (empty($nosec)) { $nosec = ''; }
 $nosec = round(strpos($page, 'login.php')) + $nosec;
 $nosec = $nosec + round(strpos($page, 'login_new_user.php'));
 

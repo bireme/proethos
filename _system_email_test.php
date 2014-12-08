@@ -37,18 +37,22 @@ if ($form -> saved > 0) {
 		$from_name = $hd->email_name;
 		$email_to = $dd[0];
 		
-		//print_r($hd);
+		echo '<BR>SMTP:'.$smtp;
+		echo '<BR>FROM:'.$from;
+		echo '<HR>';
 		
-
-		/* Method 1 */
-		echo '<HR><h1>Method 1</h1>';
-		$title_sample = $title_sample_original . ' - Method 1';
-		require ("_system_emal_test_menthod_1.php");
+		ini_set('display_errors', 0);
+		ini_set('error_reporting', 0);		
 
 		/* Method 2 */
 		echo '<HR><h1>Method 2</h1>';
 		$title_sample = $title_sample_original . ' - Method 2';
 		require ("_system_emal_test_menthod_2.php");
+
+		/* Method 1 */
+		echo '<HR><h1>Method 1</h1>';
+		$title_sample = $title_sample_original . ' - Method 1';
+		require ("_system_emal_test_menthod_1.php");
 
 		echo '</TD></TR></table>';
 	} else {

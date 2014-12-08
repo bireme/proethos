@@ -13,6 +13,7 @@ class users
 		var $id;
 		var $login;
 		var $name;
+		var $user_email='';
 		var $perfil;
 		var $codigo;
 		var $ghost_original;
@@ -38,6 +39,7 @@ class users
 			{
 			/* Parametros default */
 			global $hd;
+			$sx = '';
 			$msg = 'logout'; $page = 'logout.php';
 			$link_usr = '';
 					

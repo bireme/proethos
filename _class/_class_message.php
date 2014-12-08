@@ -1,28 +1,35 @@
 <?php
- /**
-  * Mensagens
-  * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
-  * @copyright Copyright (c) 2012 - sisDOC.com.br
-  * @access public
-  * @version v0.12.07
-  * @package Class
-  * @subpackage mensagens
+/**
+ * Mensagens
+ * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
+ * @copyright Copyright (c) 2012 - sisDOC.com.br
+ * @access public
+ * @version v0.12.07
+ * @package Class
+ * @subpackage mensagens
  */
 
-$ido = array('pt_BR','en_US','es','fr');
-$idio = trim($_SERVER['PATH_INFO']);
+$ido = array('pt_BR', 'en_US', 'es', 'fr');
+if (!(empty($_SERVER['PATH_INFO']))) { $idio = trim($_SERVER['PATH_INFO']);
+}
+
 $idio_valid = '';
-if (strlen($idio) > 0)
-	{
-		$idio = troca($idio,'/','');
-		for ($r=0;$r < count($ido);$r++)
-			{
-				//echo '<BR>'.$ido[$r].'-'.$idio;
-				if ($idio == $ido[$r]) { $idio_valid = $ido[$r]; }
-			}
-		if (strlen($idio_valid) == 0)
-			{ require("_noaccess.php"); exit; }
+/* set idioma if empty */
+if (empty($idio)) { $idio = '';
+}
+
+if (strlen($idio) > 0) {
+	$idio = troca($idio, '/', '');
+	for ($r = 0; $r < count($ido); $r++) {
+		//echo '<BR>'.$ido[$r].'-'.$idio;
+		if ($idio == $ido[$r]) { $idio_valid = $ido[$r];
+		}
 	}
+	if (strlen($idio_valid) == 0) {
+		require ("_noaccess.php");
+		exit ;
+	}
+}
 
 $lg = new message;
 
@@ -35,41 +42,37 @@ if (strlen($LANG) == 0) {
 }
 
 //$LANG = 'en_US';
-class message 
-	{
+class message {
 	/**
 	 * Classe de mensagens
 	 */
 	var $LANG = 'en';
 	var $tabela = '_messages';
-	
-	public function __construct()
-		{
-			$ipserver = trim($_SERVER['SERVER_ADDR']);
-			if ($ipserver == '50.22.37.205')
-			{
-				$this->tabela = 'sisdocco_cip._messages';
-			} else {
-				$this->tabela = '_messages';
-			}
+
+	public function __construct() {
+		$ipserver = trim($_SERVER['SERVER_ADDR']);
+		if ($ipserver == '50.22.37.205') {
+			$this -> tabela = 'sisdocco_cip._messages';
+		} else {
+			$this -> tabela = '_messages';
 		}
-			
-	
-	
+	}
+
 	/**
 	 * Identifica��o de idioma
 	 */
-	
-	function edit_mode($op)
-		{
-			global $edit_mode;
-			$edit_mode = round($op);
-			$mm = 'edmode_0';
-			if ($edit_mode > 0) { $edit_mode = 1; $mm = 'edmode_2';}
-			$_SESSION['editmode'] = $op;
-			$sx = msg($mm);
-			return($sx);
+
+	function edit_mode($op) {
+		global $edit_mode;
+		$edit_mode = round($op);
+		$mm = 'edmode_0';
+		if ($edit_mode > 0) { $edit_mode = 1;
+			$mm = 'edmode_2';
 		}
+		$_SESSION['editmode'] = $op;
+		$sx = msg($mm);
+		return ($sx);
+	}
 
 	function language_detect() {
 		$idioma = 'en';
@@ -80,13 +83,13 @@ class message
 		}
 		$ida = array(
 		/** Ingl�s **/
-			'en' => 'en_US', 'en-us' => 'en_US', 'en-GB' => 'en_US', 'us' => 'en_US', 'en-gb' => 'en_US', 'en-za' => 'en_US', 'en-ie' => 'en_US', 'en-ca' => 'en_US', 'en-au' => 'en_US',
+		'en' => 'en_US', 'en-us' => 'en_US', 'en-GB' => 'en_US', 'us' => 'en_US', 'en-gb' => 'en_US', 'en-za' => 'en_US', 'en-ie' => 'en_US', 'en-ca' => 'en_US', 'en-au' => 'en_US',
 		/** Alemao **/
-			'de' => 'de', 'de-at' => 'de', 'de-lu' => 'de', 'de-ch' => 'de', 'de-li' => 'de',
+		'de' => 'de', 'de-at' => 'de', 'de-lu' => 'de', 'de-ch' => 'de', 'de-li' => 'de',
 		/** Espanhol e Casteliano **/
-			'es' => 'es',
+		'es' => 'es',
 		/** Portugues **/
-			'pt-br' => 'pt_BR', 'pt' => 'pt_BR');
+		'pt-br' => 'pt_BR', 'pt' => 'pt_BR');
 		$idm = $ida[$idm];
 		if (strlen($idm) > 0) { $idioma = $idm;
 		}
@@ -106,14 +109,14 @@ class message
 		array_push($cp, array('$O 1:YES&0:NO', 'msg_ativo', msg('active'), True, True));
 		return ($cp);
 	}
-	
+
 	/**
 	 * Carrega todas as mensagens de uma p�gina e referencia
 	 */
 
 	function message_name_all($ref, $page) {
 		$msg = array();
-		$sql = "select * from " . $this->tabela;
+		$sql = "select * from " . $this -> tabela;
 		$sql .= " where (msg_field = '" . $ref . "') ";
 		$sql .= " and (msg_ativo = 1) ";
 		$sql .= " order by id_msg ";
@@ -123,32 +126,32 @@ class message
 		}
 		return ($msg);
 	}
+
 	/**
 	 * Idiomas do sistema
 	 */
-	 
 
 	function idioma() {
 		$idi = array('pt_BR' => 'Portugues', 'en_US' => 'English (USA)', 'es' => 'Spanish', 'fr' => 'Frensh');
 		return ($idi);
 	}
+
 	/**
 	 * Formul�rio para sele��o de idioma
 	 */
-	function idioma_form()
-		{
-			global $LANG;
-			$ido = $this->idioma();
-			$sx = '';
-			foreach ($ido as $key => $value) 
-				{
-					$sel = '';
-					if (trim($LANG) == trim($key)) { $sel = 'selected'; }
-					$sx .= ' <option value="'.$key.'" '.$sel.'>'.$value.'</option>'; 
-				} 
-			return($sx);
+	function idioma_form() {
+		global $LANG;
+		$ido = $this -> idioma();
+		$sx = '';
+		foreach ($ido as $key => $value) {
+			$sel = '';
+			if (trim($LANG) == trim($key)) { $sel = 'selected';
+			}
+			$sx .= ' <option value="' . $key . '" ' . $sel . '>' . $value . '</option>';
+		}
+		return ($sx);
 
-		}	
+	}
 
 	/* Recupera linguagem */
 	function language_read() {
@@ -163,12 +166,11 @@ class message
 	/* Seleciona a Linguagem */
 	function language_set($lg) {
 		global $LANG;
-		$lg = troca($lg,'/','');
-		if (strlen($lg) > 0) 
-		{
+		$lg = troca($lg, '/', '');
+		if (strlen($lg) > 0) {
 			$_SESSION['language'] = $lg;
-			redirecina('../'.page());	
-			exit;	
+			redirecina('../' . page());
+			exit ;
 		}
 		return (1);
 	}
@@ -177,15 +179,16 @@ class message
 	 * Exporta��o - criar arquivo com mensagens das p�ginas
 	 */
 	function language_page_create() {
-		$cr = chr(13).chr(10);
+		$cr = chr(13) . chr(10);
 		$pags = array();
-		$sql = "select msg_language from ".$this->tabela." group by msg_language";
+		$sql = "select msg_language from " . $this -> tabela . " group by msg_language";
 		$rlt = db_query($sql);
-		while ($line = db_read($rlt)) { array_push($pags, $line['msg_language']); }
+		while ($line = db_read($rlt)) { array_push($pags, $line['msg_language']);
+		}
 
 		/* Constroi as paginas */
 		for ($ro = 0; $ro < count($pags); $ro++) {
-			$sql = "select * from ".$this->tabela." where (msg_ativo = 1) ";
+			$sql = "select * from " . $this -> tabela . " where (msg_ativo = 1) ";
 			$sql .= " and (msg_language = '" . $pags[$ro] . "') ";
 			$sql .= " order by msg_language, msg_field ";
 			$rlt = db_query($sql);
@@ -224,7 +227,7 @@ class message
 
 			/* Salvar arquivo */
 			$arq = 'messages/msg_' . trim($pags[$ro]);
-			$fld = fopen($arq.'.php', 'w+');
+			$fld = fopen($arq . '.php', 'w+');
 			fwrite($fld, $sx);
 			fwrite($fld, '?>');
 			fclose($fld);
@@ -234,13 +237,12 @@ class message
 	}
 
 	/** Gerar c�digo das mensagens */
-	function updatex() 
-	{
+	function updatex() {
 	}
-	
+
 	/* Modelagem da strutura da tabela */
 	function structure() {
-		$sql = "CREATE TABLE ".$this->tabela." (
+		$sql = "CREATE TABLE " . $this -> tabela . " (
 			id_msg serial NOT NULL,
 			msg_pag CHAR(50),
 			msg_language CHAR(5),
@@ -253,6 +255,7 @@ class message
 	}
 
 }
+
 /**
  * Mostra mensagem de texto conforme o conte�do gravado
  * Caso n�o exista a mensagem, envia para fun��o de cadastrar nova
@@ -261,55 +264,58 @@ function msg($s) {
 	global $LANG;
 	global $messa;
 	global $gerar, $edit_mode;
-	$s = substr($s,0,40);
+	$s = substr($s, 0, 40);
 	$gerar = 0;
-	if (isset($messa[$LANG][$s])) 
-		{
-			
-			/* Campos para editar mensagens */
-			$img = '<A href="javascript:newxy2(';
-			$img .= "'message_ed_pop.php?dd2=" . page() . "&dd1=" . $s;
-			$img .= "',600,300);";
-			$img .= '">';
-			$img .= '<img src=img/icone_alert.png width=10 border=0>';
-			$img .= '</A>';
-			if ($edit_mode!=1) { $img = ''; }
-			$link = $img;
-			return ($messa[$LANG][$s] . $link);
-		} else {
-			$msg = new message;
-			$ido = $msg->idioma();
-			foreach ($ido as $key => $value) 
-					{ $tela = msg_insert($s,$key); } 
-			return($s);
+	if (isset($messa[$LANG][$s])) {
+
+		/* Campos para editar mensagens */
+		$img = '<A href="javascript:newxy2(';
+		$img .= "'message_ed_pop.php?dd2=" . page() . "&dd1=" . $s;
+		$img .= "',600,300);";
+		$img .= '">';
+		$img .= '<img src=img/icone_alert.png width=10 border=0>';
+		$img .= '</A>';
+		if ($edit_mode != 1) { $img = '';
 		}
+		$link = $img;
+		return ($messa[$LANG][$s] . $link);
+	} else {
+		$msg = new message;
+		$ido = $msg -> idioma();
+		foreach ($ido as $key => $value) { $tela = msg_insert($s, $key);
+		}
+		return ($s);
+	}
 	/**
 	 * Inserir nova mensagem se n�o cadastrada
 	 */
 }
-function msg_insert($s,$idioma)
-		{
-			global $edit_mode,$ln;
-			$tabela = $ln->tabela;
-			if (strlen($tabela) == 0) { $tabela = "_messages"; }
-			$s = substr($s,0,40);
-			$sql = "select * from ".$tabela." 
+
+function msg_insert($s, $idioma) {
+	global $edit_mode, $ln;
+
+	if (!(empty($ln -> tabela))) {
+		$tabela = $ln -> tabela;
+	} else {
+		$tabela = "_messages";
+	}
+
+	$s = substr($s, 0, 40);
+	$sql = "select * from " . $tabela . " 
 				where msg_language='$idioma' and msg_field ='$s' ";
-			
-			$txt = $s;
+
+	$txt = $s;
+	$rlt = db_query($sql);
+	if (!($line = db_read($rlt))) {
+		if (!($edit_mode == 1)) {
+			$sqlx = "insert into " . $tabela . " ";
+			$sqlx .= "(msg_pag,msg_field,msg_language,msg_content,msg_ativo)";
+			$sqlx .= "values ";
+			/* pt_BR */
+			$sql = $sqlx . "('','" . $s . "','" . $idioma . "','" . $txt . "',1);";
 			$rlt = db_query($sql);
-			if (!($line = db_read($rlt)))
-				{
-					if (!($edit_mode == 1))
-						{	
-						$sqlx = "insert into ".$tabela." ";
-						$sqlx .= "(msg_pag,msg_field,msg_language,msg_content,msg_ativo)";
-						$sqlx .= "values ";
-						/* pt_BR */
-						$sql = $sqlx . "('','" . $s . "','".$idioma."','" . $txt . "',1);";
-						$rlt = db_query($sql);
-						}
-				}
-			return(1);		
 		}
+	}
+	return (1);
+}
 ?>

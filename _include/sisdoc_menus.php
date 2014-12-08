@@ -14,6 +14,7 @@
 // 0.0b                       21/12/2010 //
 // 0.0a                       21/10/2009 //
 ///////////////////////////////////////////
+$offset = 0;
 if ($mostar_versao == True) { array_push($sis_versao,array("sisDOC (Menus)","0.0b",20101221)); }
 if (strlen($include) == 0) { exit; }
 //	array_push($menu,array('Edital','Edital Geral','pibic_edital_geral.php')); 

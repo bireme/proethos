@@ -28,6 +28,7 @@ class header {
 	var $email_type = '';
 	var $email_name = '';
 	var $email_smtp = '';
+	var $email_replay = '';
 	
 	function load_committe()
 		{
@@ -40,7 +41,7 @@ class header {
 					$this->email_pass = trim($line['cm_admin_email_pass']);
 					$this->email_smtp = trim($line['cm_admin_email_smtp']);
 					$this->email_name = $line['cm_name'];
-					$this->email_replay = $line['cm_replay'];
+					$this->email_replay = $line['cm_email_replay'];
 					$this->site = $line['cm_site'];
 				}
 		}

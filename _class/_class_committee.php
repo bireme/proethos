@@ -71,8 +71,8 @@ class committee {
 		if (strlen($dd[2]) < 4) { $msgcode = '<font color="red"></font>';
 		}
 		$tp = ' : ';
-		$tp .= '&MAIL:' . msg('send_by_email');
-		$tp .= '&AUTH:' . msg('send_by_email_authentic');
+		$tp .= '&MAIL:' . msg('method_1');
+		$tp .= '&AUTH:' . msg('method_2');
 
 		array_push($cp, array('$H8', 'id_cm', '', False, True));
 		array_push($cp, array('${', '', msg('about_committee'), False, True));
