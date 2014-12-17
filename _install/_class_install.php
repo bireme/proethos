@@ -92,6 +92,7 @@ class install
 				
 				/* verifica se o diretorio existe */
 				if (!(is_dir($pathname))) { return("ERRO #02# - Can not create a directory"); }
+				chmod ($pathname, 0777);
 				
 				/* delete arquivo se existir */
 				$file = $pathname.'/_temp.txt';
@@ -102,7 +103,7 @@ class install
 				fwrite($flt,'**TEST**');
 				fclose($flt);
 				
-				if (!(file_exists($file))) { return("ERRO #03# - Can not create a temp file"); }
+				if (!(file_exists($file))) { return("ERRO #03# - Can not create a temp file ".$file); }
 				
 				/* return ok */
 				return(1);

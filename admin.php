@@ -23,15 +23,6 @@ if (!($perfil -> valid('#ADM'))) {
 	array_push($menu, array(msg('admin_ghost'), msg('ghost'), 'admin_ghost_user.php'));
 	array_push($menu, array(msg('admin_post_mail'), msg('post_mail'), 'admin_ic.php'));
 	array_push($menu, array(msg('dictamen'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php'));
-	$file = 'inf/message.inf';
-	if (file_exists($file)) {
-		array_push($menu, array(msg('admin_message'), msg('admin_message'), 'message.php'));
-		array_push($menu, array(msg('admin_message'), msg('admin_message_create'), 'message_create.php'));
-		array_push($menu, array(msg('admin_message'), msg('admin_message_row'), 'message_row.php'));
-
-		if ($edit_mode == 0) { array_push($menu, array(msg('admin_message'), msg('admin_message_enable'), 'admin_message_enable.php?dd1=1'));
-		} else { array_push($menu, array(msg('admin_message'), msg('admin_message_disable'), 'admin_message_enable.php?dd1=0'));
-		}
 	}
 
 	echo '<h1>' . msg('admin_menu') . '</h1>';
@@ -39,7 +30,6 @@ if (!($perfil -> valid('#ADM'))) {
 	$tela = menus($menu, "3");
 	echo $tela;
 	echo '</fieldset>';
-}
 
 /* Admin Common */
 if (($perfil -> valid('#ADM'))) {
@@ -60,7 +50,17 @@ if (($perfil -> valid('#ADM'))) {
 	array_push($menu, array(msg('admin_update'), msg('system_teste'), '_system_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_test_email'), '_system_email_test.php'));
 	
-	array_push($menu, array(msg('admin_message'), msg('messages'), 'message.php'));
+	$file = 'message.inf';
+	
+	if (file_exists($file)) {
+		array_push($menu, array(msg('admin_message'), msg('admin_message'), 'message.php'));
+		array_push($menu, array(msg('admin_message'), msg('admin_message_create'), 'message_create.php'));
+		array_push($menu, array(msg('admin_message'), msg('admin_message_row'), 'message_row.php'));
+
+		if ($edit_mode == 0) { array_push($menu, array(msg('admin_message'), msg('admin_message_enable'), 'admin_message_enable.php?dd1=1'));
+		} else { array_push($menu, array(msg('admin_message'), msg('admin_message_disable'), 'admin_message_enable.php?dd1=0'));
+		}
+	}	
 
 	echo '<h1>' . msg('admin_menu_special') . '</h1>';
 	echo '<fieldset>';

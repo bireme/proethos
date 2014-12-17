@@ -43,7 +43,7 @@ for ($r=0;$r < count($menuc);$r++)
 					$style = ' style="background-color: red;" ';
 					$style = ' class="active_menu" '; 
 				}
-		$sx .= '<li '.$style.'><a href="'.$menuc[$r][0].'">'.msg($menuc[$r][1]).''.'</a>'.chr(13);
+		$sx .= '<li '.$style.'><a href="'.$menuc[$r][0].'">'.$menuc[$r][1].''.'</a>'.chr(13);
 	}
 $sx .= '</ul>';
 $sx .= '</nav></div>'.chr(13);

@@ -24,7 +24,7 @@ require($include.'sisdoc_debug.php');
 	$http_edit = 'admin_document_type_ed.php'; 
 	//$http_ver = 'pibic_bolsa_tipo_detalhe.php'; 
 	$editar = True;
-	$http_redirect = $tabela.'.php';
+	$http_redirect = page();
 	$ged->row();
 	$busca = true;
 	$offset = 20;

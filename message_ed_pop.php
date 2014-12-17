@@ -17,7 +17,7 @@ $ln = new message;
 	if (file_exists($link_msg)) { require($link_msg); }
 ?>
 <head>
-	<title>::CIP-Admin::</title>
+	<title>::Message-Admin::</title>
 	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
 	<link rel="shortcut icon" type="image/x-icon" href="http://cip.pucpr.br/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="../css/main.css" />
@@ -26,7 +26,6 @@ $ln = new message;
 $ln = new message;
 
 global $acao,$dd,$cp,$tabela;
-require($include.'cp2_gravar.php');
 require($include.'sisdoc_colunas.php');
 require($include.'_class_form.php');
 $form = new form;
@@ -73,9 +72,6 @@ require($include.'sisdoc_debug.php');
 		$idi = trim($cps[$r][1]);
 		echo '<TR>';
 		echo '<TD>'.$idm[$idi];
-		echo '<TR>';
-		$dd[10+$r] = $cps[$r][2];
-		echo sget('dd'.($r+10),'$T60:3',False,False);
 		echo '<TR>';
 		$dd[40+$r] = $cpi[$r][2];
 		echo sget('dd'.($r+40),'$T60:3',False,False);

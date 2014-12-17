@@ -59,7 +59,7 @@ class message {
 	}
 
 	/**
-	 * Identifica��o de idioma
+	 * Identificacao de idioma
 	 */
 
 	function edit_mode($op) {
@@ -82,7 +82,7 @@ class message {
 		if (strpos($idm, ';') > 0) { $idm = substr($idm, 0, strpos($idm, ','));
 		}
 		$ida = array(
-		/** Ingl�s **/
+		/** Ingles **/
 		'en' => 'en_US', 'en-us' => 'en_US', 'en-GB' => 'en_US', 'us' => 'en_US', 'en-gb' => 'en_US', 'en-za' => 'en_US', 'en-ie' => 'en_US', 'en-ca' => 'en_US', 'en-au' => 'en_US',
 		/** Alemao **/
 		'de' => 'de', 'de-at' => 'de', 'de-lu' => 'de', 'de-ch' => 'de', 'de-li' => 'de',
@@ -97,7 +97,7 @@ class message {
 	}
 
 	/**
-	 * Campos de edi��o e altera��o da tabela
+	 * Campos de edicao e alteracao da tabela
 	 */
 	function cp() {
 		$cp = array();
@@ -111,7 +111,7 @@ class message {
 	}
 
 	/**
-	 * Carrega todas as mensagens de uma p�gina e referencia
+	 * Carrega todas as mensagens de uma pagina e referencia
 	 */
 
 	function message_name_all($ref, $page) {
@@ -137,7 +137,7 @@ class message {
 	}
 
 	/**
-	 * Formul�rio para sele��o de idioma
+	 * Formulario para selecao de idioma
 	 */
 	function idioma_form() {
 		global $LANG;
@@ -176,7 +176,7 @@ class message {
 	}
 
 	/**
-	 * Exporta��o - criar arquivo com mensagens das p�ginas
+	 * Exportacao - criar arquivo com mensagens das paginas
 	 */
 	function language_page_create() {
 		$cr = chr(13) . chr(10);
@@ -218,8 +218,12 @@ class message {
 
 				if ($it > 0) { $sx .= ',' . $cr;
 				}
-				$sx .= "             '" . trim($xline['msg_field']) . "'=>'" . trim($xline['msg_content']) . "' ";
+				$sx .= "             '" . trim($xline['msg_field']) . 
+								"'=>'" . 
+								trim(utf8_encode($xline['msg_content'])) . "' ";
 				$it++;
+				//echo '<BR>'.trim($xline['msg_field']);
+				echo '. ';
 			}
 			$sx .= $cr . ')';
 			$sx .= '); ';
@@ -236,7 +240,7 @@ class message {
 
 	}
 
-	/** Gerar c�digo das mensagens */
+	/** Gerar codigo das mensagens */
 	function updatex() {
 	}
 
@@ -257,8 +261,8 @@ class message {
 }
 
 /**
- * Mostra mensagem de texto conforme o conte�do gravado
- * Caso n�o exista a mensagem, envia para fun��o de cadastrar nova
+ * Mostra mensagem de texto conforme o conteï¿½do gravado
+ * Caso nao exista a mensagem, envia para funcao de cadastrar nova
  */
 function msg($s) {
 	global $LANG;
@@ -266,6 +270,7 @@ function msg($s) {
 	global $gerar, $edit_mode;
 	$s = substr($s, 0, 40);
 	$gerar = 0;
+	
 	if (isset($messa[$LANG][$s])) {
 
 		/* Campos para editar mensagens */
@@ -282,12 +287,15 @@ function msg($s) {
 	} else {
 		$msg = new message;
 		$ido = $msg -> idioma();
-		foreach ($ido as $key => $value) { $tela = msg_insert($s, $key);
-		}
+		foreach ($ido as $key => $value) 
+			{
+				//echo '<HR>NOVO:'.$s.'<HR>';
+				$tela = msg_insert($s, $key);
+			}
 		return ($s);
 	}
 	/**
-	 * Inserir nova mensagem se n�o cadastrada
+	 * Inserir nova mensagem se nao cadastrada
 	 */
 }
 
@@ -299,11 +307,9 @@ function msg_insert($s, $idioma) {
 	} else {
 		$tabela = "_messages";
 	}
-
 	$s = substr($s, 0, 40);
 	$sql = "select * from " . $tabela . " 
-				where msg_language='$idioma' and msg_field ='$s' ";
-
+				where msg_language='$idioma' and msg_field ='".$s."' ";
 	$txt = $s;
 	$rlt = db_query($sql);
 	if (!($line = db_read($rlt))) {
@@ -313,6 +319,7 @@ function msg_insert($s, $idioma) {
 			$sqlx .= "values ";
 			/* pt_BR */
 			$sql = $sqlx . "('','" . $s . "','" . $idioma . "','" . $txt . "',1);";
+			
 			$rlt = db_query($sql);
 		}
 	}

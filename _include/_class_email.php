@@ -11,7 +11,7 @@
 
 require_once ("libs/email/PHPMailerAutoload.php");
 
-/* Verifica se não existe esta funcao criada */
+/* Verifica se nao existe esta funcao criada */
 if (!function_exists('enviaremail')) {
 	function enviaremail($to = '', $a2 = '', $subject = '', $messagem = '', $a5 = '', $a6 = '', $a7 = '') {
 		global $hd;
