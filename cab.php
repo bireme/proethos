@@ -1,4 +1,5 @@
 <?php
+header("Expires: ".gmdate('D, d M Y H:i:s', 0));
 require ("db.php");
 require ("_db/db_proethos.php");
 

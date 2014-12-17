@@ -55,7 +55,7 @@ echo '</table>';
 echo '<table width="100%" border=0 >';
 
 /* Protocol in submission */
-echo $proj->protocolos_mostrar($pta);;
+echo $proj->protocolos_mostrar($pta);
 echo '</table>';
 
 /* Approved Research */

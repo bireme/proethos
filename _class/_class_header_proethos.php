@@ -90,6 +90,10 @@ class header {
 		$sx = '<head>' . $cr;
 		$sx .= '<META HTTP-EQUIV=Refresh CONTENT="3600; URL=' . $http . 'logout.php">' . $cr;
 
+		/* Cache Control */
+		$sx .= '<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">'.$cr;
+		$sx .= '<meta http-equiv="expires" content="date">'.$cr;
+		
 		/* Charset */
 		header('Content-type: text/html; charset=' . $this -> charcod);
 		$sx .= '<meta http-equiv="Content-Type" content="text/html; charset=' . $this -> charcod . '" />';

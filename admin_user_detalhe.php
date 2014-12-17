@@ -30,7 +30,7 @@ echo '</table>';
 echo '<h2>'.msg('profile').'</h2>';
 echo $perfil->display();
 
-echo '<form action="admin_user.php"><input type="submit" value="'.msg("back").'" class="bt_back"></form>';
+echo '<form action="admin_user.php"><input type="submit" value="'.strip_tags(msg("back")).'" class="bt_back"></form>';
 
 echo '</div>';
 

@@ -65,7 +65,7 @@ echo '<form action="' . page() . '" method="post" enctype="multipart/form-data">
 echo '<label for="file">Select a file:</label>';
 echo '<input type="file" name="userfile" id="file"> <br />';
 echo '<input type="hidden" name="dd1" value="logo1"> <br />';
-echo '<input type="submit" value="' . msg('submit_file') . '">';
+echo '<input type="submit" value="' . strip_tags(msg('submit_file')) . '">';
 echo '</form>';
 echo $erro1;
 echo '</fieldset>';
@@ -81,7 +81,7 @@ echo '<form action="' . page() . '" method="post" enctype="multipart/form-data">
 echo '<label for="file">Select a file:</label>';
 echo '<input type="file" name="userfile" id="file"> <br />';
 echo '<input type="hidden" name="dd1" value="logo2"> <br />';
-echo '<input type="submit" value="' . msg('submit_file') . '">';
+echo '<input type="submit" value="' . strip_tags(msg('submit_file')) . '">';
 echo '</form>';
 echo '</fieldset>';
 echo '</TD></tr>';
@@ -95,7 +95,7 @@ echo '<form action="' . page() . '" method="post" enctype="multipart/form-data">
 echo '<label for="file">Select a file:</label>';
 echo '<input type="file" name="userfile" id="file"> <br />';
 echo '<input type="hidden" name="dd1" value="logo3"> <br />';
-echo '<input type="submit" value="' . msg('submit_file') . '">';
+echo '<input type="submit" value="' . strip_tags(msg('submit_file')) . '">';
 echo '</form>';
 echo '</fieldset>';
 echo '</TD></tr>';

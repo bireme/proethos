@@ -1390,7 +1390,7 @@ class form
 				return $saida;
 			}
 		/**
-		 * arvore com checkboxes para seleção
+		 * arvore com checkboxes para seleï¿½ï¿½o
 		 * Aqui usando o dynatree: http://code.google.com/p/dynatree/
 		 * @param  array $arvore uma arvore no formato ($chv, $nome, $filhos)
 		 * @return string  html/js de uma ï¿½rvore com checkboxes selecionï¿½veis
@@ -1400,9 +1400,9 @@ class form
 				assert($arvore);
 				$arvoreExemplo = array('chaveRaiz', 'Natureza', array(
 									array(0,'Aranha',false),
-									array(1,'Mamíferos', array(
+									array(1,'Mamï¿½feros', array(
 											array(0, 'Coala', false),
-											array(1, 'Leão', false),
+											array(1, 'Leï¿½o', false),
 										)),
 								));
 			    $sel = '

@@ -156,14 +156,14 @@ class cep {
 					<TD>';
 		$sx .= '<input type="text" id="dd50" 
 						name="dd50" 
-						value="' . $dd[50] . '" size="80" 
+						value="' . strip_tags($dd[50]) . '" size="80" 
 						style="width: 100%;" 
 						class="form_search_input"
 						>';
 		$sx .= '<TD>';
 		$sx .= '<input 
 						type="submit" 
-						value="' . msg('search') . '" 
+						value="' . strip_tags(msg('search')) . '" 
 						class="form_search_input_button"
 						style="width: 120px;"
 						>';
