@@ -29,7 +29,9 @@ if ($form -> saved > 0) {
 
 		/* Sample */
 		$title_sample_original = 'Proethos - Email test';
+	
 		$message_sample = '<h1>Email was sent with Successful!</h1>';
+
 		$smtp = trim($hd -> email_smtp);
 		$from = trim($hd -> email);
 		$replay = trim($hd -> email_replay);
@@ -64,4 +66,15 @@ if ($form -> saved > 0) {
 echo '</div>';
 
 echo $hd -> foot();
+
+	function format_email_2($email, $name) {
+		$name = trim($name);
+		$email = trim($email);
+		if (strlen($name) > 0) {
+			$sx = $name . ' <' . $email . '>';
+		} else {
+			$sx = $email;
+		}
+		return ($sx);
+	}
 ?>

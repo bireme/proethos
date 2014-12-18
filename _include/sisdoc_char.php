@@ -17,6 +17,11 @@ if (strlen($include) == 0) { exit; }
 //date_default_timezone_set('UTC'); 
 /**/
 
+/* Detecta tipo de caracter */
+function codificacao($string) {
+	return mb_detect_encoding($string . 'x', 'UTF-8, ISO-8859-1');
+}
+
 function email_restrition($s)
 	{
 		if (is_array($s)) { echo 'IS ARRAY'; exit; }

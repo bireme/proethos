@@ -20,10 +20,11 @@ $mail->Username = $from;
 $mail->Password = $pass;
 //Set who the message is to be sent from
 $mail->setFrom($from, $from_name);
+
 //Set an alternative reply-to address
-$mail->addReplyTo($from, $from_name);
+$mail->addReplyTo($replay, $from_name);
 //Set who the message is to be sent to
-$mail->addAddress($email_to, 'John Doe');
+$mail->addAddress($email_to, 'Proethos User');
 //Set the subject line
 $mail->Subject = $title_sample;
 //Read an HTML message body from an external file, convert referenced images to embedded,

@@ -15,6 +15,12 @@ $ln = new message;
 	/* Mensagens */
 	$link_msg = 'messages/msg_message_ed_pop.php';
 	if (file_exists($link_msg)) { require($link_msg); }
+	
+	
+/* Header Class */
+require ("_class/_class_header_proethos.php");
+$hd = new header;
+echo $hd->head();
 ?>
 <head>
 	<title>::Message-Admin::</title>
@@ -36,6 +42,7 @@ require($include.'sisdoc_debug.php');
 	$cps = $cl->message_name_all($dd[1],$dd[2]);
 	$cpi = $cl->message_name_all($dd[1].'_inf',$dd[2]);
 	$tabela = '';
+
 	///********************** SALVAR **/
 	if (strlen($acao) > 0)
 		{		
@@ -54,11 +61,17 @@ require($include.'sisdoc_debug.php');
 					$rlt = db_query($sql);
 				}
 			}
-		redirecina('message_create.php');
+		echo $cl->language_page_create();
+		echo '
+			<script>
+				close();
+			</script>
+			';
 		exit;
 		}
 	
 	$idm = $cl->idioma();
+	
 	?>
 	<form method="post" action="<?php echo page();?>">
 	<input type="hidden" name="dd1" value="<?php echo $dd[1];?>">
@@ -70,11 +83,16 @@ require($include.'sisdoc_debug.php');
 	for ($r=0;$r < count($cps);$r++)
 	{
 		$idi = trim($cps[$r][1]);
+		
 		echo '<TR>';
 		echo '<TD>'.$idm[$idi];
 		echo '<TR>';
-		$dd[40+$r] = $cpi[$r][2];
-		echo sget('dd'.($r+40),'$T60:3',False,False);
+		echo '<TD>';
+		
+		$dados = $cps[$r][2];
+		//echo sget('dd'.($r+40),'$T60:3',False,False);
+		
+		echo '<textarea name="dd'.($r+10).'" style="width:100%; height: 70px;">'.$dados.'</textarea>';
 	}
 	$tit = msg("titulo");
 	?></TD></TR></TABLE>

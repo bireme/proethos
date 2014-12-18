@@ -49,6 +49,26 @@ class message {
 	var $LANG = 'en';
 	var $tabela = '_messages';
 
+	function convert_to_utf8() {
+		$sql = "select * from " . $this -> tabela;
+		$rlt = db_query($sql);
+		while ($line = db_read($rlt)) {
+			$tx = trim($line['msg_content']);
+			$tx2 = $tx;
+			$tchar = codificacao($tx);
+			if ($tchar == 'ISO-8859-1') {
+				$tx2 = utf8_encode($tx);
+				$sql = "update " . $this -> tabela . " 
+									set msg_content = '" . $tx2 . "'
+									where id_msg = " . $line['id_msg'];
+				$rrr = db_query($sql);
+				echo '<BR>' . $tx . '-' . $tx2;
+				echo '==' . codificacao($tx);				
+			}
+
+		}
+	}
+
 	public function __construct() {
 		$ipserver = trim($_SERVER['SERVER_ADDR']);
 		if ($ipserver == '50.22.37.205') {
@@ -218,9 +238,7 @@ class message {
 
 				if ($it > 0) { $sx .= ',' . $cr;
 				}
-				$sx .= "             '" . trim($xline['msg_field']) . 
-								"'=>'" . 
-								trim(utf8_encode($xline['msg_content'])) . "' ";
+				$sx .= "             '" . trim($xline['msg_field']) . "'=>'" . trim(($xline['msg_content'])) . "' ";
 				$it++;
 				//echo '<BR>'.trim($xline['msg_field']);
 				echo '. ';
@@ -270,13 +288,13 @@ function msg($s) {
 	global $gerar, $edit_mode;
 	$s = substr($s, 0, 40);
 	$gerar = 0;
-	
+
 	if (isset($messa[$LANG][$s])) {
 
 		/* Campos para editar mensagens */
 		$img = '<A href="javascript:newxy2(';
 		$img .= "'message_ed_pop.php?dd2=" . page() . "&dd1=" . $s;
-		$img .= "',600,300);";
+		$img .= "',600,600);";
 		$img .= '">';
 		$img .= '<img src=img/icone_alert.png width=10 border=0>';
 		$img .= '</A>';
@@ -287,11 +305,10 @@ function msg($s) {
 	} else {
 		$msg = new message;
 		$ido = $msg -> idioma();
-		foreach ($ido as $key => $value) 
-			{
-				//echo '<HR>NOVO:'.$s.'<HR>';
-				$tela = msg_insert($s, $key);
-			}
+		foreach ($ido as $key => $value) {
+			//echo '<HR>NOVO:'.$s.'<HR>';
+			$tela = msg_insert($s, $key);
+		}
 		return ($s);
 	}
 	/**
@@ -309,7 +326,7 @@ function msg_insert($s, $idioma) {
 	}
 	$s = substr($s, 0, 40);
 	$sql = "select * from " . $tabela . " 
-				where msg_language='$idioma' and msg_field ='".$s."' ";
+				where msg_language='$idioma' and msg_field ='" . $s . "' ";
 	$txt = $s;
 	$rlt = db_query($sql);
 	if (!($line = db_read($rlt))) {
@@ -319,7 +336,7 @@ function msg_insert($s, $idioma) {
 			$sqlx .= "values ";
 			/* pt_BR */
 			$sql = $sqlx . "('','" . $s . "','" . $idioma . "','" . $txt . "',1);";
-			
+
 			$rlt = db_query($sql);
 		}
 	}

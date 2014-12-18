@@ -29,7 +29,7 @@ require("form_css.php");
 	$tit = msg("titulo");
 
 
-	/** Comandos de Edi��o */
+	/** Comandos de Edicao */
 	echo '<CENTER><font class=lt5>'.msg('titulo').'</font></CENTER>';
 	echo '<table width="100%"><TR><TD>';
 	$tela = $form->editar($cp,$tabela);
