@@ -1,17 +1,11 @@
 <?php
-///////////////////////////////////////////
-// BIBLIOTECA DE FUNÇÕS PHP ///////////////
-////////////////////////////// criado por /
-////////////////// Rene F. Gabriel Junior /
-/////////////////    rene@sisdoc.com.br   /
-///////////////////////////////////////////
-// Versão atual           //    data     //
-//---------------------------------------//
-// 0.0a                       20/05/2008 //
-// 0.0b                       13/10/2011 //
-///////////////////////////////////////////
-if ($mostar_versao == True) { array_push($sis_versao,array("sisDOC (Autor)","0.0a",20080520)); }
-
+/**
+* @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
+* @version 0.15.03
+* @access public
+* @package INCLUDEs
+* @subpackage Autor
+*/
 function nbr_autor($xa,$tp)
 	{
 	if (strpos($xa,',') > 0)

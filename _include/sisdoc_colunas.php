@@ -1,19 +1,11 @@
 <?php
 /**
- * Visualiza��o de colunas
- *
+* @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
+* @version 0.15.03
+* @access public
+* @package INCLUDEs
+* @subpackage Coluns
 */
-///////////////////////////////////////////
-// BIBLIOTECA DE FUN��S PHP ///////////////
-////////////////////////////// criado por /
-////////////////// Rene F. Gabriel Junior /
-/////////////////    rene@sisdoc.com.br   /
-///////////////////////////////////////////
-// Vers�o atual           //    data     //
-//---------------------------------------//
-// 0.0b                       08/04/2011 //
-// 0.0a                       20/05/2008 //
-///////////////////////////////////////////
 
 if (strlen($sisdoc_colunas) == 0)
 {

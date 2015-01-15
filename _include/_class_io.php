@@ -1,4 +1,14 @@
 <?php
+/**
+ * Header
+ * @author Rene Faustino Gabriel Junior <renefgj@gmail.com>
+ * @access public
+ * @version 0.15.03
+ * @package INCLUDEs
+ * @subpackage IO
+ */
+ 
+/* Class IO */
 class io {
 	var $up_maxsize = 2048012;
 

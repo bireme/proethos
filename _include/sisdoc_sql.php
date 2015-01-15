@@ -1,11 +1,9 @@
 <?php
 /**
-* SQL Connections
 * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
-* @version 0.0i
-* @copyright Copyright - 2011, Rene F. Gabriel Junior.
+* @version 0.15.03
 * @access public
-* @package Include
+* @package INCLUDEs
 * @subpackage SQL
 */
 ///////////////////////////////////////////

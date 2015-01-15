@@ -1,7 +1,7 @@
 <?
 /**
 * Documents
-* @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
+* @author Rene F. Gabriel Junior <renefgj@gmail.com>
 * @version 1.0m
 * @copyright Copyright - 2012, Rene F. Gabriel Junior.
 * @access public

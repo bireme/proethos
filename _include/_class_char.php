@@ -1,18 +1,26 @@
 <?php
 /**
-* Esta classe é a responsável pela conexão com o banco de dados.
 * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
-* @version 0.14.17
-* @copyright Copyright © 2011, Rene F. Gabriel Junior.
+* @version 0.15.03
 * @access public
 * @package INCLUDEs
-* @subpackage sisdoc_char
+* @subpackage Char
 */
 
 function nwin($link='',$w=200,$h=50,$resize=1,$scroll=0)
 	{
 		$sx = 'onclick="NewWindow=window.open(\'.$link.\',\'newwin\',\'scrollbars=no,resizable=no,width='+$w+',height='+$h+',top=10,left=10\'); NewWindow.focus(); void(0);} "';
 		return($sx);
+	}
+	
+function numberformat($vlr,$nc)
+	{
+	$nv = number_format($vlr,$nc);
+	$nv = troca($nv,'.','#');
+	$nv = troca($nv,',','.');
+	$nv = troca($nv,'#',',');
+	if ($nv == '0,00') { $nv = '<CENTER>-</CENTER>'; }
+	return($nv);
 	}
 
 function ShowLink($link,$tipo='0',$target='',$label='')

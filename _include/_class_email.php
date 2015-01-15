@@ -1,11 +1,10 @@
 <?php
 /**
  * Header
- * @author Rene Faustino Gabriel Junior <renefgj@gmail.com> (Analista-Desenvolvedor)
- * @copyright Copyright (c) 2011 - sisDOC.com.br
+ * @author Rene Faustino Gabriel Junior <renefgj@gmail.com>
  * @access public
- * @version v0.14.02
- * @package Library
+ * @version 0.15.03
+ * @package INCLUDEs
  * @subpackage E-mail
  */
 
@@ -60,7 +59,6 @@ if (!function_exists('enviaremail')) {
 			$em -> enviar_email($to, $subject, $messagem, $to_name);
 		}
 
-		
 	}
 
 }

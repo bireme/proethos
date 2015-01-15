@@ -53,7 +53,8 @@
 
 .table_proj 
     {
-        font-size: 22px;
+        font-size: 18px;
+        border-top: 1px solid #808080;
     }
 .tabela00 tr:nth-child(even) {background: #FFF}
 .tabela00 tr:nth-child(odd) {background: #FFF}

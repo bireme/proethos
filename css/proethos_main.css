@@ -1,4 +1,20 @@
-
+.caae
+    {
+        font-size: 12px;
+    }
+    
+.table_normal  
+    {
+        
+    }
+    
+.table_normal th
+    {
+        background-color: #D0D0D0;
+        font-size: 12px;
+        padding: 3px;
+    }    
+    
 .topmenu_on, .topmenu_on a
 	{
   		font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;

@@ -1,9 +1,9 @@
 <?php
   /**
   * Contact page
-  * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
+  * @author Rene F. Gabriel Junior <renefgj@gmail.com>
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
-  * @copyright Copyright (c) 2012 - sisDOC.com.br
+  * @copyright Copyright (c) 2015 -  Pan-American Health Organization / World Health Organization (PAHO/WHO)
   * @access public
   * @version v0.13.46
   * @package ProEthos

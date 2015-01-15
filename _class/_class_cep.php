@@ -2,7 +2,7 @@
 /**
  * Ethics
  * @author Rene Faustino Gabriel Junior <renefgj@gmail.com> (Analista-Desenvolvedor)
- * @copyright Copyright (c) 2011 - sisDOC.com.br
+ * @copyright Copyright (c) 2015 -  Pan-American Health Organization / World Health Organization (PAHO/WHO)
  * @access public
  * @version v0.11.29
  * @package Class
@@ -1778,23 +1778,24 @@ class cep {
 		$sp .= '<table width="100%" border=0 class="lt0">';
 
 		/* CAAE */
-		$sp .= '<TR><Td colspan=3 >' . msg('caae');
-		$sp .= '    <Td colspan=3 >' . msg('project_type');
-		$sp .= '<TR><Td colspan=3 class="table_proj"><B>';
+		$sp .= '<TR><Td colspan=4 >' . msg('caae');
+		$sp .= '    <Td colspan=4 >' . msg('project_type');
+		$sp .= '<TR><Td colspan=4 class="table_proj" ><B>';
 		$sp .= trim($line['cep_caae']);
-		$sp .= '    <Td colspan=3 class="table_proj">';
+		$sp .= '    <Td colspan=4 class="table_proj">';
 		$sp .= msg('prj_type_' . trim($line['cep_tipo']));
 
 		/* Title */
-		$sp .= '<TR><Td colspan=6 class="lt0">' . msg('project_title');
-		$sp .= '<TR><Td colspan=6 class="table_proj"><B>';
+		$sp .= '<TR><Td colspan=7 class="lt0">' . msg('project_title');
+		$sp .= '<TR><Td colspan=7 class="table_proj"><B>';
 		$sp .= trim($line['cep_titulo']);
 
 		/* Investigador */
-		$sp .= '<TR><Td colspan=5>' . msg('project_investigador');
+		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=5 class="table_proj">'; {
-			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author">';
+		$sp .= '<TR><Td colspan=6 class="table_proj">';
+		{
+			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
 			//$sp .= '<TR><TD colspan=2>';
 
 			$sp .= chr(13) . '<script type="text/javascript">';
@@ -1812,7 +1813,7 @@ class cep {
 
 		$sp .= $this -> investigadores($line);
 		$sp .= '&nbsp;' . chr(13);
-		$sp .= '<Td align="rigth" class="table_proj"><center>' . $protocol_id;
+		$sp .= '<Td align="rigth" class="table_proj" ><center>' . $protocol_id;
 
 		/* Inser new investigator */
 		$sp .= '<TR><TD colspan=7>';
@@ -1821,11 +1822,11 @@ class cep {
 
 		/* INstitution */
 		$sp .= '<TR><Td colspan=3 width="50%" class="lt0">' . msg('institution');
-		$sp .= '<Td align="left" colspan=2 width="50%" class="lt0" width="10%">' . msg('country');
+		$sp .= '<Td align="left" colspan=4 width="50%" class="lt0" width="10%">' . msg('country');
 		$sp .= '<TR><Td colspan=3 class="table_proj">';
 		$sp .= trim($line['us_instituition']);
 		$sp .= '&nbsp;' . chr(13);
-		$sp .= '<Td class="table_proj" colspan=2>';
+		$sp .= '<Td class="table_proj" colspan=4>';
 		$sp .= trim($line['pais_nome']) . '&nbsp;';
 		$sp .= '&nbsp;' . chr(13);
 		if (strlen($clinic) > 0) {
@@ -1845,19 +1846,19 @@ class cep {
 		$sp .= '<TD>' . msg('monitoring');
 
 		$sp .= '<TR class="lt2">';
-		$sp .= '<Td class="lt2" align="left">';
+		$sp .= '<Td class="table_proj" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_data']);
-		$sp .= '<Td class="lt2" align="left">';
+		$sp .= '<Td class="table_proj" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_atualizado']);
-		$sp .= '<Td class="lt2" align="left">';
+		$sp .= '<Td class="table_proj" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_reuniao']);
-		$sp .= '<Td class="lt2" align="left">';
+		$sp .= '<Td class="table_proj" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_parecer']);
-		$sp .= '<Td class="lt2" align="left">';
+		$sp .= '<Td class="table_proj" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_ciencia']);
-		$sp .= '<Td class="lt2" align="left">';
+		$sp .= '<Td class="table_proj" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_liberacao']);
-		$sp .= '<Td class="lt2" align="right"><center>';
+		$sp .= '<Td class="table_proj" align="right"><center>';
 		$sp .= '&nbsp;' . stodbr($line['cep_monitoring']);
 
 		$sp .= '</table>';
@@ -1894,6 +1895,7 @@ class cep {
 
 	function protocolos_avaliacao($sta) {
 		global $ss;
+		
 		$us = strzero(round($ss -> user_id), 7);
 
 		if ($sta == 'Z') {
@@ -1936,7 +1938,10 @@ class cep {
 		global $edit_mode;
 		$vs = 2;
 		$sta = trim($line['cep_status']);
-		$sx .= '<TR class="table_proj"><TD>' . msg('research_name') . ': <B>' . $line['us_nome'] . '</B>';
+		/* investigador */
+		$sx .= '<TR class="lt2"><TD>' . 
+				msg('research_name') .		 
+				': <B>' . $line['us_nome'] . '</B>';
 		$vs = 3;
 
 		$status = trim($line['cep_status']);
@@ -1947,24 +1952,40 @@ class cep {
 		$para = 'dd0=' . $line['id_cep'] . '&dd90=' . checkpost($line['id_cep']);
 		$link2 = '<a href="protocol_detalhe.php?' . $para . '" class="protocol">';
 		$link = '<a href="protocol_detalhe.php?' . $para . '" class="comment">';
+		
+		
 		/* Line 1*/
 		$s .= '<TR valign="top"  class="table_proj">';
-		$s .= '<td rowspan=' . $vs . ' width="5%"><NOBR>';
+
+		/* CAAE - NIEC */
+		$s .= '<td rowspan=' . $vs . ' width="5%" class="caae"><NOBR>';
 		$caae = trim($line['cep_caae']);
 		if (strlen($caae) > 0) { $s .= $caae . '<BR>';
 		}
 		$s .= trim($line['cep_protocol']);
 		$s .= '/';
 		$s .= trim($line['cep_versao']);
+		
+		/* icon type */
+		$type = trim($line['cep_tipo']);
+		$s .= '<BR>'.$this->mostra_icone_tipo_projeto($type);
+		
+		/* title */
 		$s .= '<TD><B><I>';
 		$s .= $link2;
 		$s .= $line['cep_titulo'];
 		$s .= '</A>';
+		
+		/* status */
 		$s .= '<TD rowspan=' . $vs . ' align="center" width="50">';
 		if ($status == 'P') {
 			$s .= msg('aproved');
 		} else {
-			$s .= '<font class="lt3">' . $corf . $df . '</font><BR>' . msg('days');
+			$s .= '<font class="lt3">' . $corf . $df . '</font>
+					<BR>
+					<font class="lt0">
+					' . msg('days').
+					'</font>';
 		}
 		$s .= $sx;
 		$s .= '<BR><I>';
@@ -1976,7 +1997,7 @@ class cep {
 			$s .= '&nbsp;&nbsp;&nbsp;&nbsp;';
 			$s .= $link . '<img src="img/icone_coment_edit.png" title="' . msg('comment_edit') . '" border=0>&nbsp;<?A>';
 		} else {
-			$s .= '<TR><TD>';
+			$s .= '<TR><TD class="lt1">';
 			$s .= (round($line['cep_comment_pos']) + round($line['cep_comment_neg'])) . '&nbsp';
 			$s .= msg('comment') . '</A> - ';
 		}
@@ -1985,6 +2006,17 @@ class cep {
 		$s .= '<HR size=1 width=50% >';
 		return ($s);
 	}
+
+	function mostra_icone_tipo_projeto($tipo='')
+		{
+			switch($tipo)
+				{
+				case 'PRO':
+					$img = '<img src="images/icone_PRO.png" height="50">';
+					break;
+				}
+			return($img);
+		}
 
 	function resumo_status() {
 		global $edit_mode;

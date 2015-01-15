@@ -2,7 +2,7 @@
  /**
   * Register Unit
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
-  * @copyright Copyright (c) 2012 - sisDOC.com.br
+  * @copyright Copyright (c) 2015 -  Pan-American Health Organization / World Health Organization (PAHO/WHO)
   * @access public
   * @version v0.12.07
   * @package Class

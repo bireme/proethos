@@ -1,4 +1,12 @@
 <?php
+/**
+* @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
+* @version 0.15.03
+* @access public
+* @package INCLUDEs
+* @subpackage Date
+*/
+
 class date
 	{
 		var $date;

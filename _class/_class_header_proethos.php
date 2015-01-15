@@ -2,7 +2,7 @@
 /**
  * Header Fz
  * @author Rene Faustino Gabriel Junior <renefgj@gmail.com> (Analista-Desenvolvedor)
- * @copyright Copyright (c) 2014 - sisDOC.com.br
+ * @copyright Copyright (c) 2015 -  Pan-American Health Organization / World Health Organization (PAHO/WHO)
  * @access public
  * @version v.0.14.21
  * @package _class

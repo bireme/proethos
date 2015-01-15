@@ -1,12 +1,10 @@
 <?php
 /**
-* Esta classe � a respons�vel pela conex�o com o banco de dados.
 * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
-* @version 0.14.15
-* @copyright Copyright � 2011, Rene F. Gabriel Junior.
+* @version 0.15.03
 * @access public
 * @package INCLUDEs
-* @subpackage sisdoc_char
+* @subpackage Char
 */
 
 if (!(isset($mostar_versao))) { $mostar_versao = False; }

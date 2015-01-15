@@ -1,13 +1,12 @@
 <?php
-    /**
-     * Header
-	 * @author Rene Faustino Gabriel Junior <renefgj@gmail.com> (Analista-Desenvolvedor)
-	 * @copyright Copyright (c) 2011 - sisDOC.com.br
-	 * @access public
-     * @version v0.14.18
-	 * @package Library
-	 * @subpackage Form
-    */
+ /**
+  * Header
+  * @author Rene Faustino Gabriel Junior <renefgj@gmail.com> (Analista-Desenvolvedor)
+  * @access public
+  * @version v0.15.01
+  * @package INCLUDEs 
+  * @subpackage Form
+  */
 
 if(!isset($LANG) || $LANG == ''){ $LANG = 'pt_BR'; }
 
@@ -126,7 +125,7 @@ class form
 			$.ajax({
 				type: "POST",
 				url: page,
-				data: { dd1: "'.$protocolo.'", dd91: "'.$id.'", dd2: "REFRESH" }
+				data: { dd1: "'.$protocolo.'", dd91: "'.$id.'", dd2: "REFRESH", dd95:"'.$edit.'" }
 			}).fail(function() {
    					alert( "error - " + page );
 			}).done(function( data ) {
@@ -316,14 +315,18 @@ class form
 					{
 						if ($recupera == 1) 
 							{
-								$fld = $cp[$r][1];
-								if (!(empty($this->line[$fld])))
-									{ $dd[$r] = trim($this->line[$fld]); }
+								$fld = trim($cp[$r][1]);
+								$vlr = trim($this->line[$fld]);
+								if (strlen($vlr) > 0)
+									{
+										$dd[$r] = trim($this->line[$fld]); 
+									}
 								if (substr($cp[$r][0],0,2)=='$D')
 									{
 										$dd[$r] = stodbr($this->line[$fld]);		
 									} 
 							}
+													
 						$this->name = 'dd'.$r;
 						if (!(is_array($dd))) { $dd = array(); }
 						
@@ -1400,7 +1403,7 @@ class form
 				assert($arvore);
 				$arvoreExemplo = array('chaveRaiz', 'Natureza', array(
 									array(0,'Aranha',false),
-									array(1,'Mam�feros', array(
+									array(1,'Mamiferos', array(
 											array(0, 'Coala', false),
 											array(1, 'Le�o', false),
 										)),
@@ -1482,7 +1485,7 @@ class form
 						//$sx .= $ops[$r];
 						$txt = trim(substr($so,strpos($so,':')+1,strlen($so)));
 						if (substr($txt,0,1) == '#')
-							{ $txt = msg($txt); }
+							{ $txt = msg($txt).'&nbsp;&nbsp;'; }
 						$sx .= $txt;
 					}
 				return($sx);
