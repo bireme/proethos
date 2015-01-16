@@ -1,7 +1,5 @@
 <?php
 require("db.php");
-ini_set('display_errors', 255);
-ini_set('error_reporting', 255);
 require("_class/_class_message.php");
 $file = 'messages/msg_'.$LANG.'.php';
 if (file_exists($file)) { require($file); } else { echo 'message not found '.$file; }

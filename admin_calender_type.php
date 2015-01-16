@@ -13,9 +13,6 @@ require("cab.php");
 require($include.'sisdoc_colunas.php');
 require($include.'sisdoc_data.php');
 
-ini_set('display_errors', 255);
-ini_set('error_reporting', 255);
-
 	require("_class/_class_calender.php");
 	$clx = new calendar;
 	$tabela = $clx->tabela_type;
