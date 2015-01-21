@@ -2,7 +2,7 @@
  /**
   * Sumissão de protocolo de pesquisa
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
-  * @copyright Copyright (c) 2015 -  Pan-American Health Organization / World Health Organization (PAHO/WHO)
+  * @copyright © Pan American Health Organization, 2013. All rights reserved.
   * @access public
   * @version v0.12.22
   * @package Class

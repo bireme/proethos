@@ -2,7 +2,7 @@
   /**
   * Main page
   * @author Rene F. Gabriel Junior <renefgj@gmail.com>
-  * @copyright Copyright (c) 2015 -  Pan-American Health Organization / World Health Organization (PAHO/WHO)
+  * @copyright © Pan American Health Organization, 2013. All rights reserved.
   * @access public
   * @version v0.13.46
   * @package ProEthos
