@@ -204,9 +204,10 @@ class ged
 				global $messa,$secu,$ged_del,$dd,$LANG;
 				
 				$sx = '<table width=100% class="'.$this->table_class.'">';
-				$sx .= '<TR>';
+				$sx .= '<TR class="lt0">';
+				$sx .= '<TH width="4%">'.msg('file_type');
 				$sx .= '<TH width="30%">'.msg('file_name');
-				$sx .= '<TH width="60%">'.msg('file_filename');
+				$sx .= '<TH width="56%">'.msg('file_filename');
 				$sx .= '<TH width="10%">'.msg('file_size');
 			
 				$sql = "select * from ".$this->tabela;
@@ -217,7 +218,7 @@ class ged
 				$tot = 0;
 				while ($line = db_read($rlt))
 					{
-						$type = trim($line['doc_type']);
+						$type = trim($line['doc_extensao']);
 						$capt = trim($line['doct_nome']);
 						if (substr($capt,0,1)=='#') { $capt = msg(substr($capt,1,strlen($capt))); }
 						//$link = 'ged_download.php?dd0='.$line('id_doc').'&dd90='.checkpost($line['id_doc'].$secu);
@@ -226,15 +227,22 @@ class ged
 						$link .= '&dd90='.checkpost($line['id_doc'].$secu);
 						$link .= '&dd91='.$secu;
 						$link = newwin($link,300,150);
+						
+						/* tipos de arquivos */
+						
 						$sx .= '<TR>';
+						$sx .= '<TD width="20">'.$type;
 						$sx .= '<TD>'.$link.$capt.'</A>';
-						$sx .= '<TD><B>'.$link.msg(trim($line['doc_filename'])).'</B></A>';
+						$sx .= '<TD>'.$link.(trim($line['doc_filename'])).'</A>';
 						$sx .= '<TD align="center" class="lt0">'.$this->size_mask($line['doc_size']).'</A>';
 						$tot++;
 					}
 				$frame = $dd[3];
 				$sx .= '</table>'.chr(13);
 				$this->total_files = $tot;
+				
+				/* zera if empty */
+				if ($tot == 0) { $sx = ''; }
 				return($sx);	
 			}
 			

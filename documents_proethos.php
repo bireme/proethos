@@ -1,34 +1,54 @@
 <?
-$link1 = '<A HREF="" class="link lt2">';
-$link2 = '<A HREF="" class="link lt2">';
+$img = '';
 
-$link3 = '<A HREF="" class="link lt2">';
-$link4 = '<A HREF="" class="link lt2">';
-$link5 = '<A HREF="" class="link lt2">';
+array_push($ar,array(msg('proethos_doc_adve'),''));
 
+/* Header */
 $sx = '
 <h1>'.msg('proethos_files').'</h1>
+<span class="lt0">'.msg('proethos_files_inf').'</span>
 <BR>';
-$sx .= '<fieldset>';
 
-$sx .= '<table class="table_file" width="100%" border=0 >
-	<tbody>
-		<TR class="lt2" valign="top">
-			<td>
-				<ul class="documents">
-				<li>'.$link1.msg('proethos_doc_guia').'</A></li>
-				<li>'.$link2.msg('proethos_doc_adve').'</A></li>
-				</ul>
-			
-			</td>			
-			<td rowspan=5><B>'.msg('proethos_doc_dict').'</B>		
-			<uL class="documents">
-				<li>'.$link3.msg('proethos_doc_diap').'</A></li>
-				<li>'.$link4.msg('proethos_doc_diac').'</A></li>
-				<li>'.$link5.msg('proethos_doc_dina').'</A></li>
-			<uL>
-		</table>		
-</table>';
-$sx .= '</fieldset>';
+$sx .= '<table class="tabela00" width="100%" border=0 >';
+$sx .= '<TR>';
+
+/* Part One */
+$sx .= '<TD width="50%">';
+$sx .= '<h3>'.msg('proethos_docs').'</h3>';
+
+$ar = array();
+array_push($ar,array(msg('proethos_doc_guia'),''));
+array_push($ar,array(msg('proethos_doc_adve'),''));
+
+$sx .= '<UL>';
+for ($r=0;$r < count($ar); $r++)
+	{
+		$sx .= '<LI>';
+		$sx .= '<A href="'.$ar[$r][1].'" target="_new">';
+		$sx .= $ar[$r][0];
+		$sx .= '</A>';
+		$sx .= '</LI>';
+	}
+$sx .= '</UL>';
+
+/* Part One */
+$sx .= '<TD width="50%">';
+$ar = array();
+array_push($ar,array(msg('proethos_doc_diap'),''));
+array_push($ar,array(msg('proethos_doc_diac'),''));
+array_push($ar,array(msg('proethos_doc_dina'),''));
+$sx .= '<h3>'.msg('proethos_doc_dict').'</h3>';
+$sx .= '<UL>';
+for ($r=0;$r < count($ar); $r++)
+	{
+		$sx .= '<LI>';
+		$sx .= '<A href="'.$ar[$r][1].'" target="_new">';
+		$sx .= $ar[$r][0];
+		$sx .= '</A>';
+		$sx .= '</LI>';
+	}
+$sx .= '</UL>';
+$sx .= '</table>';
+
 echo $sx;
 ?>
