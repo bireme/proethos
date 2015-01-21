@@ -29,6 +29,7 @@ if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS'))) {
 	if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS'))) {
 		array_push($menu, array(msg('admin_perfil'), msg('users'), 'admin_user.php'));
 		array_push($menu, array(msg('admin_perfil'), msg('perfil_member'), 'admin_perfil_member.php'));
+		array_push($menu, array(msg('admin_perfil'), msg('report_perfil_member'), 'admin_perfil_member_report.php'));
 	}
 
 	echo '<h1>' . msg('secretary_menu') . '</h1>';

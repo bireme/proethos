@@ -3,9 +3,9 @@ $menuc = array();
 array_push($menuc,array('main.php',msg('home'),'home'));
 if (strlen($ss->user_codigo) > 0)
 	{ array_push($menuc,array('research.php',msg('research_summary'),'research')); }
-	
+
 /* Members Committee */
-if ($perfil->valid('#MEM'))
+if (($perfil->valid('#MEM')) or ($perfil->valid('#ADM')) or ($perfil->valid('#MAS')) or ($perfil->valid('#SCR')) or ($perfil->valid('#COO'))) 
  	{ array_push($menuc,array('committee.php',msg('member_committee'),'committee')); }
 	
 if (strlen($ss->user_codigo) > 0)
