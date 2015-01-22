@@ -13,7 +13,8 @@ if (strlen($ss->user_codigo) > 0)
 	
 array_push($menuc,array('faq.php',msg('menu_faq'),'faq'));
 array_push($menuc,array('documents.php',msg('menu_documents'),'docs'));
-if (($perfil->valid('#ADM')) or ($perfil->valid('#MAS')))
+
+if (($perfil->valid('#ADM')) or ($perfil->valid('#MAS')) or ($perfil->valid('#SRC')) )
 	{ array_push($menuc,array('admin.php',msg('menu_admin'),'admin')); }
 	
 array_push($menuc,array('contact.php',msg('contact'),'contact'));

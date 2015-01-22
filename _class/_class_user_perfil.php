@@ -171,7 +171,7 @@ class user_perfil {
 	}
 
 	function perfil_atribui_form() {
-		global $dd;
+		global $dd,$acao;
 		
 		$b2 = 'set perfil >>>';
 		$b1 = 'list perfil >>>';
@@ -223,6 +223,7 @@ class user_perfil {
 
 		if ((strlen($dd[1]) > 0) and (strlen($dd[2]) > 0) and ($acao==$b2)) {
 			$ox = $this -> atribui_perfil($dd[1], $dd[2]);
+
 			if ($ox == 1) {
 				$sx .= '<center><font color="green">';
 				$sx .= '<BR><BR>Seted Perfil';
