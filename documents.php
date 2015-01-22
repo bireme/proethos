@@ -3,7 +3,7 @@
  * Documents
  * @author Rene F. Gabriel Junior <renefgj@gmail.com>
  * @version 1.0m
- * @copyright Copyright - 2012, Rene F. Gabriel Junior.
+ * @copyright © Pan American Health Organization, 2013. All rights reserved.
  * @access public
  * @package ProEthos
  * @subpackage documents
