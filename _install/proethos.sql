@@ -1156,14 +1156,14 @@ INSERT INTO ajax_pais (id_pais, pais_nome, pais_codigo, pais_ativo, pais_use, pa
 
 INSERT INTO apoio_idioma (id_i, i_codigo, i_nome, i_ativo) VALUES
 (1, 'pt_BR', 'Portugues (Brasil)', 1),
-(2, 'en', 'Ingl?s', 1),
-(3, 'fr', 'Franc?s', 1),
-(4, 'es', 'Espanhol', 1),
-(5, 'ger', 'Alem?o', 1),
+(2, 'en', 'English?s', 1),
+(3, 'fr', 'Francais', 1),
+(4, 'es', 'Espanol', 1),
+(5, 'ger', 'Germany', 1),
 (6, '---', '-n?o definido-', 1);
 
 INSERT INTO apoio_titulacao (id_ap_tit, ap_tit_codigo, ap_tit_titulo, ap_tit_idioma, at_tit_ativo, ap_ordem) VALUES
-(1, '008', 'P?s-Grad.', 'pt_BR', 1, 0),
+(1, '008', 'Pos-Grad.', 'pt_BR', 1, 0),
 (2, '007', 'Esp.a', 'pt_BR', 1, 0),
 (3, '001', 'Msc.', 'pt_BR', 1, 0),
 (4, '003', 'Dra.', 'pt_BR', 1, 0),
@@ -1172,12 +1172,6 @@ INSERT INTO apoio_titulacao (id_ap_tit, ap_tit_codigo, ap_tit_titulo, ap_tit_idi
 (7, '002', 'Dr.', 'pt_BR', 1, 0),
 (8, '006', 'PhD', 'pt_BR', 1, 0);
 
-INSERT INTO calender (id_cal, cal_date, cal_time, cal_cod, cal_description, cal_ativo, cal_public) VALUES
-(1, 20140701, '1400', '001', 'Reunion Mensual', 1, '1'),
-(2, 20140805, '1400', '001', 'Reunion Mensual', 1, '1'),
-(3, 20140729, '1000', '001', 'reunion especial', 1, '1'),
-(4, 20140911, '10h00', '001', 'Reunion', 1, '1'),
-(5, 20141006, '08h00', '001', 'Reunion', 1, '1');
 
 INSERT INTO calender_type (id_calt, calt_codigo, calt_descricao, calt_ativo, calt_color) VALUES
 (1, '001', 'Meeting', 1, '#9EB5CA'),
@@ -1207,15 +1201,6 @@ INSERT INTO cep_amendment_type (id_amt, amt_codigo, amt_descrip, amt_ativo, amt_
 (6, '006', 'amendment_006', 1, '00006', 0),
 (7, '007', 'amendment_007', 1, '00007', 9);
 
-INSERT INTO cep_email (id_email, email_research, email_data, email_hora, email_assunto, email_texto, email_protocolo, email_status, email_log, email_id_msg, email_read) VALUES
-(0, '', 20130124, '12:12:37', 'accept_rejected', 'Problem in your protocol, please insert team members.', '0000091', 'A', '', '', 'A'),
-(0, '', 20130124, '12:15:03', 'accept_rejected', 'continus problens', '0000091', 'A', '', '', 'A'),
-(0, '', 20130124, '12:27:02', 'accept_rejected', 'Continus with problem', '0000091', 'A', '', '', 'A'),
-(0, '', 20130214, '14:15:48', 'Ethics Committee in Research of PUCPR - 0000098', 'teste', '0000098', 'A', '', '', 'A'),
-(0, '', 20130319, '10:36:17', 'Comitê da PUCPR - 0000101', 'pro....', '0000101', 'A', '', '', 'A'),
-(0, '', 20130822, '03:20:10', 'Proyecto rechazado', 'Não foram postados os arquivos anexos', '0000105', 'A', '', '', 'A'),
-(0, '', 20131017, '13:33:32', 'PAHO Committee Ethics - ProEthos - 0000117', 'propuesta recibida....', '0000117', 'A', '', '', 'A');
-
 INSERT INTO cep_ged_documento_tipo (id_doct, doct_nome, doct_codigo, doct_publico, doct_avaliador, doct_autor, doct_restrito, doct_ativo) VALUES
 (1, 'Proposal', 'PROJ', 0, 1, 0, 0, 1),
 (2, 'Informed Consent', 'TCLE', 1, 1, 1, 0, 1),
@@ -1226,20 +1211,6 @@ INSERT INTO cep_ged_documento_tipo (id_doct, doct_nome, doct_codigo, doct_public
 (7, 'Local Ethical Approval', 'DICT', 0, 0, 1, 0, 1),
 (8, 'Termo de In', 'AGEND', 0, 1, 1, 1, 0),
 (9, 'Adverse events report', 'REEAD', 1, 1, 1, 0, 1);
-
-INSERT INTO cep_protocolos_historic (id_his, his_protocol, his_codigo, his_data, his_time, his_comment, his_log, his_caae) VALUES
-(1, '000001', 'SUB', 20140613, '07:53', 'submitted_by_the_author', '0000008', ''),
-(2, '000002', 'SUB', 20140617, '01:45', 'submitted_by_the_author', '0000017', ''),
-(3, '000002', '010', 20140617, '01:53', 'manuscript_accepted', '0000018', ''),
-(4, '000002', '017', 20140617, '01:53', 'assign_record_number', '0000018', ''),
-(5, '000002', '011', 20140617, '01:59', 'Asignar para reunión', '0000018', ''),
-(6, '000003', 'SUB', 20140708, '16:46', 'submitted_by_the_author', '0000018', ''),
-(7, '000001', '010', 20140708, '16:56', 'manuscript_accepted', '0000018', ''),
-(8, '000001', '017', 20140708, '16:56', 'assign_record_number', '0000018', ''),
-(9, '000001', '011', 20140708, '16:58', 'Asignar para reunión', '0000018', ''),
-(10, '000001', 'PAE', 20140708, '17:02', 'Decision emitida', '', '000001'),
-(11, '000001', '013', 20140708, '17:02', 'investigator_reported', '0000018', ''),
-(12, '000003', '010', 20140910, '13:38', 'manuscript_accepted', '0000008', '');
 
 INSERT INTO cep_status (id_ess, ess_status, ess_codigo, ess_encaminhar, ess_acompanha, ess_status_mst, ess_descricao_1, ess_descricao_2, ess_descricao_3, ess_descricao_4, ess_descricao_5, ess_journal_id, ess_prazo, ess_limpa_atual, ess_atualiza_prazo, ess_status_1, ess_status_2, ess_status_3, ess_status_4, ess_limpa_parecerista_1, ess_limpa_parecerista_2, ess_limpa_revisor, ess_limpa_normalizador, ess_limpa_editor, ess_limpa_diagramador, ess_limpa_secretaria, ess_ativo, ess_limpa_geral, ess_nucleo) VALUES
 (37, 'A', '00001', NULL, NULL, NULL, 'subm_to_accept', 'subm_to_accept', 'subm_to_accept', 'subm_to_accept', NULL, 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, ''),
@@ -1346,51 +1317,18 @@ INSERT INTO cep_submit_manuscrito_field (id_sub, sub_pos, sub_field, sub_css, su
 INSERT INTO cep_submit_manuscrito_tipo (id_sp, sp_codigo, sp_descricao, sp_ordem, sp_content, sp_ativo, sp_nucleo, sp_caption) VALUES
 (1, '00001', '#protocolo', 1, NULL, 1, 'CEP', '#research_protocol');
 
-INSERT INTO cep_submit_orca (id_sorca, sorca_descricao, sorca_unid, sorca_valor, sorca_protocol, sorca_ativo, sorca_finan) VALUES
-(1, 'papel', 1, 12, '0000004', 1, '');
-
 INSERT INTO cep_submit_tipo (id_sp, sp_codigo, sp_descricao, sp_ordem, sp_content, sp_ativo, sp_nucleo, sp_caption, sp_cab_number) VALUES
 (1, '00001', 'Protocolo de pesquisa', 1, '', 1, 'CEP', '', 7);
-
-INSERT INTO faq (id_faq, faq_pergunta, faq_resposta, faq_ordem, faq_ativo, faq_seccao, faq_idioma) VALUES
-(1, '¿Cual es la documentacion requerida para presentar una propuesta de investigacion?', '1. Aprobacion etica local del pais donde se llevara a cabo el estudio.\r\n2. Resumen de la propuesta (menos de 300 palabras) \r\n3. Divulgacion de fuentes de financiamiento y cualquier posible conflicto de interes.\r\n4. Una propuesta de investigacion completa que incluya:\r\n• Antecedentes breves y justificacion \r\n• Objetivo del estudio y una breve declaracion de porque la pregunta(s) de investigacion es relevante\r\n• Metodologia / procedimientos / plan de analisis \r\n• Metodologia de muestreo y calculo del tamano de la muestra\r\n• Limitaciones / delimitaciones \r\n• Evaluacion de riesgos y beneficios previsibles para las individuos y las comunicades en comparacion con los beneficios probables.\r\n• Presupuesto y cronologia \r\n• Referencias \r\n5. Curriculum vitae (2 paginas) del Investigador Principal y co-investigadores \r\n6. Revisión previa por otros consejos o comités éticos o científicos \r\n7. Documentacion sobre el consentimiento informado', 2, 1, 'CEP', 'es'),
-(2, 'How can I report adverse events for my project?', 'Send a brief technical report to pahoerc@paho.org.', 4, 1, 'CEP', 'en_US'),
-(3, 'Qué esta sujeto a revisión ética?', 'Toda investigacion con seres humanos, tal como:\r\n1. Estudios de procesos fisiologicos, bioquimicos o patologicos.\r\n2. Estudios que miden la respuesta humana a intervenciones especificas, incluyendo el diagnostico de las medidas preventivas o terapeuticas.\r\n3. Estudios designados para determinar las consecuencias de medidas terapeuticas especificas o preventivas en individuos y/o comunidades.\r\n4. Estudios relacionados con el comportamiento humano en diversas circunstancias y ambientes.', 1, 1, 'CEP', 'es'),
-(4, 'Who can help me if I have any questions or doubts regarding the presentation of a research project?', 'You can contact the Pan American Health Organization Ethics Review Committee (PAHOERC) at PAHOERC@paho.org', 3, 1, 'CEP', 'en_US'),
-(5, 'What is NIEC', '"Number of Investigation in the Ethics Committee", meaning the number assigned by the system to a research protocol submitted for ethics review.', 4, 1, 'CEP', 'en_US'),
-(6, 'What is subject to ethical review?', 'All research with human subjects such as:\r\n1. Studies of a physiological, biochemical, or pathological process.\r\n2. Studies that measure human response to a specific intervention, including the diagnosis \r\nof the preventive or therapeutic measures.\r\n3. Studies designed to determine the consequences of specific or therapeutic preventive measures in individuals and/or communities.\r\n4. Studies relating to the human behavior in a diversity of circumstances and environments. ', 1, 1, 'CEP', 'en_US'),
-(7, 'What is the required documentation for submitting a research proposal?', '1. Proof of approval by a local Ethics Review Board and/or if necessary, national authorities.\r\n2. Abstract (less than 300 words)\r\n3. Disclosure of funding sources, sponsors, institutional affiliation, and any other potential sources that may be cause for conflict of interest.\r\n4. A complete research proposal that includes:\r\n. Brief background and justification\r\n. Objective of study and brief statement as to why the research question(s) is relevant\r\n. Methodology / procedures / analysis plan\r\n. Sampling methodology and sample size calculations\r\n. Limitations / delimitations\r\n. Assessment of predictable risks and burdens to individuals and communities in \r\n  comparison with foreseeable benefits\r\n. Budget and timelines\r\n. References \r\n5. Curriculum vitae (2 pages) of Principal Investigator and co-investigators.\r\n6. Previous review by other ethical or scientific board or committee.\r\n7. Informed consent documentation ', 2, 1, 'CEP', 'en_US'),
-(8, 'Quien puede ayudarme si tengo preguntas o dudas sobre la presentacion de un proyecto de investigacion?\r\n', 'Puede contactar al Comite de Etica de la Organiacion Panamericana de la Salud (PAHOERC) a PAHOERC@paho.org ', 3, 1, 'CEP', 'es'),
-(9, 'Como puedo reportar eventos adversos de mi proyecto?', 'Envie un breve reporte tecnico a pahoerc@paho.org', 4, 1, 'CEP', 'es'),
-(10, 'Que es NIEC?', '"Numero de investigacion en el Comite de Etica", es decir, el numero asignado por el sistema a un protocolo de investigacion presentado para revision etica.\r\n', 5, 1, 'CEP', 'es');
-
-INSERT INTO ged_documento (id_doc, doc_dd0, doc_tipo, doc_ano, doc_filename, doc_status, doc_data, doc_hora, doc_arquivo, doc_extensao, doc_size, doc_ativo, doc_versao) VALUES
-(1, '0000003', '00003', '2013', 'formato_certificacion_enmienda_proethos.doc', '@', 20131205, '16:20', '/home/sisdocco/public_html/paho/document/2013/12/0000003-8a787-formato_certificacion_enmienda_proethos.doc', 'doc', 47616, 1, ''),
-(2, '0000002', '00002', '2013', 'formato_reporte_eventos_adversos_proethos.doc', '@', 20131212, '16:47', '/home/sisdocco/public_html/paho/document/2013/12/0000002-4b249-formato_reporte_eventos_adversos_proethos.doc', 'doc', 51200, 1, ''),
-(3, '0000003', '00003', '2013', 'formato_decision_proethos.doc', '@', 20131212, '16:47', '/home/sisdocco/public_html/paho/document/2013/12/0000003-82173-formato_decision_proethos.doc', 'doc', 47616, 1, '');
 
 INSERT INTO ged_documento_tipo (id_doct, doct_nome, doct_codigo, doct_publico, doct_avaliador, doct_autor, doct_restrito, doct_ativo) VALUES
 (2, 'Template for Investigador', '00002', 1, 0, 0, 1, 1),
 (3, 'Template for Committee', '00003', 0, 0, 0, 1, 1);
 
-INSERT INTO ic_noticia (id_nw, nw_dt_cadastro, nw_secao, nw_link, nw_fonte, nw_titulo, nw_descricao, nw_dt_de, nw_dt_ate, nw_log, nw_ativo, nw_ref, nw_thema, nw_idioma, nw_journal, journal_id) VALUES
-(1, 20131021, 1, '', '', 'Correo de indicaciones', 'Estimado $name,\r\n\r\nRecientemente se presentó una nueva propuesta a este comité y usted ha sido seleccionado como evaluador de este proyecto con el título. "$title".\r\n\r\nProtocol: <B>$protocol</B>\r\n\r\nPara tener acceso a este proyecto, por favor ingrese al sistema. Si tiene cualquier pregunta o duda, contáctenos a pahoerc@paho.org \r\n\r\nSaludos cordiales,\r\n\r\n<B>Comité de Ética</B>\r\n\r\n$link', 19000101, 19000101, NULL, NULL, 'indicate_email', NULL, 'es', 0, 0),
-(2, 20130104, 1, '', '', 'Forgot e-mail', 'Prezado Investigador,\r\n\r\nConforme sua solicitação foi encaminho um e-mail com sua senha.', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'pt_BR', 0, 0),
-(3, 20121206, 1, '', '', 'Communicate Investigador', 'Dear Investigador,\r\n\r\nYour project $caae was finalized.\r\n\r\nAtt,', 19000101, 19000101, NULL, NULL, 'communicate_investig', NULL, 'en_US', 0, 0),
-(4, 20130711, 1, '', '', 'Send your password', 'Your password was submited by e-mail ', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'en_US', 0, 0),
-(5, 20131021, 1, '', '', 'Forgot password?', 'Dear investigator,\r\nAs requested, an email has been sent to you with your password information.\r\nBest\r\nEthics Committee', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'en_US', 0, 0),
-(6, 20131021, 1, '', '', '¿Olvidó su contraseña?', 'Estimado investigador,\r\nTal como lo solicito, se le ha enviado un email con la información de su contraseña.\r\nSaludos,\r\nComité de Ética', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'es', 0, 0),
-(7, 20131021, 1, '', '', 'Instructions email', 'Dear $name,\r\n\r\nA new proposal was recently submitted to this committee and you have been selected as evaluator of the project titled. "$title".\r\n\r\nProtocol: <B>$protocol</B>\r\n\r\nTo access this project, please log into the system. If you have any questions or comments, please contact us at pahoerc@paho.org \r\n\r\nKind regards,\r\n\r\n<B>Ethics Committee</B>\r\n\r\n$link', 19000101, 19000101, NULL, NULL, 'indicate_email', NULL, 'en_US', 0, 0),
-(8, 20130918, 1, '', '', 'Email para asignar revisor', 'Estimado $name,\r\n\r\nRecientemente se presentó una nueva propuesta a este comité y usted ha sido seleccionado como evaluador de este proyecto con el título. "$title".\r\n\r\nProtocol: <B>$protocol</B>\r\n\r\nPara tener acceso a este proyecto, por favor ingrese al sistema. Si tiene cualquier pregunta o duda, contáctenos a pahoerc@paho.org \r\n\r\nSaludos cordiales,\r\n\r\n<B>Comité de Ética</B>\r\n\r\n$link', 19000101, 19000101, NULL, NULL, 'indicate_email', NULL, 'es', 0, 0),
-(9, 20130511, 1, '', '', 'Senha do sistema', 'Prezado Investigador,\r\n\r\nConforme sua solicita??oo foi encaminho um e-mail com sua senha.', 19000101, 19000101, NULL, NULL, 'send_email_text', NULL, 'pt_BR', 0, 0),
-(10, 20131101, 1, '', '', 'Propuesta devuelta para correciones', 'Estimado investigador,\r\n\r\nSu propuesta presenta algunos problemas y necesitamos que la revise y la presente nuevamente cuando ya este corregida.\r\n\r\nSaludos cordiales,\r\n\r\nComité de Ética', 19000101, 19000101, NULL, NULL, 'communicate_investig', NULL, 'es', 0, 0),
-(11, 20131101, 1, '', '', 'Proposal returned for corrections', 'Dear Investigator,\r\n\r\nYour proposal presents certain issues and we need you to verify them, revise them and resubmit it when corrected.\r\n\r\nKind regards,\r\n\r\nEthics Committee', 19000101, 19000101, NULL, NULL, 'communicate_investig', NULL, 'en_US', 0, 0);
-
 INSERT INTO institution (id_i, i_name, i_name_2, i_name_3, i_address_1, i_address_2, i_address_3, i_city, i_fone, i_fax, i_email, i_cordenation, i_information, i_system, i_opas_cod, i_date_format) VALUES
-(1, 'CEP - PUCPR', '', '', 'Rua Imaculada Concei??o', 'Curitiba - Paran? - Brasil', 'CEP 80.000-000', 'Curitiba', '41 3271-0000', '', 'nep@pucpr.br', 'Nain', '', 'CEP', '55.001', 'DD/MM/AAAA');
+(1, 'CEP - PUCPR', '', '', 'Rua Imaculada Conceicao', 'Curitiba - Paran? - Brasil', 'CEP 80.000-000', 'Curitiba', '41 3271-0000', '', 'nep@pucpr.br', 'Nain', '', 'CEP', '55.001', 'DD/MM/AAAA');
 
 INSERT INTO nucleo (id_n, n_codigo, n_descricao, n_ativo) VALUES
-(1, 'CEP', 'Comit? de ?tica em Pesquisa', 1);
+(1, 'CEP', 'Comite de Etica em Pesquisa', 1);
 
 INSERT INTO parecer_modelo (id_pm, pm_name, pm_message, pm_type, pm_decision, pm_codigo, pm_approved, pm_0, pm_1, pm_2, pm_3, pm_4, pm_5, pm_6, pm_7, pm_8, pm_accompaniment) VALUES
 (1, 'Approved', '', 'PRO', 'APR', '00001', 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1),
