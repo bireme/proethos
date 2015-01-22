@@ -338,8 +338,8 @@ class ged
 										}
 								} else {
 									
-									$link = page().'?page='.$page.'&ddf='.$line['id_doc'].'&ddg=DEL';
-									$link .= '&ddh='.checkpost($line['id_doc'].$secu);
+									$link = page().'?page='.$page.'&dd0='.$dd[0].'&dd1='.$dd[1].'&dd90='.$dd[90].'&dd20='.$line['id_doc'].'&dd21=DEL';
+									$link .= '&dd22='.checkpost($line['id_doc'].$secu);
 									$sx .= '<A HREF="'.$link.'">';
 								 	$sx .= '<img src="img/icone_remove.png" id="remove" onclick="ged_excluir('.$line['id_doc'].');" border=0>';
 									$sx .= '</A>';				

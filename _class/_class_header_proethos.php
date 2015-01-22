@@ -78,7 +78,7 @@ class header {
 	}
 
 	function foot() {
-		$sx = '&copy; '.date("Y").'- Pan American Health Organization ';
+		$sx = msg('copyright');
 		return ($sx);
 	}
 

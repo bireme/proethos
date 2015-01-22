@@ -36,10 +36,10 @@ echo '
 ?>
 <!--- Login form -->
 	<div id="loginform">
-		<div id="facebook"><i class="fa fa-facebook"></i><div id="connect">Connect with</div>
+		<div id="facebook"><i class="fa fa-facebook"></i><div id="connect"><?=msg('connect with');?></div>
 		</div>
 		<div id="mainlogin">
-		<div id="or">or</div>
+		<div id="or"><?=msg('or');?></div>
 		<h2 style="text-align: center;"><?php echo msg('login_cab'); ?></h2>		
 
 			<?

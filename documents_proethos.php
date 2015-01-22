@@ -17,8 +17,8 @@ $sx .= '<TD width="50%">';
 $sx .= '<h3>'.msg('proethos_docs').'</h3>';
 
 $ar = array();
-array_push($ar,array(msg('proethos_doc_guia'),''));
-array_push($ar,array(msg('proethos_doc_adve'),''));
+array_push($ar,array(msg('proethos_doc_guia'),'_documents/Guiding questions for reviewers ('.$LANG.').doc'));
+array_push($ar,array(msg('proethos_doc_adve'),'Formato reporte eventos adversos ('.$LANG.').doc'));
 
 $sx .= '<UL>';
 for ($r=0;$r < count($ar); $r++)
@@ -34,9 +34,11 @@ $sx .= '</UL>';
 /* Part One */
 $sx .= '<TD width="50%">';
 $ar = array();
-array_push($ar,array(msg('proethos_doc_diap'),''));
-array_push($ar,array(msg('proethos_doc_diac'),''));
-array_push($ar,array(msg('proethos_doc_dina'),''));
+array_push($ar,array(msg('proethos_doc_diap'),'_documents/APROBADO ('.$LANG.').doc'));
+array_push($ar,array(msg('proethos_doc_diac'),'_documents/CONDICIONALMENTE APROBADO ('.$LANG.').doc'));
+array_push($ar,array(msg('proethos_doc_dina'),'_documents/NO APROBADO ('.$LANG.').doc'));
+array_push($ar,array(msg('proethos_doc_dina'),'_documents/NO APROBADO ('.$LANG.').doc'));
+array_push($ar,array(msg('proethos_doc_diex'),'_documents/EXENTO ('.$LANG.').doc'));
 $sx .= '<h3>'.msg('proethos_doc_dict').'</h3>';
 $sx .= '<UL>';
 for ($r=0;$r < count($ar); $r++)

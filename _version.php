@@ -1,4 +1,4 @@
 <?php
-$version = 'v.0.14.51';
+$version = 'v.0.15.04';
 echo msg('version').': '.$version;
 ?>
