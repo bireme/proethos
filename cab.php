@@ -15,9 +15,10 @@ if (file_exists($message)) {
 
 /* Logos */
 function logo($tp) {
+	global $LANG;
 	switch ($tp) {
 		case '1' :
-			$file = 'repositorio/layout/proethos_logo_1.jpg';			
+			$file = 'repositorio/layout/proethos_logo_1.jpg';
 			if (file_exists($file))
 				{
 					return($file);
@@ -27,12 +28,13 @@ function logo($tp) {
 				}
 			break;
 		case '2' :
-			$file = 'repositorio/layout/proethos_logo_1.png';			
+			$file = 'repositorio/layout/proethos_logo_1.png';					
 			if (file_exists($file))
 				{
 					return($file);
 				} else {
 					$file = 'img/proethos_logo_1.png';
+					$file = 'img/logo_inst_mini_'.$LANG.'.png';
 					return($file);
 				}
 			break;
