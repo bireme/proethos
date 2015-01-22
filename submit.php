@@ -115,12 +115,8 @@ $proj->le($protocolo);
 		echo '</form>';
 	}
 echo '</div>';
-?>
 
-<script>
-	
-</script>
-<?
+echo '</div>';
 echo $hd->foot();	
 ?>
 
