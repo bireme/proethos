@@ -2,7 +2,7 @@
  /**
   * Start Page
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
-  * @copyright Copyright (c) 2013 - sisDOC.com.br
+  * @copyright © Pan American Health Organization, 2013. All rights reserved.
   * @access public
   * @version v.0.13.46
   * @package Proethos
