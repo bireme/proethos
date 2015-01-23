@@ -1,4 +1,2 @@
 </div>
-<?php 
-echo msg('copyright');?>xxx 
-?>
+&copy Pan American Health Organization, 2013. All rights reserved.
