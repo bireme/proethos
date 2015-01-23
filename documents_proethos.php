@@ -37,7 +37,6 @@ $ar = array();
 array_push($ar,array(msg('proethos_doc_diap'),'_documents/APROBADO ('.$LANG.').doc'));
 array_push($ar,array(msg('proethos_doc_diac'),'_documents/CONDICIONALMENTE APROBADO ('.$LANG.').doc'));
 array_push($ar,array(msg('proethos_doc_dina'),'_documents/NO APROBADO ('.$LANG.').doc'));
-array_push($ar,array(msg('proethos_doc_dina'),'_documents/NO APROBADO ('.$LANG.').doc'));
 array_push($ar,array(msg('proethos_doc_diex'),'_documents/EXENTO ('.$LANG.').doc'));
 $sx .= '<h3>'.msg('proethos_doc_dict').'</h3>';
 $sx .= '<UL>';
