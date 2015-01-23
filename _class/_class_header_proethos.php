@@ -78,7 +78,8 @@ class header {
 	}
 
 	function foot() {
-		$sx = msg('copyright');
+		//$sx = msg('copyright');
+		$sx = '&copy; Pan American Health Organization, 2013. All rights reserved.';
 		return ($sx);
 	}
 
