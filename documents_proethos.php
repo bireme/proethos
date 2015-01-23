@@ -1,54 +1,78 @@
 <?
 $img = '';
-
-array_push($ar,array(msg('proethos_doc_adve'),''));
+$path = '_documents/templates/';
+array_push($ar, array(msg('proethos_doc_adve'), ''));
 
 /* Header */
 $sx = '
-<h1>'.msg('proethos_files').'</h1>
-<span class="lt0">'.msg('proethos_files_inf').'</span>
+<h1>' . msg('proethos_files') . '</h1>
+<span class="lt0">' . msg('proethos_files_inf') . '</span>
 <BR>';
 
 $sx .= '<table class="tabela00" width="100%" border=0 >';
-$sx .= '<TR>';
+$sx .= '<TR valign="top">';
 
 /* Part One */
 $sx .= '<TD width="50%">';
-$sx .= '<h3>'.msg('proethos_docs').'</h3>';
+$sx .= '<h3>' . msg('proethos_docs') . '</h3>';
 
 $ar = array();
-array_push($ar,array(msg('proethos_doc_guia'),'_documents/Guiding questions for reviewers ('.$LANG.').doc'));
-array_push($ar,array(msg('proethos_doc_adve'),'Formato reporte eventos adversos ('.$LANG.').doc'));
+array_push($ar, array(msg('proethos_doc_guia'), $path . 'Guiding questions for reviewers (' . $LANG . ').doc'));
 
 $sx .= '<UL>';
-for ($r=0;$r < count($ar); $r++)
-	{
+for ($r = 0; $r < count($ar); $r++) {
+	$sx .= '<LI>';
+	$sx .= '<A href="' . $ar[$r][1] . '" target="_new">';
+	$sx .= $ar[$r][0];
+	$sx .= '</A>';
+	$sx .= '</LI>';
+}
+$sx .= '</UL>';
+
+/* Part Two */
+$sx .= '<TD width="50%">';
+$sx .= '<h3>' . msg('proethos_docs_models') . '</h3>';
+
+$ar = array();
+array_push($ar, array(msg('proethos_doc_adve'), $path . 'Rreporte eventos adversos (' . $LANG . ').doc'));
+array_push($ar, array(msg('proethos_doc_soli_exte'), $path . 'Solicitud de EXTENSION DE APROBACION (' . $LANG . ').doc'));
+array_push($ar, array(msg('proethos_doc_soli_emen'), $path . 'Solicitud de ENMIENDA (' . $LANG . ').doc'));
+
+$sx .= '<UL>';
+for ($r = 0; $r < count($ar); $r++) {
+	$sx .= '<LI>';
+	$sx .= '<A href="' . $ar[$r][1] . '" target="_new">';
+	$sx .= $ar[$r][0];
+	$sx .= '</A>';
+	$sx .= '</LI>';
+}
+$sx .= '</UL>';
+
+$sx .= '<TR valign="top">';
+
+/* Part Three */
+$sx .= '<TD colspan=2>';
+$ar = array();
+array_push($ar, array(msg('proethos_doc_diap'), $path . 'APROBADO (' . $LANG . ').doc'));
+array_push($ar, array(msg('proethos_doc_diac'), $path . 'CONDICIONALMENTE APROBADO (' . $LANG . ').doc'));
+array_push($ar, array(msg('proethos_doc_dina'), $path . 'NO APROBADO (' . $LANG . ').doc'));
+array_push($ar, array(msg('proethos_doc_diex'), $path . 'EXENTO (' . $LANG . ').doc'));
+
+array_push($ar, array(msg('proethos_doc_apem'), $path . 'aprobación ENMIENDA (' . $LANG . ').doc'));
+array_push($ar, array(msg('proethos_doc_apex'), $path . 'aprobación EXTENSION (' . $LANG . ').doc'));
+
+if (($perfil -> valid('#ADM')) or ($perfil -> valid('#COO')) or ($perfil -> valid('#MEN')) or ($perfil -> valid('#SCR'))) {
+	$sx .= '<h3>' . msg('proethos_doc_dict') . '</h3>';
+	$sx .= '<UL>';
+	for ($r = 0; $r < count($ar); $r++) {
 		$sx .= '<LI>';
-		$sx .= '<A href="'.$ar[$r][1].'" target="_new">';
+		$sx .= '<A href="' . $ar[$r][1] . '" target="_new">';
 		$sx .= $ar[$r][0];
 		$sx .= '</A>';
 		$sx .= '</LI>';
 	}
-$sx .= '</UL>';
-
-/* Part One */
-$sx .= '<TD width="50%">';
-$ar = array();
-array_push($ar,array(msg('proethos_doc_diap'),'_documents/APROBADO ('.$LANG.').doc'));
-array_push($ar,array(msg('proethos_doc_diac'),'_documents/CONDICIONALMENTE APROBADO ('.$LANG.').doc'));
-array_push($ar,array(msg('proethos_doc_dina'),'_documents/NO APROBADO ('.$LANG.').doc'));
-array_push($ar,array(msg('proethos_doc_diex'),'_documents/EXENTO ('.$LANG.').doc'));
-$sx .= '<h3>'.msg('proethos_doc_dict').'</h3>';
-$sx .= '<UL>';
-for ($r=0;$r < count($ar); $r++)
-	{
-		$sx .= '<LI>';
-		$sx .= '<A href="'.$ar[$r][1].'" target="_new">';
-		$sx .= $ar[$r][0];
-		$sx .= '</A>';
-		$sx .= '</LI>';
-	}
-$sx .= '</UL>';
+	$sx .= '</UL>';
+}
 $sx .= '</table>';
 
 echo $sx;

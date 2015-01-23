@@ -27,16 +27,11 @@ $documents = new documents;
 
 /* Sessao e pagina da Submissao */
 
-echo '<H1>' . msg('documents_title') . '</h1>';
-echo '<fieldset>';
-//echo '<div>';
-//echo '<div style="float: left; margin-right: 5px;">Sort by:</div>';
-//echo '<div style="float: left; margin-right: 5px; text-decoration: underline;">DATE</div>';
-//echo '<div style="float: left; margin-right: 5px;">TYPE</div>';
-//echo '</div>';
+$sx = '<H1>' . msg('documents_title_commite') . '</h1>';
+$sx .= '<fieldset>';
+$sx .= '<Table width="100%" class="tabela00" align="center" >';
+$sx .= '<TR><TD>';
 
-echo '<Table width="100%" class="tabela00" align="center" >';
-echo '<TR><TD>';
 $sql = "select * from ged_documento_tipo 
 		where (doct_publico = 1) ";
 
@@ -47,17 +42,20 @@ if ($perfil -> valid('#MEM')) { $sql .= " or (doct_publico = 0) ";
 /* Executa busca */
 $rlt = db_query($sql);
 
+$to = 0;
 while ($line = db_read($rlt)) {
 	$ged -> protocol = strzero(round($line['doct_codigo']), 7);
-	$sx = '<h2>' . utf8_encode(msg(trim($line['doct_nome']))) . '</h2>';
+	$sf = '<h2>' . utf8_encode(msg(trim($line['doct_nome']))) . '</h2>';
 	$ged -> table_class = "tabela01";
 
-	$sx .= $ged -> filelist_download();
-	if ($ged -> total_files > 0) { echo($sx);
+	$sf .= $ged -> filelist_download();
+	$to = $to + $ged -> total_files;
 	}
-}
-echo '</table>';
-echo '</fieldset>';
+$sx .= $sf;
+$sx .= '</table>';
+$sx .= '</fieldset>';
+
+if ($to > 0) { echo $sx; }
 
 echo '<BR>';
 echo '<H1>' . msg('documents_title') . '</h1>';

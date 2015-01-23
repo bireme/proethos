@@ -78,8 +78,28 @@ class header {
 	}
 
 	function foot() {
+		global $LANG;
+		
 		//$sx = msg('copyright');
-		$sx = '&copy; Pan American Health Organization, 2013. All rights reserved.';
+		switch ($LANG)
+			{
+			case 'en_US':
+				$sx = '&copy; Pan American Health Organization, 2013. All rights reserved.';
+				break;
+			case 'es':
+				$sx = '&copy; Organización Panamericana de la Salud, 2013. Todos los derechos reservados.';
+				break;
+			case 'pt_BR':
+				$sx = '&copy; Pan American Health Organization, 2013. All rights reserved.';
+				break;
+			case 'fr':
+				$sx = '&copy; Pan American Health Organization, 2013. All rights reserved.';
+				break;
+			default:
+				$sx = '&copy; Pan American Health Organization, 2013. All rights reserved.';
+				break;
+			}
+			$sx = '<I>'.$sx.'</I>';		
 		return ($sx);
 	}
 
