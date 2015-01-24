@@ -29,10 +29,4 @@ Required
 
 To install read the "PROETHOS Install.pdf" in folder "_documents"
 
-24/11/2014
-FIX #20 - BUG - Link to uploaded file does not work on the detail of the protocol
-FIX #19 - BUG - The link to "Mostrar comunicaciones con el autor" does not work
-FIX #18 - BUG - Details of the protocol - error on send email to researcher
-FIX #17 - ERRO - Committee reports are not working
-
 
