@@ -53,10 +53,19 @@ $pdf->SetFont('Times','B',20);
 $pdf->Ln($ln);
 $pdf->MultiCell(0,8,$titulo,0,'C');
 
-
+///////////////////////////////// titulo do projeto
+if (substr($prj_tp,0,1) == '0')
+	{
+		$pdf->Ln(6);
+		$pdf->SetFont('Times','',18);
+		$pdf->MultiCell(0,14,utf8_decode(msg('amendment_'.$prj_tp)),1,'C');
+		$pdf->SetFont('Times','',12);
+		$pdf->Ln($ln);
+		$pdf->MultiCell(0,8,utf8_decode(msg('original_niec').' '.trim($line['doc_caae'])),1,'R');
+			
+	} 
+$pdf->Ln(6);
 $pdf->SetFont('Times','B',10);
-$pdf->Ln(12);
-$pdf->Ln(12);
 $pdf->Ln($ln);
 $pdf->MultiCell(0,4,utf8_decode(msg('doc_1_titulo_public')),0,'L');
 $pdf->SetFont('Times','',12);
@@ -67,7 +76,6 @@ $pdf->Ln($ln);
 ////////////////////////////// Variaveis iniciais
 $declaracoes = False;
 $pr_orca = False;
-///////////////////////////////// titulo do projeto
 
 /////////////////////////////// Corpo do texto
 $file_list = 0;

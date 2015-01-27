@@ -25,7 +25,7 @@ require("form_css.php");
 		{
 			echo 'Salvo';
 			$cl->updatex();
-			redirecina('admin_submit.php');
+			redirecina('admin_submit_2.php');
 		} else {
 			echo $tela;
 		}

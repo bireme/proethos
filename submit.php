@@ -79,8 +79,8 @@ $proj->le($protocolo);
 		//echo '<fieldset><legend>'.msg('submit').'</legend>';
 		//echo '<Table width="'.$tab_max.'" cellpadding=0 cellspacing=0 class="lt1" align="center" >';
 		$pag_max = 6;
-
-		switch ($proj->doc_tipo)
+		$doc_tipo  = trim($proj->doc_tipo);
+		switch ($doc_tipo)
 			{
 			/* EMENDA */
 			case 'AMEND':
@@ -107,14 +107,38 @@ $proj->le($protocolo);
 				if ($pag_page == 6) { require("submit_06.php"); }
 				break;	
 			/* EMENDA */
+			case '002':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;			
+				 
+			/* EMENDA */
 			case '003':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
-				break;							
+				break;
+					
+			/* EMENDA */
+			case '004':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;										
+
+			/* EMENDA */
+			case '005':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;
 			default:
-				echo 'OPS:'.$proj->proj_doc_tipo;
+				echo 'OPS:'.$doc_tipo;
 				break;
 			}
 		//echo '</table>';

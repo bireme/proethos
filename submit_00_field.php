@@ -2,11 +2,18 @@
 /**
  * ********************************************
  * */
+$prot = '00001';
+$doc_tipo  = trim($proj->doc_tipo);
+
+if (substr($doc_tipo,0,1) == '0' )
+	{
+		$prot = '00002';
+	}
 
 $ztabela = 'cep_submit_manuscrito_field';
 $sql = "select * from ".$ztabela."
 		left join cep_submit_documento_valor on spc_codigo = sub_codigo and spc_projeto = '$protocolo' 
-		where sub_projeto_tipo = '00001' 
+		where sub_projeto_tipo = '$prot' 
 		and sub_pag='$pag' and sub_ativo=1 
 		order by sub_pag, sub_pos, sub_ordem ";
 $rlt = db_query($sql);

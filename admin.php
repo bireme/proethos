@@ -48,7 +48,8 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 
 	array_push($menu, array(msg('admin_tables'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php'));
 
-	array_push($menu, array(msg('admin_tables'), msg('admin_submission'), 'admin_submit.php'));
+	array_push($menu, array(msg('admin_tables'), msg('admin_submission'), 'admin_submit_1.php'));
+	array_push($menu, array(msg('admin_tables'), msg('admin_submission').' '.msg('amendment'), 'admin_submit_2.php'));
 
 	array_push($menu, array(msg('admin_update'), msg('system_teste'), '_system_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_test_email'), '_system_email_test.php'));

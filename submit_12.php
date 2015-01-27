@@ -8,9 +8,7 @@
   * @package Class
   * @subpackage UC0001 - Sumissao de protocolo de pesquisa
  */
-$amendment_type = $proj->amendment_type;
-$pagx = $pag;
-$pag = $pag + 10*round($amendment_type);
+
 
 require('submit_00_field.php');
 
@@ -20,7 +18,6 @@ require('submit_00_field.php');
 		}
 
 echo $s;
-$pag = $pagx;
 echo '<TR><TD colspan=2>'; require('submit_pages.php');
 echo '</table>';
 
