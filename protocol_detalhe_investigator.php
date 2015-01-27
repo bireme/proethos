@@ -70,8 +70,6 @@ $sx = 'Projeto';
 		echo $cep->dados();
 		echo '</table>';
 	echo '</div>';
-
-	
 	
 	
 	echo '<BR>';

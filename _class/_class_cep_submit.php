@@ -57,7 +57,7 @@ class submit {
 	function protocolo_mostrar() {
 		$sx .= '<fieldset><legend>' . msg('project_about_cap') . '</legend>';
 		
-		$sx .= '<table width="100%" class="lt0">';
+		$sx .= '<table width="100%" class="lt0" border=0>';
 		$sx .= '<TR valign="top">';
 		$sx .= '<TD rowspan=4 width="40">';
 
@@ -89,8 +89,8 @@ class submit {
 
 		/* Header */
 		$sx .= '<TR>';
-		$sx .= '<TD width="60%">' . msg('main_author') . '</td>';
-		$sx .= '<TD width="20%">' . msg('main_type') . '</td>';
+		$sx .= '<TD width="40%">' . msg('main_author') . '</td>';
+		$sx .= '<TD width="40%">' . msg('main_type') . '</td>';
 		$sx .= '<TD width="15%" align="right">' . msg('last_update') . '</td>';
 
 		/* TR */
@@ -102,13 +102,17 @@ class submit {
 
 		/* Estudo Clinico */
 		if ($clinic == 1) {
-			$sx .= '<TD class="lt2" align="left"><I>';
-			$sx .= '<B>' . msg('clinic_study') . '</B>';
+			$sx .= '<TD class="lt2" align="left">';
+			//$sx .= '<I>';
+			//$sx .= '<B>' . msg('clinic_study') . '</B>';
 		} else {
 			$sx .= '<TD>';
 		}
 		/* tipo da emenda */
-		$sx .= msg('amendment_'.$this->amendment_type);
+		if (strlen($this->amendment_type) > 0)
+			{
+			$sx .= '<B>'.msg('amendment_'.$this->amendment_type).'</B>';
+			}
 		$sx .= '</TD>';		
 
 		$sx .= '<TD align="right">' . stodbr($this -> doc_dt_atualizado);
@@ -333,7 +337,8 @@ class submit {
 			$page_link = '';
 			if ($sta == '@') { $page_link = 'protocol_submit.php';
 			}
-			if ($sta == 'A') { $page_link = 'protocol_detalhe.php';
+
+			if ($sta == 'A') { $page_link = '';
 			}
 			if ($sta == '$') { $page_link = 'protocol_submit_detalhe.php';
 				$cor = '<font color="red">';
@@ -347,23 +352,31 @@ class submit {
 			if (strlen($tit) == 0) { $tit = msg('not_definid');
 			}
 
-			$sx .= '<TR valign="top	">';
-			$sx .= '<TD class="lt1">' . $line['doc_protocolo'];
-			$sx .= '<TD>';
-			$sx .= $link . $cor;
-			$sx .= $tit;
-			$sx .= '<TD><nobr>';
-			$sx .= '<font class="lt1">';
-			$sx .= msg('amendment_'.($line['doc_type']));
+			$sxx = '<TR valign="top	">';
+			$sxx .= '<TD class="lt1">' . $line['doc_protocolo'];
+			$sxx .= '<TD>';
+			$sxx .= $link . $cor;
+			$sxx .= $tit;
+			$sxx .= '<TD><nobr>';
+			$sxx .= '<font class="lt1">';
+			$sxx .= msg('amendment_'.($line['doc_type']));
 			
 			
-			$sx .= '<TD>';
-			$sx .= '<font class="lt0">';
-			$sx .= stodbr($line['doc_dt_atualizado']);
+			$sxx .= '<TD>';
+			$sxx .= '<font class="lt0">';
+			$sxx .= stodbr($line['doc_dt_atualizado']);
 
-			$sx .= '<TD><nobr>' . $link . $cor;
-			$sx .= $asta;
-			$sx .= '<TD width="10">'.$link . $img;
+			$sxx .= '<TD><nobr>' . $link . $cor;
+			$sxx .= $asta;
+			$sxx .= '-'.$sta;
+			$sxx .= '<TD width="10">'.$link . $img;
+			
+			if (($sta == 'Y') or ($sta == 'Z'))
+				{
+					/* Protocol ja finalizado */
+				} else {
+					$sx .= $sxx;
+				}
 		}
 		if (count($rst) == 0) { $sx = '';
 		}

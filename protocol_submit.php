@@ -66,7 +66,7 @@ if (trim($status) == '$')
 	echo '</form>';
 	}
 
-/* Submiss�o */
+/* Submissao */
 if (trim($status) == '@')
 	{
 	echo '<table width="100%">';

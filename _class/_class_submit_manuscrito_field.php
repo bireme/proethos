@@ -27,7 +27,7 @@ class fields
 			array_push($cp,array('$O 1:#YES&0:NO','sub_obrigatorio',msg('sub_obrigatorio'),False,True));
 			array_push($cp,array('$O 1:#YES&0:NO','sub_editavel',msg('sub_edit'),False,True));
 			array_push($cp,array('$H8','sub_informacao','',False,True));
-			array_push($cp,array('$HV','sub_projeto_tipo','00001',False,True));
+			array_push($cp,array('$O : &00001:Project&00002:Amendment','sub_projeto_tipo','00001',True,True));
 			
 			array_push($cp,array('$S100','sub_pdf_title','pdf_title',False,True));
 			array_push($cp,array('$O 1:#yes&0:#no','sub_pdf_mostra','Mostra',False,True));

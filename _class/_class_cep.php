@@ -202,23 +202,24 @@ class cep {
 			$act = substr($dd[1], 0, 3);
 			$form = substr($dd[1], 3, 5);
 
-			if ($form == '00001') { $sx .= $this -> gp_form_00001($act); }
-			if ($form != '00001') { $sx .= $this -> gp_form($form,$act); }
+			if ($form == '00001') { $sx .= $this -> gp_form_00001($act);
+			}
+			if ($form != '00001') { $sx .= $this -> gp_form($form, $act);
+			}
 		}
 		$sx .= '</fieldset>';
 		return ($sx);
 	}
 
 	/* Formulario de Submissão */
-	function gp_form($form,$act)
-		{
-			global $dd;
-			$this -> create_amendment($act);
-			$protocolo = round($this -> amendment_protocol);
-			redirecina('protocol_submit.php?dd0=' . $protocolo . '&dd90' . checkpost($protocolo));
-			return ($sx);
-			
-		}
+	function gp_form($form, $act) {
+		global $dd;
+		$this -> create_amendment($act);
+		$protocolo = round($this -> amendment_protocol);
+		redirecina('protocol_submit.php?dd0=' . $protocolo . '&dd90' . checkpost($protocolo));
+		return ($sx);
+
+	}
 
 	/* Show Amendments */
 	function show_amendment() {
@@ -231,7 +232,7 @@ class cep {
 
 			$rlt = db_query($sqlx);
 			$id = 0;
-			$sx = '<table width="100%" class="table_proj">';
+			$sx = '<table width="100%" class="table_proj lt1">';
 			$sx .= '<TR class="hd"><TD colspan=5>' . msg('prj_type_AME');
 			$sx .= '<TR>';
 			$sx .= '<TH>' . msg('protocol');
@@ -251,17 +252,17 @@ class cep {
 				$msgt = 'prj_type_' . substr($line['doc_tipo'], 0, 3);
 				$sx .= '<TR>';
 				//$sx .= '<TD>'.$line['doc_caae'];
-				$sx .= '<TD>' . $link . $line['doc_protocolo'];
-				$sx .= '<TD>' . msg($msgt);
-				$sx .= '<TD width="5%">' . stodbr($line['doc_dt_atualizado']);
-				$sx .= '<TD><nobr>' . msg('cep_status_' . $sta);
+				$sx .= '<TD align="center">' . $link . $line['doc_protocolo'];
+				$sx .= '<TD align="center">' . msg($msgt);
+				$sx .= '<TD width="5%" align="center">' . stodbr($line['doc_dt_atualizado']);
+				$sx .= '<TD align="center"><nobr>' . msg($sta);
 			}
 
 			$sql = "select * from cep_protocolos where cep_caae like '$caaep%' and cep_tipo = 'AME' order by cep_caae desc ";
 			$rlt = db_query($sql);
 			while ($line = db_read($rlt)) {
 				$idx = $line['id_cep'];
-				$link = '<A HREF="protocol_detalhe.php?dd0=' . $idx . '&dd90=' . checkpost($idx) . '">';
+				$link = '<A HREF="protocol_detalhe_investigator.php?dd0=' . $idx . '&dd90=' . checkpost($idx) . '">';
 
 				$id++;
 				$sta = $line['cep_status'];
@@ -294,7 +295,7 @@ class cep {
 		$this -> updatex_submit();
 		$title = $this -> line['cep_titulo'];
 		$titlep = $this -> line['cep_titulo_public'];
-				
+
 		$type = $tp;
 		$caae = $this -> line['cep_caae'];
 		$update = date("Ymd");
@@ -427,7 +428,10 @@ class cep {
 	function cadastra_protocolo($protocolo, $titulo, $autor, $versao = '1') {
 		$type = 'PRO';
 
-		$sql = "select * from cep_submit_documento where doc_protocolo = '" . $protocolo . "' and doc_status = '@' ";
+		$sql = "select * from cep_submit_documento 
+				where doc_protocolo = '" . $protocolo . "' 
+				and doc_status = '@' ";
+
 		$rlt = db_query($sql);
 		if ($line = db_read($rlt)) {
 			$research = $line['doc_autor_principal'];
@@ -436,7 +440,8 @@ class cep {
 			$type = trim($line['doc_tipo']);
 			$caae = $this -> next_caae(trim($line['doc_caae']));
 			$clinic = round($line['doc_clinic']);
-			if ($type == 'AMEND') { $type = 'AME';
+			$doc_type = trim($line['doc_tipo']);
+			if (substr($doc_type, 0, 1) == '0') { $type = 'AME';
 			} else { $type = 'PRO';
 			}
 		} else {
@@ -513,6 +518,7 @@ class cep {
 			$sql .= " cep_pesquisador = '$research', ";
 			$sql .= " cep_clinic = '" . $clinic . "' ";
 			$sql .= " where id_cep = " . $line['id_cep'] . " and cep_status = '@' ";
+
 			$rlt = db_query($sql);
 		}
 		return (1);
@@ -596,17 +602,19 @@ class cep {
 		$sx .= '<TR><TD></form>';
 		/* Save Action */
 		if (($acao == $bb1) and (strlen($dd[3]) > 0)) {
-			/* Necessita de Revis�o */
+			/* Necessita de Revisao */
 			if ($dd[5] == '1') {
 				$sx = $sc . '<TR><TD>';
+				$this -> altera_status_submit("Z");
 				$sx .= $this -> communication_members("email_new_avaliation");
 				$this -> cep_historic_append('009', "need_consultation_to_accept");
 				$this -> cep_status_alter("H");
 				redirecina(page(), 5);
 			}
-			/* N�o aceita direto */
+			/* Nao aceita direto */
 			if ($dd[5] == '2') {
 				$sx = $sc . '<TR><TD>';
+				$this -> altera_status_submit("Z");
 				$this -> communication_research("email_manuscipt_accept");
 				$this -> cep_historic_append('010', "manuscript_accepted");
 				$this -> cep_status_alter("B");
@@ -614,6 +622,7 @@ class cep {
 			}
 			if ($dd[5] == '3') {
 				$sx = $sc . '<TR><TD>';
+				$this -> altera_status_submit("Y");
 				$this -> cep_submit_status_alter('Z');
 				$this -> approved_documment(2);
 				$this -> communication_research("email_manuscipt_notify");
@@ -626,7 +635,13 @@ class cep {
 		$sx .= '</Table>' . chr(13);
 		return ($sx);
 	}
-
+	function altera_status_submit($status)
+		{
+			$proto_submit = strzero($this->protocolo,7);
+			$sql = "update cep_submit_documento set doc_status = '$status' 
+						where doc_protocolo = '$proto_submit' ";
+			$rlt = db_query($sql);
+		}
 	function cep_update_date_dictamen($nt) {
 		$protocolo = $this -> protocolo;
 		$sql = "update " . $this -> tabela . " set cep_dt_parecer = " . $nt . " 
@@ -749,10 +764,10 @@ class cep {
 	}
 
 	function action_016() {
-		global $dd, $acao,$perfil;
-//		$ok = $perfil -> valid('#ADM#SCR#COO');
-//		$ok = round('0'.$ok);
-//		if ($ok==0) { return(''); }
+		global $dd, $acao, $perfil;
+		//		$ok = $perfil -> valid('#ADM#SCR#COO');
+		//		$ok = round('0'.$ok);
+		//		if ($ok==0) { return(''); }
 
 		$bb1 = msg('action_survey');
 		$sc .= '<Table width="100%" class="lt1">' . chr(13);
@@ -834,9 +849,9 @@ class cep {
 	}
 
 	function niec_save($nr, $auto, $ver = 1) {
-		global $committe,$hd;
+		global $committe, $hd;
 		$auto = round($auto);
-		$committe = $hd->prefix;
+		$committe = $hd -> prefix;
 		$ver = strzero($ver, 3);
 		if ($auto == 1) {
 			$caae = trim($committe) . '.' . $this -> protocolo . '.' . $ver;
@@ -1063,7 +1078,7 @@ class cep {
 		$sx .= '<input type="submit" name="acao" value="' . $act . '"  class="botao-submit">';
 		$sx .= '</form>';
 
-		$sx .= '<br>' . '<A HREF="admin_calender.php">' . msg("change") . ' ' . msg('scheduled_meeting') . '</A>';
+		$sx .= '<br>' . '<A HREF="admin_calender.php" target="new" class="link lt1">' . msg("change") . ' ' . msg('scheduled_meeting') . '</A>';
 		$sx .= '</fieldset>';
 		return ($sx);
 	}
@@ -1378,7 +1393,7 @@ class cep {
 					';
 		}
 		$sx .= '</table>';
-		
+
 		$sx .= chr(13) . '<script>';
 		$sx .= $js;
 		$sx .= chr(13) . '</script>';
@@ -1403,10 +1418,10 @@ class cep {
 		while ($line = db_read($rlt)) {
 			$code = $line['action_code'];
 			$perf = trim($line['actionp_perfil']);
-			
+
 			if ($perfil -> valid($perf)) {
-				$xok = round('0'.in_array($code, $btx));
-				if (!($xok==1)) {
+				$xok = round('0' . in_array($code, $btx));
+				if (!($xok == 1)) {
 					array_push($bt, array(trim($line['action_caption']), $code, $line['action_color']));
 					array_push($btx, $code);
 				}
@@ -1817,7 +1832,8 @@ class cep {
 		/* Investigador */
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
+		$sp .= '<TR><Td colspan=6 class="table_proj">';
+		{
 			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
 			//$sp .= '<TR><TD colspan=2>';
 
@@ -1853,9 +1869,10 @@ class cep {
 		$sp .= trim($line['pais_nome']) . '&nbsp;';
 		$sp .= '&nbsp;' . chr(13);
 		if (strlen($clinic) > 0) {
-			$sp .= '<Td colspan=1 class="lt2"><NOBR>';
-			$sp .= $oms -> icone($this -> line['id_cep']);
-			$sp .= '&nbsp;' . chr(13);
+			/* XML OMS */
+			//$sp .= '<Td colspan=1 class="lt2"><NOBR>';
+			//$sp .= $oms -> icone($this -> line['id_cep']);
+			//$sp .= '&nbsp;' . chr(13);
 		}
 
 		$sp .= '<TR>';
@@ -2030,6 +2047,9 @@ class cep {
 		switch($tipo) {
 			case 'PRO' :
 				$img = '<img src="images/icone_PRO.png" height="50">';
+				break;
+			case 'AME' :
+				$img = '<img src="images/icone_AME.png" height="50">';
 				break;
 		}
 		return ($img);
