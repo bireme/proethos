@@ -82,12 +82,7 @@ if ($ok == 1)
 	echo msg('submission_end_text');
 	echo '</div>';
 	}	
-?>
 echo '</div>';
-<script>
-	
-</script>
-<?
 echo $hd->foot();
 ?>
 

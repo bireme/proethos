@@ -219,7 +219,7 @@ class budget
 			$sx .= '<TD>'; 
 			$sx .= '</table>';
 
-			$sx .= '<table width="100%"  class="lt0" border=1>';
+			$sx .= '<table width="100%"  class="lt0" border=0 >';
 			$sx .= '<TR bgcolor="#C0C0C0"><TH width=5%>'.msg('crono_item');
 			$sx .= '<TH width=60%>'.msg('crono_desc');
 			$sx .= '<TH>'.msg('crono_qt');

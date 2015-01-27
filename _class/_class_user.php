@@ -117,7 +117,7 @@ class users
 					$this->name = trim($line[$this->usuario_tabela_nome]);
 					$this->codigo = trim($line[$this->usuario_tabela_codigo]);
 					$this->perfil = trim($line['us_perfil']);
-					$this->line = $line;	
+					$this->line = $line;
 					if (strlen(trim($this->login))==0)
 						{ $this->login = $this->codigo;	}
 					
@@ -254,6 +254,8 @@ class users
 						if ($result['senha_md5'] == 1) { $pass = md5($pass); }
 						if ($user_senha == $pass)
 							{
+								$perfil_admin = '';
+								if ($result['us_login']='0000001') { $perfil_admin = '#ADM'; }
 								$this->user_erro = 1;
 								$this->user_msg = '';				
 								$this->user_login = trim($result[$this->usuario_tabela_login]);
@@ -261,7 +263,7 @@ class users
 								$this->user_nivel = trim($result[$this->usuario_tabela_nivel]);
 								$this->user_id = trim($result[$this->usuario_tabela_id]);
 								$this->user_codigo = trim($result['us_codigo']);
-								$this->user_perfil = trim($result['us_perfil']);
+								$this->user_perfil = trim($result['us_perfil']).$perfil_admin;
 								if (strlen($this->user_login)==0)
 									{ $this->user_login = $this->user_codigo; }
 								$this->ghost = 0;

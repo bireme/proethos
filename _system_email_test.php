@@ -64,6 +64,7 @@ if ($form -> saved > 0) {
 	echo $tela;
 }
 echo '</div>';
+echo '</div>';
 
 echo $hd -> foot();
 
@@ -78,3 +79,4 @@ echo $hd -> foot();
 		return ($sx);
 	}
 ?>
+

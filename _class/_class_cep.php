@@ -201,12 +201,24 @@ class cep {
 		} else {
 			$act = substr($dd[1], 0, 3);
 			$form = substr($dd[1], 3, 5);
-			if ($form = '00001') { $sx .= $this -> gp_form_00001($act);
-			}
+
+			if ($form == '00001') { $sx .= $this -> gp_form_00001($act); }
+			if ($form != '00001') { $sx .= $this -> gp_form($form,$act); }
 		}
 		$sx .= '</fieldset>';
 		return ($sx);
 	}
+
+	/* Formulario de Submissão */
+	function gp_form($form,$act)
+		{
+			global $dd;
+			$this -> create_amendment($act);
+			$protocolo = round($this -> amendment_protocol);
+			redirecina('protocol_submit.php?dd0=' . $protocolo . '&dd90' . checkpost($protocolo));
+			return ($sx);
+			
+		}
 
 	/* Show Amendments */
 	function show_amendment() {
@@ -282,7 +294,8 @@ class cep {
 		$this -> updatex_submit();
 		$title = $this -> line['cep_titulo'];
 		$titlep = $this -> line['cep_titulo_public'];
-		$type = 'AMEND';
+				
+		$type = $tp;
 		$caae = $this -> line['cep_caae'];
 		$update = date("Ymd");
 		$investigator = $this -> line['cep_pesquisador'];
@@ -651,6 +664,7 @@ class cep {
 
 	function survey_check_vote() {
 		global $ss, $ip;
+
 		$nuser = $ss -> user_codigo;
 		$proto = $this -> protocolo_submission;
 		$sql = "select * from cep_survey where
@@ -695,7 +709,12 @@ class cep {
 
 	/* SURVEY */
 	function action_015() {
-		global $dd, $acao;
+		global $dd, $acao, $perfil, $ss;
+
+		if (!($perfil -> valid('#MEM'))) {
+			return ('');
+		}
+
 		$bb1 = msg('action_survey');
 		$sc .= '<Table width="100%" class="lt1">' . chr(13);
 		$sc .= '<TR><TH colspan=2><h3><A name="A015">' . msg('action_accept_015');
@@ -730,7 +749,11 @@ class cep {
 	}
 
 	function action_016() {
-		global $dd, $acao;
+		global $dd, $acao,$perfil;
+//		$ok = $perfil -> valid('#ADM#SCR#COO');
+//		$ok = round('0'.$ok);
+//		if ($ok==0) { return(''); }
+
 		$bb1 = msg('action_survey');
 		$sc .= '<Table width="100%" class="lt1">' . chr(13);
 		$sc .= '<TR><TH align="center"><h3><A name="A016">' . msg('action_accept_016');
@@ -767,7 +790,7 @@ class cep {
 	function action_017() {
 		global $dd, $acao;
 
-		/* Se j� existe n�mero do Caae, salva automaticamente */
+		/* Se ja existe numero do Caae, salva automaticamente */
 		$caae = trim($this -> line['cep_caae']);
 		if (strlen($caae) > 0) {
 			$dd[5] = '0';
@@ -793,7 +816,7 @@ class cep {
 
 		if ((strlen($acao) > 0) and ((strlen($dd[6]) > 0)) or (strlen($dd[5]) > 0)) {
 			$versao = 1;
-			/* J� existe n�mero do CAAE, pula esta fase */
+			/* Ja existe numero do CAAE, pula esta fase */
 			if (strlen($caae) > 0) {
 				$this -> cep_status_alter("C");
 				$this -> communication_research("email_assign_record_number");
@@ -811,8 +834,9 @@ class cep {
 	}
 
 	function niec_save($nr, $auto, $ver = 1) {
-		global $committe;
+		global $committe,$hd;
 		$auto = round($auto);
+		$committe = $hd->prefix;
 		$ver = strzero($ver, 3);
 		if ($auto == 1) {
 			$caae = trim($committe) . '.' . $this -> protocolo . '.' . $ver;
@@ -1322,7 +1346,7 @@ class cep {
 			}
 
 			/* Somente to Admin and Secretary */
-			if ($perfil -> valid('#ADM#SRC#COO')) {
+			if ($perfil -> valid('#ADM#SCR#COO')) {
 				/* Indicar avaliadores */
 				if ($action == '002') { $sx .= $this -> action_002();
 				}
@@ -1343,7 +1367,6 @@ class cep {
 			}
 			if ($action == '014') { $sx .= $this -> action_014();
 			}
-
 			$sx .= '<font class="lt0">' . $action . '</font>';
 			$sx .= '</div>' . chr(13);
 
@@ -1355,6 +1378,7 @@ class cep {
 					';
 		}
 		$sx .= '</table>';
+		
 		$sx .= chr(13) . '<script>';
 		$sx .= $js;
 		$sx .= chr(13) . '</script>';
@@ -1379,10 +1403,10 @@ class cep {
 		while ($line = db_read($rlt)) {
 			$code = $line['action_code'];
 			$perf = trim($line['actionp_perfil']);
-
+			
 			if ($perfil -> valid($perf)) {
-				$xok = in_array($code, $btx);
-				if (!($xok)) {
+				$xok = round('0'.in_array($code, $btx));
+				if (!($xok==1)) {
 					array_push($bt, array(trim($line['action_caption']), $code, $line['action_color']));
 					array_push($btx, $code);
 				}
@@ -1793,8 +1817,7 @@ class cep {
 		/* Investigador */
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">';
-		{
+		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
 			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
 			//$sp .= '<TR><TD colspan=2>';
 
@@ -1895,7 +1918,7 @@ class cep {
 
 	function protocolos_avaliacao($sta) {
 		global $ss;
-		
+
 		$us = strzero(round($ss -> user_id), 7);
 
 		if ($sta == 'Z') {
@@ -1939,9 +1962,7 @@ class cep {
 		$vs = 2;
 		$sta = trim($line['cep_status']);
 		/* investigador */
-		$sx .= '<TR class="lt2"><TD>' . 
-				msg('research_name') .		 
-				': <B>' . $line['us_nome'] . '</B>';
+		$sx .= '<TR class="lt2"><TD>' . msg('research_name') . ': <B>' . $line['us_nome'] . '</B>';
 		$vs = 3;
 
 		$status = trim($line['cep_status']);
@@ -1952,8 +1973,7 @@ class cep {
 		$para = 'dd0=' . $line['id_cep'] . '&dd90=' . checkpost($line['id_cep']);
 		$link2 = '<a href="protocol_detalhe.php?' . $para . '" class="protocol">';
 		$link = '<a href="protocol_detalhe.php?' . $para . '" class="comment">';
-		
-		
+
 		/* Line 1*/
 		$s .= '<TR valign="top"  class="table_proj">';
 
@@ -1965,17 +1985,17 @@ class cep {
 		$s .= trim($line['cep_protocol']);
 		$s .= '/';
 		$s .= trim($line['cep_versao']);
-		
+
 		/* icon type */
 		$type = trim($line['cep_tipo']);
-		$s .= '<BR>'.$this->mostra_icone_tipo_projeto($type);
-		
+		$s .= '<BR>' . $this -> mostra_icone_tipo_projeto($type);
+
 		/* title */
 		$s .= '<TD><B><I>';
 		$s .= $link2;
 		$s .= $line['cep_titulo'];
 		$s .= '</A>';
-		
+
 		/* status */
 		$s .= '<TD rowspan=' . $vs . ' align="center" width="50">';
 		if ($status == 'P') {
@@ -1984,8 +2004,7 @@ class cep {
 			$s .= '<font class="lt3">' . $corf . $df . '</font>
 					<BR>
 					<font class="lt0">
-					' . msg('days').
-					'</font>';
+					' . msg('days') . '</font>';
 		}
 		$s .= $sx;
 		$s .= '<BR><I>';
@@ -2007,16 +2026,14 @@ class cep {
 		return ($s);
 	}
 
-	function mostra_icone_tipo_projeto($tipo='')
-		{
-			switch($tipo)
-				{
-				case 'PRO':
-					$img = '<img src="images/icone_PRO.png" height="50">';
-					break;
-				}
-			return($img);
+	function mostra_icone_tipo_projeto($tipo = '') {
+		switch($tipo) {
+			case 'PRO' :
+				$img = '<img src="images/icone_PRO.png" height="50">';
+				break;
 		}
+		return ($img);
+	}
 
 	function resumo_status() {
 		global $edit_mode;

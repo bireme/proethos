@@ -20,7 +20,7 @@ $cep = new cep;
 echo '<H2>'.msg('protocolos').'</h2>';
 echo '<H4>'.msg('cep_status_'.$dd[1]).'</h4>';
 
-$ok1 = (($perfil->valid('#ADM')) or ($perfil->valid('#MAS')) or ($perfil->valid('##MEM')));
+$ok1 = (($perfil->valid('#ADM')) or ($perfil->valid('#MAS')) or ($perfil->valid('#MEM')) or ($perfil->valid('#SCR')));
 $ok2 = (($perfil->valid('#ADC')) and ($dd[1] == 'Z'));
 
 if ($ok1 or $ok2)

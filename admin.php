@@ -16,7 +16,8 @@ require ($include . 'sisdoc_menus.php');
 require ("committee_admin.php");
 
 /* Admin Common */
-if (!($perfil -> valid('#ADM'))) {
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
 	redirecina('main.php');
 } else {
 	$menu = array();
@@ -32,7 +33,9 @@ if (!($perfil -> valid('#ADM'))) {
 	echo '</fieldset>';
 
 /* Admin Common */
-if (($perfil -> valid('#ADM'))) {
+
+if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN')) 
+	{
 	$menu = array();
 	array_push($menu, array(msg('admin_customize'), msg('customize_logo'), 'admin_customize_logo.php'));
 	array_push($menu, array(msg('admin_customize'), msg('about_committe'), 'admin_committe.php'));

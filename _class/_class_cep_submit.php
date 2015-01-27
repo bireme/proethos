@@ -105,8 +105,11 @@ class submit {
 			$sx .= '<TD class="lt2" align="left"><I>';
 			$sx .= '<B>' . msg('clinic_study') . '</B>';
 		} else {
-			$sx .= '<TD></TD>';
+			$sx .= '<TD>';
 		}
+		/* tipo da emenda */
+		$sx .= msg('amendment_'.$this->amendment_type);
+		$sx .= '</TD>';		
 
 		$sx .= '<TD align="right">' . stodbr($this -> doc_dt_atualizado);
 
@@ -293,8 +296,10 @@ class submit {
 		global $colunas;
 		$sx = '';
 		$sx .= '<table class="tabela00 lt3" width="100%">';
-		$sx .= '<TR class="lt1"><TH width="10%">' . msg('caae');
+		$sx .= '<TR class="lt1">
+				<TH width="10%">' . msg('caae');
 		$sx .= '<TH>' . msg('protocol_title');
+		$sx .= '<TH width="15%"><nobr>' . msg('main_type');
 		$sx .= '<TH width="7%"><nobr>' . msg('last_update');
 		$sx .= '<TH width="7%">' . msg('status');
 		$xsta = "X";
@@ -311,10 +316,10 @@ class submit {
 			if ($sta == '$') { $asta = '<font color="red">' . msg('problem') . '</font>';
 			}
 			if ($sta == '@') { $asta = '<font color="green">' . msg('status_@');
-			$img = '<img src="img/icone_edit.png" height="50" title="view">';
+			$img = '<img src="img/icone_edit.png" height="20" title="view">';
 			}
 			if ($sta == 'A') { $asta = msg('status_A');
-			$img = '<img src="img/icone_view.png" height="50" title="view">';
+			$img = '<img src="img/icone_view.png" height="20" title="view">';
 			}
 			if ($sta == 'X') { $asta = msg('status_X');
 			}
@@ -336,20 +341,25 @@ class submit {
 
 			$id = $line['id_doc'];
 
-			$link = '<a href="' . $page_link . '?dd0=' . $id . '&dd90=' . checkpost($id) . '" class="link">';
+			$link = '<a href="' . $page_link . '?dd0=' . $id . '&dd90=' . checkpost($id) . '" class="link lt1">';
 
 			$tit = trim($line['doc_1_titulo']);
 			if (strlen($tit) == 0) { $tit = msg('not_definid');
 			}
 
 			$sx .= '<TR valign="top	">';
-			$sx .= '<TD>' . $line['doc_protocolo'];
+			$sx .= '<TD class="lt1">' . $line['doc_protocolo'];
 			$sx .= '<TD>';
 			$sx .= $link . $cor;
 			$sx .= $tit;
+			$sx .= '<TD><nobr>';
+			$sx .= '<font class="lt1">';
+			$sx .= msg('amendment_'.($line['doc_type']));
+			
+			
 			$sx .= '<TD>';
 			$sx .= '<font class="lt0">';
-			$sx .= msg('update') . ' ' . stodbr($line['doc_dt_atualizado']);
+			$sx .= stodbr($line['doc_dt_atualizado']);
 
 			$sx .= '<TD><nobr>' . $link . $cor;
 			$sx .= $asta;

@@ -30,6 +30,8 @@ class header {
 	var $email_smtp = '';
 	var $email_replay = '';
 	
+	var $prefix='';
+	
 	function load_committe()
 		{
 			$sql = "select * from _committee";
@@ -43,6 +45,7 @@ class header {
 					$this->email_name = $line['cm_name'];
 					$this->email_replay = $line['cm_email_replay'];
 					$this->site = $line['cm_site'];
+					$this->prefix = trim($line['cm_committe']);
 				}
 		}
 

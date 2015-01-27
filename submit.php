@@ -105,7 +105,14 @@ $proj->le($protocolo);
 				if ($pag_page == 4) { require("submit_04.php"); }
 				if ($pag_page == 5) { require("submit_05.php"); }
 				if ($pag_page == 6) { require("submit_06.php"); }
-				break;				
+				break;	
+			/* EMENDA */
+			case '003':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;							
 			default:
 				echo 'OPS:'.$proj->proj_doc_tipo;
 				break;

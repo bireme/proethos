@@ -1,6 +1,6 @@
 <?
 $sql = "select * from cep_submit_orca ";
-$sql .= "where sorca_protocol='".$dd[0]."' ";
+$sql .= "where sorca_protocol='".$dd[0]."'and sorca_ativo = 1 ";
 $sql .= " order by sorca_valor desc ";
 $orlt = db_query($sql);
 
@@ -17,7 +17,7 @@ while ($oline = db_read($orlt))
 		$pdf->MultiCell(0,8,msg('budget'),0,'L');
 		$orca_cab = true;
 		$pdf->Ln(6);
-/////////////////qqq cabeçalho orcamento
+/////////////////qqq cabeï¿½alho orcamento
 		$y = $pdf->GetY();
 		$pdf->SetLineWidth(0.3);
 		$pdf->Line(10,$y-2,200,$y-2);
