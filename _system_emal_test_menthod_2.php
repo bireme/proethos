@@ -21,8 +21,15 @@ $mail->Password = $pass;
 //Set who the message is to be sent from
 $mail->setFrom($from, $from_name);
 
+/* From name */
+
+			$mail -> FromName = $from_name;
+			$mail -> From = $from;
+
 //Set an alternative reply-to address
 $mail->addReplyTo($replay, $from_name);
+echo '<HR>Replay to:'.$replay.' '.htmlspecialchars($from_name).'<HR>';
+
 //Set who the message is to be sent to
 $mail->addAddress($email_to, 'Proethos User');
 //Set the subject line

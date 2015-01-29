@@ -75,7 +75,7 @@ class PHPMailer
      * The From name of the message.
      * @type string
      */
-    public $FromName = 'Root User';
+    public $FromName = 'ProEthos System';
 
     /**
      * The Sender email (Return-Path) of the message.
