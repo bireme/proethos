@@ -1,6 +1,11 @@
 <?php
 require ("cab.php");
 
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok == 0) { redirecina('main.php');
+}
+
 echo '<h1>E-mail system check</h1>';
 
 echo '<div class="border1 pad5">';

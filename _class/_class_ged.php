@@ -496,6 +496,7 @@ class ged
 
 			if ($saved == 0)
 				{
+				$up_maxsize = $this->php_max_size();
 				$options = '<option value="">'.msg('not_defined').'</option>';
 				$options .= $this->documents_type_form();
 				$page = page();
@@ -515,7 +516,7 @@ class ged
     				</fieldset>  
     				<BR>
     				<fieldset><legend>'.msg('file_tipo').'</legend>
-    				MaxSize: <B>'.numberformat($this->up_maxsize / (1024 * 1024),0,',','.').'MByte</B>
+    				MaxSize: <B>'.$this->php_max_size().' Bytes</B>
     				&nbsp;&nbsp;&nbsp;
 					Extension Valid: <B>'.$this->display_extension().'</B>';
 				$sx .= '</fieldset></form>';
@@ -525,7 +526,22 @@ class ged
 				$sc .= '<div>'.msg('gi_'.substr($this->tabela,0,10)).'</div>';
 			return($sc.$sx);
 			}
+		function php_max_size()
+			{
+				$size = ini_get('post_max_size');
+				$sigla = array('', 'k', 'M', 'G', 'T', 'P');
+				$dv = 0;
+				while ($size >= 1024) {
+					$size = ($size / 1024);
+					$dv++;
+				}
+				if ($dv > 0)
+					{
+						$size = number_format($size, 1) . $sigla[$dv] . ' byte';
+					}				
+				return($size);
 
+			}
 		function display_extension()
 			{
 				$sx = '';

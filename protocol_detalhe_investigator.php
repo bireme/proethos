@@ -73,7 +73,8 @@ $sx = 'Projeto';
 	
 	
 	echo '<BR>';
-	/* Research Management */
+	
+	/* Research Management - Enmienda */
 	$status = trim($cep->line['cep_status']);
 	if (($status == 'P') or ($status == 'Z'))
 	{

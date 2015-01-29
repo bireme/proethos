@@ -53,6 +53,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 
 	array_push($menu, array(msg('admin_update'), msg('system_teste'), '_system_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_test_email'), '_system_email_test.php'));
+	array_push($menu, array(msg('admin_update'), msg('system_php_info'), '_system_phpinfo.php'));
 	
 	$file = 'message.inf';
 	

@@ -188,14 +188,21 @@ class cep {
 		global $dd;
 		$cr = chr(13);
 		$sx = '<fieldset><legend>' . msg('amendment') . '</legend>';
+		$sx .= '<h2>'.msg('wdyd_amend').'</h2>';
+		$sx .= msg('wdyd_amend_inf');
 		if (strlen($dd[1]) == 0) {
 			$sx .= '<form action="' . page() . '">' . $cr;
-			$sx .= '<select name="dd1">' . $cr;
+			//$sx .= '<select name="dd1">' . $cr;
 			$sql = 'select * from cep_amendment_type where amt_ativo = 1 order by amt_ord ';
 			$rlt = db_query($sql);
-			while ($line = db_read($rlt)) { $sx .= '<option value="' . $line['amt_codigo'] . $line['amt_form'] . '">' . msg($line['amt_descrip']) . '</option>' . $cr;
+			while ($line = db_read($rlt)) {
+				//$sx .= '<option value="' . $line['amt_codigo'] . $line['amt_form'] . '">' . msg($line['amt_descrip']) . '</option>' . $cr;
+				$sx .= '<input type="radio" name="dd1" id="dd1" 
+							value="' . $line['amt_codigo'] . $line['amt_form'] . '"
+							>' . 
+							msg($line['amt_descrip']) . '</br>' . $cr;
 			}
-			$sx .= '</select>' . $cr;
+			//$sx .= '</select>' . $cr;
 			$sx .= '<input type="submit" value="' . msg('send_amandment') . '"  class="botao-submit">' . $cr;
 			$sx .= '</form>';
 		} else {
@@ -635,13 +642,14 @@ class cep {
 		$sx .= '</Table>' . chr(13);
 		return ($sx);
 	}
-	function altera_status_submit($status)
-		{
-			$proto_submit = strzero($this->protocolo,7);
-			$sql = "update cep_submit_documento set doc_status = '$status' 
+
+	function altera_status_submit($status) {
+		$proto_submit = strzero($this -> protocolo, 7);
+		$sql = "update cep_submit_documento set doc_status = '$status' 
 						where doc_protocolo = '$proto_submit' ";
-			$rlt = db_query($sql);
-		}
+		$rlt = db_query($sql);
+	}
+
 	function cep_update_date_dictamen($nt) {
 		$protocolo = $this -> protocolo;
 		$sql = "update " . $this -> tabela . " set cep_dt_parecer = " . $nt . " 
@@ -1832,8 +1840,7 @@ class cep {
 		/* Investigador */
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">';
-		{
+		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
 			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
 			//$sp .= '<TR><TD colspan=2>';
 
