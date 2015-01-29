@@ -13,15 +13,13 @@ class cep_reports
 		
 		function report_004($perf='#MEM')
 			{
-				$sql = "select * from usuario
-						inner join usuario_perfis_ativo on up_usuario = us_codigo
-						inner join usuario_perfil on up_perfil = usp_codigo
-						where 
-						(usp_codigo = '$perf' and up_ativo = 1)
-						or (us_perfil like '%".$perf."%') 
-						order by us_nome
+
+				$sql = "
+					SELECT * FROM usuario_perfis_ativo 
+						left join usuario on up_usuario = us_codigo
+						WHERE up_perfil = '$perf' and up_ativo = 1				
 				";
-				$sx = '<table width="100%" class="table_proj">';
+				$sx = '<table width="100%" class="tabela00">';
 				$sx .= '<TR><TH>'.msg('name');
 				$sx .= '<TH>'.msg('institution');
 				$sx .= '<TH>'.msg('email');
@@ -33,10 +31,10 @@ class cep_reports
 						$sx .= '<TR valign="top">';
 						$sx .= '<TD>'.$line['us_nome'];
 						$sx .= '<TD>'.$line['us_instituition'];
-						$sx .= '<TD>'.$line['us_email'];
+						$sx .= '<TD class="lt0">'.$line['us_email'];
 						if (strlen(trim($line['us_email_alt'])) > 0)
 							{
-								$sx .= '<BR>'.$line['us_email_alt'];
+								$sx .= '<TD class="lt0">'.$line['us_email_alt'];
 							}
 				}
 				$sx .= '</table>';	

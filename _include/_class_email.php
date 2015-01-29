@@ -37,8 +37,9 @@ if (!function_exists('enviaremail')) {
 			$mail -> Username = $from;
 			$mail -> Password = $pass;
 			$mail -> setFrom($from, $from_name);
-			$mail -> FromName = $from_name;
-			$mail -> From = $from;
+			
+			$mail -> FromName = $from;
+			$mail -> From = $from;			
 
 			if (strlen($replay) > 0)
 				{

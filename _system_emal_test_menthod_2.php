@@ -23,7 +23,7 @@ $mail->setFrom($from, $from_name);
 
 /* From name */
 
-			$mail -> FromName = $from_name;
+			$mail -> FromName = $from;
 			$mail -> From = $from;
 
 //Set an alternative reply-to address

@@ -110,7 +110,7 @@ class comunication
 			}
 		function send_form($email1,$email2)
 			{
-			global $dd,$acao,$institution_name;
+			global $dd,$acao,$institution_name,$hd;
 			global $edit_mode;
 			
 			if (strlen($acao) > 0)
@@ -118,7 +118,10 @@ class comunication
 					if ((strlen($dd[45]) > 0) and (strlen($dd[46]) > 0))
 						{
 							/* enviar e-mail */
-							$subject = $dd[45];
+							$subject = '<B>'.$hd->email_name.'</B>';
+							$subject .= '<HR>';
+							$subject .= $dd[45];
+							$subject .= '<BR><BR>COD:'.$this->protocolo;
 							$text = $dd[46];
 							$email = 'renefgj@gmail.com';							
 							enviaremail($email,'',$subject,$text);
@@ -135,6 +138,7 @@ class comunication
 						}
 					
 				}
+			
 			$sa .= '<TR valign="top"><TD>
 				<form method="post" action="'.page().'">
 				<input type="hidden" name="dd1" value="'.$dd[1].'">
@@ -142,7 +146,9 @@ class comunication
 				<input type="hidden" name="dd3" value="'.$dd[3].'">
 				<input type="hidden" name="dd90" value="'.$dd[90].'">
 				';
-			$subj = $institution_name.' - '.$this->protocolo;
+
+			$subj = $hd->email_name.' - '.$this->protocolo;
+			
 			$sa .= '<TABLE class="lt0">';
 			$sa .= '<TR valign="top"><TD>'.msg('mail_subject').'<TD>';
 			$sa .= '<input type="hidden" name="dd45" size=60 maxlength=100 value="'.$subj.'">'.$subj;
