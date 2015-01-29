@@ -27,6 +27,6 @@ Required
 - Free space at 20 Gigabytes Data
 - Internet connection
 
-To install read the "PROETHOS Install.pdf" in folder "_documents"
+To install read techinical information available on https://github.com/bireme/proethos/wiki.
 
 
