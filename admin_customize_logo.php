@@ -16,36 +16,33 @@ require ("cab.php");
 
 if (strlen($dd[1]) > 0) {
 	$filename = $_FILES['userfile']['name'];
-	print_r($_FILES['userfile']);
 	$tmp = $_FILES['userfile']['tmp_name'];
 	$type = $_FILES['userfile']['type'];
 	$dd[1] = trim($dd[1]);
-	echo '-->'.$type;
-	if ($dd[1] == 'logo1') 
-		{
-			 $dest = 'repositorio/layout/proethos_logo_1.jpg';
-			 if ($type != 'image/jpeg')
-			 	{
-			 		$dest = '';
-					$erro1 = '<font color="red">'.msg('only').' JPG '.msg('format').'</font>';
-			 	}			 
+
+	if ($dd[1] == 'logo1') {
+		$dest = 'document/proethos_logo_1.jpg';
+		if ($type != 'image/jpeg') {
+			$dest = '';
+			$erro1 = '<font color="red">' . msg('only') . ' JPG ' . msg('format') . '</font>';
 		}
-	if ($dd[1] == 'logo2') { $dest = 'repositorio/layout/proethos_logo_1.png';
 	}
-	if ($dd[1] == 'logo3') { $dest = 'repositorio/layout/proethos_logo_2.png';
+	if ($dd[1] == 'logo2') { $dest = 'document/proethos_logo_1.png';
 	}
-	if ($dd[1] == 'logo4') { $dest = 'repositorio/layout/proethos_logo_3.png';
+	if ($dd[1] == 'logo3') { $dest = 'document/proethos_logo_2.png';
+	}
+	if ($dd[1] == 'logo4') { $dest = 'document/proethos_logo_3.png';
 	}
 
 	if (strlen($dest) > 0) {
 		/* save */
 		if (move_uploaded_file($tmp, $dest)) { echo 'ok';
-		} else { { echo '--';
-			}
+		} else { echo '--';
 		}
-		redirecina(page());
-		exit ;
 	}
+	echo $dest;
+	redirecina(page());
+	exit ;
 }
 
 /* Imagens */

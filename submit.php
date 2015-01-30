@@ -105,7 +105,14 @@ $proj->le($protocolo);
 				if ($pag_page == 4) { require("submit_04.php"); }
 				if ($pag_page == 5) { require("submit_05.php"); }
 				if ($pag_page == 6) { require("submit_06.php"); }
-				break;	
+				break;
+			/* Evento adverso */
+			case '001':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;						
 			/* EMENDA */
 			case '002':
 				$pag_max = 3;
@@ -137,6 +144,29 @@ $proj->le($protocolo);
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;
+			/* EMENDA */
+			case '006':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;
+			/* EMENDA */
+			case '007':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;
+			/* EMENDA */
+			case '008':
+				$pag_max = 3;
+				if ($pag_page == 1) { require("submit_11.php"); }
+				if ($pag_page == 2) { require("submit_12.php"); }
+				if ($pag_page == 3) { require("submit_13.php"); }
+				break;
+
+
 			default:
 				echo 'OPS:'.$doc_tipo;
 				break;

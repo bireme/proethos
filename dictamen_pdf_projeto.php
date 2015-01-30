@@ -12,7 +12,12 @@ $pdf=new FPDF();
 $pdf->AliasNbPages();
 $ln = 0;
 $pdf->AddPage();
-$img = 'img/logo_dictamen.jpg';
+/* Logo Novo */
+$img = 'document/proegthos_logo_1.jpg';
+if (!(file_exists($img)))
+	{
+		$img = 'img/logo_dictamen.jpg';
+	}
 $pdf->Image($img,20,10);
 
 $pdf->SetFont('Times','B',16);

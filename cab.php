@@ -18,7 +18,7 @@ function logo($tp) {
 	global $LANG;
 	switch ($tp) {
 		case '1' :
-			$file = 'repositorio/layout/proethos_logo_1.jpg';
+			$file = 'document/proethos_logo_1.jpg';
 			if (file_exists($file))
 				{
 					return($file);
@@ -28,7 +28,7 @@ function logo($tp) {
 				}
 			break;
 		case '2' :
-			$file = 'repositorio/layout/proethos_logo_1.png';					
+			$file = 'document/proethos_logo_1.png';					
 			if (file_exists($file))
 				{
 					return($file);
@@ -39,7 +39,7 @@ function logo($tp) {
 				}
 			break;
 		case '3' :
-			$file = 'repositorio/layout/proethos_logo_2.png';			
+			$file = 'document/proethos_logo_2.png';			
 			if (file_exists($file))
 				{
 					return($file);
