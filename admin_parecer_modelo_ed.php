@@ -36,8 +36,9 @@ require("form_css.php");
 	
 	
 	/** Caso o registro seja validado */
-	if ($saved > 0)
+	if ($form->saved > 0)
 		{
+			echo "SALVO";
 			$cl->updatex();
 			redirecina('admin_parecer_modelo.php');
 		} else {

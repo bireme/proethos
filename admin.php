@@ -22,7 +22,7 @@ if ($ok==0) {
 } else {
 	$menu = array();
 	array_push($menu, array(msg('admin_ghost'), msg('ghost'), 'admin_ghost_user.php'));
-	array_push($menu, array(msg('admin_post_mail'), msg('post_mail'), 'admin_ic.php'));
+	/* array_push($menu, array(msg('admin_post_mail'), msg('post_mail'), 'admin_ic.php')); */
 	array_push($menu, array(msg('dictamen'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php'));
 	}
 
@@ -46,7 +46,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 	array_push($menu, array(msg('admin_tables'), msg('admin_country'), 'admin_country.php'));
 	array_push($menu, array(msg('admin_tables'), msg('admin_register_unit'), 'admin_register_unit.php'));
 
-	array_push($menu, array(msg('admin_tables'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php'));
+	/* array_push($menu, array(msg('admin_tables'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php')); */
 
 	array_push($menu, array(msg('admin_tables'), msg('admin_submission'), 'admin_submit_1.php'));
 	array_push($menu, array(msg('admin_tables'), msg('admin_submission').' '.msg('amendment'), 'admin_submit_2.php'));
