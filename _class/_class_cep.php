@@ -266,7 +266,7 @@ class cep {
 				$sx .= '<TD align="center">' . msg($msgt);
 				$sx .= '<TD width="5%" align="center">' . stodbr($line['doc_dt_atualizado']);
 				$sx .= '<TD align="center"><nobr>' . msg($sta);
-				$sx .= '<TD align="center"><nobr>' . msg($result) .'</td>';
+				$sx .= '<TD align="center"><nobr>' . msg($result);
 			}
 
 			$sql = "select * from cep_protocolos where 
@@ -274,7 +274,6 @@ class cep {
 						and cep_tipo = 'AME' 
 						order by cep_caae desc ";
 			$rlt = db_query($sql);
-			
 			while ($line = db_read($rlt)) {
 				$idx = $line['id_cep'];
 				$link = '<A HREF="protocol_detalhe_investigator.php?dd0=' . $idx . '&dd90=' . checkpost($idx) . '">';
@@ -1124,7 +1123,7 @@ class cep {
 		global $dd, $acao, $ss;
 		$act = msg('reedit_draft_opinion');
 		if ($acao == $act) {
-			$this -> cep_historic_append('014', msg('return_to_edition'));
+			$this -> cep_historic_append('013', msg('return_to_edition'));
 			$this -> cep_status_alter('D');
 			redirecina(page());
 		}
@@ -1222,11 +1221,9 @@ class cep {
 			$rlt = db_query($sql);
 		}
 
-	function email_communicate_investigator($id='') {
+	function email_communicate_investigator() {
 		global $ic;
-		if (strlen($id) > 0) { $id = '_'.$id; }
-		$ict = 'comm_invest'.$id;
-		$ttt = $ic -> ic($ict);
+		$ttt = $ic -> ic("communicate_investig");
 		$subj = $ttt['title'];
 		$txt = $ttt['text'];
 
@@ -1237,8 +1234,6 @@ class cep {
 
 		$txt = troca($txt, '$caae', $caae);
 		$txt = troca($txt, '$nome', $nome);
-		$txt = troca($txt, '$CAAE', $caae);
-		$txt = troca($txt, '$NOME', $nome);
 
 		if (strlen($email1) > 0) { enviaremail($email1, '', $subj, $txt);
 		}
@@ -1253,7 +1248,6 @@ class cep {
 		global $dd, $acao, $ss;
 		$act = msg('communicate_013');
 		if ($acao == $act) {
-			echo '<HR>';
 			$sql = "update " . $this -> tabela . " set
 							cep_dt_parecer = " . date("Ymd") . ",
 							cep_dt_liberacao = " . date("Ymd") . ",
@@ -1261,11 +1255,11 @@ class cep {
 					where id_cep = " . $this -> id_cep;
 			$rlt = db_query($sql);
 
-			$this -> email_communicate_investigator('013');
 			$this -> altera_status_submissao('Z');
 			$this -> cep_historic_append('013', msg('investigator_reported'));
 			$this -> cep_status_alter('P');
 			$this -> libera_tipo_parecer();
+			$this -> email_communicate_investigator();
 
 			
 			redirecina(page());
@@ -1379,6 +1373,7 @@ class cep {
 				}
 				if (strlen($email2) > 0) { enviaremail($email2, '', $subject, $txt);
 				}
+				enviaremail('renefgj@gmail.com', '', $subject, $txt);
 			}
 
 			$sx .= '<TR>';
@@ -1675,30 +1670,10 @@ class cep {
 		global $LANG;
 		$ic = new ic;
 		echo 'Enviar e-mail';
-
-		$ict = 'email_confirm_submission';
-		$ttt = $ic -> ic($ict);
-		$subj = $ttt['title'];
-		$txt = $ttt['text'];
-
-		$nome = $this -> line['us_nome'];
-		$email1 = $this -> line['us_email'];
-		$email2 = $this -> line['us_email_alt'];
-		$caae = $this -> line['cep_caae'];
-
-		$txt = troca($txt, '$caae', $caae);
-		$txt = troca($txt, '$nome', $nome);
-		$txt = troca($txt, '$CAAE', $caae);
-		$txt = troca($txt, '$NOME', $nome);
-
-		if (strlen($email1) > 0) { enviaremail($email1, '', $subj, $txt);
-		}
-		if (strlen($email2) > 0) { enviaremail($email2, '', $subj, $txt);
-		}
-		echo 'e-mail enviado '.$email1.' '.$email2;
-		echo '<BR><B>' . $subj . '</B>';
-		echo '<BR>' . $txt;
-		
+		$ic -> message('email_confirm_submission', $LANG);
+		$texto = $ic -> text;
+		$subject = $ic -> subject;
+		enviaremail('renefgj@gmail.com', '', $subject, $texto);
 	}
 
 	function envia_arquivos_submissao_apreciacao() {
@@ -2037,7 +2012,7 @@ class cep {
 		$sp .= trim($line['pais_nome']) . '&nbsp;';
 
 		$sp .= '<Td class="table_proj" colspan=2>';
-		$sp .= msg(trim($line['cep_pr_protocol'])) . '&nbsp;';
+		$sp .= mst(trim($line['cep_pr_protocol'])) . '&nbsp;';
 		
 		$sp .= '&nbsp;' . chr(13);
 		if (strlen($clinic) > 0) {
