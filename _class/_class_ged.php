@@ -112,9 +112,9 @@ class ged
 		function row()
 			{
 				global $cdf,$cdm,$masc;
-				$cdf = array('id_doct','doct_nome','doct_publico','doct_avaliador','doct_autor','doct_restrito','doct_ativo');
-				$cdm = array('cod',msg('nome'),msg('publico'),msg('avaliador'),msg('autor'),msg('restrito'),msg('ativo'));
-				$masc = array('','','SN','SN','SN','SN','SN','SN');
+				$cdf = array('id_doct','doct_nome','doct_codigo','doct_publico','doct_avaliador','doct_autor','doct_restrito','doct_ativo');
+				$cdm = array('cod',msg('nome'),msg('code'),msg('publico'),msg('avaliador'),msg('autor'),msg('restrito'),msg('ativo'));
+				$masc = array('','','','SN','SN','SN','SN','SN','SN');
 				return(1);				
 			}		
 		
@@ -162,7 +162,7 @@ class ged
 						if (!(file_exists($arq)))
 							{
 								echo $arq;
-								echo '<BR> Arquivo n�o localizado ';
+								echo '<BR> File not found ';
 								echo '<BR> Reportando erro ao administrador';
 							exit;
 							} else {
@@ -452,7 +452,7 @@ class ged
 						if ($extensoes[0] == '*') { $ind=0; }
 						if ($ind < 0) { $erro = '<font color=red >Erro:01 - '.msg('erro_extensao').'</font>'; }
 
-						/* diret�rio */
+						/* diretorio */
 						$nome = substr($nome,0,strlen($nome)-4);
 						$nome = lowercasesql(troca($nome,' ','_'));
 						$nome .= $ext;
@@ -498,7 +498,7 @@ class ged
 				{
 				$up_maxsize = $this->php_max_size();
 				$options = '<option value="">'.msg('not_defined').'</option>';
-				$options .= $this->documents_type_form();
+				$options .= $this->documents_type_form($dd[2]);
 				$page = page();
 		
 				$sx .= '<form id="upload" action="'.$page.'" method="post" enctype="multipart/form-data">
@@ -553,10 +553,17 @@ class ged
 					}
 				return($sx);
 			}
-		function documents_type_form()
+		function documents_type_form($type='')
 			{
 				global $dd;
+				if (strlen($type) > 5) { $type = ''; }
 				$sql = "select * from ".$this->tabela."_tipo where doct_ativo = 1 ";
+				if (strlen($type) == 0)
+					{
+						$sql .= " and doct_restrito = 0 ";
+					} else {
+						$sql .= " and doct_codigo = '$type' ";
+					}
 				$rlt = db_query($sql);
 				$sx = '';
 				while ($line = db_read($rlt))

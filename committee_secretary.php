@@ -9,7 +9,8 @@
  * @package ProEthos
  * @subpackage Secretary
  */
-if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS'))) {
+ 
+if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> valid('#SCR'))) {
 	
 	
 	$menu = array();

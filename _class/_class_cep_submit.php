@@ -299,7 +299,7 @@ class submit {
 	function protocolos_mostrar($rst) {
 		global $colunas;
 		$sx = '';
-		$sx .= '<table class="tabela00 lt3" width="100%">';
+		$sx .= '<table class="tabela00 lt1" width="100%">';
 		$sx .= '<TR class="lt1">
 				<TH width="10%">' . msg('caae');
 		$sx .= '<TH>' . msg('protocol_title');

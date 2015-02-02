@@ -3,7 +3,18 @@ require("db.php");
 
 require("_class/_class_dictamen.php");
 $dic = new dictamen;
-$dic->le_parecer($dd[1]);
+
+require("_class/_class_cep.php");
+$cep = new cep;
+
+$id = $dd[1];
+$ps = $dd[90];
+if (checkpost($id) != $ps)
+	{
+		echo 'Post Error!';
+		exit;
+	}
+$dic->le_parecer_id($dd[1]);
 
 /* Mensagens do sistema */
 require("_class/_class_message.php");

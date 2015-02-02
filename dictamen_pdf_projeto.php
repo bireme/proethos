@@ -82,10 +82,8 @@ $nome = trim($line['pr_situacao']);
 if ($nome == 'APR')
 	{
 	$rela = round($line['pr_accompaniment']);
+	$nome = $cep->monitoring($rela);
 	
-	if ($rela == 180) { $nome = msg('semiannual'); }
-	if ($rela == 365) { msg('annual'); }
-	if ($rela == -1) { msg('end_of_the_investigation'); }
 	$pdf->SetFont('Arial','',8);
 	$pdf->Cell(35,6,utf8_decode(msg('accompaniment')),T,T,'R');
 	$pdf->SetFont('Arial','B',11);
@@ -130,7 +128,7 @@ for ($st=0;$st < count($ar);$st++)
 			$pdf->MultiCell(0,5,utf8_decode($line[$text].chr(13).chr(10).chr(13).chr(10)),0,'J');
 		}
 	}
-	
+
 $field = trim($line['pr_situacao']);
 $texto = msg('dictamen_'.$field.'_1');
 $pdf->SetFont('Arial','',12);

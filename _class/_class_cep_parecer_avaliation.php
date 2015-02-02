@@ -223,6 +223,7 @@ class parecer_avaliation
 					if ($pp_status == 'A') { $sx .= msg('analysing'); }
 					if ($pp_status == 'B') { $sx .= $link.'<B>'.msg('available').'</B></A>'; }
 					if ($pp_status == 'X') { $sx .= msg('canceled'); }
+					if ($pp_status == 'D') { $sx .= '<font color="orange">'.msg('declined').'</font>'; }
 				}		
 			if ($sel == 0) 
 				{ $sx .= '<TR><TD colspan=5 align=center><BR>'.msg('no_indications'); }
@@ -243,7 +244,7 @@ class parecer_avaliation
 		{
 			global $dd,$acao,$_POST,$date;
 			$proto = $this->protocolo;
-			print_r($_POST);
+			
 			$sql = "select * from usuario 
 					left join cep_dictamen on (us_codigo = pp_avaliador and pp_protocolo = '$proto' )
 					left join institutions on it_codigo = us_empresa

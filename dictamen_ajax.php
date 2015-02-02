@@ -20,31 +20,28 @@ $LANG = $lg->language_read();
 if (file_exists($file)) { require($file); } else { echo 'message not found '.$file; }
 
 if (strlen($acao) > 0)
-	{			
+	{
  		$ok = $dict->dictamen_save($dd);
-		//echo '==>'.$ok;
-		//exit;
-		if ($ok == 2)
-			{
-				$proto = $dd[1];
-				$caae = $dd[1];
-				$cep->caae = $caae;
-				$cep->protocolo = $proto;
-				$cep->status = 'D';
+
+		$proto = $dd[1];
+		$caae = $dd[1];
+		$cep->caae = $caae;
+		$cep->protocolo = $proto;
+		$cep->status = 'D';
 				
-				$cep->cep_historic_append('PAE',msg('emited_dictamen'));
-				$dict->protocol = $proto;
+		$cep->cep_historic_append('PAE',msg('emited_dictamen'));
+		$dict->protocol = $proto;
 				
-				$dict->create_pdf($proto);
-				$dict->ged_delete_old($proto);
-				$dict->save_ged();
+//		$dict->create_pdf($proto);
+//		$dict->ged_delete_old($proto);
+//		$dict->save_ged();
 				
-				$cep->protocolo = $proto;
-				$cep->caae = $dd[1];
+		$cep->protocolo = $proto;
+		$cep->caae = $dd[1];
 				
-				$cep->cep_status_alter('E');
-				$cep->cep_update_date_dictamen(date("Ymd"));
-			}
+//		$cep->cep_status_alter('E');
+		$cep->cep_update_date_dictamen(date("Ymd"));
+
 		echo '</A>';			
 		echo '
 			<script>

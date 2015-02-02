@@ -104,9 +104,25 @@ echo $pos -> show($status);
 		echo $ged -> filelist();
 		//echo $LANG;
 		/* Enable UPload File to the Perfis */
-		if ($perfil -> valid('#SCR#MAS#COO#ADM')) { echo $ged -> upload_botton_with_type($protocolo);
+		$fechado = 0;
+		switch ($cep->status)
+			{
+			case 'P': $fechado = 1; break;
+			}
+		if (($perfil -> valid('#SCR#MAS#COO#ADM')) and ($fechado == 0)) 
+			{
+				 echo $ged -> upload_botton_with_type($protocolo);
 		}
 		echo '</table>';
+		
+			/* Dictamen */
+			if ($cep->status == 'D')
+			{
+			require ("_class/_class_dictamen.php");
+			$dict = new dictamen;
+			$dict -> protocol = $cep -> protocolo;
+			echo $dict -> mostra_pareceres_emitidos();
+			}
 		echo '<BR>';
 
 		if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> valid('#SCR'))) {
@@ -197,9 +213,10 @@ echo $pos -> show($status);
 
 				echo $cep -> action_display($bt);
 				echo '</div>';
-				echo '<BR><BR>';
+				echo '<BR>';
 				echo '</table>';
 			}
+
 
 			echo '<table width="100%" border=0 class="table_normal" >';
 			echo '<TR class="hd"><TD>' . msg('historic');
