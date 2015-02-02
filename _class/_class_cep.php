@@ -1675,6 +1675,7 @@ class cep {
 		$subject = $ic -> subject;
 		enviaremail('renefgj@gmail.com', '', $subject, $texto);
 	}
+	
 
 	function envia_arquivos_submissao_apreciacao() {
 		$protocolo = $this -> protocolo_submission;
