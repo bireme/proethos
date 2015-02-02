@@ -50,7 +50,8 @@ if ($ok == 1)
 	
 	/* Step 10 */
 	echo 'Enviando...';
-	$cep->confirm_submission_by_email();
+	$proj->confirm_submission_by_email();
+	exit;
 		
 	/* Step 2 */
 	$protocolo_cep = $cep->recupera_protocolo_submissao($protocolo,'1');

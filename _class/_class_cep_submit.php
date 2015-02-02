@@ -25,7 +25,18 @@ class submit {
 	var $amendment_type;
 
 	var $tabela = 'cep_submit_documento';
-
+	
+	function email_autores()
+		{
+			$proto = $this->doc_protocolo;
+			$sql = "select * from cep_submit_team 
+						inner join usuario on ct_author = us_codigo
+					where ct_protocol = '$proto'
+			";
+			echo $sql;			
+			exit;
+		}	
+	
 	function status_show($sta, $cor = 1) {
 		$sta = trim($sta);
 		$sx = msg('status_' . trim($this -> doc_status));

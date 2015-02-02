@@ -16,12 +16,14 @@ require("_class/_class_submit_manuscrito_field.php");
 	$clx = new fields;
 	$tabela = $clx->tabela;
 	
+	echo '<h1>'.msg('amendment_001').'</h1>';
+	
 	/* Nao alterar - dados comuns */
 	$label = msg($tabela);
 	$http_edit = 'admin_submit_2_ed.php'; 
 	//$http_ver = 'pibic_bolsa_tipo_detalhe.php'; 
 	$editar = True;
-	$http_redirect = 'admin_submit.php';
+	$http_redirect = 'admin_submit_2.php';
 	$clx->row();
 	$busca = true;
 	$offset = 20;

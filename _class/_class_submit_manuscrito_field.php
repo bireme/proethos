@@ -27,7 +27,15 @@ class fields
 			array_push($cp,array('$O 1:#YES&0:NO','sub_obrigatorio',msg('sub_obrigatorio'),False,True));
 			array_push($cp,array('$O 1:#YES&0:NO','sub_editavel',msg('sub_edit'),False,True));
 			array_push($cp,array('$H8','sub_informacao','',False,True));
-			array_push($cp,array('$O : &00001:Project&00002:Amendment','sub_projeto_tipo','00001',True,True));
+			$op = '&00002:'.msg('amendment_001');
+			$op .= '&00003:'.msg('amendment_002');
+			$op .= '&00004:'.msg('amendment_003');
+			$op .= '&00005:'.msg('amendment_004');
+			$op .= '&00006:'.msg('amendment_005');
+			$op .= '&00007:'.msg('amendment_006');
+			$op .= '&00008:'.msg('amendment_007');
+			
+			array_push($cp,array('$O : &00001:Project'.$op,'sub_projeto_tipo','Type submit',True,True));
 			
 			array_push($cp,array('$S100','sub_pdf_title','pdf_title',False,True));
 			array_push($cp,array('$O 1:#yes&0:#no','sub_pdf_mostra','Mostra',False,True));

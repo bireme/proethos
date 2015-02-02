@@ -200,7 +200,7 @@ class cep {
 				$sx .= '<input type="radio" name="dd1" id="dd1" 
 							value="' . $line['amt_codigo'] . $line['amt_form'] . '"
 							>' . 
-							msg($line['amt_descrip']) . '</br>' . $cr;
+							msg($line['amt_descrip']) .'</br>' . $cr;
 			}
 			//$sx .= '</select>' . $cr;
 			$sx .= '<input type="submit" value="' . msg('send_amandment') . '"  class="form_submit">' . $cr;
@@ -981,7 +981,6 @@ class cep {
 				}
 				if (strlen($email2) > 0) { enviaremail($email2, '', $subject, $txt);
 				}
-				enviaremail('renefgj@gmail.com', '', $subject, $txt);
 			}
 
 			$sx .= '<TR>';
@@ -1670,12 +1669,26 @@ class cep {
 		global $LANG;
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
-		print_r($this);
+
 		$texto = $ic['text'];
 		$subject = $ic['title'];
+		
+		$emails = $this->email_autores();
+		
+		
 		enviaremail('renefgj@gmail.com', '', $subject, $texto);
 	}
 	
+	function email_autores()
+		{
+			$proto = $this->protocolo_cep;
+			$sql = "select * from cep_team 
+						inner join usuario on ct_author = us_codigo
+					where ct_protocol = '$proto'
+			";
+			echo $sql;			
+			exit;
+		}	
 
 	function envia_arquivos_submissao_apreciacao() {
 		$protocolo = $this -> protocolo_submission;

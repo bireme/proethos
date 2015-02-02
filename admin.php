@@ -48,8 +48,14 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 
 	/* array_push($menu, array(msg('admin_tables'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php')); */
 
-	array_push($menu, array(msg('admin_tables'), msg('admin_submission'), 'admin_submit_1.php'));
-	array_push($menu, array(msg('admin_tables'), msg('admin_submission').' '.msg('amendment'), 'admin_submit_2.php'));
+	array_push($menu, array(msg('admin_submission'), msg('admin_submission'), 'admin_submit_1.php'));
+	array_push($menu, array(msg('admin_submission'), msg('amendment_001'), 'admin_submit_2.php'));
+	array_push($menu, array(msg('admin_submission'), msg('amendment_002'), 'admin_submit_3.php'));
+	array_push($menu, array(msg('admin_submission'), msg('amendment_003'), 'admin_submit_4.php'));
+	array_push($menu, array(msg('admin_submission'), msg('amendment_004'), 'admin_submit_5.php'));
+	array_push($menu, array(msg('admin_submission'), msg('amendment_005'), 'admin_submit_6.php'));
+	array_push($menu, array(msg('admin_submission'), msg('amendment_006'), 'admin_submit_7.php'));
+	array_push($menu, array(msg('admin_submission'), msg('amendment_007'), 'admin_submit_8.php'));
 
 	array_push($menu, array(msg('admin_update'), msg('system_teste'), '_system_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_test_email'), '_system_email_test.php'));

@@ -16,7 +16,7 @@ require("form_css.php");
 	$http_redirect = '';
 	$tit = msg("titulo");
 
-	/** Comandos de Edicao */
+	/** Comandos de Edi��o */
 	
 	$tela = $form->editar($cp,$tabela);	
 	
@@ -25,7 +25,7 @@ require("form_css.php");
 		{
 			echo 'Salvo';
 			$cl->updatex();
-			redirecina('admin_submit_2.php');
+			redirecina('admin_submit_4.php');
 		} else {
 			echo $tela;
 		}

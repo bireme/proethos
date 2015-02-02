@@ -122,9 +122,9 @@ class message {
 	function cp() {
 		$cp = array();
 		array_push($cp, array('$H8', 'id_msg', 'key', False, True));
-		array_push($cp, array('$H8', 'msg_pag', msg('page'), False, True));
-		array_push($cp, array('$O pt_BR:Portugues Brasil&en_US:English&es:Spanish', 'msg_language', msg('language'), True, False));
-		array_push($cp, array('$S40', 'msg_field', msg('field'), True, False));
+		array_push($cp, array('$H8', 'msg_pag', msg('page'), False, False));
+		array_push($cp, array('$O pt_BR:Portugues Brasil&en_US:English&es:Spanish', 'msg_language', msg('language'), False, False));
+		array_push($cp, array('$S40', 'msg_field', msg('field'), False, False));
 		array_push($cp, array('$T60:4', 'msg_content', msg('content'), True, True));
 		array_push($cp, array('$O 1:YES&0:NO', 'msg_ativo', msg('active'), True, True));
 		return ($cp);
