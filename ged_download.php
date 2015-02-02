@@ -16,7 +16,7 @@ require('_class/_class_message.php');
 	$tabela = 'ged_upload';
 	$link_msg = '../messages/msg_'.$tabela.'.php';
 	if (file_exists($link_msg)) { require($link_msg); }
-	
+
 $id = $dd[0];
 $secu = uppercase($secu);
 $chk1 = checkpost($id.$secu);

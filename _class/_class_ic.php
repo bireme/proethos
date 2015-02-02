@@ -63,8 +63,6 @@ class ic
 					} else {
 						$title = $cod;
 						$txt .= 'Message not found: '.$cod.' ('.$LANG.')';
-						echo '<HR>'.$txt;
-						exit;
 					}
 				$txt .= '<BR><BR><font style="font-size:8px">MSG_COD:'.$cod.'</font>';
 				$txt = mst($txt);

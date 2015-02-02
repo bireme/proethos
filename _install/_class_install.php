@@ -59,7 +59,7 @@ class install
 				$sx .= '$base_pass=\''.$base_pass.'\';'.$cr;
 				$sx .= ''.$cr;
 				$sx .= '$ok = db_connect();'.$cr;
-				$sx .= '?>'.$cr;
+				$sx .= '?>';
 				echo '<script>'.$cr;
 				echo ' $("#config_file").fadeIn( "slow" );'.$cr;
 				
@@ -72,7 +72,7 @@ class install
 				echo '</script>'.$cr;
 
 				$fl = fopen($file,'w');
-				fwrite($fl, $sx . $cr);
+				fwrite($fl, $sx);
 				fclose($fl);
 				
 				echo 'file created!';

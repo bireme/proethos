@@ -1669,10 +1669,10 @@ class cep {
 	function confirm_submission_by_email() {
 		global $LANG;
 		$ic = new ic;
-		echo 'Enviar e-mail';
-		$ic -> message('email_confirm_submission', $LANG);
-		$texto = $ic -> text;
-		$subject = $ic -> subject;
+		$ic = $ic -> ic('email_confirm_subm');
+		print_r($this);
+		$texto = $ic['text'];
+		$subject = $ic['title'];
 		enviaremail('renefgj@gmail.com', '', $subject, $texto);
 	}
 	

@@ -148,7 +148,7 @@ class ged
 				header("Content-Type: $ctype");
 				header('Content-Disposition: attachment; filename="'.$this->file_name.'"');
 				header("Content-type: application-download");
-				header("Content-Transfer-Encoding: binary");				
+				header("Content-Transfer-Encoding: binary");			
 				readfile($this->file_path);
 			}
 		
@@ -168,6 +168,7 @@ class ged
 							} else {
 								/** Download do arquivo **/
 								$this->download_send();
+								exit;
 							}
 					} else { echo '<BR><font color="red">ID not found'; }							
 			}
@@ -684,3 +685,4 @@ class ged
 				$rlt = db_query($sql);						
 			}		
 	}
+?>
