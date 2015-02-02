@@ -78,7 +78,7 @@ $sx = 'Projeto';
 	$status = trim($cep->line['cep_status']);
 	$tipo = $cep->line['cep_tipo'];
 	$situacao = trim($cep->line['cep_pr_protocol']);
-	
+		
 	if (($status == 'P') or ($status == 'Z'))
 	{
 		echo $cep->show_amendment();
