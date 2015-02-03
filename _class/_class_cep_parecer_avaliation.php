@@ -15,7 +15,7 @@ class parecer_avaliation
 		var $id;
 		
 		
-		function set_avaliables($id,$req)
+		function set_avaliables($id,$req,$ed=1)
 			{
 				global $messa;
 				$link = '<A HREF="#set" onclick="newxy2(';
@@ -24,12 +24,15 @@ class parecer_avaliation
 				$link .= '&dd90='.checkpost($id);
 				$link .= "',";
 				$link .= '300,300);">';
-				$link .= '<font class="lt4">';
-				$link .= $req;
-				$link .= '</font>';
-				$link .= '</A>';
 				
-				$sa = msg('dictamen').'<BR>'.$link.'<BR>'.msg('required');
+				$sa = '<font class="lt4">';
+				$sa .= $req;
+				$sa .= '</font>';
+				$sa .= '</A>';
+				
+				if ($ed == 0) { $link = ''; }
+				
+				$sa = msg('dictamen').'<BR>'.$link.$sa.'<BR>'.msg('required');
 				return($sa);
 			}
 		

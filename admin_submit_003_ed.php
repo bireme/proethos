@@ -8,13 +8,15 @@ require($include.'_class_form.php');
 $form = new form;
 require("form_css.php");
 
+echo '<h1>'.msg('amendment_003').'</h1>';
+$dd[12] = '00003';
+
 	$cl = new fields;
 	$cp = $cl->cp();
 	$tabela = $cl->tabela;
 	
 	$http_edit = 'admin_submit_ed.php';
 	$http_redirect = '';
-	$tit = msg("titulo");
 
 	/** Comandos de Edicao */
 	
@@ -25,7 +27,7 @@ require("form_css.php");
 		{
 			echo 'Salvo';
 			$cl->updatex();
-			redirecina('admin_submit_2.php');
+			redirecina('admin_submit_003.php');
 		} else {
 			echo $tela;
 		}

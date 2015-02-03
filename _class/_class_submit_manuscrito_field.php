@@ -14,6 +14,7 @@ class fields
 	var $tabela = 'cep_submit_manuscrito_field';
 	function cp()
 		{
+			$linkf = '<center><A HREF="help_fields.php" target="_newpost">'.msg("help_file")."</a></center>";
 			$cp = array();
 			array_push($cp,array('$H8','id_sub','',False,True));
 			array_push($cp,array('$[1-99]','sub_pag',msg('pagina	'),True,True));
@@ -21,19 +22,19 @@ class fields
 			array_push($cp,array('$[1-20]','sub_ordem',msg('sub_ordem'),False,True));
 			array_push($cp,array('$S100','sub_descricao','descricao',False,True));
 			array_push($cp,array('$T60:4','sub_field','field',False,True));
-			array_push($cp,array('$S30','sub_css',msg('sub_css'),False,True));			
+			array_push($cp,array('$M','',$linkf,False,True));			
 			array_push($cp,array('$O 1:#YES&0:NO','sub_ativo',msg('sub_ativo'),False,True));
 			array_push($cp,array('$H8','sub_codigo','',False,True));
 			array_push($cp,array('$O 1:#YES&0:NO','sub_obrigatorio',msg('sub_obrigatorio'),False,True));
 			array_push($cp,array('$O 1:#YES&0:NO','sub_editavel',msg('sub_edit'),False,True));
 			array_push($cp,array('$H8','sub_informacao','',False,True));
-			$op = '&00002:'.msg('amendment_001');
-			$op .= '&00003:'.msg('amendment_002');
-			$op .= '&00004:'.msg('amendment_003');
-			$op .= '&00005:'.msg('amendment_004');
-			$op .= '&00006:'.msg('amendment_005');
-			$op .= '&00007:'.msg('amendment_006');
-			$op .= '&00008:'.msg('amendment_007');
+			$op = '&00001:'.msg('amendment_001');
+			$op .= '&00002:'.msg('amendment_002');
+			$op .= '&00003:'.msg('amendment_003');
+			$op .= '&00004:'.msg('amendment_004');
+			$op .= '&00005:'.msg('amendment_005');
+			$op .= '&00006:'.msg('amendment_006');
+			$op .= '&00007:'.msg('amendment_007');
 			
 			array_push($cp,array('$O : &00001:Project'.$op,'sub_projeto_tipo','Type submit',True,True));
 			
@@ -42,8 +43,9 @@ class fields
 			array_push($cp,array('$O L:Left&J:Justify&R:Right','sub_pdf_align',msg('align'),False,True));
 			array_push($cp,array('$O 12:12','sub_pdf_font_size','size',True,True));
 			array_push($cp,array('$O 6:6px&8:8px&10:10px&12:12px','sub_pdf_space',msg('space'),True,True));
-			array_push($cp,array('$I8','sub_limite',msg('limite_words'),True,True));
-			array_push($cp,array('$S100','sub_caption',msg('sub_caption'),False,True));
+			//array_push($cp,array('$I8','sub_limite',msg('limite_words'),True,True));
+			array_push($cp,array('$HV','sub_limite','99999',True,True));
+			//array_push($cp,array('$S100','sub_caption',msg('sub_caption'),False,True));
 			array_push($cp,array('$S7','sub_id',msg('sub_reference'),False,True));
 			return($cp);
 		}	

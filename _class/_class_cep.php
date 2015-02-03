@@ -188,41 +188,55 @@ class cep {
 		global $dd;
 		$cr = chr(13);
 		$sx = '<fieldset><legend>' . msg('amendment') . '</legend>';
-		$sx .= '<h2>'.msg('wdyd_amend').'</h2>';
+		/* OPtions */
+		$sx .= '<div style="float: right">
+				<input type="button" value="' . msg("bottom_monitoring") . '" id="monitoring_bottom">
+				</div>';
+		$sx .= '
+				<script>
+					$("#monitoring_bottom").click(function() {
+						$("#monitoring").toggle("slow");
+					});
+				</script>
+				';
+
+		/* descript */
+		$sx .= '<h2>' . msg('wdyd_amend') . '</h2>';
 		$sx .= msg('wdyd_amend_inf');
+
+		$sx .= '<div id="monitoring" style="display: none;">';
 		if (strlen($dd[1]) == 0) {
 			$sx .= '<form action="' . page() . '">' . $cr;
 			//$sx .= '<select name="dd1">' . $cr;
-			$sql = 'select * from cep_amendment_type where amt_ativo = 1 order by amt_ord ';
-			$rlt = db_query($sql);
-			while ($line = db_read($rlt)) {
-				//$sx .= '<option value="' . $line['amt_codigo'] . $line['amt_form'] . '">' . msg($line['amt_descrip']) . '</option>' . $cr;
+			for ($r = 1; $r <= 7; $r++) {
+				$btn = 'amendment_' . strzero($r, 3);
 				$sx .= '<input type="radio" name="dd1" id="dd1" 
-							value="' . $line['amt_codigo'] . $line['amt_form'] . '"
-							>' . 
-							msg($line['amt_descrip']) .'</br>' . $cr;
+							value="' . '001' . strzero($r, 3) . '"
+							>' . msg($btn) . '</br>' . $cr;
 			}
-			//$sx .= '</select>' . $cr;
-			$sx .= '<input type="submit" value="' . msg('send_amandment') . '"  class="form_submit">' . $cr;
+
+			$sx .= '<input type="submit" value="' . msg('send_monitoreo') . '"  class="form_submit">' . $cr;
 			$sx .= '</form>';
 		} else {
 			$act = substr($dd[1], 0, 3);
-			$form = substr($dd[1], 3, 5);
+			$form = substr($dd[1], 3, 3);
 
 			if ($form == '00001') { $sx .= $this -> gp_form_00001($act);
 			}
 			if ($form != '00001') { $sx .= $this -> gp_form($form, $act);
 			}
 		}
+		$sx .= '</div>';
 		$sx .= '</fieldset>';
 		return ($sx);
 	}
 
 	/* Formulario de Submissão */
 	function gp_form($form, $act) {
-		global $dd;
-		$this -> create_amendment($act);
+		$this -> create_amendment($form);
 		$protocolo = round($this -> amendment_protocol);
+
+		/* Redirecionamento */
 		$link = 'protocol_submit.php?dd0=' . $protocolo . '&dd5=TO_SUBMIT&dd90' . checkpost($protocolo);
 		redirecina($link);
 		return ($sx);
@@ -288,7 +302,7 @@ class cep {
 				$sx .= '<TD>' . $link . msg($msgt);
 				$sx .= '<TD width="5%">' . $link . stodbr($line['cep_atualizado']);
 				$sx .= '<TD><nobr>' . msg('cep_status_' . $sta);
-				$sx .= '<TD align="center"><nobr>' . msg($str);				
+				$sx .= '<TD align="center"><nobr>' . msg($str);
 
 			}
 			$sx .= '</table>';
@@ -308,6 +322,7 @@ class cep {
 	}
 
 	function create_amendment($tp) {
+		
 		$this -> updatex_submit();
 		$title = $this -> line['cep_titulo'];
 		$titlep = $this -> line['cep_titulo_public'];
@@ -329,6 +344,7 @@ class cep {
 			$protocol = $line['doc_protocolo'];
 			$sql = "update cep_submit_documento set 
 						doc_type = '$tp' ,
+						doc_tipo = '$tp' ,
 						doc_dt_atualizado = " . date("Ymd") . "
 						where id_doc = " . round($line['id_doc']);
 			$rlt = db_query($sql);
@@ -347,15 +363,47 @@ class cep {
 					'$investigator','$investigator','@',
 					'','$tp','$caae'
 					)";
-			$rlt = db_query($sql);
+						echo $sql;
+						exit;
+
+						
+						
+									$rlt = db_query($sql);
 			$this -> updatex_submit();
 		}
 		$rlt = db_query($sqlx);
 		if ($line = db_read($rlt)) { $protocol = $line['doc_protocolo'];
 		}
 		$this -> amendment_protocol = $protocol;
+
+		/* Recupera autores */
+		$this -> copy_authors($this -> protocolo, $this -> amendment_protocol = $protocol);
+
 		return ($sx);
 
+	}
+
+	function copy_authors($from, $to) {
+		$sql = "select * from cep_team where ct_protocol = '$from' and ct_ativo = 1";
+		$rlt = db_query($sql);
+		$sqli = '';
+		while ($line = db_read($rlt)) {
+			$author = $line['ct_author'];
+			$type = $line['ct_type'];
+			$data = $line['ct_data'];
+			$sqli .= "insert into cep_team 
+								(ct_protocol, ct_author, ct_type, ct_data, ct_ativo)
+								values
+								('$to','$author','$type',$data,1);
+								";
+		}
+		if (strlen($sqli) > 0) {
+			$sql = "update cep_team set ct_ativo = 0 where ct_protocol = '$to' ";
+			$rlt = db_query($sql);
+			/* Execute Insert */
+			$rrr = db_query($sqli);
+		}
+		return(1);
 	}
 
 	function updatex_submit() {
@@ -807,7 +855,7 @@ class cep {
 				redirecina(page());
 			}
 			if ($dd[8] == '2') {
-				$this -> niec_save('', 1 , 1);
+				$this -> niec_save('', 1, 1);
 				$this -> cep_historic_append("016", "manuscript_isent");
 				$this -> cep_status_alter("D");
 				redirecina(page());
@@ -1099,22 +1147,22 @@ class cep {
 
 	function action_012() {
 		global $dd, $acao, $ss;
-		
-		$sql = "select * from cep_ged_documento where doc_dd0 = '".$this->protocolo."' and doc_tipo = 'DICTM' and doc_ativo = 1";
+
+		$sql = "select * from cep_ged_documento where doc_dd0 = '" . $this -> protocolo . "' 
+				and doc_tipo = 'DICTM' and doc_ativo = 1";
 		$rlt = db_query($sql);
 		$exist = 0;
-		if (!($line = db_read($rlt)))
-			{
+		if (!($line = db_read($rlt))) {
 			$act = msg('submit');
 			$sx .= '<fieldset><legend><A NAME="dictame"></A>' . msg('action_012') . '</legend>';
 			$sx .= '<div id="dictame">';
 			$protocol = $this -> line['cep_protocol'];
 			$tipo = $this -> line['cep_tipo'];
-	
+
 			$sx .= $this -> dictame_show($protocol, $tipo);
 			$sx .= '</div>';
 			$sx .= '</fieldset>';
-			}
+		}
 		return ($sx);
 	}
 
@@ -1136,22 +1184,23 @@ class cep {
 		$sx .= '</fieldset>';
 		return ($sx);
 	}
-	function salvar_decisao_no_protocolo()
-		{
-		$proto = $this->protocolo;
+
+	function salvar_decisao_no_protocolo() {
+		$proto = $this -> protocolo;
 		$sql = "select * from cep_parecer where pr_protocol = '$proto' and pr_status = 'A' or pr_status = 'B' ";
 		$rlt = db_query($sql);
 		$line = db_read($rlt);
 		$tipo = trim($line['pr_situacao']);
 		$sql = "update cep_protocolos set 
-					cep_pr_protocol = 'pm_".$tipo."'
+					cep_pr_protocol = 'pm_" . $tipo . "'
 					where cep_protocol = '$proto' 
 		";
 		$rlt = db_query($sql);
-		return(1);
-		}
+		return (1);
+	}
+
 	function action_021() {
-		global $acao,$dd;
+		global $acao, $dd;
 		$act = msg('finish_avaliation_act');
 		if ($acao == $act) {
 			$this -> salvar_decisao_no_protocolo();
@@ -1160,7 +1209,7 @@ class cep {
 			$this -> cep_status_alter('E');
 			redirecina(page());
 		}
-		
+
 		$sx .= '<fieldset><legend>' . msg('action_021') . '</legend>';
 		$sx .= '<form>';
 		$sx .= msg('finish_avaliation');
@@ -1168,11 +1217,11 @@ class cep {
 		$sx .= '<BR>';
 		$sx .= '<input type="submit" name="acao" value="' . $act . '"  class="form_submit">';
 		$sx .= '</form>';
-		
+
 		$sx .= '</fieldset>';
-		return ($sx);		
+		return ($sx);
 	}
-	
+
 	function action_020() {
 		global $dd, $acao, $ss;
 		$act = msg('reedit_draft_opinion');
@@ -1182,43 +1231,43 @@ class cep {
 			redirecina(page());
 		}
 		$sx .= '<fieldset><legend>' . msg('action_020') . '</legend>';
-		$sql = "select * from cep_ged_documento where doc_dd0 = '".$this->protocolo."' and doc_tipo = 'DICTM' and doc_ativo = 1";
+		$sql = "select * from cep_ged_documento where doc_dd0 = '" . $this -> protocolo . "' and doc_tipo = 'DICTM' and doc_ativo = 1";
 		$rlt = db_query($sql);
 		$exist = 0;
-		if ($line = db_read($rlt))
-			{
-				$exist = 1;
-				$idd = $line['id_doc'];
-			}
-			
-		if ($exist == 1)
-			{
-				/* Remove */
-				$sx .= msg('remove_draft_opinion_inf');
-				$sx .= ' ';
-				$sx .= '<BR>';			
-									
-				$onclick = 'onclick="newwin2(\'ged_remove_restrict.php?dd0='.$idd.'&dd90='.checkpost($idd).'&dd1='.$this->protocolo.'&dd2=DICTM\',100,100);" ';
-				$sx .= '<input type="button" class="form_submit" value="'.msg('remove_dictamen').'" '.$onclick.'>';				
-			} else {
-				/* Upload */
-				$sx .= msg('upload_draft_opinion_inf');
-				$sx .= ' ';
-				$sx .= '<BR>';
-							
-				$onclick = 'onclick="newwin2(\'ged_upload_restrict.php?dd1='.$this->protocolo.'&dd2=DICTM\',800,400);" ';
-				$sx .= '<input type="button" class="form_submit" value="'.msg('upload_dictamen').'" '.$onclick.'>';				
-			}
+		if ($line = db_read($rlt)) {
+			$exist = 1;
+			$idd = $line['id_doc'];
+		}
+
+		if ($exist == 1) {
+			/* Remove */
+			$sx .= msg('remove_draft_opinion_inf');
+			$sx .= ' ';
+			$sx .= '<BR>';
+
+			$onclick = 'onclick="newwin2(\'ged_remove_restrict.php?dd0=' . $idd . '&dd90=' . checkpost($idd) . '&dd1=' . $this -> protocolo . '&dd2=DICTM\',100,100);" ';
+			$sx .= '<input type="button" class="form_submit" value="' . msg('remove_dictamen') . '" ' . $onclick . '>';
+		} else {
+			/* Upload */
+			$sx .= msg('upload_draft_opinion_inf');
+			$sx .= ' ';
+			$sx .= '<BR>';
+
+			$onclick = 'onclick="newwin2(\'ged_upload_restrict.php?dd1=' . $this -> protocolo . '&dd2=DICTM\',800,400);" ';
+			$sx .= '<input type="button" class="form_submit" value="' . msg('upload_dictamen') . '" ' . $onclick . '>';
+		}
 		$sx .= '</fieldset>';
 		return ($sx);
 	}
 
-	function avaliaca_declinar()
-		{
-			$proto = $this->protocolo;
-			$sql = "update cep_dictamen set pp_status ='D' where pp_protocolo = '$proto' and pp_status = '@' ";
-			$rlt = db_query($sql);
-		}
+	function avaliaca_declinar() {
+		/* Declinar avaliacao nao realizada */
+		$proto = $this -> protocolo;
+		$sql = "update cep_dictamen set pp_status ='D' 
+				where (pp_protocolo = '$proto') and (pp_status = '@')
+				";
+		$rlt = db_query($sql);
+	}
 
 	function email_communicate_investigator() {
 		global $ic;
@@ -1260,7 +1309,6 @@ class cep {
 			$this -> libera_tipo_parecer();
 			$this -> email_communicate_investigator();
 
-			
 			redirecina(page());
 		}
 		$sx .= '<fieldset><legend>' . msg('action_013') . '</legend>';
@@ -1274,12 +1322,12 @@ class cep {
 		return ($sx);
 	}
 
-	function altera_status_submissao($para)
-		{
-			$proto = $this->line['cep_fr'];
-			$sql = "update cep_submit_documento set doc_status = '$para' where doc_protocolo = '$proto' ";
-			$rlt = db_query($sql);
-		}
+	function altera_status_submissao($para) {
+		$proto = $this -> line['cep_fr'];
+		$sql = "update cep_submit_documento set doc_status = '$para' where doc_protocolo = '$proto' ";
+		$rlt = db_query($sql);
+	}
+
 	function dictame_show($caae, $tipo) {
 		$sx = '
 			<script>
@@ -1437,16 +1485,15 @@ class cep {
 		return ($sa);
 	}
 
-	function libera_tipo_parecer()
-		{
-			$sql = "update cep_ged_documento set 
+	function libera_tipo_parecer() {
+		$sql = "update cep_ged_documento set 
 					doc_tipo = 'DICT' 
 					where doc_tipo = 'DICTM' 
-						and doc_dd0 = '".$this->protocolo."'
+						and doc_dd0 = '" . $this -> protocolo . "'
 						and doc_ativo = 1 ";
-			$rlt = db_query($sql);
-			return(1);
-		}
+		$rlt = db_query($sql);
+		return (1);
+	}
 
 	function action_display($bt) {
 		global $dd, $acao, $ss, $perfil;
@@ -1533,21 +1580,19 @@ class cep {
 		$bt = array();
 		$btx = array();
 		/* se status @ */
-		
+
 		/* valida se já exist dictamen */
-		$sql = "select * from cep_ged_documento where doc_dd0 = '".$this->protocolo."' and doc_tipo = 'DICTM' and doc_ativo = 1";
+		$sql = "select * from cep_ged_documento where doc_dd0 = '" . $this -> protocolo . "' and doc_tipo = 'DICTM' and doc_ativo = 1";
 		$rlt = db_query($sql);
 		$exist = 0;
 		$wh = '';
-		if ($line = db_read($rlt))
-			{
-				$exist = 1;
-				$wh = " and actionp_action <> '012' ";
-			} else {
-				$exist = 0;
-				$wh = " and actionp_action <> '021' ";
-			}		
-		
+		if ($line = db_read($rlt)) {
+			$exist = 1;
+			$wh = " and actionp_action <> '012' ";
+		} else {
+			$exist = 0;
+			$wh = " and actionp_action <> '021' ";
+		}
 
 		/* Seleciona Action */
 		$sql = "select * from cep_action 
@@ -1555,7 +1600,7 @@ class cep {
 			where action_status = '$ac' and action_ativa = 1 $wh
 			order by actionp_action
 			";
-		
+
 		$rlt = db_query($sql);
 		while ($line = db_read($rlt)) {
 			$code = $line['action_code'];
@@ -1672,23 +1717,30 @@ class cep {
 
 		$texto = $ic['text'];
 		$subject = $ic['title'];
-		
-		$emails = $this->email_autores();
-		
-		
+
+		$emails = $this -> email_autores();
+
 		enviaremail('renefgj@gmail.com', '', $subject, $texto);
 	}
-	
-	function email_autores()
-		{
-			$proto = $this->protocolo_cep;
-			$sql = "select * from cep_team 
+
+	function email_autores() {
+		$proto = $this -> protocolo_cep;
+		$sql = "select * from cep_team 
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
 			";
-			echo $sql;			
-			exit;
-		}	
+		$rlt = db_query($sql);
+		$emails = array();
+		while ($line = db_read($rlt)) {
+			$email1 = trim($line['us_email']);
+			$email2 = trim($line['us_email_alt']);
+			if (strlen($email1) > 0) { array_push($emails, $email1);
+			}
+			if (strlen($email2) > 0) { array_push($emails, $email2);
+			}
+		}
+		return ($emails);
+	}
 
 	function envia_arquivos_submissao_apreciacao() {
 		$protocolo = $this -> protocolo_submission;
@@ -1828,7 +1880,7 @@ class cep {
 		global $messa;
 		$sql = "select * from cep_protocolos_historic 
 				where his_protocol = '" . $this -> protocolo . "' 
-				order by his_data desc, his_time desc, id_his ";
+				order by his_data, his_time, id_his ";
 		$rlt = db_query($sql);
 
 		$sx .= '<table width="100%" class="lt1" cellpadding=2 cellspacing=0 border=1>';
@@ -1841,9 +1893,9 @@ class cep {
 		while ($line = db_read($rlt)) {
 			$to++;
 			$sx .= '<TR>';
-			$sx .= '<TD>';
+			$sx .= '<TD align="center">';
 			$sx .= stodate($line['his_data']);
-			$sx .= '<TD>';
+			$sx .= '<TD align="center">';
 			$sx .= $line['his_time'];
 			$sx .= '<TD>';
 			$sx .= $line['his_comment'];
@@ -1979,7 +2031,7 @@ class cep {
 		$sp .= '<TR><Td colspan=4 class="table_proj" ><B>';
 		$sp .= trim($line['cep_caae']);
 		$sp .= '    <Td colspan=4 class="table_proj">';
-		$sp .= msg('prj_type_' . trim($line['cep_tipo']));
+		$sp .= msg('prj_type_' . trim($line['cep_tipo'])).trim($line['cep_tipo']);
 
 		/* Title */
 		$sp .= '<TR><Td colspan=7 class="lt0">' . msg('project_title');
@@ -1989,7 +2041,8 @@ class cep {
 		/* Investigador */
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
+		$sp .= '<TR><Td colspan=6 class="table_proj">';
+		{
 			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
 			//$sp .= '<TR><TD colspan=2>';
 
@@ -2007,8 +2060,10 @@ class cep {
 		}
 
 		$sp .= $this -> investigadores($line);
+
+		/* Protocolo de submissão */
 		$sp .= '&nbsp;' . chr(13);
-		$sp .= '<Td align="rigth" class="table_proj" ><center>' . $protocol_id;
+		$sp .= '<Td align="rigth" class="table_proj" ><div style="width:100%; text-align: right;">' . $protocol_id . '</div>';
 
 		/* Inser new investigator */
 		$sp .= '<TR><TD colspan=7>';
@@ -2026,8 +2081,8 @@ class cep {
 		$sp .= trim($line['pais_nome']) . '&nbsp;';
 
 		$sp .= '<Td class="table_proj" colspan=2>';
-		$sp .= mst(trim($line['cep_pr_protocol'])) . '&nbsp;';
-		
+		$sp .= msg(trim($line['cep_pr_protocol'])) . '&nbsp;';
+
 		$sp .= '&nbsp;' . chr(13);
 		if (strlen($clinic) > 0) {
 			/* XML OMS */
@@ -2060,7 +2115,7 @@ class cep {
 		$sp .= '<Td class="table_proj" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_liberacao']);
 		$sp .= '<Td class="table_proj" align="right"><center>';
-		$sp .= '&nbsp;' . $this->monitoring($line['cep_monitoring']);
+		$sp .= '&nbsp;' . $this -> monitoring($line['cep_monitoring']);
 
 		$sp .= '</table>';
 
@@ -2068,15 +2123,14 @@ class cep {
 		return ($sp);
 	}
 
-	function monitoring($d)
-		{
-			$acop = array();
-			$acop[''] = '';
-			$acop[180] = msg('semiannual');
-			$acop[365] = msg('annual');
-			$acop[-1] =  msg('end_of_the_investigation');
-			return($acop[$d]);
-		}
+	function monitoring($d) {
+		$acop = array();
+		$acop[''] = '';
+		$acop[180] = msg('semiannual');
+		$acop[365] = msg('annual');
+		$acop[-1] = msg('end_of_the_investigation');
+		return ($acop[$d]);
+	}
 
 	function protocolos_sua_avaliacao() {
 		global $user;

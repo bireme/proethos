@@ -35,10 +35,11 @@ $sql = "SELECT * FROM cep_submit_manuscrito_field
 	order by sub_pag, sub_pos, sub_ordem ";
 
 $amendment_type = $proj -> amendment_type;
+$doct = '00'.$proj -> amendment_type;
 if (round($amendment_type) > 0) {
 	$sql = "SELECT * FROM cep_submit_manuscrito_field
 			left join (select * from cep_submit_documento_valor where (spc_projeto = '" . $protocolo . "' and spc_ativo = 1)) as tabela on spc_codigo = sub_codigo 
-			where sub_ativo = 1 and sub_projeto_tipo = '00002'
+			where sub_ativo = 1 and sub_projeto_tipo = '$doct'
 			order by sub_pag, sub_pos, sub_ordem ";
 }
 $rlt = db_query($sql);

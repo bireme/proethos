@@ -26,6 +26,32 @@ class submit {
 
 	var $tabela = 'cep_submit_documento';
 	
+	function confirm_submission_by_email() {
+		global $LANG;
+		$ic = new ic;
+		$ic = $ic -> ic('email_confirm_subm');
+
+		$title = $this->doc_1_titulo;
+
+		$texto = $ic['text'];
+		$subject = $ic['title'];
+		
+		$emails = $this->email_autores();
+		
+		$texto = troca($texto, '$TITLE',$title);
+		$texto = troca($texto, '$CAAE',$protocolo);
+		$texto = troca($texto, '$TITLE',$title);	
+		
+		echo '<h3>'.$subjec.'</h3>';
+		for ($r=0;$r < count($emails);$r++)
+			{
+				echo 'sending to '.$emails[$r];
+				enviaremail($emails[$r], '', $subject, $texto);		
+			}		
+		exit;
+	}
+		
+	
 	function email_autores()
 		{
 			$proto = $this->doc_protocolo;
@@ -33,8 +59,16 @@ class submit {
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
 			";
-			echo $sql;			
-			exit;
+			$rlt = db_query($sql);
+			$emails = array();
+			while ($line = db_read($rlt))
+				{
+					$email1 = trim($line['us_email']);
+					$email2 = trim($line['us_email_alt']);
+					if (strlen($email1) > 0) { array_push($emails,$email1); }
+					if (strlen($email2) > 0) { array_push($emails,$email2); }
+				}			
+			return($emails);
 		}	
 	
 	function status_show($sta, $cor = 1) {

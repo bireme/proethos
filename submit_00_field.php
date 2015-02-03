@@ -7,7 +7,7 @@ $doc_tipo  = trim($proj->doc_tipo);
 
 if (substr($doc_tipo,0,1) == '0' )
 	{
-		$prot = '00002';
+		$prot = '00'.$doc_tipo;
 	}
 
 $ztabela = 'cep_submit_manuscrito_field';

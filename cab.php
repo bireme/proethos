@@ -70,7 +70,8 @@ $nosec = round(strpos($page, 'login.php')) + $nosec;
 $nosec = $nosec + round(strpos($page, 'login_new_user.php'));
 
 $sc = $ss -> security();
-if (($nosec == 0) and ($sc == false)) { redirecina('login.php');
+$su = trim($ss->user_nome);
+if (($nosec == 0) and (($sc == false) or (strlen($su)==0))) { redirecina('login.php');
 }
 
 /* Build Head */

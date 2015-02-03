@@ -73,13 +73,13 @@ $proj->le($protocolo);
 
 	{
 		require("submit_cab.php");		
-		
 		echo '<form method="post" action="'.page().'">';
 		echo '<BR>';
 		//echo '<fieldset><legend>'.msg('submit').'</legend>';
 		//echo '<Table width="'.$tab_max.'" cellpadding=0 cellspacing=0 class="lt1" align="center" >';
 		$pag_max = 6;
 		$doc_tipo  = trim($proj->doc_tipo);
+
 		switch ($doc_tipo)
 			{
 			/* EMENDA */

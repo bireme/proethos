@@ -20,10 +20,10 @@ require("_class/_class_submit_manuscrito_field.php");
 	
 	/* Nao alterar - dados comuns */
 	$label = msg($tabela);
-	$http_edit = 'admin_submit_7_ed.php'; 
+	$http_edit = 'admin_submit_007_ed.php'; 
 	//$http_ver = 'pibic_bolsa_tipo_detalhe.php'; 
 	$editar = True;
-	$http_redirect = 'admin_submit_7.php';
+	$http_redirect = 'admin_submit_007.php';
 	$clx->row();
 	$busca = true;
 	$offset = 20;

@@ -76,7 +76,7 @@ class meeting
 						border=0>';
 				$sh .= '<TR valign="top">
 						<TD colspan=1 rowspan=2 width="10%">';
-				$sh .= '<img src="img/logo_dictamen.jpg" height="100">';
+				$sh .= '<img src="img/logo_dictamen.jpg">';
 				$sh .= '<TD colspan=2><center><B>'.$institution_name.'</B>';
 				$sh .= '<BR>'.$institution_site;
 				$sh .= '</center>';

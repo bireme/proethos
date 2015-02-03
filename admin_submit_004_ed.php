@@ -8,6 +8,9 @@ require($include.'_class_form.php');
 $form = new form;
 require("form_css.php");
 
+echo '<h1>'.msg('amendment_004').'</h1>';
+$dd[12] = '00004';
+
 	$cl = new fields;
 	$cp = $cl->cp();
 	$tabela = $cl->tabela;
@@ -25,7 +28,7 @@ require("form_css.php");
 		{
 			echo 'Salvo';
 			$cl->updatex();
-			redirecina('admin_submit_6.php');
+			redirecina('admin_submit_004.php');
 		} else {
 			echo $tela;
 		}

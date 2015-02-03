@@ -44,14 +44,20 @@ class ged
 					<select id="filetype_1">
 						<option>::'.msg('document_type').'::</option>
 					';
-					$sql= "select * from ".$this->tabela.'_tipo where doct_ativo = 1 order by doct_nome';
+					$sql= "select * from ".$this->tabela.'_tipo 
+								where doct_ativo = 1
+								and doct_restrito = 0 
+								
+								order by doct_nome';
 					$rlt = db_query($sql);
 					while ($line = db_read($rlt))
 						{
 							$check = '';
 							if (trim($line['doct_codigo']) == $tp) { $check = "selected"; }
 							$sx .= '<option value="'.trim($line['doct_codigo']).'" '.$check.'>';
-							$sx .= trim($line['doct_nome']);
+							$name = trim($line['doct_nome']);
+							if (substr($name,0,1) == '#') { $name = msg($name); }
+							$sx .= $name;
 							$sx .= '</option>';
 						}								
 					$sx .= '
@@ -468,7 +474,7 @@ class ged
 								$path .= date("m").'/'; $this->dir($path);
 							}
 						
-						/* caso n�o apresente erro */
+						/* caso nao apresente erro */
 						if (strlen($erro)==0) 
 						{
 							$compl = $dd[1].'-'.substr(md5($nome.date("His")),0,5).'-';
@@ -565,6 +571,7 @@ class ged
 					} else {
 						$sql .= " and doct_codigo = '$type' ";
 					}
+
 				$rlt = db_query($sql);
 				$sx = '';
 				while ($line = db_read($rlt))

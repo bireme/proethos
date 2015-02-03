@@ -28,6 +28,6 @@ if (strlen($prj_nr) == 0)
 		}
 	$sql = "update cep_submit_documento set doc_status = '@', doc_dt_atualizado = ".date("Ymd")."
 				where doc_protocolo = '$protocolo' ";
-	$rlt = db_query($xsql);
+	$rlt = db_query($sql);
 	$sql .= '';
 ?>

@@ -16,14 +16,14 @@ require("_class/_class_submit_manuscrito_field.php");
 	$clx = new fields;
 	$tabela = $clx->tabela;
 	
-	echo '<h1>'.msg('amendment_006').'</h1>';
+	echo '<h1>'.msg('amendment_003').'</h1>';
 	
 	/* Nao alterar - dados comuns */
 	$label = msg($tabela);
-	$http_edit = 'admin_submit_6_ed.php'; 
+	$http_edit = 'admin_submit_003_ed.php'; 
 	//$http_ver = 'pibic_bolsa_tipo_detalhe.php'; 
 	$editar = True;
-	$http_redirect = 'admin_submit_6.php';
+	$http_redirect = 'admin_submit_003.php';
 	$clx->row();
 	$busca = true;
 	$offset = 20;
@@ -32,7 +32,7 @@ require("_class/_class_submit_manuscrito_field.php");
 	
 	$order = ' sub_pag, sub_pos, sub_ordem ';
 	
-	$pre_where = " sub_projeto_tipo = '00006' ";
+	$pre_where = " sub_projeto_tipo = '00003' ";
 	
 	echo '<TABLE width="'.$tab_max.'" align="center"><TR><TD>';
 	require($include.'sisdoc_row.php');	

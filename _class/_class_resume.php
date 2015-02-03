@@ -145,7 +145,7 @@ class resume
 					where 
 					 (cep_status = '@' or cep_status = 'A' or cep_status = 'B' or cep_status = 'C' or cep_status = 'D')
 					 and pp_avaliador = '$us' 
-					 and (pP_status <> 'B' and pp_status <> 'X') 
+					 and (pp_status <> 'B' and pp_status <> 'X') 
 					";
 					
 			$rlt = db_query($sql);
@@ -201,7 +201,7 @@ class resume
 				$sx .= '<TH width="'.$size.'%" align="center">'.msg('pesq_assignada');
 				$sx .= '<TH width="'.$size.'%" align="center">'.msg('pesq_reunion');
 				$sx .= '<TH width="'.$size.'%" align="center">'.msg('pesq_filed');
-				if (($tp[7] > 0) and ($perfil->valid("#MEM")))
+				if (($tp[7] > 0) and ($perfil->valid("#SCR#COO#ADM")))
 					{ $sx .= '<TD width="'.$size.'%" align="center"><B>'.msg('research_ongoing'); }
 				
 				if ($tp[0] > 0) { $link[0] = '<A HREF="protocols.php?dd1=@" class="table_resume_td">'; }
@@ -229,9 +229,12 @@ class resume
 				$sx .= '<TD align="center">'.$link[3].round($tp[3]).'</A>';
 				$sx .= '<TD align="center">'.$link[4].round($tp[4]).'</A>';
 				$sx .= '<TD align="center">'.$link[5].round($tp[5]).'</A>';
-				if ($tp[7] > 0)
+				/* Finalizados */
+				if (($tp[7] > 0) and ($perfil->valid("#SCR#COO#ADM")))
 					{ $sx .= '<TD  align="center">'.$link[7].round($tp[7]).'</A>'; }
+
 				$sx .= '</table>';
+				 
 				
 				//$sx .= '</fieldset>';
 				//$sx .= '</table>';				
