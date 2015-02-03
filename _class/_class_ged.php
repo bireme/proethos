@@ -633,6 +633,14 @@ class ged
 						$rlt = fopen($dir.'/index.php','w');
 						fwrite($rlt,'acesso restrito');
 						fclose($rlt);
+						
+						/* conteudo do arquivo */
+						$content = 'deny from all';					
+						
+						/* Bloqueia todo acesso */
+						$rlt = fopen($dir.'/.htaccess','w');
+						frite($rlt,$content);
+						fclose($rlt);
 					}
 				return($ok);
 			}
