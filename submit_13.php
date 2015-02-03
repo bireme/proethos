@@ -40,10 +40,7 @@ if ($xok == 1) {
 	echo '<BR>';
 	echo mst(msg('submit_term'));
 
-	echo '<BR><B>';
-	echo '<input type="checkbox" name="dd81" value="1">';
-	echo msg('submit_term_accepted');
-	echo '</B>';
+	echo '<input type="hidden" name="dd81" value="1">';
 	echo '<BR>';
 	echo '<input type="submit" value="' . msg('#submit_enviar') . '" class="form_submit">';
 	echo '</form>';
