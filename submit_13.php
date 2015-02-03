@@ -45,7 +45,7 @@ if ($xok == 1) {
 	echo msg('submit_term_accepted');
 	echo '</B>';
 	echo '<BR>';
-	echo '<input type="submit" value="' . msg('#save_next') . '" class="form_submit">';
+	echo '<input type="submit" value="' . msg('#submit_enviar') . '" class="form_submit">';
 	echo '</form>';
 } else {
 	echo msg('exist_pending_submit');
