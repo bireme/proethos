@@ -2023,22 +2023,27 @@ class cep {
 		$sp .= '<TR><TD>' . msg('protocol') . ' <B>' . $clinic . '</B><TD align="right">' . msg('status') . ': ' . msg($status);
 		$sp .= '</table></B>';
 
-		$sp .= '<table width="100%" border=0 class="lt0">';
+		
 
 		/* CAAE */
+		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=4 >' . msg('caae');
 		$sp .= '    <Td colspan=4 >' . msg('project_type');
 		$sp .= '<TR><Td colspan=4 class="table_proj" ><B>';
 		$sp .= trim($line['cep_caae']);
 		$sp .= '    <Td colspan=4 class="table_proj">';
 		$sp .= msg('prj_type_' . trim($line['cep_tipo'])).trim($line['cep_tipo']);
+		$sp .= '</table>';
 
 		/* Title */
+		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=7 class="lt0">' . msg('project_title');
 		$sp .= '<TR><Td colspan=7 class="table_proj"><B>';
 		$sp .= trim($line['cep_titulo']);
+		$sp .= '</table>';
 
 		/* Investigador */
+		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
 		$sp .= '<TR><Td colspan=6 class="table_proj">';
@@ -2063,24 +2068,29 @@ class cep {
 
 		/* Protocolo de submissão */
 		$sp .= '&nbsp;' . chr(13);
-		$sp .= '<Td align="rigth" class="table_proj" ><div style="width:100%; text-align: right;">' . $protocol_id . '</div>';
-
+		$sp .= '<Td align="rigth" class="table_proj" >
+					<div style="width:100%; text-align: right;">' . $protocol_id . '</div>';
+		$sp .= '</table>';
+			
 		/* Inser new investigator */
+		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><TD colspan=7>';
 		$sp .= '<div id="team" style="display: none; ">';
 		$sp .= '</div>';
 
-		/* INstitution */
-		$sp .= '<TR><Td colspan=3 width="50%" class="lt0">' . msg('institution');
-		$sp .= '<Td align="left" colspan=2 width="50%" class="lt0" width="10%">' . msg('country');
-		$sp .= '<Td align="left" colspan=2 width="50%" class="lt0" width="10%">' . msg('result');
-		$sp .= '<TR><Td colspan=3 class="table_proj">';
+		/* INstitution */		
+		$sp .= '<TR><Td colspan=1 width="50%" class="lt0">' . msg('institution');
+		$sp .= '<Td align="left" colspan=1 width="25%" class="lt0" width="10%">' . msg('country');
+		$sp .= '<Td align="left" colspan=1 width="25%" class="lt0" width="10%">' . msg('result');
+		
+		/* dados da instituicao */
+		$sp .= '<TR><Td colspan=1 class="table_proj">';
 		$sp .= trim($line['us_instituition']);
 		$sp .= '&nbsp;' . chr(13);
-		$sp .= '<Td class="table_proj" colspan=2>';
+		$sp .= '<Td class="table_proj">';
 		$sp .= trim($line['pais_nome']) . '&nbsp;';
 
-		$sp .= '<Td class="table_proj" colspan=2>';
+		$sp .= '<Td class="table_proj">';
 		$sp .= msg(trim($line['cep_pr_protocol'])) . '&nbsp;';
 
 		$sp .= '&nbsp;' . chr(13);
@@ -2090,7 +2100,9 @@ class cep {
 			//$sp .= $oms -> icone($this -> line['id_cep']);
 			//$sp .= '&nbsp;' . chr(13);
 		}
+		$sp .= '</table>';
 
+		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR>';
 		$sp .= '<TD width="10%">' . msg('date_accept');
 		$sp .= '<TD width="10%">' . msg('date_update');
@@ -2098,23 +2110,42 @@ class cep {
 		$sp .= '<TD width="10%">' . msg('dictamen_date');
 
 		$sp .= '<TD width="10%">' . msg('aware_date');
+		$sp .= '<TD width="10%">' . msg('date_reclutamiento');
 		$sp .= '<TD width="10%">' . msg('date_amendment');
 		$sp .= '<TD>' . msg('monitoring');
 
 		$sp .= '<TR class="lt2">';
-		$sp .= '<Td class="table_proj" align="left">';
+		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_data']);
-		$sp .= '<Td class="table_proj" align="left">';
+		
+		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_atualizado']);
-		$sp .= '<Td class="table_proj" align="left">';
+		
+		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_reuniao']);
-		$sp .= '<Td class="table_proj" align="left">';
+		
+		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_parecer']);
-		$sp .= '<Td class="table_proj" align="left">';
+		
+		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_ciencia']);
-		$sp .= '<Td class="table_proj" align="left">';
+		
+		$sp .= '<Td class="table_proj lt2" align="left">';
+		
+		/* dados sobre recutramento */
+		$dtr = $line['cep_recrutamento'];
+		if ($dtr < 20000000)
+			{
+				$sp .= '&nbsp;' . msg('no_start');
+			} else {
+				$sp .= '&nbsp;' . stodbr($line['cep_recrutamento']);		
+			}
+		
+				
+		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_liberacao']);
-		$sp .= '<Td class="table_proj" align="right"><center>';
+		
+		$sp .= '<Td class="table_proj lt2" align="right"><center>';
 		$sp .= '&nbsp;' . $this -> monitoring($line['cep_monitoring']);
 
 		$sp .= '</table>';

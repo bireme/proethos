@@ -1,7 +1,8 @@
 _db/db_proethos.php
 _db/_temp.txt
 db_mysql_localhost.php
-db_mysql_localhost.php
 *.doc
-db_mysql_localhost.php
-db_mysql_localhost.php
+messages/msg_en_US.php
+messages/msg_es.php
+messages/msg_fr.php
+messages/msg_pt_BR.php
