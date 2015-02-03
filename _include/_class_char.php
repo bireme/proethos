@@ -1,7 +1,7 @@
 <?php
 /**
 * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
-* @copyright ╘ Pan American Health Organization, 2013. All rights reserved.
+* @copyright О©╫ Pan American Health Organization, 2013. All rights reserved.
 * @version 0.15.03
 * @access public
 * @package INCLUDEs
@@ -192,7 +192,7 @@ function troca($qutf,$qc,$qt)
 	{
 	if (is_array($qutf))
 		{
-			print_r($qutf);
+			//print_r($qutf);
 			exit;
 		}
 	return(str_replace(array($qc), array($qt),$qutf));
@@ -234,24 +234,24 @@ function char_ISO_Latin_2($str)
 	    '/&ordm;/');
 	 
 	    $acentos = array(
-	    'ю','а','б','ц','д','е',
-	    'Ю','А','Б','Ц','Д','Е',
-	    'г',
-	    'Г',
-	    'х','и','й','к',
-	    'Х','И','Й','К',
-	    'л','м','н','о',
-	    'Л','М','Н','О',
-	    'я',
-	    'Я',
-	    'р','с','т','у','ж',
-	    'Р','С','Т','У','Ж',
-	    'ы','з','ш','э',
-	    'Ы','З','Ш','Э',
-	    'щ',
-	    'Щ','Ъ',
-	    '╙',
-	    '╨');
+	    'О©╫','О©╫','О©╫','О©╫','О©╫','О©╫',
+	    'О©╫','О©╫','О©╫','О©╫','О©╫','О©╫',
+	    'О©╫',
+	    'О©╫',
+	    'О©╫','О©╫','О©╫','О©╫',
+	    'О©╫','О©╫','О©╫','О©╫',
+	    'О©╫','О©╫','О©╫','О©╫',
+	    'О©╫','О©╫','О©╫','О©╫',
+	    'О©╫',
+	    'О©╫',
+	    'О©╫','О©╫','О©╫','О©╫','О©╫',
+	    'О©╫','О©╫','О©╫','О©╫','О©╫',
+	    'О©╫','О©╫','О©╫','О©╫',
+	    'О©╫','О©╫','О©╫','О©╫',
+	    'О©╫',
+	    'О©╫','О©╫',
+	    'О©╫',
+	    'О©╫');
 	 
 return preg_replace($codigo_acentos, $acentos, $str);
 }
@@ -261,110 +261,110 @@ function char_ISO_Latin_1($ddv)
 	////// ISO Latin-1 Characters and Control Characters
 	$ddr = '?';
 	if ($ddv == '&#160;') { $ddr = ' '; }
-	if ($ddv == '&#161;') { $ddr = '║'; }
-	if ($ddv == '&#162;') { $ddr = '╒'; }
-	if ($ddv == '&#163;') { $ddr = 'ё'; }
-	if ($ddv == '&#164;') { $ddr = '╓'; }
-	if ($ddv == '&#165;') { $ddr = '╔'; }
-	if ($ddv == '&#166;') { $ddr = '╕'; }
-	if ($ddv == '&#167;') { $ddr = '╖'; }
-	if ($ddv == '&#168;') { $ddr = '╗'; }
-	if ($ddv == '&#169;') { $ddr = '╘'; }
+	if ($ddv == '&#161;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#162;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#163;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#164;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#165;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#166;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#167;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#168;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#169;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#170;') { $ddr = '╙'; }
-	if ($ddv == '&#171;') { $ddr = '╚'; }
-	if ($ddv == '&#172;') { $ddr = '╛'; }
+	if ($ddv == '&#170;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#171;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#172;') { $ddr = 'О©╫'; }
 	if ($ddv == '&#173;') { $ddr = ' '; }
-	if ($ddv == '&#174;') { $ddr = '╝'; }
-	if ($ddv == '&#175;') { $ddr = '╞'; }
-	if ($ddv == '&#176;') { $ddr = '╥'; }
-	if ($ddv == '&#177;') { $ddr = '╠'; }
-	if ($ddv == '&#178;') { $ddr = '╡'; }
-	if ($ddv == '&#179;') { $ddr = 'Ё'; }
+	if ($ddv == '&#174;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#175;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#176;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#177;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#178;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#179;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#180;') { $ddr = '╢'; }
-	if ($ddv == '&#181;') { $ddr = '╣'; }
-	if ($ddv == '&#182;') { $ddr = '╤'; }
-	if ($ddv == '&#183;') { $ddr = '╥'; }
-	if ($ddv == '&#184;') { $ddr = '╦'; }
-	if ($ddv == '&#185;') { $ddr = '╧'; }
-	if ($ddv == '&#186;') { $ddr = '╨'; }
-	if ($ddv == '&#187;') { $ddr = '╩'; }
-	if ($ddv == '&#188;') { $ddr = '╪'; }
-	if ($ddv == '&#189;') { $ddr = '╫'; }
+	if ($ddv == '&#180;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#181;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#182;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#183;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#184;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#185;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#186;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#187;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#188;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#189;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#190;') { $ddr = '╬'; }
-	if ($ddv == '&#191;') { $ddr = '©'; }
-	if ($ddv == '&#192;') { $ddr = 'ю'; }
-	if ($ddv == '&#193;') { $ddr = 'а'; }
-	if ($ddv == '&#194;') { $ddr = 'б'; }
-	if ($ddv == '&#195;') { $ddr = 'ц'; }
-	if ($ddv == '&#196;') { $ddr = 'д'; }
-	if ($ddv == '&#197;') { $ddr = 'е'; }
-	if ($ddv == '&#198;') { $ddr = 'ф'; }
-	if ($ddv == '&#199;') { $ddr = 'г'; }
+	if ($ddv == '&#190;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#191;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#192;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#193;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#194;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#195;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#196;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#197;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#198;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#199;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#200;') { $ddr = 'х'; }
-	if ($ddv == '&#201;') { $ddr = 'и'; }
-	if ($ddv == '&#202;') { $ddr = 'й'; }
-	if ($ddv == '&#203;') { $ddr = 'к'; }
-	if ($ddv == '&#204;') { $ddr = 'л'; }
-	if ($ddv == '&#205;') { $ddr = 'м'; }
-	if ($ddv == '&#206;') { $ddr = 'н'; }
-	if ($ddv == '&#207;') { $ddr = 'о'; }
-	if ($ddv == '&#208;') { $ddr = 'п'; }
-	if ($ddv == '&#209;') { $ddr = 'я'; }
+	if ($ddv == '&#200;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#201;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#202;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#203;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#204;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#205;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#206;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#207;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#208;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#209;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#210;') { $ddr = 'р'; }
-	if ($ddv == '&#211;') { $ddr = 'с'; }
-	if ($ddv == '&#212;') { $ddr = 'т'; }
-	if ($ddv == '&#213;') { $ddr = 'у'; }
-	if ($ddv == '&#214;') { $ddr = 'ж'; }
-	if ($ddv == '&#215;') { $ddr = 'в'; }
-	if ($ddv == '&#216;') { $ddr = 'ь'; }
-	if ($ddv == '&#217;') { $ddr = 'ы'; }
-	if ($ddv == '&#218;') { $ddr = 'з'; }
-	if ($ddv == '&#219;') { $ddr = 'ш'; }
+	if ($ddv == '&#210;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#211;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#212;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#213;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#214;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#215;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#216;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#217;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#218;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#219;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#220;') { $ddr = 'э'; }
-	if ($ddv == '&#221;') { $ddr = 'щ'; }
-	if ($ddv == '&#222;') { $ddr = 'ч'; }
-	if ($ddv == '&#223;') { $ddr = 'ъ'; }
-	if ($ddv == '&#224;') { $ddr = 'Ю'; }
-	if ($ddv == '&#225;') { $ddr = 'А'; }
-	if ($ddv == '&#226;') { $ddr = 'Б'; }
-	if ($ddv == '&#227;') { $ddr = 'Ц'; }
-	if ($ddv == '&#228;') { $ddr = 'Д'; }
-	if ($ddv == '&#229;') { $ddr = 'Е'; }
+	if ($ddv == '&#220;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#221;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#222;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#223;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#224;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#225;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#226;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#227;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#228;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#229;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#230;') { $ddr = 'Ф'; }
-	if ($ddv == '&#231;') { $ddr = 'Г'; }
-	if ($ddv == '&#232;') { $ddr = 'Х'; }
-	if ($ddv == '&#233;') { $ddr = 'И'; }
-	if ($ddv == '&#234;') { $ddr = 'Й'; }
-	if ($ddv == '&#235;') { $ddr = 'К'; }
-	if ($ddv == '&#236;') { $ddr = 'Л'; }
-	if ($ddv == '&#237;') { $ddr = 'М'; }
-	if ($ddv == '&#238;') { $ddr = 'Н'; }
-	if ($ddv == '&#239;') { $ddr = 'О'; }
+	if ($ddv == '&#230;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#231;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#232;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#233;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#234;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#235;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#236;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#237;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#238;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#239;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#240;') { $ddr = 'П'; }
-	if ($ddv == '&#241;') { $ddr = 'Я'; }
-	if ($ddv == '&#242;') { $ddr = 'Р'; }
-	if ($ddv == '&#243;') { $ddr = 'С'; }
-	if ($ddv == '&#244;') { $ddr = 'Т'; }
-	if ($ddv == '&#245;') { $ddr = 'У'; }
-	if ($ddv == '&#246;') { $ddr = 'Ж'; }
-	if ($ddv == '&#247;') { $ddr = 'В'; }
-	if ($ddv == '&#248;') { $ddr = 'Ь'; }
-	if ($ddv == '&#249;') { $ddr = 'Ы'; }
+	if ($ddv == '&#240;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#241;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#242;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#243;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#244;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#245;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#246;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#247;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#248;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#249;') { $ddr = 'О©╫'; }
 
-	if ($ddv == '&#250;') { $ddr = 'З'; }
-	if ($ddv == '&#251;') { $ddr = 'Ш'; }
-	if ($ddv == '&#252;') { $ddr = 'Э'; }
-	if ($ddv == '&#253;') { $ddr = 'Щ'; }
-	if ($ddv == '&#254;') { $ddr = 'Ч'; }
-	if ($ddv == '&#255;') { $ddr = 'Ъ'; }
+	if ($ddv == '&#250;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#251;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#252;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#253;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#254;') { $ddr = 'О©╫'; }
+	if ($ddv == '&#255;') { $ddr = 'О©╫'; }
 	
 	return($ddr);
 	}
@@ -387,34 +387,34 @@ function utf8_detect($utt)
 	{
 	$utt = ' '.$utt;
 	$xok = 0;
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ц')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('и')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('м')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('с')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('з')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('А')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('И')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('М')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('С')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('З')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Я')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('я')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
 	
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ц')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('У')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('б')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('й')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('н')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('т')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('ш')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Б')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Й')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Н')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Т')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Ш')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
 		
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('Г')); }
-		if ($xok==0) { $xok = strpos($utt,UTF8_encode('г')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
+		if ($xok==0) { $xok = strpos($utt,UTF8_encode('О©╫')); }
 
 		if ($xok > 0)
 			{
@@ -454,7 +454,7 @@ function CharE($rr)
 	
 function UpperCaseSQL($d)
 	{
-	$qch1="аимсзАИМСЗЮХЛРЫюхлрыбйнтшБЙНТШгГДКОЖЭдкожэцуЦУ╙╨";
+	$qch1="О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫";
 	$qch2="AEIOUaeiouaeiouAEIOUAEIOUaeiouCcaeiouAEIOUAOAOao";
 	for ($qk=0;$qk < strlen($qch2);$qk++)
 		{
@@ -467,8 +467,8 @@ function UpperCaseSQL($d)
 
 function UpperCase($dx)
 	{
-	$qch1='аимсзАИМСЗЮХЛРЫюхлрыбйнтшБЙНТШгГДКОЖЭдкожэцуЦУ';
-	$qch2='аимсзаимсзюхлрыюхлрыбйнтшбйнтшггдкожэдкожэцуцу';
+	$qch1='О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫';
+	$qch2='О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫';
 	
 	$dx = strtoupper($dx);
 	
@@ -483,8 +483,8 @@ function UpperCase($dx)
 function LowerCase($d)
 	{
 	$d = $d . ' ';
-	$qch1='аимсзАИМСЗЮХЛРЫюхлрыбйнтшБЙНТШгГДКОЖЭдкожэцуЦУ';
-	$qch2='АИМСЗАИМСЗЮХЛРЫЮХЛРЫБЙНТШБЙНТШГГДКОЖЭДКОЖЭЦУЦУ';
+	$qch1='О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫';
+	$qch2='О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫';
 	
 	$d = strtolower($d);
 	for ($qk=0;$qk < strlen($qch2);$qk++)
@@ -497,7 +497,7 @@ function LowerCase($d)
 		
 function LowerCaseSQL($d)
 	{
-	$qch1="аимсзАИМСЗЮХЛРЫюхлрыбйнтшБЙНТШгГДКОЖЭдкожэцуЦУ╙╨";
+	$qch1="О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫";
 	$qch2="aeiouaeiouaeiouaeiouaeiouaeiouccaeiouaeiouaoaoao";
 	
 	for ($qk=0;$qk < strlen($qch2);$qk++)

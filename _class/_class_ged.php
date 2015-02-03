@@ -519,7 +519,7 @@ class ged
     				<input type="hidden" name="dd1" value="'.$dd[1].'">
     				<input type="hidden" name="dd5" value="'.$dd[5].'">  
     				<input type="hidden" name="dd90" value="'.$dd[90].'"> 
-    				<input type="submit" value="enviar arquivo" name="acao" id="idbotao" />
+    				<input type="submit" value="'.msg('send_file').'" name="acao" id="idbotao" />
     				</fieldset>  
     				<BR>
     				<fieldset><legend>'.msg('file_tipo').'</legend>

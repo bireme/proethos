@@ -63,6 +63,13 @@ class cep {
 		$this -> tabela = $tabela;
 		$typex = 'PRO:' . msg('prj_type_PRO');
 		$typex .= '&AME:' . msg('prj_type_AME');
+		$typex .= '&001:' . msg('amendment_001');
+		$typex .= '&002:' . msg('amendment_002');
+		$typex .= '&003:' . msg('amendment_003');
+		$typex .= '&004:' . msg('amendment_004');
+		$typex .= '&005:' . msg('amendment_005');
+		$typex .= '&006:' . msg('amendment_006');
+		$typex .= '&007:' . msg('amendment_007');
 		$sta = 'A:Aberto';
 
 		/* Status */
@@ -273,7 +280,7 @@ class cep {
 				if ($sta == '@') { $sta = msg('cep_status_@');
 				}
 
-				$msgt = 'prj_type_' . substr($line['doc_tipo'], 0, 3);
+				$msgt = 'amendment_' . substr($line['doc_tipo'], 0, 3);
 				$sx .= '<TR>';
 				//$sx .= '<TD>'.$line['doc_caae'];
 				$sx .= '<TD align="center">' . $link . $line['doc_protocolo'];
@@ -296,7 +303,7 @@ class cep {
 				$sta = $line['cep_status'];
 				$str = trim($line['cep_pr_protocol']);
 				//if ($sta=='@') { $sta = msg('cep_status_@'); }
-				$msgt = 'prj_type_' . trim($line['cep_tipo']);
+				$msgt = 'amendment_' . trim($line['cep_tipo']);
 				$sx .= '<TR>';
 				$sx .= '<TD>' . $link . $line['cep_caae'];
 				$sx .= '<TD>' . $link . msg($msgt);
@@ -819,14 +826,58 @@ class cep {
 			$this -> survey_save($dd[6]);
 			if ($dd[6] == 1) {
 				/* SIM */
-				$this -> cep_historic_append("015", "manuscript_accepted");
-				$this -> cep_status_alter("B");
-				$this -> communication_research("email_manuscipt_accept");
+				/* Regra para caso um decida SIM, envia automático */
+				/* Omitida em 03-02-2015 */
+				//$this -> cep_historic_append("015", "manuscript_accepted");
+				//$this -> cep_status_alter("B");
+				//$this -> communication_research("email_manuscipt_accept");
 			}
 			redirecina(page());
 		}
+		$sx .= $this->survey_show();
 		return ($sx);
 	}
+
+	function survey_show()
+		{
+			$proto = $this -> protocolo_submission;
+			$sql = "select * from cep_survey
+					inner join usuario on sr_member = us_codigo 
+						where sr_protocolo = '$proto' ";
+			$rlt = db_query($sql);
+			
+			$sx .= '<table width="100%" class="tabela00 lt1">';
+			$sx .= '<TR>';
+			$sx .= '<Td><B>'.msg('members').'</B></td>';
+			$sx .= '<Td><B>'.msg('institution').'</B></td>';
+			$sx .= '<Td colspan=2 align="center"><B>'.msg('result').'</B></td>';
+			//$sx .= '<Th>'.msg('member').'</th>';
+			
+			while ($line = db_read($rlt))
+				{
+					$sx .= '<TR>';
+					$sx .= '<TD class="border1">';
+					$sx .= $line['us_nome'];
+					$sx .= '<TD class="border1">';
+					$sx .= $line['us_instituition'];
+					
+					$bgy=''; $bgn='';
+					$bgyn = ''; $bgnn = '';
+
+					$rs = $line['sr_yes'];
+					$rn = $line['sr_no'];
+					if ($rs == '1') { $bgy = ' bgcolor="#AAffAA" '; }
+					if ($rn == '1') { $bgn = ' bgcolor="FFAAAA" '; }
+					
+					$sx .= '<TD '.$bgy.' width="20" align="center" class="border1">'.msg("yes");
+					$sx .= '<TD '.$bgN.' width="20" align="center" class="border1">'.msg('no');
+					
+										
+
+				}
+			$sx .= '</table>';
+			return($sx);
+		}
 
 	function action_016() {
 		global $dd, $acao, $perfil;
@@ -2032,7 +2083,7 @@ class cep {
 		$sp .= '<TR><Td colspan=4 class="table_proj" ><B>';
 		$sp .= trim($line['cep_caae']);
 		$sp .= '    <Td colspan=4 class="table_proj">';
-		$sp .= msg('prj_type_' . trim($line['cep_tipo'])).trim($line['cep_tipo']);
+		$sp .= msg('amendment__' . trim($line['cep_tipo'])).trim($line['cep_tipo']);
 		$sp .= '</table>';
 
 		/* Title */

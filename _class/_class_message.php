@@ -127,6 +127,7 @@ class message {
 		array_push($cp, array('$S40', 'msg_field', msg('field'), False, False));
 		array_push($cp, array('$T60:4', 'msg_content', msg('content'), True, True));
 		array_push($cp, array('$O 1:YES&0:NO', 'msg_ativo', msg('active'), True, True));
+		array_push($cp, array('$HV', 'msg_update', date("Ymd"), True, True));
 		return ($cp);
 	}
 

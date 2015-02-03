@@ -32,7 +32,7 @@ class parecer_avaliation
 				
 				if ($ed == 0) { $link = ''; }
 				
-				$sa = msg('dictamen').'<BR>'.$link.$sa.'<BR>'.msg('required');
+				$sa = msg('dictamen_vt').'<BR>'.$link.$sa.'<BR>'.msg('required');
 				return($sa);
 			}
 		

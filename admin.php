@@ -68,7 +68,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 		array_push($menu, array(msg('admin_message'), msg('admin_message_create'), 'message_create.php'));
 		array_push($menu, array(msg('admin_message'), msg('admin_message_row'), 'message_row.php'));
 		array_push($menu, array(msg('admin_message'), msg('admin_utf8_convert'), 'message_convert_utf8.php'));
-
+		array_push($menu, array(msg('admin_message'), msg('admin_message_clear'), 'message_message_clear.php'));
 		if ($edit_mode == 0) { array_push($menu, array(msg('admin_message'), msg('admin_message_enable'), 'admin_message_enable.php?dd1=1'));
 		} else { array_push($menu, array(msg('admin_message'), msg('admin_message_disable'), 'admin_message_enable.php?dd1=0'));
 		}

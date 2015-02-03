@@ -250,7 +250,6 @@ class users
 				$resrlt = db_query($sql);
 				if ($result = db_read($resrlt))
 					{
-						print_r($result);
 						$user_senha = trim($result[$this->usuario_tabela_pass]);
 						if ($result['senha_md5'] == 1) { $pass = md5($pass); }
 						
