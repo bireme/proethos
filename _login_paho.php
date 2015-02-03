@@ -27,84 +27,87 @@ $form = new form;
 echo '
 <table border=0 align="center">
 	<tr VALIGN="TOP"><td width="300">
-		<img src="'.logo(3).'" width="200" border=0>
-		<BR>'.msg('about_cep').'
+		<img src="' . logo(3) . '" width="200" border=0>
+		<BR>' . msg('about_cep') . '
 	<td>
-	<img src="'.logo(2).'">
+	<img src="' . logo(2) . '">
 	<BR><BR>
 ';
-?>
+
+echo '
 <!--- Login form -->
-	<div id="loginform">
-		<div id="facebook"><i class="fa fa-facebook"></i><div id="connect"><?=msg('connect with');?></div>
-		</div>
-		<div id="mainlogin">
-		<div id="or"><?=msg('or');?></div>
-		<h2 style="text-align: center;"><?php echo msg('login_cab'); ?></h2>		
+<div id="loginform">
+	<div id="facebook"><i class="fa fa-facebook"></i><div id="connect">
+	' . msg('connect with') . '
+	</div>
+</div>
+<div id="mainlogin">
+<div id="or">' . msg('or') . '</div>
+<h2 style="text-align: center;">' . msg('login_cab') . '</h2>';
 
-			<?
-			/* Login form input */
-			$cp = array();
-			array_push($cp, array('$H8', '', '', False, True));
-			array_push($cp, array('$S100', '', msg('email'), True, True));
-			array_push($cp, array('$P20', '', msg('password'), True, True));
-			array_push($cp, array('$B8', '', msg('submit'), False, True));
+/* Login form input */
+$cp = array();
+array_push($cp, array('$H8', '', '', False, True));
+array_push($cp, array('$S100', '', msg('email'), True, True));
+array_push($cp, array('$P20', '', msg('password'), True, True));
+array_push($cp, array('$B8', '', msg('submit'), False, True));
 
-			$dd[1] = email_restrition($dd[1]);
+$dd[1] = email_restrition($dd[1]);
 
-			$form -> required_message = 0;
-			$form -> required_message_post = 0;
-			$form -> class_password = 'login_string';
-			$form -> class_string = 'login_string';
-			$form -> class_button_submit = 'login_submit';
-			$form -> class_form_standard = 'login_table';
-			$tela = $form -> editar($cp, '');
+$form -> required_message = 0;
+$form -> required_message_post = 0;
+$form -> class_password = 'login_string';
+$form -> class_string = 'login_string';
+$form -> class_button_submit = 'login_submit';
+$form -> class_form_standard = 'login_table';
+$tela = $form -> editar($cp, '');
 
-			/* Show Form */
-			echo '<center>';
-			echo $tela;
-			echo '</center>';
+/* Show Form */
+echo '<center>';
+echo $tela;
+echo '</center>';
 
-			/* Check login */
-			if ($form -> saved > 0) {
-				$rst = $ss -> login($dd[1], $dd[2]);
-
-				$rst = $ss -> user_erro;
-				$msg_erro = 'Erro:' . abs($rst);
-				/* recupera mensagem */
-
-				if ($rst < 0) {
-					$rst = abs($rst);
-					$msg_erro = msg($ss -> user_msg);
-				} else {
-					if ($rst == 1) {
-						redirecina('main.php');
-					}
-				}
-			}
-			
-			/* ERRO */
-			if (strlen($msg_erro) > 0)
-				{
-					$erros = '<TR><TD></TD><TD><div id="erro">'.$msg_erro.'</div>';
-				}
-			?>
+/* Check login */
+if ($form -> saved > 0) {
+	$rst = $ss -> login($dd[1], $dd[2]);
 	
-		<!-- forgot passs or new user -->
-			<A href="javascript:newxy2('login_password_send.php',500,200)" class="links">
-			<?=msg('forgot_password'); ?></A>
-			&nbsp;|&nbsp;
-			<A href="login_user_new.php" class="link">
-			<?=msg('user_new'); ?></A>
-			<?=$erros;?>
-			</TD></TR>
-		</table>
-		
-		</div>
+	$rst = $ss -> user_erro;
+	$msg_erro = 'Erro:' . abs($rst);
+	/* recupera mensagem */
 
-</div>		
-		
-</TR>	
+	if ($rst < 0) {
+		$rst = abs($rst);
+		$msg_erro = msg($ss -> user_msg);
+	} else {
+		if ($rst == 1) {
+			redirecina('main.php');
+		}
+	}
+}
+
+/* ERRO */
+if (strlen($msg_erro) > 0) {
+	$erros = '<TR>
+					<TD></TD>
+					<TD><div id="erro">' . $msg_erro . '</div>';
+}
+?>
+
+<!-- forgot passs or new user -->
+<A href="javascript:newxy2('login_password_send.php',500,200)" class="links">
+<?=msg('forgot_password'); ?></A>
+&nbsp;|&nbsp;
+<A href="login_user_new.php" class="link">
+<?=msg('user_new'); ?></A>
+<?=$erros; ?>
+</TD></TR>
+</table>
+
+</div>
+
+</div>
+
+</TR>
 </table>
 
 <?
@@ -132,7 +135,7 @@ echo $hd -> foot();
 		});
 		$('#div_msg').fadeOut('slow', function() {
 		});
-	});
+	}); 
 </script>
 
 <?

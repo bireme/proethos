@@ -250,12 +250,16 @@ class users
 				$resrlt = db_query($sql);
 				if ($result = db_read($resrlt))
 					{
+						print_r($result);
 						$user_senha = trim($result[$this->usuario_tabela_pass]);
 						if ($result['senha_md5'] == 1) { $pass = md5($pass); }
+						
 						if ($user_senha == $pass)
 							{
 								$perfil_admin = '';
-								if ($result['us_login']='0000001') { $perfil_admin = '#ADM'; }
+								/* Fix Admin Perfil */
+								if ($result['us_login']=='0000001') { $perfil_admin = '#ADM'; }
+								
 								$this->user_erro = 1;
 								$this->user_msg = '';				
 								$this->user_login = trim($result[$this->usuario_tabela_login]);
