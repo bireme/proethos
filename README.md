@@ -21,7 +21,7 @@ http://www.paho.org/proethos/
 <h3>Install</h3>
 
 Required
-- Hostserver Apache / PHP
+- Hostserver Apache / PHP 4+ or PHP 5
 - MySQL database
 - Account email
 - Free space at 20 Gigabytes Data
