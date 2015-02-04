@@ -9,6 +9,13 @@
   * @subpackage Messages
  */
 require("cab.php");
+
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
 $mess = new message;
 $edit_mode = 0;
 

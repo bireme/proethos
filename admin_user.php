@@ -10,6 +10,12 @@
  */
 require("cab.php");
 
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
 require($include.'sisdoc_colunas.php');
 require($include.'sisdoc_debug.php');
 

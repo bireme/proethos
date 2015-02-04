@@ -13,6 +13,8 @@ header("Expires: 0");
 header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 header("Cache-Control: private",false);
 
+$http_server = $_SERVER["SERVER_NAME"];
+echo $http_server;
 
 /* Find Include Directory */
 $path = array('_include/','../_include/','../../_include/');

@@ -10,6 +10,13 @@
  */
  
 require('cab.php');
+
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
 require('_class/_class_faq.php');
 
 $ln = new message;

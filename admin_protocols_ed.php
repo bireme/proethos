@@ -11,6 +11,12 @@
 require("cab.php");
 require("_class/_class_cep.php");
 
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
 global $acao,$dd,$cp,$tabela;
 require($include.'_class_form.php');
 $form = new form;

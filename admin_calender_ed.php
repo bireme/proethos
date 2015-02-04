@@ -16,6 +16,8 @@ require($include.'_class_form.php');
 require($include.'sisdoc_data.php');
 $form = new form;
 
+require("form_css.php");
+
 	$cl = new calendar;
 	$cp = $cl->cp();
 	$tabela = $cl->tabela;

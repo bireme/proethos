@@ -9,6 +9,14 @@
   * @subpackage user
  */
 require("cab.php");
+
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
+
 require($include.'sisdoc_data.php');
 require($include.'_class_form.php');
 $form = new form;

@@ -9,6 +9,13 @@
   * @subpackage Unit Register
  */
 require("cab.php");
+
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
 require("_class/_class_register_unit.php");
 
 global $acao,$dd,$cp,$tabela;

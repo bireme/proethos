@@ -86,6 +86,7 @@ echo $pos -> show($status);
 	echo '</table>';
 	echo '</div>';
 	echo '</div>';
+	
 	/* Bloqueio Etico */
 	$bloqueio = $cep -> bloqueio_etico();
 

@@ -10,6 +10,12 @@
  */
 require("cab.php");
 
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
 /* Valid Submit */
 $chk = checkpost($dd[0]);
 $ch2 = $dd[90];

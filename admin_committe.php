@@ -13,6 +13,12 @@
 $style_add = array('proethos_form.css');
 require ("cab.php");
 
+/* Admin Common */
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+if ($ok==0) {
+	redirecina('main.php');
+}
+
 /* Form Library */
 require ($include . '_class_form.php');
 $form = new form;
