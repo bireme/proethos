@@ -370,12 +370,7 @@ class cep {
 					'$investigator','$investigator','@',
 					'','$tp','$caae'
 					)";
-						echo $sql;
-						exit;
-
-						
-						
-									$rlt = db_query($sql);
+			$rlt = db_query($sql);
 			$this -> updatex_submit();
 		}
 		$rlt = db_query($sqlx);
