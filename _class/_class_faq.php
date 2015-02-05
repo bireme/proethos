@@ -67,7 +67,7 @@ class faq
 						$sx .= '</A>';
 						$sx .= '</B>';
 						$sx .= '<div id="faq'.$line['id_faq'].'" style="display: none;" >'.chr(13);
-						$sx .= trim($line['faq_resposta']).chr(13);
+						$sx .= mst(trim($line['faq_resposta'])).chr(13);
 						$sx .= '</div>'.chr(13);
 					}
 					$sx .= '<script>'.chr(13);
