@@ -9,4 +9,4 @@ function msg($txt) { return($txt); }
 	<script src="../js/jquery.js"></script>
 </header>
 <body>
-	<div id="logo"></div>
+<div id="logo"></div>

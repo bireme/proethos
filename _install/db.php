@@ -31,8 +31,6 @@ for ($k=0;$k < 100;$k++)
 	$dd[$k] = xss_security_post($varf);
 	}
 
-$db_config = 'repositorio/db_mysql_localhost.php';
-
 function xss_security_post($s)
 	{
 		$s = troca($s,'<','&lt;');

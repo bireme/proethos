@@ -12,8 +12,11 @@ class install
 	{
 		function install_sql()
 			{
+				global $base_name;	
 				/* Verificar se existe tabela */
-				$sql = "SELECT table_name FROM information_schema.tables WHERE table_name = 'apoio_titulacao'";
+				$sql = "SELECT table_name FROM information_schema.tables 
+						WHERE table_name = 'apoio_titulacao'
+								and table_schema = '$base_name' ";
 				$rlt = db_query($sql);
 				
 				/* Consulta */
@@ -67,7 +70,6 @@ class install
 				$sxs = troca($sxs,chr(13),'<BR>');
 				
 				echo ' $("#config_file").html("<TT>'.$sxs.'</TT>");'.$cr;
-				//echo ' $("#config_file").html("TESTE");'.$cr;
 				echo 'alert("Config Finish!");';
 				echo '</script>'.$cr;
 
