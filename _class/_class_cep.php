@@ -2078,7 +2078,7 @@ class cep {
 		$sp .= '<TR><Td colspan=4 class="table_proj" ><B>';
 		$sp .= trim($line['cep_caae']);
 		$sp .= '    <Td colspan=4 class="table_proj">';
-		$sp .= msg('amendment__' . trim($line['cep_tipo'])).trim($line['cep_tipo']);
+		$sp .= msg('amendment__' . trim($line['cep_tipo']));
 		$sp .= '</table>';
 
 		/* Title */

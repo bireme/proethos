@@ -18,7 +18,8 @@ require('submit_00_field.php');
 		}
 
 echo $s;
-echo '<TR><TD colspan=2>'; require('submit_pages.php');
+echo '<TR><TD colspan=2>'; 
+require('submit_pages.php');
 echo '</table>';
 
 if (($ok > 0) and (strlen($acao) > 0))
