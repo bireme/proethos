@@ -376,8 +376,10 @@ class users
 
 				array_push($cp,array('$HV','us_perfil','',False,True));
 				
-				array_push($cp,array('$B8','',msg('registrarse'),False,True));
 				array_push($cp,array('$H8','us_codigo','',False,True));
+				array_push($cp,array('$CAPTCHA','',msg('copy_the_text'),True,True));
+				
+				array_push($cp,array('$B8','',msg('registrarse'),False,True));
 								
 				return($cp);
 				

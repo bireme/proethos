@@ -55,6 +55,24 @@
     position: relative;
     margin: 0 auto;
 }
+.form_captcha
+    {
+    margin-left: 0px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    background: #EFEFFF;
+    padding: 12px 20px 12px 10px;
+    border: none;
+    width: 150px;
+    color: #303030;
+    box-shadow: inset 0px 1px 1px #272727;
+    font-size: 1.2em;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    transition: 0.5s ease;  
+    }
 .form_select {
     margin-left: 10px;
     margin-bottom: 5px;

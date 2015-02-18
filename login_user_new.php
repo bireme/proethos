@@ -18,12 +18,9 @@ $ic = new ic;
 
 			$form -> required_message = 0;
 			$form -> required_message_post = 0;
-			$form -> class_password = 'login_string';
-			$form -> class_string = 'login_string';
-			$form -> class_button_submit = 'login_submit';
-			$form -> class_form_standard = 'login_table';
-			$form -> class_select = 'login_string';
-			$form -> class_textarea = 'login_textarea';
+
+require("form_css.php");
+
 
 /* Login data */
 $nw = new users;

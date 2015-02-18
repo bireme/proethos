@@ -8,4 +8,5 @@
 			$form -> class_select = 'form_select';
 			$form -> class_select_option = 'form_select_option';
 			$form -> class_textarea = 'form_textarea';
+			$form -> class_captcha = 'form_captcha';
 ?>

@@ -111,6 +111,7 @@ class form
 		var $class_select_option = '';
 		var $class_textarea = '';
 		var $class_field = '';
+		var $class_captcha = '';
 
 	/* AJAX */
 	function ajax($id,$protocolo)
@@ -333,6 +334,18 @@ class form
 						$this->value = trim($dd[$r]);
 
 						$sx .= $this->process($cp[$r]);
+						
+						if (($cp[$r][0] =='$CAPTCHA') and (strlen($acao) > 0))
+							{
+								$captcha = $_SESSION['form_captcha'];
+								if ($captcha != trim($dd[$r]))
+									{
+										$this->value = '';
+										echo 'erro';
+									} else {
+										echo 'ok';
+									}
+							}
  
 						if (($cp[$r][0]=='$TOKEN') and (strlen($acao) > 0))
 							{
@@ -629,6 +642,22 @@ class form
 					
 					/* Checkbox */
 					case 'C':  $sx .= '<TR><TD colspan=2>'.$this->type_C() . $this->caption; break;					
+
+					/* Checkbox */
+					case 'CAPTC':  $sx .= '<TR><TD><TD colspan=1>'. $this->caption . '<BR>' .
+									$this->type_captcha().'<BR>'; 
+								   $sx .= '
+									<input 
+										type="text" name="'.$this->name.'" 
+										value = ""
+										maxlength="8" 
+										class="'.$this->class_captcha.'" 
+										id="'.$this->name.'"
+										placeholder="'.$this->caption_placeholder.'"
+										'.$this->readonly.' '.$style.'
+					 					/>'.chr(13);
+									$sx .= $this->requerido();
+									break;					
 										
 					/* Date */
 					case 'D':  
@@ -934,6 +963,21 @@ class form
 				
 				return($sx);				
 			}
+
+		/****************************
+		 * Captha
+		 */
+		 function type_captcha()
+		 	{
+		 		global $include;
+				$sx = '';
+		 		$sx .= '<img src="'.$include.'/captcha.php">';
+				$sx .= '
+				<input 
+					type="hidden" name="'.$this->name.'" 
+					value="'.$this->value.'" id="'.$this->name.'" />';
+				return($sx);	
+		 	}
 			
 			
 		/*********************************
