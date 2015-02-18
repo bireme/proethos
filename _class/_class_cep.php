@@ -2267,11 +2267,16 @@ class cep {
 		return ($sa);
 	}
 
-	function protocolos_avaliacao($sta) {
+	function protocolos_avaliacao($sta,$tipo='') {
 		global $ss;
 
 		$us = strzero(round($ss -> user_id), 7);
-
+		if (strlen($tipo) > 0)
+			{
+				$wh = " and (cep_tipo = '$tipo' )";
+			} else {
+				$wh = '';
+			}
 		if ($sta == 'Z') {
 			$sql = "select * from " . $this -> tabela . " 
 					 inner join cep_dictamen on pp_protocolo = cep_protocol 
@@ -2279,11 +2284,13 @@ class cep {
 					 (cep_status = '@' or cep_status = 'A' or cep_status = 'B' or cep_status = 'C' or cep_status = 'D')
 					 and pp_avaliador = '$us' 
 					 and (pp_status <> 'B' and pp_status <> 'X')
+					 $wh
 					 order by cep_reuniao ";
 		} else {
 			$sql = "select * from " . $this -> tabela . " 
 					 left join usuario on us_codigo = cep_pesquisador
 					 where cep_status = '$sta' 
+					 $wh
 					 order by cep_reuniao 
 					 ";
 		}
@@ -2299,13 +2306,19 @@ class cep {
 			}
 			$sx .= $this -> mostra($line);
 		}
-		echo '<table width=96% class="table_normal" border=0>';
-		echo '<TR><TH>' . msg('protocol');
-		echo '<TH>' . msg('project_title');
-		echo '<TH>' . msg('status');
-		echo $sx;
-		echo '<TR><TD colspan=5>' . msg('found') . ' ' . $tot . ' ' . msg('records');
-		echo '</table>';
+		
+		$sa = '<table width=96% class="table_normal" border=0>';
+		$sa .= '<TR><TH>' . msg('protocol');
+		$sa .=  '<TH>' . msg('project_title');
+		$sa .=  '<TH>' . msg('status');
+		$sa .=  $sx;
+		$sa .=  '<TR><TD colspan=5>' . msg('found') . ' ' . $tot . ' ' . msg('records');
+		$sa .=  '</table>';
+		if ($tot==0)
+			{
+				$sa = '';
+			}
+		return($sa);
 	}
 
 	function mostra($line) {
