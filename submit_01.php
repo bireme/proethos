@@ -64,8 +64,6 @@ array_push($cp,array('$H8','doc_xml','',False,True));
 array_push($cp,array('$H8','doc_caae','',False,True));
 
 
-
-
 $tela = $form->editar($cp,$tabela);
 
 if ($form->saved > 0)
@@ -80,10 +78,15 @@ if ($form->saved > 0)
 					{
 						$_SESSION['proj_id'] = $line['id_doc'];
 						$_SESSION['proj_page'] = 1;
+						
+						$pt = strzero($_SESSION['proj_id'],7);
+						$at = $line['doc_autor_principal'];
 					} else {
 						echo msg('ERRO-SAVE_NEW_PROJET');
 						exit;
-					}				
+					}
+				/* Incluir o pesquisador principal */
+				$proj->inserir_pesquisador_autor($pt,$at);				
 			}
 		$_SESSION['proj_page'] = 2;
 		redirecina('submit.php?time'.date("dmYhis"));

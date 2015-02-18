@@ -26,6 +26,31 @@ class submit {
 
 	var $tabela = 'cep_submit_documento';
 	
+	function inserir_pesquisador_autor($protocol,$autor)
+		{
+			$sql = "select count(*) as total from cep_submit_team
+						 where ct_protocol = '$protocol' ";
+			$rlt = db_query($sql);
+			$total = 0;
+			if ($line = db_read($rlt))
+				{
+					$total = $line['total'];
+				}
+				
+			/* Registra autor principal */
+			if ($total == 0)
+				{
+					$date = date("Ymd");
+					$sql = "insert into cep_submit_team 
+							(ct_protocol, ct_author, ct_type, ct_data, ct_ativo) 
+							values
+							('$protocol','$autor','C',$date,1)
+					";
+					$rlt = db_query($sql);
+				}
+			return(1);
+		}	
+	
 	function confirm_submission_by_email() {
 		global $LANG;
 		$ic = new ic;
