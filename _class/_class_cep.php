@@ -115,35 +115,67 @@ class cep {
 		return (1);
 	}
 
+	function search_by_word($field,$words)
+		{
+			$wd = UpperCaseSql($words);
+			$wd = troca($wd,' ',';').';';
+			$wd = splitx(';',$wd);
+			$wh = '';
+			for ($r=0;$r < count($wd);$r++)
+				{
+					/* recupera word do termo */
+					$term = $wd[$r];
+					if ($r > 0)
+						{
+							$wh .= ' and ';
+						}
+					$wh .= " ($field  like '%$term%') ";
+				}
+			return($wh);			
+		}
 	function protocolos_search($sta) {
 		global $ss;
 		$sta = trim($sta);
 		$us = strzero(round($ss -> user_id), 7);
-
+		
+		/* Protocolos de Pesquisa */
 		$sql = "select * from " . $this -> tabela . " 
 					 left join usuario on us_codigo = cep_pesquisador
 					 where (cep_titulo like '%" . $sta . "%') 
-					 or (cep_titulo_public like '%" . $sta . "%')
+					 or (".$this->search_by_word('cep_titulo_public',$sta).")
 					 or (cep_caae  like '%" . $sta . "%')
 					 or (cep_codigo like '%" . $sta . "%')
-					 or (us_nome like '%" . $sta . "%')
-					 order by cep_reuniao desc
+					 or (".$this->search_by_word('us_nome',$sta).")
+					 order by cep_tipo desc
 					 ";
 		$rlt = db_query($sql);
 		$dta = 19000101;
 		$tot = 0;
+		/* Header to Protocol */
+		$trp = '<TR><TH>' . msg('protocol');
+		$trp .= '<TH>' . msg('project_title');
+		$trp .= '<TH>' . msg('status');
+		
+		/* Header to Amen */
+		$tra = '<TR><TH>' . msg('protocol');
+		$tra .= '<TH>' . msg('amen_title');
+		$tra .= '<TH>' . msg('status');		
+		
+		$xtipo = '';
 		while ($line = db_read($rlt)) {
+			$tipo = trim($line['cep_tipo']);
+			
+			if ($xtipo != $tipo)
+				{
+					$xtipo = $tipo;
+					if ($tipo == 'PRO') { $sx .= $trp; }
+					if ($tipo == 'AME') { $sx .= $tra; }
+				}
 			$tot++;
-			$data = $line['cep_reuniao'];
-			if ($data != $dta) { $sx .= '<TR><TD colspan=4 align="center" class="lt2"><center>' . msg('meet_data') . ' ' . stodate($data);
-				$dta = $data;
-			}
 			$sx .= $this -> mostra($line);
 		}
 		echo '<table width=96% class="table_normal" border=0>';
-		echo '<TR><TH>' . msg('protocol');
-		echo '<TH>' . msg('project_title');
-		echo '<TH>' . msg('status');
+
 		echo $sx;
 		echo '<TR><TD colspan=5>' . msg('found') . ' ' . $tot . ' ' . msg('records');
 		echo '</table>';
