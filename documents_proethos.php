@@ -1,6 +1,6 @@
 <?
 $img = '';
-$path = '_documents/templates/';
+$path = 'document/templates/';
 
 /* Header */
 $sx = '
@@ -33,7 +33,7 @@ $sx .= '<TD width="50%">';
 $sx .= '<h3>' . msg('proethos_docs_models') . '</h3>';
 
 $ar = array();
-array_push($ar, array(msg('proethos_doc_adve'), $path . 'Rreporte eventos adversos (' . $LANG . ').rtf'));
+array_push($ar, array(msg('proethos_doc_adve'), $path . 'Reporte eventos adversos (' . $LANG . ').rtf'));
 array_push($ar, array(msg('proethos_doc_soli_exte'), $path . 'Solicitud de EXTENSION DE APROBACION (' . $LANG . ').rtf'));
 array_push($ar, array(msg('proethos_doc_soli_emen'), $path . 'Solicitud de ENMIENDA (' . $LANG . ').rtf'));
 
@@ -57,8 +57,8 @@ array_push($ar, array(msg('proethos_doc_diac'), $path . 'CONDICIONALMENTE APROBA
 array_push($ar, array(msg('proethos_doc_dina'), $path . 'NO APROBADO (' . $LANG . ').rtf'));
 array_push($ar, array(msg('proethos_doc_diex'), $path . 'EXENTO (' . $LANG . ').rtf'));
 
-array_push($ar, array(msg('proethos_doc_apem'), $path . 'aprobación ENMIENDA (' . $LANG . ').rtf'));
-array_push($ar, array(msg('proethos_doc_apex'), $path . 'aprobación EXTENSION (' . $LANG . ').rtf'));
+array_push($ar, array(msg('proethos_doc_apem'), $path . 'aprobacion ENMIENDA (' . $LANG . ').rtf'));
+array_push($ar, array(msg('proethos_doc_apex'), $path . 'aprobacion EXTENSION (' . $LANG . ').rtf'));
 
 if (($perfil -> valid('#ADM')) or ($perfil -> valid('#COO')) or ($perfil -> valid('#MEN')) or ($perfil -> valid('#SCR'))) {
 	$sx .= '<h3>' . msg('proethos_doc_dict') . '</h3>';

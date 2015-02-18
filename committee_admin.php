@@ -21,6 +21,7 @@ if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> vali
 
 	array_push($menu, array(msg('documents_title'), msg('document_type'), 'admin_document_type.php'));
 	array_push($menu, array(msg('documents_title'), msg('documents_title'), 'admin_docs_type.php'));
+	array_push($menu, array(msg('documents_title'), msg('documents_dictamen'), 'admin_docs_dictame.php'));
 
 	array_push($menu, array(msg('admin_post_mail'), msg('post_mail'), 'admin_ic.php'));
 
