@@ -7,22 +7,7 @@
 * @package INCLUDEs
 * @subpackage Date
 */
-///////////////////////////////////////////
-// Vers�o atual           //    data     //
-//---------------------------------------//
-// 0.0j                       10/01/2012 // Incorpora�ao da classe
-// 0.0i						  03/11/2010 // Fun��o DiffDataDias
-// 0.0h                       05/02/2009 // Fun��o StoUS
-// 0.0g                       05/02/2009 // Fun��o DateDiff
-// 0.0f                       25/07/2008 //
-// 0.0e                       19/02/2008 //
-// 0.0d                       23/01/2008 //
-// 0.0c                       17/01/2008 //
-// 0.0b                       27/08/2007 //
-// 0.0a                       09/08/2007 //
-///////////////////////////////////////////;
-if ($mostar_versao == True) {array_push($sis_versao, array("sisDOC (Data/Hora)", "0.0h", 20100314));
-}
+
 if (strlen($include) == 0) { exit ;
 }
 if (strlen($sisdoc_data) == 0) {

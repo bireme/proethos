@@ -97,10 +97,5 @@ $dd5=troca($dd5,chr(10),'');
 $dd7=troca(msg('title_public_inf'),chr(13),'');
 $dd7=troca($dd7,chr(10),'');
 ?>
-<script>
-	$("#dd5").example('<?=$dd5;?>');
-	$("#dd7").example('<?=$dd7;?>');
-	<? echo $js; ?>
-</script>
 
 

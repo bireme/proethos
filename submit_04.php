@@ -29,10 +29,5 @@ if (($ok > 0) and (strlen($acao) > 0))
 <script>
 <?
 echo $scripts;
-//	$("#dd2").example('Introduction');
-//	$("#dd5").example('Insert the goal');
-//	$("#dd7").example('Insert the specific goal');
-//	$("#dd10").example('Design Study');
-//	$("#dd12").example('methodology');
 ?>
 </script>

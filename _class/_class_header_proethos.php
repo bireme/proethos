@@ -84,6 +84,7 @@ class header {
 		global $LANG;
 		
 		//$sx = msg('copyright');
+
 		switch ($LANG)
 			{
 			case 'en_US':
@@ -103,7 +104,7 @@ class header {
 				break;
 			}
 			$sx = '<I>'.$sx.'</I>';		
-		return ($sx);
+		return ($sx.$sh);
 	}
 
 	function head() {
@@ -138,7 +139,7 @@ class header {
 		}
 
 		/* Add Java script */
-		$js = array('jquery.js','jquery.maskedit.js','jquery.maskmoney.js','windows.js');
+		$js = array('jquery.js','jquery.maskmoney.js','windows.js');
 		for ($r = 0; $r < count($js); $r++) 
 			{ $sx .= '<script type="text/javascript" src="' . $http . 'js/' . $js[$r] . '"></script>' . $cr;
 		}

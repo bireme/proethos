@@ -937,7 +937,7 @@ class form
 			
 			
 		/*********************************
-		 * Data
+		 * Data / Fecha
 		 */
 		function type_D()
 			{

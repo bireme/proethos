@@ -249,6 +249,7 @@ while ($line = db_read($rlt))
 	}
 	}
 $s .= '<script>'.chr(13).$js.'</script>'.chr(13);
+$s .= $form->js;
 //$s .= '<HR>2<HR>';
 
 if (strlen($se) > 0)
