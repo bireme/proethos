@@ -11,7 +11,8 @@
 require("cab.php");
 
 /* Admin Common */
-$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
+$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')) or ($ss->user_ghost > 0));
+
 if ($ok==0) {
 	redirecina('main.php');
 }
