@@ -350,7 +350,12 @@ class dictamen {
 		}
 		/* Acompanhamento */
 		$sx .= chr(13);
-		$acop = array( array('', ''), array(180, msg('semiannual')), array(365, msg('annual')), array(-1, msg('end_of_the_investigation')));
+		$acop = array( array('', ''),  
+								array(180, msg('semiannual')), 
+								array(365, msg('annual')), 
+								array(-1, msg('end_of_the_investigation')),
+								array(0, msg('not_applied'))
+								);
 		$hd = 'style="display: none;"';
 
 		/*
