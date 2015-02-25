@@ -1,0 +1,233 @@
+ProEthos © Pan American Health Organization, 2013.
+
+ProEthos is licensed under the terms available at https://github.com/bireme/proethos/LICENSE.txt 
+
+Follows a list of the Open Source Softwares and their respective applicable Open Source licenses, copyright notices and the files where such information was located.
+
+
+1. jQuery UI
+   http://jqueryui.com
+   Copyright 2013 jQuery Foundation and other contributors Licensed MIT
+
+   /js/calender_data.css
+   /_include/js/calender_data.css
+   /_include/css/calender_data.css
+   /js/jquery-ui.js
+   /js/jquery-calender.js
+   /js/jquery-calender_pt_BR.js
+   /js/jquery-calender_es.js
+   /js/jquery-calender_en_US.js
+   /_include/js/jquery-ui.js
+   /_include/js/jquery-calender.js
+   /_include/js/jquery-calender_pt_BR.js
+   /_include/js/jquery-calender_es.js
+   /_include/js/jquery-calender_en_US.js
+
+
+2. jQuery
+   jQuery 1.2.3 - New Wave Javascript
+   Copyright (c) 2008 John Resig (jquery.com)
+   Dual licensed under the MIT (MIT-LICENSE.txt) and GPL (GPL-LICENSE.txt) licenses.
+
+   /js/jquery-latest.js
+   /_include/js/jquery-latest.js
+
+
+3. jQuery Tags Input Plugin
+   Copyright (c) 2011 XOXCO, Inc - ben@xoxco.com
+   http://xoxco.com/clickable/jquery-tags-input
+   http://www.opensource.org/licenses/mit-license.php
+
+   /js/jquery.tagsinput.js
+   /_include/js/jquery.tagsinput.js
+
+
+4. Masked Input plugin for jQuery
+   Copyright (c) 2007-2013 Josh Bush (digitalbush.com)
+   Licensed under the MIT license (http://digitalbush.com/projects/masked-input-plugin/#license)
+   Version: 1.3.1
+
+   /js/jquery.maskedit.js
+   /_include/js/jquery.maskedit.js
+
+
+5. TableSorter
+   TableSorter 2.0
+   Copyright (c) 2007 Christian Bach
+   http://tablesorter.com
+   Dual licensed under the MIT and GPL licenses:
+   http://www.opensource.org/licenses/mit-license.php
+   http://www.gnu.org/licenses/gpl.html
+
+   /js/jquery.tablesorter.js
+   /_include/js/jquery.tablesorter.js
+
+
+6. DHTML Calendar
+   DHTML Calendar (function)
+   Copyright Mihai Bazon, 2002, 2003  |  http://students.infoiasi.ro/~mishoo
+   http://students.infoiasi.ro/~mishoo/site/calendar.epl
+   Feel free to use this script under the terms of the GNU Lesser General Public License, as long as you do not remove or alter this notice.
+
+   /js/calender_data.js
+   /_include/js/calender_data.js
+
+
+7. PHPMailer
+   https://github.com/PHPMailer/PHPMailer/ The PHPMailer GitHub project
+   Authors: Marcus Bointon (Synchro/coolbru) <phpmailer@synchromedia.co.uk>, Jim Jagielski (jimjag) <jimjag@gmail.com>, Andy Prevost (codeworxtech) <codeworxtech@users.sourceforge.net>, Brent R. Matzelle (original founder)
+   Copyright 2014 Marcus Bointon, 2010 - 2012 Jim Jagielski, 2004 - 2009 Andy Prevost
+   License http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
+
+   /libs/email/class.smtp.php
+   /libs/email/test/phpmailerTest.php
+   /libs/email/test/phpmailerLangTest.php
+   /libs/email/class.pop3.php
+   /libs/email/PHPMailerAutoload.php
+   /libs/email/class.phpmailer.php
+
+
+8. Html2Text
+   Portions Copyright (c) 2005-2007 Jon Abernathy <jon@chuggnutt.com>
+   This script is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+   The GNU General Public License can be found at http://www.gnu.org/copyleft/gpl.html.
+
+   /libs/email/extras/class.html2text.php
+
+9. htmlfilter
+   Copyright (C) 2002-2004 by Duke University
+   This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
+
+   /libs/email/extras/htmlfilter.php
+
+
+10. Dynatree
+    jquery.dynatree.js
+    Copyright (c) 2006-2013, Martin Wendt (http://wwWendt.de)
+    Dual licensed under the MIT or GPL Version 2 licenses. http://code.google.com/p/dynatree/wiki/LicenseInfo
+    http://dynatree.googlecode.com/
+
+   /js/jquery.dynatree.js
+   /_include/js/jquery.dynatree.js
+
+
+11. SMTP_Validate_Email
+    Copyright (C) 2009 Tomaš Trkulja [zytzagoo] <zyt@zytzagoo.net>
+    https://github.com/zytzagoo/smtp-validate-email  
+    This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+    http://www.gnu.org/licenses/
+
+    /_include/_class_email_smtp.php
+
+
+12. FPDF
+    Version: 1.7
+    Copyright (C) 2011 Olivier PLATHEY
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software to use, copy, modify, distribute, sublicense, and/or sell copies of the software, and to permit persons to whom the software is furnished to do so.
+
+    /fphp-170/fpdf.php
+    /fphp-170/license.txt
+
+
+13. Typographic fonts used by the system
+
+    License for Roboto fonts: Apache License v2.00
+    This license can also be found at this permalink: http://www.fontsquirrel.com/license/roboto
+    Font data copyright Google 2012
+    Apache License - Version 2.0, January 2004 - http://www.apache.org/licenses/
+
+    License for Yanone Kaffeesatz - including fnt*.* files - fonts: SIL Open Font License v1.10
+    This license can also be found at this permalink: http://www.fontsquirrel.com/license/yanone-kaffeesatz
+    Copyright (c) 2004-2010, Jan Gerner (post@yanone.de) / (c) Huerta Tipografica (info@huertatipografica.com.ar)
+    This Font Software is licensed under the SIL Open Font License, Version 1.1. - http://scripts.sil.org/OFL
+
+    fnt-1-Bold.ttf
+    fnt-1-ExtraLight.ttf
+    fnt-1-Light.ttf
+    fnt-1-Normal.ttf
+    fnt-1.woff2
+    fnt-2.woff
+    fnt-3.woff
+    fnt-4.woff
+    fnt-5.woff
+    fnt-6.woff
+    roboto12.gdf
+    roboto18.gdf
+    roboto24.gdf
+    roboto32.gdf
+    roboto48.gdf
+    roboto8.gdf
+    Roboto-BlackItalic-webfont.eot
+    Roboto-BlackItalic-webfont.svg
+    Roboto-BlackItalic-webfont.ttf
+    Roboto-BlackItalic-webfont.woff
+    Roboto-Black-webfont.eot
+    Roboto-Black-webfont.svg
+    Roboto-Black-webfont.ttf
+    Roboto-Black-webfont.woff
+    Roboto-BoldCondensedItalic-webfont.eot
+    Roboto-BoldCondensedItalic-webfont.svg
+    Roboto-BoldCondensedItalic-webfont.ttf
+    Roboto-BoldCondensedItalic-webfont.woff
+    Roboto-BoldCondensed-webfont.eot
+    Roboto-BoldCondensed-webfont.svg
+    Roboto-BoldCondensed-webfont.ttf
+    Roboto-BoldCondensed-webfont.woff
+    Roboto-BoldItalic-webfont.eot
+    Roboto-BoldItalic-webfont.svg
+    Roboto-BoldItalic-webfont.ttf
+    Roboto-BoldItalic-webfont.woff
+    Roboto-Bold-webfont.eot
+    Roboto-Bold-webfont.svg
+    Roboto-Bold-webfont.ttf
+    Roboto-Bold-webfont.woff
+    Roboto-CondensedItalic-webfont.eot
+    Roboto-CondensedItalic-webfont.svg
+    Roboto-CondensedItalic-webfont.ttf
+    Roboto-CondensedItalic-webfont.woff
+    Roboto-Condensed-webfont.eot
+    Roboto-Condensed-webfont.svg
+    Roboto-Condensed-webfont.ttf
+    Roboto-Condensed-webfont.woff
+    roboto.gdf
+    Roboto-Italic-webfont.eot
+    Roboto-Italic-webfont.svg
+    Roboto-Italic-webfont.ttf
+    Roboto-Italic-webfont.woff
+    Roboto-LightItalic-webfont.eot
+    Roboto-LightItalic-webfont.svg
+    Roboto-LightItalic-webfont.ttf
+    Roboto-LightItalic-webfont.woff
+    Roboto-Light-webfont.eot
+    Roboto-Light-webfont.svg
+    Roboto-Light-webfont.ttf
+    Roboto-Light-webfont.woff
+    Roboto-MediumItalic-webfont.eot
+    Roboto-MediumItalic-webfont.svg
+    Roboto-MediumItalic-webfont.ttf
+    Roboto-MediumItalic-webfont.woff
+    Roboto-Medium-webfont.eot
+    Roboto-Medium-webfont.svg
+    Roboto-Medium-webfont.ttf
+    Roboto-Medium-webfont.woff
+    Roboto-Regular-webfont.eot
+    Roboto-Regular-webfont.svg
+    Roboto-Regular-webfont.ttf
+    Roboto-Regular-webfont.woff
+    Roboto-ThinItalic-webfont.eot
+    Roboto-ThinItalic-webfont.svg
+    Roboto-ThinItalic-webfont.ttf
+    Roboto-Thinitalic-webfont.woff
+    Roboto-Thin-webfont.eot
+    Roboto-Thin-webfont.svg
+    Roboto-Thin-webfont.ttf
+    Roboto-Thin-webfont.woff
+    YanoneKaffeesatz-Bold.otf
+    YanoneKaffeesatz-Bold.ttf
+    YanoneKaffeesatz-ExtraLight.otf
+    YanoneKaffeesatz-Light.otf
+    YanoneKaffeesatz-Light.ttf
+    YanoneKaffeesatz-Regular.otf
+    YanoneKaffeesatz-Regular.ttf
+    YanoneKaffeesatz-Regular-webfont.eot
+    YanoneKaffeesatz-Thin.ttf
