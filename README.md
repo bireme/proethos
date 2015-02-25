@@ -13,7 +13,7 @@ ProEthos is free and adapts easily to the processes of each committee. It can be
 
 The ProEthos web site . . . . . . http://www.paho.org/proethos/
 
-Mailing list for developers . . . http://bit.ly/mailing-proethos-dev 
+Mailing list for developers . . . http://bit.ly/mailing-proethos-dev
 
 Mailing list for users  . . . . . http://bit.ly/mailing-proethos-committee
 
