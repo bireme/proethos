@@ -11,28 +11,28 @@ ProEthos is free and adapts easily to the processes of each committee. It can be
 <h3>Links</h3>
 
 
-The ProEthos web site . . . . . . http://www.paho.org/proethos/
+<code>The ProEthos web site . . . . . . http://www.paho.org/proethos/</code>
 
-Mailing list for developers . . . http://bit.ly/mailing-proethos-dev
+<code>Mailing list for developers . . . http://bit.ly/mailing-proethos-dev</code>
 
-Mailing list for users  . . . . . http://bit.ly/mailing-proethos-committee
+<code>Mailing list for users  . . . . . http://bit.ly/mailing-proethos-committee</code>
 
-Technical Installation Manual . . https://github.com/bireme/proethos/wiki/Technical-Installation-Manual
+<code>Technical Installation Manual . . https://github.com/bireme/proethos/wiki/Technical-Installation-Manual</code>
 
-Wiki  . . . . . . . . . . . . . . https://github.com/bireme/proethos/wiki
+<code>Wiki  . . . . . . . . . . . . . . https://github.com/bireme/proethos/wiki</code>
 
-The Developers site . . . . . . . https://github.com/bireme/proethos
+<code>The Developers site . . . . . . . https://github.com/bireme/proethos</code>
 
-Issue tracking  . . . . . . . . . https://github.com/bireme/proethos/issues
+<code>Issue tracking  . . . . . . . . . https://github.com/bireme/proethos/issues</code>
 
 
 <h3>Information sources</h3>
 
 
-LICENSE.txt        - The ProEthos license.
+<code>LICENSE.txt        - The ProEthos license.</code>
 
-COPYRIGHT.txt      - The list of Open Source Software used by ProEthos.
+<code>COPYRIGHT.txt      - The list of Open Source Software used by ProEthos.</code>
 
-README.txt         - This file.
+<code>README.txt         - This file.</code>
 
 
