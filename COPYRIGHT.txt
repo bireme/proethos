@@ -1,10 +1,12 @@
 ProEthos © Pan American Health Organization, 2013.
 
-ProEthos is licensed under the terms available at 
+ProEthos software is licensed under the terms available at 
 https://github.com/bireme/proethos/LICENSE.txt 
 
 Follows a list of the Open Source Softwares and their respective applicable Open 
-Source licenses, copyright notices and the files where such information was located.
+Source licenses, copyright notices and the files where such information is located.
+
+Observation: Information may be subject to alteration.
 
 
 1. jQuery UI
