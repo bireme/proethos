@@ -32,9 +32,9 @@ if (strlen($acao) > 0)
 		$cep->cep_historic_append('PAE',msg('emited_dictamen'));
 		$dict->protocol = $proto;
 				
-//		$dict->create_pdf($proto);
-//		$dict->ged_delete_old($proto);
-//		$dict->save_ged();
+		$dict->create_pdf($proto);
+		$dict->ged_delete_old($proto);
+		$dict->save_ged();
 				
 		$cep->protocolo = $proto;
 		$cep->caae = $dd[1];

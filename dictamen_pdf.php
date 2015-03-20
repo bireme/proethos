@@ -24,5 +24,6 @@ $LANG = $lg->language_read();
 if (file_exists($file)) { require($file); } else { echo 'message not found '.$file; }
 
 require($include.'sisdoc_data.php');
+
 require("dictamen_pdf_projeto.php");
 ?>

@@ -82,6 +82,8 @@ $nome = trim($line['pr_situacao']);
 if ($nome == 'APR')
 	{
 	$rela = round($line['pr_accompaniment']);
+	/* cria objeto */
+	$cep = new cep;
 	$nome = $cep->monitoring($rela);
 	
 	$pdf->SetFont('Arial','',8);

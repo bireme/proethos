@@ -1265,7 +1265,7 @@ class cep {
 
 	function salvar_decisao_no_protocolo() {
 		$proto = $this -> protocolo;
-		$sql = "select * from cep_parecer where pr_protocol = '$proto' and pr_status = 'A' or pr_status = 'B' ";
+		$sql = "select * from cep_parecer where pr_protocol = '$proto' order by id_pr desc ";
 		$rlt = db_query($sql);
 		$line = db_read($rlt);
 		$tipo = trim($line['pr_situacao']);
@@ -2330,6 +2330,7 @@ class cep {
 		$vs = 3;
 
 		$status = trim($line['cep_status']);
+		$parecer = trim($line['cep_pr_protocol']);
 
 		$dias = $line['cep_atualizado'];
 		$data = date("Ymd");
@@ -2362,8 +2363,9 @@ class cep {
 
 		/* status */
 		$s .= '<TD rowspan=' . $vs . ' align="center" width="50">';
-		if ($status == 'P') {
-			$s .= msg('aproved');
+		$s .= '['.$parecer.']';
+		if ($parecer == 'P') {
+			$s .= msg('aproved');			
 		} else {
 			$s .= '<font class="lt3">' . $corf . $df . '</font>
 					<BR>

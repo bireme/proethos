@@ -18,7 +18,8 @@ class dictamen {
 					inner join cep_protocolos on pr_protocol = cep_protocol
 					inner join usuario on cep_pesquisador = us_codigo
 					left join parecer_modelo on (pm_decision = pr_situacao) and (pm_type = cep_tipo)
-					where  pr_protocol = '" . $id . "' ";
+					where  pr_protocol = '" . $id . "' and pr_status <> 'C'
+					order by id_pr desc  ";
 		$rlt = db_query($sql);
 		if ($line = db_read($rlt)) {
 			$this -> line = $line;
@@ -75,7 +76,7 @@ class dictamen {
 		global $tabela, $sdd, $LANG;
 		$tabela = "parecer_modelo";
 		$opa = '';
-		$ops = array('APR', 'NOA', 'NOT', 'PRO', 'RET');
+		$ops = array('APR', 'NOA', 'NOT', 'PRO', 'RET', 'EXT');
 		for ($r = 0; $r < count($ops); $r++) { $opa .= '&' . $ops[$r] . ':' . msg('pm_' . $ops[$r]);
 		}
 
@@ -263,13 +264,18 @@ class dictamen {
 					";
 		$rlt = db_query($sql);
 
-		$this -> atualiza_protocolo($caae, $acomp);
+		$this -> atualiza_protocolo($caae, $acomp, $resultado);
 		return (1);
 	}
 
-	function atualiza_protocolo($caae, $acomp) {
+	function atualiza_protocolo($caae, $acomp, $situacao='') {
+		if (strlen($situacao) > 0)
+			{
+				$up = ", cep_pr_protocol = 'pm_$situacao' ";
+			}
 		$sql = "update cep_protocolos set 
 							cep_monitoring = " . round($acomp) . "
+							$up
 					where cep_protocol = '$caae' ";
 		$rlt = db_query($sql);
 		return (1);
