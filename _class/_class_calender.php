@@ -18,7 +18,7 @@ class calendar
 				$sx = '';
 				if (count($act) > 0)
 				{
-				$sx = '<table width="100%" class="lt1">';
+				$sx = '<table width="100%" class="lt1" border=0 >';
 				$sx .= '<TR><TH width="6%" align="center">'.msg('day');
 				$sx .= '<TH width="10%" align="center">'.msg('hour');
 				$sx .= '<TH width="84%">'.msg('description');
@@ -30,10 +30,10 @@ class calendar
 								$bgcolor = 'style="background-color: '.$bgcolor.'; " ';
 							}
 						$sx .= '<TR>';
-						$sx .= '<TD '.$bgcolor.' align="center">'.substr($act[$r][0],6,2);
-						$sx .= '<TD align="center">'.substr($act[$r][1],0,5);
-						//$sx .= '<TD align="center">'.$act[$r][2];
-						$sx .= '<TD align="left">'.$act[$r][3];
+						$sx .= '<TD '.$bgcolor.' align="center" class="border1">'.substr($act[$r][0],6,2);
+						$sx .= '<TD align="center" class="border1">'.substr($act[$r][1],0,5);
+						$sx .= '<TD align="left" class="border1">'.$act[$r][3];
+						$sx .= '- '.$act[$r][2];						
 					}
 				$sx .= '</table>';
 				}
@@ -56,7 +56,7 @@ class calendar
 				$act = array();
 				while ($line = db_read($rlt))
 					{
-						array_push($act,array($line['cal_date'],$line['cal_time'],$line['cal_cal_description'],$line['calt_descricao'],$line['calt_color']));
+						array_push($act,array($line['cal_date'],$line['cal_time'],$line['cal_description'],$line['calt_descricao'],$line['calt_color']));
 					}
 				return($act);			
 			}
