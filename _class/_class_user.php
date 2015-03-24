@@ -413,6 +413,7 @@ class users
 				array_push($cp,array('$H20','us_login',msg('login'),False,True));
 				array_push($cp,array('$S100','us_email',msg('email'),True,True));
 				array_push($cp,array('$S100','us_email_alt',msg('email_alt'),False,True));
+				array_push($cp,array('$P20','us_senha',msg('senha'),True,True));
 				array_push($cp,array('$T60:5','us_endereco',msg('address'),False,True));
 				array_push($cp,array('$S100','us_instituition',msg('institution'),True,True));
 				
