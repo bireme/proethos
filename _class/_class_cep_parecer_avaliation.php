@@ -14,6 +14,13 @@ class parecer_avaliation
 		var $status;
 		var $id;
 		
+		var $tabela = 'cep_dictamen';
+		
+		function set_decline($id)
+			{
+				$sql = "update ".$this->tabela." set pp_status = 'D' where id_pp = ".round($id);
+				$rlt = db_query($sql);
+			}
 		
 		function set_avaliables($id,$req,$ed=1)
 			{
@@ -219,10 +226,18 @@ class parecer_avaliation
 					$link = '<A HREF="#res" onclick="newxy2(';
 					$link .= "'parecer_checklist_see.php?dd0=".$line['id_pp'].'&dd90='.checkpost($line['id_pp'])."'";
 					$link .= ',750,500);">';
+					
+					/* Link Declinar */
+					$linkd = '<A HREF="#res" onclick="newxy2(';
+					$linkd .= "'parecer_decline.php?dd0=".$line['id_pp'].'&dd90='.checkpost($line['id_pp'])."'";
+					$linkd .= ',350,200);"
+								title="'.msg('click_to_decline').'"
+								>';
+
 					/* Status */
 					$sx .= '<TD align="center">';
 					$pp_status = $line['pp_status'];
-					if ($pp_status == '@') { $sx .= msg('indicated'); }
+					if ($pp_status == '@') { $sx .= $linkd.msg('indicated').'</A>'; }
 					if ($pp_status == 'A') { $sx .= msg('analysing'); }
 					if ($pp_status == 'B') { $sx .= $link.'<B>'.msg('available').'</B></A>'; }
 					if ($pp_status == 'X') { $sx .= msg('canceled'); }
