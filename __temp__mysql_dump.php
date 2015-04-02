@@ -1,4 +1,9 @@
 <?php
+/* @Author Rafael Souza Sales <>
+ * 
+ * 
+ * 
+ */
 require("cab.php");
 require($include.'sisdoc_debug.php');
 
