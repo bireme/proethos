@@ -7,17 +7,13 @@ if ($ok==0) {
 	redirecina('main.php');
 }
 
-/* Admin Common */
-$ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
-if ($ok == 0) { redirecina('main.php');
-}
-
 echo '<h1>E-mail system check</h1>';
 
 echo '<div class="border1 pad5">';
 echo '<h2>E-mail</h2>';
 
-require ($include . '_class_email.php');
+require ($include . 'sisdoc_email.php');
+
 require ($include . '_class_form.php');
 $form = new form;
 $cp = array();
@@ -27,46 +23,45 @@ array_push($cp, array('$B8', '', 'send test >>>', False, True));
 $tela = $form -> editar($cp, $tabela);
 
 if ($form -> saved > 0) {
-	require_once 'libs/email/PHPMailerAutoload.php';
 	echo $tela;
 
-	$email = $dd[0];
-	if (checaemail($email) == 1) {
+	$email_to = $dd[0];
+	if (checaemail($email_to) == 1) {
+		
 		echo '<BR>SMTP-Server: ' . $hd -> email_smtp;
-		echo '<BR>E-mail user: ' . $hd -> email .' &lt;'.$hd->email_name.'&gt;';
+		echo '<BR>E-mail user: ' . $hd -> email_user .' &lt;'.$hd->email_name.'&gt;';
+		echo '<BR>E-mail to: ' . $email;
 
 		/* Send e-mail test */
 		echo '<table width="100%"><TR><TD>';
 
 		/* Sample */
-		$title_sample_original = 'Proethos - Email test';
-	
+		$title_sample = 'Proethos - Email test';
 		$message_sample = '<h1>Email was sent with Successful!</h1>';
 
-		$smtp = trim($hd -> email_smtp);
-		$from = trim($hd -> email);
-		$replay = trim($hd -> email_replay);
-		$pass = trim($hd -> email_pass);
-		$from_name = $hd->email_name;
-		$email_to = $dd[0];
-		
-		echo '<BR>SMTP:'.$smtp;
-		echo '<BR>FROM:'.$from;
-		echo '<HR>';
-		
 		ini_set('display_errors', 0);
 		ini_set('error_reporting', 0);		
-
+		
 		/* Method 2 */
 		echo '<HR><h1>Method 2</h1>';
-		$title_sample = $title_sample_original . ' - Method 2';
+		echo '<div id="method2" style="display:none; ">';
 		require ("_system_emal_test_menthod_2.php");
-
+		echo '</div>';
+		echo '<A HREF="#" class="lt0" id="method2a">SHOW LOG</A>
+				<script>
+				$("#method2a").click(function() { $("#method2").toggle(); });
+				</script>		
+		';
 		/* Method 1 */
 		echo '<HR><h1>Method 1</h1>';
-		$title_sample = $title_sample_original . ' - Method 1';
+		echo '<div id="method1" style="display:none; ">';
 		require ("_system_emal_test_menthod_1.php");
-
+		echo '</div>';
+		echo '<A HREF="#" class="lt0" id="method1a">SHOW LOG</A>
+				<script>
+				$("#method1a").click(function() { $("#method1").toggle(); });
+				</script>		
+		';		
 		echo '</TD></TR></table>';
 	} else {
 		echo '<BR><font color="red">e-mail invalid</font>';

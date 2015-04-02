@@ -13,7 +13,7 @@ array_push($breadcrumbs,array('main.php','principal'));
 array_push($breadcrumbs,array('','project'));
 
 require("cab.php");
-require($include."_class_email_smtp.php");
+require($include."sisdoc_email.php");
 require($include."sisdoc_data.php");
 require($include."sisdoc_autor.php");
 require('_class/_class_ic.php');

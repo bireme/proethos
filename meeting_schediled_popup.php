@@ -35,7 +35,7 @@ $hd->load_committe();
 echo $hd->head();
 
 //* Class Printer */
-require($include.'_class_email.php');
+require($include.'sisdoc_email.php');
 
 //* Class Printer */
 require('_class/_class_printer.php');

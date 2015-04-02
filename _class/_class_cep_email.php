@@ -118,13 +118,10 @@ class comunication
 					if ((strlen($dd[45]) > 0) and (strlen($dd[46]) > 0))
 						{
 							/* enviar e-mail */
-							$subject = '<B>'.$hd->email_name.'</B>';
-							$subject .= '<HR>';
-							$subject .= $dd[45];
-							$subject .= '<BR><BR>COD:'.$this->protocolo;
+							$subject = msg('Email_comunication');
 							$text = $dd[46];
-							$email = 'renefgj@gmail.com';							
-							enviaremail($email,'',$subject,$text);
+							
+							$text .= '<BR><BR>'.'Protocol:'.$this->protocolo;
 							
 							if (strlen($email1) > 0)
 								{ enviaremail($email1,'',$subject,$text); }
@@ -132,7 +129,8 @@ class comunication
 								{ enviaremail($email2,'',$subject,$text); }
 							
 							$this->email_save($dd[46],$dd[45]);
-							$sa .= '<script> alert("email enviado") </script>';
+							//$sa .= '<script> alert("'.msg('email_was_send').'") </script>';
+							$sa .= 'E-mail enviado com sucesso para '.$email1.' '.$email2.'!';
 							$dd[45] = '';
 							$dd[46] = '';		
 						}

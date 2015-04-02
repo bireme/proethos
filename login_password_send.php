@@ -10,7 +10,7 @@
     */
     
 require('db.php');
-require($include.'_class_email.php');
+require($include.'sisdoc_email.php');
 
 require($include.'_class_form.php');
 $form = new form;

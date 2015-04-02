@@ -9,7 +9,7 @@ $nosec = 1;
 $style_add = array('proethos_new_user.css');
 require("cab.php");
 
-require($include.'_class_email.php');
+require($include.'sisdoc_email.php');
 require($include.'_class_form.php');
 require("_class/_class_ic.php");
 $mail = new email;

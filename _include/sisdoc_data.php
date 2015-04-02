@@ -204,6 +204,11 @@ if (strlen($sisdoc_data) == 0) {
 		$ds = date("Ymd");
 		return $ds;
 	}
+	
+	function ustos($dt) {
+		global $date,$LANG;
+		return ($date -> dtos($dt,$LANG));
+	}	
 
 	function brtos($dt) {
 		global $date;

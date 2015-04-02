@@ -73,6 +73,7 @@ class committee {
 		$tp = ' : ';
 		$tp .= '&MAIL:' . msg('method_1');
 		$tp .= '&AUTH:' . msg('method_2');
+		$tp .= '&AUTS:' . msg('method_3');
 
 		array_push($cp, array('$H8', 'id_cm', '', False, True));
 		array_push($cp, array('${', '', msg('about_committee'), False, True));

@@ -1,7 +1,7 @@
 <?php
 /**
 * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
-* @copyright © Pan American Health Organization, 2013. All rights reserved.
+* @copyright ï¿½ Pan American Health Organization, 2013. All rights reserved.
 * @version 0.15.03
 * @access public
 * @package INCLUDEs
@@ -17,7 +17,7 @@ class date
 		var $year;
 		
 		/* Converte Data para String */
-		function dtos($dt)
+		function dtos($dt,$LANG='')
 			{
 				global $i_date_format;
 				$fmt = $i_date_format;
@@ -27,8 +27,14 @@ class date
 				if (strlen($fmt) == 0) { $fmt = 'DD/MM/YYYY'; }
 				switch ($fmt)
 					{
-					case "MM/DD/YYYY": $dr = $this->ustos($dt); break;
+					case "MM/DD/YYYY": 
+							$dr = $this->ustos($dt); break;
 					default:  break;
+					}
+				/* Ingles */
+				if ($LANG == 'en_US')
+					{
+						$dr = $this->ustos($dt); 
 					}
 				return($dr);		
 			}
@@ -122,9 +128,9 @@ class date
 		function weekday_name($ddt,$tp='1')
 		{
 			global $LANG;			
-			$cp_pt_BR = array('Domingo'=>1,'Segunda'=>2,'Terça'=>3,'Quarta'=>4,'Quinta'=>5,'Sexta'=>6,'Sábado'=>7);
+			$cp_pt_BR = array('Domingo'=>1,'Segunda'=>2,'Terï¿½a'=>3,'Quarta'=>4,'Quinta'=>5,'Sexta'=>6,'Sï¿½bado'=>7);
 			$cp_en_US = array('Sunday'=>1,'Monday'=>2,'Tuesday'=>3,'Wednesday'=>4,'Thursday'=>5,'Friday'=>6,'Saturday'=>7);
-			$cp_es = array('Domingo' => 1, 'Lunes' => 2, 'Martes' => 3, 'Miércoles' => 4, 'Jueves' => 5, 'Viernes' => 6, 'Sábado' => 7);
+			$cp_es = array('Domingo' => 1, 'Lunes' => 2, 'Martes' => 3, 'Miï¿½rcoles' => 4, 'Jueves' => 5, 'Viernes' => 6, 'Sï¿½bado' => 7);
 
 			/* Tipo Completo */
 			$cp = $cp_pt_BR;
@@ -144,7 +150,7 @@ class date
 		function month_name($dx,$tp='1')
 		{
 			global $LANG;
-			$cp_pt_BR = array("","Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
+			$cp_pt_BR = array("","Janeiro","Fevereiro","Marï¿½o","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro");
 			$cp_en_US = array("","January","February","March","April","May","June","July","August","Septeber","October","November","Dezember");
 			$cp_es     = array("","Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre", "Octubre", "Noviembre","Diciembre");
 			

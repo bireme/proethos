@@ -1,111 +1,127 @@
-<?
-/**
-* @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
-* @copyright © Pan American Health Organization, 2013. All rights reserved.
-* @version 0.15.03
-* @access public
-* @package INCLUDEs
-* @subpackage E-mail
-*/
-///////////////////////////////////////////
-// Vers�o atual           //    data     //
-//---------------------------------------//
-// 0.0c                       16/07/2008 //
-// 0.0b                       07/07/2008 //
-// 0.0a                       20/05/2008 //
-///////////////////////////////////////////
-if ($mostar_versao == True) {array_push($sis_versao, array("sisDOC (e-mail)", "0.0c", 20080716));
+<?php
+/*
+ * Sistema de e-mail
+ */
+$admin_nome = 'Rene F. Gabriel';
+$email_adm = 'rene.gabriel@pucpr.br';
+
+require_once ("libs/email/PHPMailerAutoload.php");
+
+function enviaremail($para, $blank, $titulo, $texto) {
+	global $email_from, $email_from_name, $email_smtp, $email_pass, $email_user, $email_auth, $email_debug, $email_replay;
+
+	if (strlen($email_from) == 0) {
+		echo '<H1>Erro #120#</h1>';
+		echo '<PRE>';
+		echo 'Parametros nao informados:
+			/* Dados do enviador */
+			$email_from = \'\';			/* e-mail do enviador / replay */
+			$email_from_name = \'\';	/* Nome do enviador */
+			
+			/* Tipo de envio */
+			$email_auth = \'\'; 			/* ou AUTH ou MAIL */
+			
+			/* Dados da conta do enviador - obrigatorio para AUTH */
+			$email_smtp = \'\';			/* servidor de SMTP */
+			$email_user = \'\';			/* usuario da conta do enviador */
+			$email_pass = \'\';			/* senha da conta do enviador */	
+			
+			';
+		echo '</pre>';
+		exit ;
+	}
+	switch ($email_auth) {
+		case 'AUTH' :
+			$mail = new email;
+			$mail -> titulo = $titulo;
+			$mail -> texto = $texto;
+
+			$mail -> email = $email_from;
+			$mail -> email_replay = $email_replay;
+			$mail -> email_name = $email_from_name;
+
+			$mail -> email_user = $email_user;
+			$mail -> email_pass = $email_pass;
+			$mail -> email_smtp = $email_smtp;
+			
+			$mail -> debug = round($email_debug);
+
+			$mail -> to = $para;
+			$mail -> method_2_mail();
+			break;
+
+		default :
+			$mail = new email;
+			$mail -> titulo = $titulo;
+			$mail -> texto = $texto;
+
+			$mail -> email = $email_from;
+			$mail -> email_replay = $email_replay;
+			$mail -> email_name = $email_from_name;
+
+			$mail -> email_user = $email_user;
+			$mail -> email_pass = $email_pass;
+			$mail -> email_smtp = $email_smtp;
+			
+			$mail -> debug = round($email_debug);
+
+			$mail -> to = $para;			
+			$mail -> method_1_mail();
+			break;
+	}
 }
-if (strlen($include) == 0) { exit ;
+
+
+function checaemail($chemail) {
+	$result = count_chars($chemail, 0);
+	if (($result[64] == 1) and ($result[32] == 0) and ($result[32] == 0) and ($result[13] == 0) and ($result[10] == 0)) {
+		$xerr = True;
+
+		if (strpos($chemail, '!')) { $xerr = False;
+		}
+		if (strpos($chemail, '@.')) { $xerr = False;
+		}
+	} else {$xerr = False;
+	}
+
+	if ($chemail[strlen($chemail) - 1] < 'a') { $xerr = false;
+	}
+	return ($xerr);
 }
-if (strlen($sisdoc_email) == 0) {
-	$sisdoc_email = 1;
-	/**
-	 * rodape do envio de e-mail
-	 */
-	function emailfoot($texto, $email_to, $subject) {
-		if (strlen($email_to) > 0) {
-			global $cnn, $email_adm, $admin_nome;
-			echo 'enviando ';
-			echo $email_adm;
-			echo ' e para ' . $email_to;
-			echo '<BR>';
-			echo $admin_nome;
-			if (enviaremail($email_to, $e2, $subject, $texto)) {
-				return (true);
-			}
-		}
-		return (false);
-	}
 
-	function emailcab($http_local) {
-		global $dd;
-		$bb1 = "imprimir";
-		$bb2 = "enviar por e-mail";
-		$s = '<TABLE cellpadding="0" cellspacing="0" border="0" class="lt1" width="100%">';
-		$s .= '<TR>';
-		$s .= '<form method="post" action="' . $http_local . '" >';
-		$s .= '<TD>&nbsp;e-mail:&nbsp;';
-		$s .= '<input type="text" name="dd80" value="' . $dd[80] . '" size="30" maxlength="100">';
-		$s .= '&nbsp;';
-		$s .= '<input type="submit" name="dd81" value="' . $bb2 . '">';
-		$s .= '<TD align="right">';
-		$s .= '<input type="submit" name="dd81" value="' . $bb1 . '">';
-		$s .= '</TD>';
-		$s .= '<TD width="1"></form></TD>';
-		$s .= '</TR>';
-		$s .= '<TR><TD colspan="10"><HR size="1"></TD></TR>';
-		$s .= '</TABLE>';
-		if (strlen($dd[81]) > 0) {
-			if ($dd[81] == $bb1) {
-				$s = '<SCRIPT LANGUAGE="JavaScript">' . chr(13);
-				$s .= '		window.print();  ' . chr(13);
-				$s .= '</script>' . chr(13);
-			}
-			if (($dd[81] == $bb2) and (strlen($dd[80]) > 0)) {
-				$s = '';
-			}
-		}
-		return ($s);
-	}
+/* Classe do e-mail */
 
-	if (!function_exists('enviaremail')) {
-		function enviaremail($e1, $e2, $e3, $e4, $tipo = 'N') {
-			if ($tipo == 'N') {
-				enviaremail_normal($e1, $e2, $e3, $e4);
-			} else {
-				enviaremail_authe($e1, $e2, $e3, $e4);
-			}
-		}
+class email {
+	var $titulo;
+	var $texto;
+	var $to = '';
+	var $cc = array();
+	var $cco = array();
+	
+	var $debug = 0;
 
-	}
+	/* Dados do enviador */
+	var $email = 'rene@sisdoc.com.br';
+	var $email_replay = '';
+	var $email_name = '';
 
-	function enviaremail_authe($destinatarios, $nada, $assunto, $mensagem, $tela = '') {
-		global $email_adm, $admin_nome, $admin_name, $admin_email;
+	/* Dados do enviador SMTP */
+	var $email_user = '';
+	var $email_pass = '';
+	var $email_smtp = '';
 
-		if (strlen($admin_nome) == 0) { $admin_nome = $email_adm;
-		}
-		if (strlen($admin_nome) == 0) { $admin_nome = $admin_name;
-		}
+	function method_1_mail() {
+		/* Recupera dados */
+		$from = $this -> email;
+		$form_name = $this -> email_name;
+		$replay = $this -> email_replay;
+		$email_to = $this -> to;
+		$title = $this -> titulo;
+		$body = $this -> texto;
 
-		if (strlen($email_adm) == 0) { $admin_nome = $admin_email;
-		}
-
-		$usuario = 'rene@fonzaghi.com.br';
-		$senha = '448545ct';
-		//$senha = 'falebr';
-		$nomeDestinatario = '';
-		$nomeRemetente = $admin_nome;
-		//
-		// $destinatarios = 'renefgj@gmail.com';
-		$tela .= '(tela)';
-
-		$resposta .= '(resposta)';
-
-		/**********************************************************/
 		$headers = '';
 		$headers .= "To: " . $e1 . " \n";
-		$headers .= "From: " . $admin_nome . " <" . $email_adm . "> \n";
+		$headers .= "From: " . $form_name . " <" . $form . "> \n";
 		$headers .= "Mime-Version: 1.0 \n";
 		//	$headers .= "Priority: Normal \n";
 		//	$headers .= "Reply-To: " .$email_adm. " \n";
@@ -117,127 +133,132 @@ if (strlen($sisdoc_email) == 0) {
 		$headers = '';
 		$headers .= "MIME-Version: 1.0\n";
 		$headers .= "To: " . $e1 . " \n";
-		$headers .= "Reply-To: " . $email_adm . " \n";
+		$headers .= "Reply-To: " . $from . " \n";
 		$headers .= "Content-type: text/html; charset=iso-8859-1\n";
 
 		$headers = 'MIME-Version: 1.0' . "\r\n";
 		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		$headers .= "From: " . $admin_nome . " <" . $email_adm . "> \r\n";
-		/****************************************************************/
-
-		$_POST['mensagem'] = nl2br($headers . $mensagem);
-
-		/***********************************A PARTIR DAQUI NAO ALTERAR************************************/
-		foreach ($_POST as $dados['me1'] => $dados['me2']) { $dados['me3'][] = '<b>' . $dados['me1'] . '</b>: ' . $dados['me2'];
-		}
-
-		//	$dados['me3'] = '<hr><h4>Mensagem do site</h4>'.implode('<br>', $dados['me3']).'<hr>';
-		$dados['me3'] = $mensagem;
-		$dados['email'] = array('usuario' => $usuario, 'senha' => $senha, 'servidor' => 'smtp.' . substr(strstr($usuario, '@'), 1), 'nomeRemetente' => $nomeRemetente, 'nomeDestinatario' => $nomeDestinatario, 'resposta' => $resposta, 'assunto' => $assunto, 'mensagem' => $dados['me3']);
-
-		ini_set('php_flag mail_filter', 0);
-		$conexao = fsockopen($dados['email']['servidor'], 587, $errno, $errstr, 10);
-		fgets($conexao, 512);
-		$dados['destinatarios'] = explode(',', $destinatarios);
-		foreach ($dados['destinatarios'] as $dados['1']) {
-			$dados['destinatarios']['RCPTTO'][] = '< ' . $dados['1'] . ' >';
-			$dados['destinatarios']['TO'][] = $dados['1'];
-		}
-		$dados['cabecalho'] = array('EHLO ' => $dados['email']['servidor'], 'AUTH LOGIN', base64_encode($dados['email']['usuario']), base64_encode($dados['email']['senha']), 'MAIL FROM: ' => '< ' . $dados['email']['usuario'] . ' >', 'RCPT TO:' => $dados['destinatarios']['RCPTTO'], 'DATA', 'MIME-Version: ' => '1.0', 'Content-Type: text/html; charset=iso-8859-1', 'Date: ' => date('r', time()), 'From: ' => array($dados['email']['nomeRemetente'] . ' ' => '< ' . $dados['email']['usuario'] . ' >'), 'To:' => array($dados['email']['nomeDestinatario'] . ' ' => $dados['destinatarios']['TO']), 'Reply-To: ' => $dados['email']['resposta'], 'Subject: ' => $dados['email']['assunto'], 'mensagem' => $dados['email']['mensagem'], 'QUIT');
-		foreach ($dados['cabecalho'] as $dados['2'] => $dados['3']) {
-			if (is_array($dados['3'])) {
-				foreach ($dados['3'] as $dados['4'] => $dados['5']) {
-					$dados['4'] = empty($dados['4']) ? '' : $dados['4'];
-					$dados['5'] = empty($dados['5']) ? '' : $dados['5'];
-					$dados['4'] = is_numeric($dados['4']) ? '' : $dados['4'];
-					if (is_array($dados['5'])) { $dados['5'] = "< " . implode(', ', $dados['5']) . " >";
-					}
-					fwrite($conexao, $dados['2'] . $dados['4'] . $dados['5'] . "\r\n", 512) . '<br>';
-					fgets($conexao, 512);
-				}
-			} else {
-				$dados['2'] = empty($dados['2']) ? '' : $dados['2'];
-				$dados['3'] = empty($dados['3']) ? '' : $dados['3'];
-				$dados['2'] = is_numeric($dados['2']) ? '' : $dados['2'];
-
-				if ($dados['2'] == 'Subject: ') {
-					fwrite($conexao, $dados['2'] . $dados['3'] . "\r\n", 512) . '<br>';
-					fwrite($conexao, "\r\n", 512) . '<br>';
-					fgets($conexao, 512);
-				} elseif ($dados['2'] == 'mensagem') {
-					fwrite($conexao, $dados['3'] . "\r\n.\r\n") . '<br>';
-					fgets($conexao);
-				} else {
-					fwrite($conexao, $dados['2'] . $dados['3'] . "\r\n", 512) . '<br>';
-					fgets($conexao, 512);
-				}
-			}
-		}
-		fclose($conexao);
-		return (1);
-	}
-
-	function enviaremail_normal($e1, $e2, $e3, $e4) {
-		global $email_adm, $admin_nome, $admin_name, $admin_email;
-
-		if (strlen($admin_nome) == 0) { $admin_nome = $email_adm;
-		}
-		if (strlen($admin_nome) == 0) { $admin_nome = $admin_name;
-		}
-
-		if (strlen($email_adm) == 0) { $admin_nome = $admin_email;
-		}
-
-		$to = $e1;
-		$subject = $e3;
-		$body = $e4;
-		$headers = '';
-		$headers .= "To: " . $e1 . " \n";
-		$headers .= "From: " . $admin_nome . " <" . $email_adm . "> \n";
-		$headers .= "Mime-Version: 1.0 \n";
-		//	$headers .= "Priority: Normal \n";
-		//	$headers .= "Reply-To: " .$email_adm. " \n";
-		//	$headers .= "Return-Path: ".$email_adm." \n";
-		//	$headers .= "Subject: ".$subject." \n";
-		//	$headers .= "X-Assp-Envelope-From:".$email_adm." \n";
-		$headers .= 'Content-Type: text/html; charset="iso-8859-1"' . " \n";
-
-		$headers = '';
-		$headers .= "MIME-Version: 1.0\n";
-		$headers .= "To: " . $e1 . " \n";
-		$headers .= "Reply-To: " . $email_adm . " \n";
-		$headers .= "Content-type: text/html; charset=iso-8859-1\n";
-
-		$headers = 'MIME-Version: 1.0' . "\r\n";
-		$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-		$headers .= "From: " . $admin_nome . " <" . $email_adm . "> \r\n";
+		$headers .= "From: " . $form_name . " <" . $from . "> \r\n";
 
 		//	$body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'."\n".$body;
-		if (mail($to, $subject, $body, $headers)) {
-			return ('OK');
-		} else {
-			return ('ERRO');
-		}
+		mail($to, $subject, $body, $headers) or die("<font color=red >Erro de envio do e-mail para ".$email_to.'</font>');
 	}
 
-	if (!function_exists('enviaremail')) {
-		function checaemail($chemail) {
-			$result = count_chars($chemail, 0);
-			if (($result[64] == 1) and ($result[32] == 0) and ($result[32] == 0) and ($result[13] == 0) and ($result[10] == 0)) {
-				$xerr = True;
+	function method_2_mail() {
 
-				if (strpos($chemail, '!')) { $xerr = False;
-				}
-				if (strpos($chemail, '@.')) { $xerr = False;
-				}
-			} else {$xerr = False;
-			}
+		/* Recupera dados */
+		$smtp = $this -> email_smtp;
+		$user = $this -> email_user;
+		$pass = $this -> email_pass;
+		$from = $this -> email;
+		$form_name = $this -> email_name;
+		$replay = $this -> email_replay;
+		$email_to = $this -> to;
+		$title = $this -> titulo;
+		$body = $this -> texto;
 
-			if ($chemail[strlen($chemail) - 1] < 'a') { $xerr = false;
-			}
-			return ($xerr);
+		/* Iniciar objeto */
+		$mail = new PHPMailer;
+		$mail -> isSMTP();
+		$mail -> SMTPDebug = 0;
+		$mail -> Debugoutput = 'html';
+		$mail -> Host = $smtp;
+		$mail -> Port = 25;
+		$mail -> SMTPAuth = true;
+		$mail -> Username = $user;
+		$mail -> Password = $pass;
+		$mail -> setFrom($from, $from_name);
+
+		/* From name */
+		$mail -> FromName = $form_name;
+		$mail -> From = $from;
+
+		//Set an alternative reply-to address
+		$mail -> addReplyTo($replay, htmlspecialchars($from_name));
+
+		//Set who the message is to be sent to
+		$mail -> addAddress($email_to, $email_to);
+
+		//Set the subject line
+		$mail -> Subject = $title;
+		//Read an HTML message body from an external file, convert referenced images to embedded,
+		//convert HTML into a basic plain-text alternative body
+		$mail -> msgHTML($message_sample, dirname(__FILE__));
+		//Replace the plain text body with one created manually
+		$mail -> Body = $body;
+		//$mail -> AltBody = $body; //
+		//Attach an image file
+		//$mail->addAttachment('images/phpmailer_mini.png');
+
+		//send the message, check for errors
+		if (!$mail -> send()) {
+			return ("Mailer Error: " . $mail -> ErrorInfo);
+		} else {
+			return ("Message sent!");
 		}
 
+	}
+
+	/*
+	 * e-mail check
+	 */
+	function email_check($chemail) {
+		$result = count_chars($chemail, 0);
+		if (($result[64] == 1) and ($result[32] == 0) and ($result[32] == 0) and ($result[13] == 0) and ($result[10] == 0)) {
+			$xerr = True;
+
+			if (strpos($chemail, '!')) { $xerr = False;
+			}
+			if (strpos($chemail, '@.')) { $xerr = False;
+			}
+		} else {$xerr = False;
+		}
+
+		if ($chemail[strlen($chemail) - 1] < 'a') { $xerr = false;
+		}
+		return ($xerr);
+	}
+
+	/*
+	 * Format the e-mail
+	 */
+	function format_email($email, $name) {
+		$name = trim($name);
+		$email = trim($email);
+		if (strlen($name) > 0) {
+			$sx = $name . ' <' . $email . '>';
+		} else {
+			$sx = $email;
+		}
+		return ($sx);
+	}
+
+
+	function structure() {
+		$sql = "
+					create table MAIL
+						{
+							id_ml serial not null,
+							ml_idmsg char (15),
+							ml_de char(8),
+							ml_para char(8),
+							ml_titulo text,
+							ml_texto text,
+							
+							ml_enviado integer,
+							ml_enviado_hora char(8),
+							
+							ml_lido integer,
+							ml_lido_hora char(8),
+							
+							ml_importancia integer,
+							ml_excluido integer,
+							
+							ml_enviado integer,
+							ml_caixa char(1)
+						}
+				";
+		$rlt = db_query($sql);
 	}
 
 }

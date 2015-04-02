@@ -5,14 +5,14 @@
 				$institution_address='';
 				$institution_city='Washington';
 				$institution_country='United States of America';
-				$institution_phone='55 41 8811.9061';
+				$institution_phone='41';
 				
 				$harvestig='0';
 				$harvesting_key='';
 				$institution_logo='';
-				$admin_nome='Proethos';
-				$admin_email='renefgj@gmail.com';
-				$email_adm='renefgj@gmail.com';
+				$admin_nome='Proethos - PAHO';
+				$admin_email='rene@sisdoc.com.br';
+				$email_adm='rene@sisdoc.com.br';
 				$committe='PAHO';
 				
 				$language='en_US';

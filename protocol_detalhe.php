@@ -18,7 +18,7 @@ require ($include . '_class_form.php');
 $form = new form;
 require ("form_css.php");
 
-require ($include . "_class_email.php");
+require ($include . "sisdoc_email.php");
 require ($include . "sisdoc_data.php");
 
 require ($include . "sisdoc_debug.php");
@@ -129,6 +129,7 @@ echo $pos -> show($status);
 			/* Comunication with investigator */
 			$email1 = trim($cep -> line['us_email']);
 			$email2 = trim($cep -> line['us_email_alt']);
+			
 			$postnew = $comu -> post_new_message($email1, $email2);
 			echo '<table width="100%" border=0 class="table_normal" >';
 			echo '<TR class="hd"><TD>' . msg('messages_with_investigator');

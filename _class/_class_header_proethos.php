@@ -39,6 +39,7 @@ class header {
 			if ($line = db_read($rlt))
 				{
 					$this->email = trim($line['cm_admin_email']);
+					$this->email_user = trim($line['cm_admin_email']);
 					$this->email_type = trim($line['cm_admin_email_tipo']);
 					$this->email_pass = trim($line['cm_admin_email_pass']);
 					$this->email_smtp = trim($line['cm_admin_email_smtp']);

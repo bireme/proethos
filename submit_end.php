@@ -4,7 +4,7 @@ require("_class/_class_cep_submit.php");
 require("_class/_class_team.php");
 require($include.'sisdoc_data.php');
 
-require($include.'_class_email.php');
+require($include.'sisdoc_email.php');
 
 require('_class/_class_ic.php');
 $ic = new ic;
