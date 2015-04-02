@@ -14,11 +14,11 @@ require($include.'sisdoc_email.php');
 
 require($include.'_class_form.php');
 $form = new form;
+require("form_css.php");
 
 /* load config committee */		
 require("_class/_class_header_proethos.php");
 $hd = new header;
-
 
 require('_class/_class_ic.php');
 $ic = new ic;
@@ -55,6 +55,7 @@ $tela = $form->editar($cp,'');
 
 if ($form->saved > 0)
 	{
+		require("_email_smtp.php");
 		$rs = $nw->send_pass_email($dd[1]);
 		if (trim($rs) == 'send_email_ok')
 			{
