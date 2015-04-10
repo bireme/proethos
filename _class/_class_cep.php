@@ -115,37 +115,35 @@ class cep {
 		return (1);
 	}
 
-	function search_by_word($field,$words)
-		{
-			$wd = UpperCaseSql($words);
-			$wd = troca($wd,' ',';').';';
-			$wd = splitx(';',$wd);
-			$wh = '';
-			for ($r=0;$r < count($wd);$r++)
-				{
-					/* recupera word do termo */
-					$term = $wd[$r];
-					if ($r > 0)
-						{
-							$wh .= ' and ';
-						}
-					$wh .= " ($field  like '%$term%') ";
-				}
-			return($wh);			
+	function search_by_word($field, $words) {
+		$wd = UpperCaseSql($words);
+		$wd = troca($wd, ' ', ';') . ';';
+		$wd = splitx(';', $wd);
+		$wh = '';
+		for ($r = 0; $r < count($wd); $r++) {
+			/* recupera word do termo */
+			$term = $wd[$r];
+			if ($r > 0) {
+				$wh .= ' and ';
+			}
+			$wh .= " ($field  like '%$term%') ";
 		}
+		return ($wh);
+	}
+
 	function protocolos_search($sta) {
 		global $ss;
 		$sta = trim($sta);
 		$us = strzero(round($ss -> user_id), 7);
-		
+
 		/* Protocolos de Pesquisa */
 		$sql = "select * from " . $this -> tabela . " 
 					 left join usuario on us_codigo = cep_pesquisador
 					 where (cep_titulo like '%" . $sta . "%') 
-					 or (".$this->search_by_word('cep_titulo_public',$sta).")
+					 or (" . $this -> search_by_word('cep_titulo_public', $sta) . ")
 					 or (cep_caae  like '%" . $sta . "%')
 					 or (cep_codigo like '%" . $sta . "%')
-					 or (".$this->search_by_word('us_nome',$sta).")
+					 or (" . $this -> search_by_word('us_nome', $sta) . ")
 					 order by cep_tipo desc
 					 ";
 		$rlt = db_query($sql);
@@ -155,22 +153,23 @@ class cep {
 		$trp = '<TR><TH>' . msg('protocol');
 		$trp .= '<TH>' . msg('project_title');
 		$trp .= '<TH>' . msg('status');
-		
+
 		/* Header to Amen */
 		$tra = '<TR><TH>' . msg('protocol');
 		$tra .= '<TH>' . msg('amen_title');
-		$tra .= '<TH>' . msg('status');		
-		
+		$tra .= '<TH>' . msg('status');
+
 		$xtipo = '';
 		while ($line = db_read($rlt)) {
 			$tipo = trim($line['cep_tipo']);
-			
-			if ($xtipo != $tipo)
-				{
-					$xtipo = $tipo;
-					if ($tipo == 'PRO') { $sx .= $trp; }
-					if ($tipo == 'AME') { $sx .= $tra; }
+
+			if ($xtipo != $tipo) {
+				$xtipo = $tipo;
+				if ($tipo == 'PRO') { $sx .= $trp;
 				}
+				if ($tipo == 'AME') { $sx .= $tra;
+				}
+			}
 			$tot++;
 			$sx .= $this -> mostra($line);
 		}
@@ -361,7 +360,7 @@ class cep {
 	}
 
 	function create_amendment($tp) {
-		
+
 		$this -> updatex_submit();
 		$title = $this -> line['cep_titulo'];
 		$titlep = $this -> line['cep_titulo_public'];
@@ -437,7 +436,7 @@ class cep {
 			/* Execute Insert */
 			$rrr = db_query($sqli);
 		}
-		return(1);
+		return (1);
 	}
 
 	function updatex_submit() {
@@ -861,50 +860,50 @@ class cep {
 			}
 			redirecina(page());
 		}
-		$sx .= $this->survey_show();
+		$sx .= $this -> survey_show();
 		return ($sx);
 	}
 
-	function survey_show()
-		{
-			$proto = $this -> protocolo_submission;
-			$sql = "select * from cep_survey
+	function survey_show() {
+		$proto = $this -> protocolo_submission;
+		$sql = "select * from cep_survey
 					inner join usuario on sr_member = us_codigo 
 						where sr_protocolo = '$proto' ";
-			$rlt = db_query($sql);
-			
-			$sx .= '<table width="100%" class="tabela00 lt1">';
+		$rlt = db_query($sql);
+
+		$sx .= '<table width="100%" class="tabela00 lt1">';
+		$sx .= '<TR>';
+		$sx .= '<Td><B>' . msg('members') . '</B></td>';
+		$sx .= '<Td><B>' . msg('institution') . '</B></td>';
+		$sx .= '<Td colspan=2 align="center"><B>' . msg('result') . '</B></td>';
+		//$sx .= '<Th>'.msg('member').'</th>';
+
+		while ($line = db_read($rlt)) {
 			$sx .= '<TR>';
-			$sx .= '<Td><B>'.msg('members').'</B></td>';
-			$sx .= '<Td><B>'.msg('institution').'</B></td>';
-			$sx .= '<Td colspan=2 align="center"><B>'.msg('result').'</B></td>';
-			//$sx .= '<Th>'.msg('member').'</th>';
-			
-			while ($line = db_read($rlt))
-				{
-					$sx .= '<TR>';
-					$sx .= '<TD class="border1">';
-					$sx .= $line['us_nome'];
-					$sx .= '<TD class="border1">';
-					$sx .= $line['us_instituition'];
-					
-					$bgy=''; $bgn='';
-					$bgyn = ''; $bgnn = '';
+			$sx .= '<TD class="border1">';
+			$sx .= $line['us_nome'];
+			$sx .= '<TD class="border1">';
+			$sx .= $line['us_instituition'];
 
-					$rs = $line['sr_yes'];
-					$rn = $line['sr_no'];
-					if ($rs == '1') { $bgy = ' bgcolor="#AAffAA" '; }
-					if ($rn == '1') { $bgn = ' bgcolor="FFAAAA" '; }
-					
-					$sx .= '<TD '.$bgy.' width="20" align="center" class="border1">'.msg("yes");
-					$sx .= '<TD '.$bgN.' width="20" align="center" class="border1">'.msg('no');
-					
-										
+			$bgy = '';
+			$bgn = '';
+			$bgyn = '';
+			$bgnn = '';
 
-				}
-			$sx .= '</table>';
-			return($sx);
+			$rs = $line['sr_yes'];
+			$rn = $line['sr_no'];
+			if ($rs == '1') { $bgy = ' bgcolor="#AAffAA" ';
+			}
+			if ($rn == '1') { $bgn = ' bgcolor="FFAAAA" ';
+			}
+
+			$sx .= '<TD ' . $bgy . ' width="20" align="center" class="border1">' . msg("yes");
+			$sx .= '<TD ' . $bgN . ' width="20" align="center" class="border1">' . msg('no');
+
 		}
+		$sx .= '</table>';
+		return ($sx);
+	}
 
 	function action_016() {
 		global $dd, $acao, $perfil;
@@ -2101,8 +2100,6 @@ class cep {
 		$sp .= '<TR><TD>' . msg('protocol') . ' <B>' . $clinic . '</B><TD align="right">' . msg('status') . ': ' . msg($status);
 		$sp .= '</table></B>';
 
-		
-
 		/* CAAE */
 		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=4 >' . msg('caae');
@@ -2124,8 +2121,7 @@ class cep {
 		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">';
-		{
+		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
 			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
 			//$sp .= '<TR><TD colspan=2>';
 
@@ -2149,18 +2145,18 @@ class cep {
 		$sp .= '<Td align="rigth" class="table_proj" >
 					<div style="width:100%; text-align: right;">' . $protocol_id . '</div>';
 		$sp .= '</table>';
-			
+
 		/* Inser new investigator */
 		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><TD colspan=7>';
 		$sp .= '<div id="team" style="display: none; ">';
 		$sp .= '</div>';
 
-		/* INstitution */		
+		/* INstitution */
 		$sp .= '<TR><Td colspan=1 width="50%" class="lt0">' . msg('institution');
 		$sp .= '<Td align="left" colspan=1 width="25%" class="lt0" width="10%">' . msg('country');
 		$sp .= '<Td align="left" colspan=1 width="25%" class="lt0" width="10%">' . msg('result');
-		
+
 		/* dados da instituicao */
 		$sp .= '<TR><Td colspan=1 class="table_proj">';
 		$sp .= trim($line['us_instituition']);
@@ -2195,34 +2191,32 @@ class cep {
 		$sp .= '<TR class="lt2">';
 		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_data']);
-		
+
 		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_atualizado']);
-		
+
 		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_reuniao']);
-		
+
 		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_parecer']);
-		
+
 		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_ciencia']);
-		
+
 		$sp .= '<Td class="table_proj lt2" align="left">';
-		
+
 		/* dados sobre recutramento */
 		$dtr = $line['cep_recrutamento'];
-		if ($dtr < 20000000)
-			{
-				$sp .= '&nbsp;' . msg('no_start');
-			} else {
-				$sp .= '&nbsp;' . stodbr($line['cep_recrutamento']);		
-			}
-		
-				
+		if ($dtr < 20000000) {
+			$sp .= '&nbsp;' . msg('no_start');
+		} else {
+			$sp .= '&nbsp;' . stodbr($line['cep_recrutamento']);
+		}
+
 		$sp .= '<Td class="table_proj lt2" align="left">';
 		$sp .= '&nbsp;' . stodbr($line['cep_dt_liberacao']);
-		
+
 		$sp .= '<Td class="table_proj lt2" align="right"><center>';
 		$sp .= '&nbsp;' . $this -> monitoring($line['cep_monitoring']);
 
@@ -2267,16 +2261,15 @@ class cep {
 		return ($sa);
 	}
 
-	function protocolos_avaliacao($sta,$tipo='') {
+	function protocolos_avaliacao($sta, $tipo = '') {
 		global $ss;
 
 		$us = strzero(round($ss -> user_id), 7);
-		if (strlen($tipo) > 0)
-			{
-				$wh = " and (cep_tipo = '$tipo' )";
-			} else {
-				$wh = '';
-			}
+		if (strlen($tipo) > 0) {
+			$wh = " and (cep_tipo = '$tipo' )";
+		} else {
+			$wh = '';
+		}
 		if ($sta == 'Z') {
 			$sql = "select * from " . $this -> tabela . " 
 					 inner join cep_dictamen on pp_protocolo = cep_protocol 
@@ -2306,19 +2299,18 @@ class cep {
 			}
 			$sx .= $this -> mostra($line);
 		}
-		
+
 		$sa = '<table width=96% class="table_normal" border=0>';
 		$sa .= '<TR><TH>' . msg('protocol');
-		$sa .=  '<TH>' . msg('project_title');
-		$sa .=  '<TH>' . msg('status');
-		$sa .=  $sx;
-		$sa .=  '<TR><TD colspan=5>' . msg('found') . ' ' . $tot . ' ' . msg('records');
-		$sa .=  '</table>';
-		if ($tot==0)
-			{
-				$sa = '';
-			}
-		return($sa);
+		$sa .= '<TH>' . msg('project_title');
+		$sa .= '<TH>' . msg('status');
+		$sa .= $sx;
+		$sa .= '<TR><TD colspan=5>' . msg('found') . ' ' . $tot . ' ' . msg('records');
+		$sa .= '</table>';
+		if ($tot == 0) {
+			$sa = '';
+		}
+		return ($sa);
 	}
 
 	function mostra($line) {
@@ -2362,16 +2354,27 @@ class cep {
 		$s .= '</A>';
 
 		/* status */
-		$s .= '<TD rowspan=' . $vs . ' align="center" width="50">';
-		$s .= '['.$parecer.']';
-		if ($parecer == 'P') {
-			$s .= msg('aproved');			
-		} else {
-			$s .= '<font class="lt3">' . $corf . $df . '</font>
+		switch ($parecer) {
+			case 'pm_APR':
+				$s .= '<TD align="center" width="100">';
+				$s .= msg('aproved');					
+				break;
+				
+			case 'pm_NOT':
+				$s .= '<TD align="center" width="100">';
+				$s .= msg('not_aproved');	
+				break;
+			default :
+				$s .= '<TD align="center" width="100">';
+				$s .= '<font class="lt1">'.msg('in_review_list').'</font><BR>';
+				$s .= '<font class="lt3">' . $corf . $df . '</font>
 					<BR>
 					<font class="lt0">
 					' . msg('days') . '</font>';
+				break;
 		}
+		$s .= '<TD rowspan=' . $vs . ' align="center" width="50">';
+			
 		$s .= $sx;
 		$s .= '<BR><I>';
 		$s .= '<nobr>';

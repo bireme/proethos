@@ -64,11 +64,12 @@ class resume
 							 
 				";
 				$rlt = db_query($sql);
-				$tp = array(0,0,0,0,0,0,0,0,0,0,0,0);
+				$tp = array(0,0,0,0,0,0,0,0,0,0,0,0,0);
 				while ($line = db_read($rlt))
 					{
 						$total = round($line['total']);
 						$sta = trim($line['doc_status']);
+						/* Protocolos devolvidos para correção */
 						if ($sta == '$') { $tp[9] = $tp[9] + $total; }
 						if ($sta == '@') { $tp[0] = $tp[0] + $total; }
 						if ($sta == 'A') { $tp[1] = $tp[1] + $total; }
@@ -78,7 +79,8 @@ class resume
 						if ($sta == 'E') { $tp[3] = $tp[3] + $total; }
 						if ($sta == 'P') { $tp[4] = $tp[4] + $total; }
 						if ($sta == 'H') { $tp[2] = $tp[2] + $total; }
-						if ($sta == 'Z') { $tp[2] = $tp[2] + $total; }
+						/* Protocolo Aprovado com recomendacao */
+						if ($sta == 'Z') { $tp[9] = $tp[9] + $total; }
 						
 					}
 				
@@ -87,22 +89,28 @@ class resume
 				//$sx .=  '<TR><TD>';
 				//$sx .=  '<fieldset><legend>'.msg('research').'</legend>';
 				$sx .=  '<Table width="100%" class="table_resume" border=1 >';
+				
+				$sz = '20%';
+				if (($tp[9]+$tp[10]) > 0)
+					{
+						$sz = (round(100 / 6)-1).'%';
+					}
 				/* Protocolo em Submissao */
 				$sx .= '<TR class="table_resume_th" align="center"> ';
-				$sx .= '<TH width="20%" align="center">'.msg('prot_in_submission');
-				if ($tp[9] > 0)
+				$sx .= '<TH width="'.$sz.'" align="center">'.msg('prot_in_submission');
+				if (($tp[9] + $tp[10])> 0)
 					{
-						$sx .= '<TH width="20%" align="center" bgcolor="#FFC0C0">'.msg('prot_problem');
+						$sx .= '<TH width="'.$sz.'" align="center" bgcolor="#FFC0C0">'.msg('prot_problem');
 					}
-				$sx .= '<TH width="20%" align="center">'.msg('prot_submitted');
-				$sx .= '<TH width="20%" align="center">'.msg('prot_in_analysis');
-				$sx .= '<TH width="20%" align="center">'.msg('prot_rejected');
-				$sx .= '<TH width="20%" align="center">'.msg('prot_aproved');
+				$sx .= '<TH width="'.$sz.'%" align="center">'.msg('prot_submitted');
+				$sx .= '<TH width="'.$sz.'%" align="center">'.msg('prot_in_analysis');
+				$sx .= '<TH width="'.$sz.'%" align="center">'.msg('prot_rejected');
+				$sx .= '<TH width="'.$sz.'%" align="center">'.msg('prot_aproved');
 				
-				if ($tp[9] > 0) { $link[9] = '<A HREF="research.php?dd1=$" class="table_resume_td">'; }				
+				if ($tp[9] > 0) { $link[9] = '<A HREF="research_list.php?dd2='.md5(date("Ymd")).'&dd1=problem" class="table_resume_td">'; }				
 				if ($tp[0] > 0) { $link[0] = '<A HREF="research.php?dd1=@" class="table_resume_td">'; }
 				if ($tp[1] > 0) { $link[1] = '<A HREF="research.php?dd1=A" class="table_resume_td">'; }
-				if ($tp[2] > 0) { $link[2] = '<A HREF="research.php?dd1=B" class="table_resume_t">'; }
+				if ($tp[2] > 0) { $link[2] = '<A HREF="research.php?dd1=B" class="table_resume_td">'; }
 				if ($tp[3] > 0) { $link[3] = '<A HREF="research.php?dd1=C" class="table_resume_td">'; }
 				if ($tp[4] > 0) { $link[4] = '<A HREF="research.php?dd1=P" class="table_resume_td">'; }
 				
@@ -112,6 +120,7 @@ class resume
 					{
 					$sx .= '<TD align="center" bgcolor="#FFC0C0">'.$link[9].round($tp[9]).'</A>';
 					}
+
 				$sx .= '<TD align="center">'.$link[1].round($tp[1]).'</A>';
 				$sx .= '<TD align="center">'.$link[2].round($tp[2]).'</A>';
 				$sx .= '<TD align="center">'.$link[3].round($tp[3]).'</A>';

@@ -29,7 +29,7 @@ escreveNoTXT($clausulaSQL, $arquivoSQL);#ESCREVE NO ARQUIVO BasedeDados.txt O VA
 echo 'Sucessfull!';
 	function escreveNoTXT($consultasSQL, $arquivoSQL){
 		//ARQUIVO TXT
-		$arquivo = $arquivoSQL;
+		$arquivo = 'document/templates/'.$arquivoSQL;
 	   //TENTA ABRIR O ARQUIVO TXT
 		if (!$abrir = fopen($arquivo,"w")){
 		$retorno = "ERRO AO ABRIR";

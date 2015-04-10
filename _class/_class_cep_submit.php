@@ -25,77 +25,72 @@ class submit {
 	var $amendment_type;
 
 	var $tabela = 'cep_submit_documento';
-	
-	function inserir_pesquisador_autor($protocol,$autor)
-		{
-			$sql = "select count(*) as total from cep_submit_team
+
+	function inserir_pesquisador_autor($protocol, $autor) {
+		$sql = "select count(*) as total from cep_submit_team
 						 where ct_protocol = '$protocol' ";
-			$rlt = db_query($sql);
-			$total = 0;
-			if ($line = db_read($rlt))
-				{
-					$total = $line['total'];
-				}
-				
-			/* Registra autor principal */
-			if ($total == 0)
-				{
-					$date = date("Ymd");
-					$sql = "insert into cep_submit_team 
+		$rlt = db_query($sql);
+		$total = 0;
+		if ($line = db_read($rlt)) {
+			$total = $line['total'];
+		}
+
+		/* Registra autor principal */
+		if ($total == 0) {
+			$date = date("Ymd");
+			$sql = "insert into cep_submit_team 
 							(ct_protocol, ct_author, ct_type, ct_data, ct_ativo) 
 							values
 							('$protocol','$autor','C',$date,1)
 					";
-					$rlt = db_query($sql);
-				}
-			return(1);
-		}	
-	
+			$rlt = db_query($sql);
+		}
+		return (1);
+	}
+
 	function confirm_submission_by_email() {
 		global $LANG;
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
 
-		$title = $this->doc_1_titulo;
+		$title = $this -> doc_1_titulo;
 
 		$texto = $ic['text'];
 		$subject = $ic['title'];
-		
-		$emails = $this->email_autores();
-		
-		$texto = troca($texto, '$TITLE',$title);
-		$texto = troca($texto, '$CAAE',$protocolo);
-		$texto = troca($texto, '$TITLE',$title);	
-		
-		echo '<h3>'.$subjec.'</h3>';
-		for ($r=0;$r < count($emails);$r++)
-			{
-				echo 'sending to '.$emails[$r];
-				enviaremail($emails[$r], '', $subject, $texto);		
-			}		
-		exit;
+
+		$emails = $this -> email_autores();
+
+		$texto = troca($texto, '$TITLE', $title);
+		$texto = troca($texto, '$CAAE', $protocolo);
+		$texto = troca($texto, '$TITLE', $title);
+
+		echo '<h3>' . $subjec . '</h3>';
+		for ($r = 0; $r < count($emails); $r++) {
+			echo 'sending to ' . $emails[$r];
+			enviaremail($emails[$r], '', $subject, $texto);
+		}
+		exit ;
 	}
-		
-	
-	function email_autores()
-		{
-			$proto = $this->doc_protocolo;
-			$sql = "select * from cep_submit_team 
+
+	function email_autores() {
+		$proto = $this -> doc_protocolo;
+		$sql = "select * from cep_submit_team 
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
 			";
-			$rlt = db_query($sql);
-			$emails = array();
-			while ($line = db_read($rlt))
-				{
-					$email1 = trim($line['us_email']);
-					$email2 = trim($line['us_email_alt']);
-					if (strlen($email1) > 0) { array_push($emails,$email1); }
-					if (strlen($email2) > 0) { array_push($emails,$email2); }
-				}			
-			return($emails);
-		}	
-	
+		$rlt = db_query($sql);
+		$emails = array();
+		while ($line = db_read($rlt)) {
+			$email1 = trim($line['us_email']);
+			$email2 = trim($line['us_email_alt']);
+			if (strlen($email1) > 0) { array_push($emails, $email1);
+			}
+			if (strlen($email2) > 0) { array_push($emails, $email2);
+			}
+		}
+		return ($emails);
+	}
+
 	function status_show($sta, $cor = 1) {
 		$sta = trim($sta);
 		$sx = msg('status_' . trim($this -> doc_status));
@@ -126,18 +121,18 @@ class submit {
 
 	function protocolo_mostrar() {
 		$sx .= '<fieldset><legend>' . msg('project_about_cap') . '</legend>';
-		
+
 		$sx .= '<table width="100%" class="lt0" border=0>';
 		$sx .= '<TR valign="top">';
 		$sx .= '<TD rowspan=4 width="40">';
 
 		$size_image = '80';
 
-		$sx .= '<img src="images/icone_submit.png" width="'.$size_image.'">';
+		$sx .= '<img src="images/icone_submit.png" width="' . $size_image . '">';
 		/* Ensaio clinico */
 		$clinic = $this -> doc_clinic;
 		if ($clinic == 1) {
-			$sx .= '<img src="images/icone_clinical_trial.png" width="'.$size_image.'">';
+			$sx .= '<img src="images/icone_clinical_trial.png" width="' . $size_image . '">';
 		}
 
 		$sx .= '</td>';
@@ -179,11 +174,10 @@ class submit {
 			$sx .= '<TD>';
 		}
 		/* tipo da emenda */
-		if (strlen($this->amendment_type) > 0)
-			{
-			$sx .= '<B>'.msg('amendment_'.$this->amendment_type).'</B>';
-			}
-		$sx .= '</TD>';		
+		if (strlen($this -> amendment_type) > 0) {
+			$sx .= '<B>' . msg('amendment_' . $this -> amendment_type) . '</B>';
+		}
+		$sx .= '</TD>';
 
 		$sx .= '<TD align="right">' . stodbr($this -> doc_dt_atualizado);
 
@@ -201,7 +195,6 @@ class submit {
 		$rst = $this -> protocolo_status('@');
 		return ($rst);
 	}
-
 
 	function le($id = '') {
 		if (strlen($id) > 0) { $this -> doc_protocolo = $id;
@@ -328,18 +321,14 @@ class submit {
 	}
 
 	function protocolo_status($sta) {
+		$wh = " and doc_status = '" . $sta . "' ";
+
 		$sql = "select * from " . $this -> tabela;
 		$sql .= " where doc_autor_principal = '" . $this -> doc_autor_principal . "' ";
-		if ($sta != '') { $wh = " and doc_status = '" . $sta . "' ";
-		}
-		if ($sta == 'B') { $wh = " and (doc_status = 'B' or doc_status='H') ";
-		}
-
 		$sql .= $wh;
-		$sql .= " and ((doc_status <> 'X') and (doc_status <> 'Z'))";
 		$sql .= " order by doc_status, doc_protocolo desc ";
-
 		$rlt = db_query($sql);
+
 		$rst = array();
 		while ($line = db_read($rlt)) { array_push($rst, $line);
 		}
@@ -378,44 +367,48 @@ class submit {
 		$sx .= '<TH width="7%">' . msg('status');
 		$xsta = "X";
 		$id = 0;
-		//$sx .= '<TR bgcolor="#B0B0B0"><TD colspan=4 align="center"><font class="lt3">'.msg('approved_protocols').'</font>';
-		
+
 		for ($r = 0; $r < count($rst); $r++) {
 			$id++;
 			$line = $rst[$r];
+
 			$sta = trim($line['doc_status']);
 			$asta = '';
 			if (strlen($sta == '')) { $sta = '@';
 			}
-			if ($sta == '$') { $asta = '<font color="red">' . msg('problem') . '</font>';
-			}
-			if ($sta == '@') { $asta = '<font color="green">' . msg('status_@');
-			$img = '<img src="img/icone_edit.png" height="20" title="view">';
-			}
-			if ($sta == 'A') { $asta = msg('status_A');
-			$img = '<img src="img/icone_view.png" height="20" title="view">';
-			}
-			if ($sta == 'X') { $asta = msg('status_X');
-			}
-			if ($sta == '$') { $asta = msg('status_$');
-			}
-			if ($sta == 'H') { $asta = msg('status_H');
-			}
 
 			$cor = '';
-
 			$page_link = '';
-			if ($sta == '@') { $page_link = 'protocol_submit.php';
+
+			switch ($sta) {
+				case '@' :
+					$page_link = 'protocol_submit.php';
+					$asta = '<font color="green">' . msg('status_@');
+					$img = '<img src="img/icone_edit.png" height="20" title="view">';
+					break;
+				case 'Z' :
+					$asta = '<font color="red">' . msg('problem') . '</font>';
+					break;
+				case 'A' :
+					$page_link = '';
+					$img = '<img src="img/icone_view.png" height="20" title="view">';
+					break;
+				case '$' :
+					$page_link = 'protocol_submit_detalhe.php';
+					$asta = msg('status_$');
+					$cor = '<font color="red">';
+					$asta = '<font color="red">' . msg('problem') . '</font>';
+					break;
+				case 'X':
+					$asta = msg('status_X');
+					break;
+				case 'H':
+					$asta = msg('status_H');
+					break;
 			}
 
-			if ($sta == 'A') { $page_link = '';
-			}
-			if ($sta == '$') { $page_link = 'protocol_submit_detalhe.php';
-				$cor = '<font color="red">';
-			}
-
+			/* Dados do projeto */
 			$id = $line['id_doc'];
-
 			$link = '<a href="' . $page_link . '?dd0=' . $id . '&dd90=' . checkpost($id) . '" class="link lt1">';
 
 			$tit = trim($line['doc_1_titulo']);
@@ -429,25 +422,25 @@ class submit {
 			$sxx .= $tit;
 			$sxx .= '<TD><nobr>';
 			$sxx .= '<font class="lt1">';
-			$sxx .= msg('amendment_'.($line['doc_type']));
-			
-			
+			$sxx .= msg('amendment_' . ($line['doc_type']));
+
 			$sxx .= '<TD>';
 			$sxx .= '<font class="lt0">';
 			$sxx .= stodbr($line['doc_dt_atualizado']);
 
 			$sxx .= '<TD><nobr>' . $link . $cor;
 			$sxx .= $asta;
-			$sxx .= '-'.$sta;
-			$sxx .= '<TD width="10">'.$link . $img;
-			
-			if (($sta == 'Y') or ($sta == 'Z'))
-				{
-					/* Protocol ja finalizado */
-				} else {
-					$sx .= $sxx;
-				}
+
+			$sxx .= '<TD width="10">' . $link . $img;
+
+			if (($sta == 'Y') or ($sta == 'Z')) {
+				/* Protocol ja finalizado */
+				$sx .= $sxx;
+			} else {
+				$sx .= $sxx;
+			}
 		}
+		$sx .= '</table>';
 		if (count($rst) == 0) { $sx = '';
 		}
 
