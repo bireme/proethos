@@ -191,7 +191,7 @@ $proj->le($protocolo);
 		echo '</form>';
 	}
 echo '</div>';
-
+echo '<font class="lt0">'.$doc_tipo.'</font>';
 echo '</div>';
 echo $hd->foot();	
 ?>

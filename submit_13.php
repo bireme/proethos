@@ -42,7 +42,7 @@ if ($xok == 1) {
 
 	echo '<input type="hidden" name="dd81" value="1">';
 	echo '<BR>';
-	echo '<input type="submit" value="' . msg('#submit_enviar') . '" class="form_submit">';
+	echo '<input type="submit" value="' . msg('submit_monitoreo') . '" class="form_submit">';
 	echo '</form>';
 } else {
 	echo msg('exist_pending_submit');
