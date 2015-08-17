@@ -38,7 +38,7 @@ if ($xok == 1) {
 
 	echo '<form action="submit.php">';
 	echo '<BR>';
-	echo mst(msg('submit_term'));
+	echo mst(msg('submit_term_'.$doc_tipo));
 
 	echo '<input type="hidden" name="dd81" value="1">';
 	echo '<BR>';

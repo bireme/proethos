@@ -73,10 +73,8 @@ $popup=1;
 $proj->le($protocolo);
 
 	{
-		/* Total de paginas */
+		/* Total de paginas do header */
 		$tot_paginas = 7;
-	
-
 
 		$pag_max = 6;
 		$doc_tipo  = trim($proj->doc_tipo);

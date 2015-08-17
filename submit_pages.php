@@ -12,7 +12,7 @@ for ($r=1;$r <=$pag_max ; $r++)
 				echo '<TD class="pageactive">'.$r,'</TD>';	
 			} else {
 				$link = '<A HREF="submit.php?dd91='.$r.'">';
-				echo '<TD>'.$link.$r,'</A></TD>';	
+				echo '<TD class="page_normal">'.$link.$r,'</A></TD>';	
 			} 
 			
 		}

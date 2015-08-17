@@ -78,7 +78,6 @@ if (($nosec == 0) and (($sc == false) or (strlen($su)==0))) { redirecina('login.
 echo $hd -> head();
 require ("cab_menu.php");
 require("_email_smtp.php");
-require($include."sisdoc_debug.php");
 
 echo '<CENTER>';
 echo '<DIV id="content">';

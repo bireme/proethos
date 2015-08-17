@@ -38,8 +38,17 @@ for ($r=1;$r < $tot_paginas;$r++)
 	}
 echo '</table>';
 $edit_mode = $edit_mode_old;
-echo '<H1>'.msg("submit_process").'</h1>';
+
+/* Omite título se não for projeto */
+if ($doc_tipo == 'PROJE')
+	{
+		echo '<H1>'.msg("submit_process").'</h1>';
+	}
+
+/* Le dados do protocolo */
 $proj->le($protocolo);
+
+/* Classe que mostra os dados do protocolo */
 echo $proj->protocolo_mostrar();
 
 $clinic = round($proj->doc_clinic);

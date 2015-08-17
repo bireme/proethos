@@ -304,7 +304,7 @@ class ged
 				$sx .= '<TH>'.msg('file_acao');
 				$sql = "select * from ".$this->tabela;
 				$sql .= " left join ".$this->tabela."_tipo on doc_tipo = doct_codigo ";
-				$sql .= " where doc_dd0 = '".$this->protocol."' and doc_ativo=1 ";
+				$sql .= " where doc_dd0 = '".$this->protocol."' ";
 				if (strlen($this->file_type) > 0)
 					{ $sql .= " and doc_tipo = '".$this->file_type."' ";}
 				$sql .= " order by doc_data desc, doc_hora desc, id_doc desc ";
@@ -313,7 +313,17 @@ class ged
 				$tot = 0;
 				while ($line = db_read($rlt))
 					{
+						$doc_ativo = $line['doc_ativo'];
 						
+						/* cores dos caracteres */
+						$class_cor = '<font color="black">';
+						$class_cor_end = '</font>';
+							
+						if ($doc_ativo == '0')
+							{
+								$class_cor = '<font color="red"><s>';
+								$class_cor_end = '</s></font>';		
+							}
 						$capt = trim($line['doct_nome']);
 						if (substr($capt,0,1)=='#') { $capt = msg(substr($capt,1,strlen($capt))); }
 												
@@ -324,13 +334,13 @@ class ged
 						$link .= '&dd91='.$secu;
 						$link = newwin($link,300,150);
 						$sx .= '<TR>';
-						$sx .= '<TD>'.$link.$capt.'</A>';
-						$sx .= '<TD>'.$link.$line['doc_filename'].'</A>';
-						$sx .= '<TD align="center" class="lt0">'.$this->size_mask($line['doc_size']).'</A>';
-						$sx .= '<TD align="center" class="lt0">'.stodbr($line['doc_data']).' '.$line['doc_hora'].'</A>';
+						$sx .= '<TD>'.$link.$class_cor.$capt.$class_cor_end.'</A>';
+						$sx .= '<TD>'.$link.$class_cor.$line['doc_filename'].$class_cor_end.'</A>';
+						$sx .= '<TD align="center" class="lt0">'.$class_cor.$this->size_mask($line['doc_size']).$class_cor_end.'</A>';
+						$sx .= '<TD align="center" class="lt0">'.$class_cor.stodbr($line['doc_data']).' '.$line['doc_hora'].$class_cor_end.'</A>';
 						$sx .= '<TD align="center">';
 				
-						if ($line['doc_status'] == '@')
+						if (($line['doc_status'] == '@') and ($doc_ativo == '1'))
 							{
 								if ((strlen($frame) > 0) or (strlen($popup) > 0))
 								{

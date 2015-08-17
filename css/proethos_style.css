@@ -3,7 +3,23 @@
         background-color: #d0d0d0;
         padding-left: 10px;
         padding-right: 10px;
+        border: 1px solid #808080;
+        width: 20px;
+        text-align: center;
     }
+.page_normal
+	{
+        background-color: #fff;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 1px solid #808080;
+        width: 20px;
+        text-align: center;
+	}
+.page_normal:hover
+	{
+		border: 1px solid #000;	
+	}
 .documents {
     list-style-type: none;
     padding: 0px;
