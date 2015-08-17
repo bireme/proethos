@@ -31,7 +31,7 @@ echo '<BR><BR>';
 //if (strlen($dd[81]) == 0) { $xok = 0; }
 
 if ($xok == 1) {
-	if (strlen($dd[81]) > 0) { redirecina('submit_end.php');
+	if (strlen($dd[81]) > 0) { redirecina('submit_end_monitoreo.php');
 	}
 	/* Termo */
 	require ('submit_pages.php');
