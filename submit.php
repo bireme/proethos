@@ -1,5 +1,6 @@
 <?php
 /* Header */
+
 /* mark active page to cabmenu */
 $active_page = 'research';
 
@@ -74,22 +75,26 @@ $proj->le($protocolo);
 	{
 		/* Total de paginas */
 		$tot_paginas = 7;
-		/* Regras */
-		/* Se vazio troca por Projeto */
-		if ($doc_tipo == '') { $doc_tipo = 'PROJE'; }
-		
-		
-		/* Se não for projeto define total de paginas como 3 */
-		if ($doc_tipo =! 'PROJE')
-			{
-					$tot_paginas = 3;		
-			}
-		/*****/		
-		require("submit_cab.php");		
-		echo '<form method="post" action="'.page().'"><BR>';
+	
+
 
 		$pag_max = 6;
 		$doc_tipo  = trim($proj->doc_tipo);
+		
+		/* Regras */
+		/* Se vazio troca por Projeto */
+		if (strlen($doc_tipo) == 0) { $doc_tipo = 'PROJE'; }
+		
+		/* Se não for projeto define total de paginas como 3 */
+		if ($doc_tipo != 'PROJE')
+			{
+					$tot_paginas = 4;		
+			}
+		/*****/		
+		
+		/** Mostra Header ***/		
+		require("submit_cab.php");		
+		echo '<form method="post" action="'.page().'"><BR>';		
 
 		switch ($doc_tipo)
 			{

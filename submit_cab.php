@@ -1,8 +1,7 @@
 <?
-//$edit_mode = True;
 echo '<div class="proto_menu">';
 $edit_mode_old = $edit_mode; 
-//$edit_mode = 0;
+
 $cls = array('','prevStep','currentStep','','','','','','','','');
 $cls = array('','','','','','','','','','','');
 
