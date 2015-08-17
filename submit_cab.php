@@ -11,10 +11,21 @@ $ini = $pag;
 for ($r=0;$r <= $ini;$r++) {$cls[$r] = 'prevStep'; }
 $cls[$ini] = 'currentStep';
 echo '<table width="100%" cellpadding=0 cellspacing=0 border=0 class="lt1">';
-for ($r=1;$r < 7;$r++)
+
+/* informa o total de paginas do Header */
+/* Old - for ($r=1;$r < 7;$r++) */ 
+for ($r=1;$r < $tot_paginas;$r++)
 	{
 		//$edit_mode = True;
-		$op = msg("top_submit_menu_".$r);
+		if ($doc_tipo != 'PROJE')
+			{
+				/* Label para monitoreo */
+				$op = msg("top_submit_".$doc_tipo."_".$r);
+			} else {
+				/* Label para projeto */
+				$op = msg("top_submit_menu_".$r);		
+			}
+		
 		$name="item".$r;
 		$class_name="topmenu_off";
 		if ($ini == $r) { $class_name = 'topmenu_on'; }

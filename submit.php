@@ -72,17 +72,28 @@ $popup=1;
 $proj->le($protocolo);
 
 	{
+		/* Total de paginas */
+		$tot_paginas = 7;
+		/* Regras */
+		/* Se vazio troca por Projeto */
+		if ($doc_tipo == '') { $doc_tipo = 'PROJE'; }
+		
+		
+		/* Se não for projeto define total de paginas como 3 */
+		if ($doc_tipo =! 'PROJE')
+			{
+					$tot_paginas = 3;		
+			}
+		/*****/		
 		require("submit_cab.php");		
-		echo '<form method="post" action="'.page().'">';
-		echo '<BR>';
-		//echo '<fieldset><legend>'.msg('submit').'</legend>';
-		//echo '<Table width="'.$tab_max.'" cellpadding=0 cellspacing=0 class="lt1" align="center" >';
+		echo '<form method="post" action="'.page().'"><BR>';
+
 		$pag_max = 6;
 		$doc_tipo  = trim($proj->doc_tipo);
 
 		switch ($doc_tipo)
 			{
-			/* EMENDA */
+			/* EMENDA - logica antiga */
 			case 'AMEND':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
@@ -106,6 +117,7 @@ $proj->le($protocolo);
 				if ($pag_page == 5) { require("submit_05.php"); }
 				if ($pag_page == 6) { require("submit_06.php"); }
 				break;
+				
 			/* Evento adverso */
 			case '001':
 				$pag_max = 3;
@@ -121,7 +133,7 @@ $proj->le($protocolo);
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;			
 				 
-			/* EMENDA */
+			/* Monitoreo 003 */
 			case '003':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
@@ -129,7 +141,7 @@ $proj->le($protocolo);
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;
 					
-			/* EMENDA */
+			/* Monitoreo  004 */
 			case '004':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
@@ -137,28 +149,28 @@ $proj->le($protocolo);
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;										
 
-			/* EMENDA */
+			/* Monitoreo 005 */
 			case '005':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;
-			/* EMENDA */
+			/* Monitoreo 006 */
 			case '006':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;
-			/* EMENDA */
+			/*  Monitoreo 007 */
 			case '007':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;
-			/* EMENDA */
+			/*  Monitoreo 008 */
 			case '008':
 				$pag_max = 3;
 				if ($pag_page == 1) { require("submit_11.php"); }
