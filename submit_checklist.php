@@ -88,6 +88,8 @@ if (round($amendment_type) > 0) {
 $rlt = db_query($sql);
 
 while ($line = db_read($rlt)) {
+	print_r($line);
+	
 	$obrig = round($line['sub_obrigatorio']);
 	$cont = trim($line['spc_content']);
 	$ativo = trim($line['spc_ativo']);

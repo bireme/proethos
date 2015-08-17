@@ -75,7 +75,7 @@ if ($ok == 1)
 	$proj->protocolo_altera_status($protocolo,'@','A');
 	
 	/* Step 10 */
-	$cep->confirm_submission_by_email();
+	$cep->confirm_monitoreo_by_email();
 	
 	echo '<div style="text-align: justify; width: 80%">';
 	echo msg('submit_end_monitoreo_text');

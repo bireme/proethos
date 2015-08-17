@@ -1,48 +1,44 @@
 <?php
- /**
-  * XML OMS
-  * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
-  * @copyright © Pan American Health Organization, 2013. All rights reserved.
-  * @access public
-  * @version v0.12.07
-  * @package Class
-  * @subpackage oms
+/**
+ * XML OMS
+ * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
+ * @copyright © Pan American Health Organization, 2013. All rights reserved.
+ * @access public
+ * @version v0.12.07
+ * @package Class
+ * @subpackage oms
  */
-class oms
-	{
-		function showxml($xml)
-			{
-				
-			}
-		
-		function icone($id='')
-			{
-				$sx .= '<div id="xml_oms">';
-					$sx .= '<div id="xml_oms_right">';
-						$sx .= 'OMS';
-					$sx .= '</div>';
-					$sx .= '<div id="xml_oms_left">';
-						$sx .= 'XML';
-					$sx .= '</div>';
-				$sx .= '</div>';
-				
-				$sx .= '<script>'.chr(13);
-					$sx .= '$("#xml_oms").click(function() {
-							newxy2(\'oms_xml.php?dd0='.$id.'&dd90='.checkpost($id).'\',600,400);
-					});'.chr(13);
-				$sx .= '</script>'.chr(13);
-				return($sx);
-			}
-			
-		function xml($cep)
-			{
-			$title = htmlspecialchars($cep->line['cep_titulo']);
-			$titlep = htmlspecialchars($cep->line['cep_titulo_public']);
-			/* data */
-			$data = $cep->line['cep_data'];
-			$data = substr($data,0,4).'-'.substr($data,4,2).'-'.substr($data,6,2).'T00:00:00';
-			//print_r($cep);
-			$xml = "
+class oms {
+	function showxml($xml) {
+
+	}
+
+	function icone($id = '') {
+		$sx .= '<div id="xml_oms">';
+		$sx .= '<div id="xml_oms_right">';
+		$sx .= 'OMS';
+		$sx .= '</div>';
+		$sx .= '<div id="xml_oms_left">';
+		$sx .= 'XML';
+		$sx .= '</div>';
+		$sx .= '</div>';
+
+		$sx .= '<script>' . chr(13);
+		$sx .= '$("#xml_oms").click(function() {
+							newxy2(\'oms_xml.php?dd0=' . $id . '&dd90=' . checkpost($id) . '\',600,400);
+					});' . chr(13);
+		$sx .= '</script>' . chr(13);
+		return ($sx);
+	}
+
+	function xml($cep) {
+		$title = htmlspecialchars($cep -> line['cep_titulo']);
+		$titlep = htmlspecialchars($cep -> line['cep_titulo_public']);
+		/* data */
+		$data = $cep -> line['cep_data'];
+		$data = substr($data, 0, 4) . '-' . substr($data, 4, 2) . '-' . substr($data, 6, 2) . 'T00:00:00';
+		//print_r($cep);
+		$xml = "
 <trials>
 	<trial>
 		<main>
@@ -140,11 +136,12 @@ class oms
   		</source_support>
   	</trial>
 </trials>";
-	$xml = troca($xml,'&amp;','[XXX]');
-	//$xml = troca($xml,'<','&lt;');
-	//$xml = troca($xml,'>','&gt;');
-	$xml = troca($xml,'&','&amp;');
-	$xml = troca($xml,'[XXX]','&amp;');
-		return($xml);
-			}
+		$xml = troca($xml, '&amp;', '[XXX]');
+		//$xml = troca($xml,'<','&lt;');
+		//$xml = troca($xml,'>','&gt;');
+		$xml = troca($xml, '&', '&amp;');
+		$xml = troca($xml, '[XXX]', '&amp;');
+		return ($xml);
 	}
+
+}

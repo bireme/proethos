@@ -1,3 +1,21 @@
+#xml_oms
+	{
+		width: 80px;
+	}
+#xml_oms_right
+	{
+		background-color: #efefef;
+		color: #000;
+		width: 40px;
+		float: left;
+	}
+#xml_oms_left
+	{
+		background-color: #33333;
+		color: #ddd;
+		width: 40px;
+		float: left;
+	}
 .pageactive
     {
         background-color: #d0d0d0;

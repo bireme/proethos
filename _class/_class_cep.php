@@ -2083,10 +2083,12 @@ class cep {
 		$gr = trim($line['cep_grupo']);
 		$versao = $line['cep_versao'];
 		$codigo = $line['cep_codigo'];
-		$clinic = round($line['cep_clinic']);
+		$clinic_st = round($line['cep_clinic']);
 		$protocol_cep = trim($line['cep_protocol']);
+		
+		$oms = new oms;
 
-		if ($clinic == 1) {
+		if ($clinic_st == 1) {
 			$clinic = msg('clinic_study');
 		} else {
 			$clinic = '';
@@ -2106,8 +2108,14 @@ class cep {
 		$sp .= '    <Td colspan=4 >' . msg('project_type');
 		$sp .= '<TR><Td colspan=4 class="table_proj" ><B>';
 		$sp .= trim($line['cep_caae']);
-		$sp .= '    <Td colspan=4 class="table_proj">';
+		$sp .= '    <Td colspan=3 class="table_proj">';
 		$sp .= msg('amendment__' . trim($line['cep_tipo']));
+		$sp .= '    <Td colspan=1 class="table_proj" align="right">';
+		if ($clinic_st == 1)
+			{
+				$sp .= $oms->icone($protocol_id);		
+			}
+		
 		$sp .= '</table>';
 
 		/* Title */

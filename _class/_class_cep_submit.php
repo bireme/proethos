@@ -48,8 +48,36 @@ class submit {
 		return (1);
 	}
 
+	function confirm_monitoreo_by_email() {
+		global $LANG;
+
+		/**** ENVIO DE E-MAIL *****/
+		$ic = new ic;
+		$ic = $ic -> ic('email_confirm_subm');
+
+		$title = $this -> doc_1_titulo;
+
+		$texto = $ic['text'];
+		$subject = $ic['title'];
+
+		$emails = $this -> email_autores();
+
+		$texto = troca($texto, '$TITLE', $title);
+		$texto = troca($texto, '$CAAE', $protocolo);
+		$texto = troca($texto, '$TITLE', $title);
+
+		echo '<h3>' . $subjec . '</h3>';
+		for ($r = 0; $r < count($emails); $r++) {
+			echo 'sending to ' . $emails[$r];
+			enviaremail($emails[$r], '', $subject, $texto);
+		}
+		exit ;
+	}
+
 	function confirm_submission_by_email() {
 		global $LANG;
+
+		/**** ENVIO DE E-MAIL *****/
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
 
@@ -399,10 +427,10 @@ class submit {
 					$cor = '<font color="red">';
 					$asta = '<font color="red">' . msg('problem') . '</font>';
 					break;
-				case 'X':
+				case 'X' :
 					$asta = msg('status_X');
 					break;
-				case 'H':
+				case 'H' :
 					$asta = msg('status_H');
 					break;
 			}
