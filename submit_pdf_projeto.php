@@ -120,10 +120,10 @@ while ($line = db_read($rlt))
 			$mostrar = 0; 
 		}
 		
-	IF ($ft_field == '$M') 
+	IF (substr($ft_field,0,2) == '$M') 
 		{
 			$mostrar = 2; 
-			$content = msg($sub_pdf_title);
+			$content = '========================'.msg($sub_pdf_title);
 		}		
 		
 	if (($ft_field == '$FILE') and ($file_list == 0)) 

@@ -86,14 +86,16 @@ for ($kr=0;$kr < count($crono);$kr++)
 }	
 	if ($tot1 > 0)
 		{
+		/*
 		$pdf->SetFont('Arial','B',10);
 		$pdf->MultiCell(0,0,'',0,'L');
 		$pdf->SetX(10);
-		$pdf->MultiCell(140,0,msg('Total_of_the').' '.number_format($tot1,0).' '.msg('in_taks ').' '.$meses.msg('months'),0,'L');
+		$pdf->MultiCell(140,0,msg('Total_of_the').' '.number_format($tot1,0).' '.msg('in_taks').' '.$meses.msg('months'),0,'L');
 		//////////q Linha
 	
 		$pdf->ln(5);
 		$pdf->SetFont('Times','',12);
+		 */
 		}
 		$pdf->SetLineWidth(0.2);
 		
