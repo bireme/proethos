@@ -47,7 +47,7 @@ for ($kr=0;$kr < count($crono);$kr++)
 		$pdf->MultiCell(0,8,msg('crono'),0,'L');
 		$orca_cab = true;
 		$pdf->Ln(6);
-/////////////////qqq cabe�alho orcamento
+/////////////////qqq cabecalho orcamento
 		$y = $pdf->GetY();
 		$pdf->SetLineWidth(0.3);
 		$pdf->Line(10,$y-2,200,$y-2);
@@ -97,11 +97,13 @@ for ($kr=0;$kr < count($crono);$kr++)
 		}
 		$pdf->SetLineWidth(0.2);
 		
+		/*
 		$txt1 = msg('crono_inf_pdf');
 		$pdf->SetFont('Arial','B',8);
 		$pdf->MultiCell(0,4,$txt1,0,'L');
 		$pdf->ln(5);
 		$pdf->SetFont('Times','',12);
+		 */
 		
 }
 ?>

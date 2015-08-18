@@ -82,7 +82,6 @@ $file_list = 0;
 $pdf->SetFont('Times','',12);
 while ($line = db_read($rlt))
 	{
-
 	$align = trim($line['sub_pdf_align']);
 	if (strlen($align)==0) { $align = "J"; }
 
@@ -97,6 +96,7 @@ while ($line = db_read($rlt))
 	$ft_size = $line['sub_pdf_font_size'];
 	$ft_field = trim($line['sub_field']);
 	$ft_id = trim($line['sub_id']);
+	$sub_pdf_title = trim($line['sub_pdf_title']);
 	
 	$ft_size=12;
 	$space=6;
@@ -120,6 +120,12 @@ while ($line = db_read($rlt))
 			$mostrar = 0; 
 		}
 		
+	IF ($ft_field == '$M') 
+		{
+			$mostrar = 2; 
+			$content = msg($sub_pdf_title);
+		}		
+		
 	if (($ft_field == '$FILE') and ($file_list == 0)) 
 		{
 			$file_list = 1;
@@ -141,6 +147,7 @@ while ($line = db_read($rlt))
 		$align='J';
 		}
 		
+	/* Mostrar com cabecalho */	
 	if (($mostrar == 1) and (strlen($content) > 0))
 		{
 		$pdf->MultiCell(0,0,' ',1,$align);
@@ -154,6 +161,15 @@ while ($line = db_read($rlt))
 		$pdf->MultiCell(0,8,' ',0,$align);
 		$pdf->Ln($ln);
 		}
+	/* Mostrar sem cabecalho */
+	if (($mostrar == 2) and (strlen($content) > 0))
+		{
+		$pdf->SetFont('Times','',$ft_size);
+		$pdf->MultiCell(0,$space,$content,0,$align);
+		$pdf->Ln($ln);
+		$pdf->MultiCell(0,8,' ',0,$align);
+		$pdf->Ln($ln);
+		}		
 	if ($declaracoes == true)
 		{
 		require("submit_pdf_decalracao.php");
