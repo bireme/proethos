@@ -222,6 +222,10 @@ class message {
 			$sx .= '$messa = array(' . $cr;
 			$idio = "xxx";
 			$it = 0;
+			echo '<table width="100%" class="border01">';
+			echo '<tr><td>';
+			echo 'Language: '.$pags[$ro].'<BR>';
+			
 			while ($xline = db_read($rlt)) {
 				$xlan = trim($xline['msg_language']);
 				$xfile = trim($xline['msg_field']);
@@ -244,6 +248,7 @@ class message {
 				//echo '<BR>'.trim($xline['msg_field']);
 				echo '. ';
 			}
+			echo '</table>';
 			$sx .= $cr . ')';
 			$sx .= '); ';
 			$sx .= $cr;

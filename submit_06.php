@@ -8,59 +8,26 @@
   * @package Class
   * @subpackage UC0001 - Sumissão de protocolo de pesquisa
  */
-require("_class/_class_cep_submit_institution.php");
-$inst = new instituicao;
+require('submit_00_field.php');
 
-$pag = 6;
+	if (strlen($acao) > 0) 
+		{ 
+		require('submit_save.php');
+		}
 
-echo '<table width="'.$tab_max.'" class="lt0">';
+echo $s;
 echo '<TR><TD colspan=2>'; require('submit_pages.php');
 echo '</table>';
 
-echo '<B>'.msg('submit_checklist').'</B>';
-require('submit_checklist.php');
-		
-		echo '<BR>';
-		echo '<a href="javascript:newxy2(\'submit_pdf.php?dd0='.$protocolo.'&dd90='.checkpost($protocolo.$secu).'\',900,800);">';
-		echo msg('create_PDF');
-		echo '</A>';
-		
-		$sx = '<span id="create_pdf" class="form_submit">'.msg('create_PDF').'</span>';
-		$sx .= '
-				<script>
-				$("#create_pdf").click(function() {
-					window.open(\'submit_pdf.php?dd0='.$protocolo.'&dd90='.checkpost($protocolo.$secu).'\', \'pdf\', \'create pdf\');
-				});
-				</script>
-				';	
-		echo $sx;
-
-echo '<BR><BR>';
-/* Compromisso */
-//if (strlen($dd[81]) == 0) { $xok = 0; }
-
-if ($xok == 1)
+if (($ok > 0) and (strlen($acao) > 0))
 	{
-		if (strlen($dd[81]) >0)
-		{ redirecina('submit_end.php'); }
-		/* Termo */
-		echo '<form action="submit.php">';
-		echo '<BR>';
-		echo '<table width="!00%"><TR><TD>';
-		echo mst(msg('submit_term'));
-		echo '</table>';
-
-		echo '<BR><B>';
-		echo '<input type="checkbox" name="dd81" value="1">';
-		echo msg('submit_term_accepted');
-		echo '</B>';
-		echo '<BR>';
-		echo '<input type="submit" value="'.msg('#save_next').'" class="form_submit">';
-		echo '</form>';		
-	} else {
-		echo msg('exist_pending_submit');
+		$_SESSION['proj_page'] = ($pag+1);
+		redirecina('submit.php?time'.date("dmYhis"));
 	}
 ?>
-<script>
 
+<script>
+<?
+echo $scripts;
+?>
 </script>

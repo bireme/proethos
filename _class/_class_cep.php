@@ -1627,6 +1627,7 @@ class cep {
 
 			/* Não ocultar */
 			if ($action == '015') { $hd = '';
+				$sx .= $this -> action_015();
 			}
 			if ($dd[3] == $action) { $hd = '';
 			}

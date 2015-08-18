@@ -113,12 +113,15 @@ $proj->le($protocolo);
 				if ($pag_page == 6) { require("submit_06.php"); }
 				break;
 			case 'PROJE':
+				$pag_max = 7;
+				$tot_paginas = 7;				
 				if ($pag_page == 1) { require("submit_01.php"); }
 				if ($pag_page == 2) { require("submit_02.php"); }
 				if ($pag_page == 3) { require("submit_03.php"); }
 				if ($pag_page == 4) { require("submit_04.php"); }
 				if ($pag_page == 5) { require("submit_05.php"); }
 				if ($pag_page == 6) { require("submit_06.php"); }
+				if ($pag_page == 7) { require("submit_07.php"); }
 				break;
 				
 			/* Evento adverso */

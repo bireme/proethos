@@ -54,7 +54,7 @@ class submit {
 
 		/**** ENVIO DE E-MAIL *****/
 		$ic = new ic;
-		$ic = $ic -> ic('email_confirm_subm');
+		$ic = $ic -> ic('email_confirm_moni');
 
 		$title = $this -> doc_1_titulo;
 
@@ -70,7 +70,7 @@ class submit {
 		echo '<h3>' . $subjec . '</h3>';
 		for ($r = 0; $r < count($emails); $r++) {
 			echo 'sending to ' . $emails[$r];
-			enviaremail($emails[$r], '', $subject, $texto);
+			enviaremail($emails[$r], '', utf8_decode($subject), utf8_decode($texto));
 		}
 		exit ;
 	}
@@ -96,7 +96,9 @@ class submit {
 		echo '<h3>' . $subjec . '</h3>';
 		for ($r = 0; $r < count($emails); $r++) {
 			echo 'sending to ' . $emails[$r];
-			enviaremail($emails[$r], '', $subject, $texto);
+			enviaremail($emails[$r], '', '#2'.$subject, $texto);
+			
+			enviaremail($emails[$r], '', '#1'.utf8_decode($subject), utf8_decode($texto));
 		}
 		exit ;
 	}
