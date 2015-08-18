@@ -132,6 +132,7 @@ $proj->le($protocolo);
 			/*  Monitoreo 008 */
 			case '008':
 				$pag_max = 1;
+				$tot_paginas = 1;
 				if ($pag_page == 1) { require("submit_81.php"); }
 				break;
 				
