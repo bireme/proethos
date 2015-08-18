@@ -13,11 +13,6 @@ $inst = new instituicao;
 
 $pag = 3;
 
-echo '<table width="' . $tab_max . '" class="lt0">';
-echo '<TR><TD colspan=2>';
-require ('submit_pages.php');
-echo '</table>';
-
 echo '<B>' . msg('submit_checklist') . '</B>';
 require ('submit_checklist_amendment.php');
 

@@ -45,6 +45,8 @@ switch ($type)
 		echo $proj->protocolos_mostrar($rlt);
 		/* Protocolo com pendências */
 		
+		echo '<HR>';
+		
 		$rlt = $proj->protocolo_status('Z');
 		echo $proj->protocolos_mostrar($rlt);
 		

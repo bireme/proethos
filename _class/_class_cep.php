@@ -478,28 +478,35 @@ class cep {
 
 	function protocol_show($rlt) {
 		$id = 0;
-		$sx .= '<table class="tabela00 lt1" width="100%" bgcolor="#FFFFFF" class="lt1">';
-		$sx .= '<TR>
+		$sx .= '<table class="tabela01" width="100%" bgcolor="#FFFFFF">';
+		$sx .= '<TR class="lt0">
 				<TD colspan=4 align="center">
 					<font class="lt3">' . msg('approved_protocols') . '</font>';
-		$sx .= '<TR><TH width="10%">' . msg('caae');
-		$sx .= '<TH align="left">' . msg('protocol_title');
-		$sx .= '<TH width="7%"><nobr>' . msg('last_update');
-		$sx .= '<TH width="7%">' . msg('status');
+					
+		$sx .= '<TR class="lt1">
+				<TH width="10%">' . msg('caae').'</td>
+				<TH align="left">' . msg('protocol_title').'</td>
+				<TH width="10%">' . msg('last_update').'</td>
+				<TH width="7%">' . msg('status');
 
 		while ($line = db_read($rlt)) {
+			
 			$id++;
-			$link = '<A HREF="protocol_detalhe_investigator.php?dd0=' . $line['id_cep'] . '&dd90=' . checkpost($line['id_cep']) . '" class="link">';
+			$link = '<A HREF="protocol_detalhe_investigator.php?dd0=' . $line['id_cep'] . '&dd90=' . checkpost($line['id_cep']) . '" class="link lt2">';
+			$link2 = '<A HREF="protocol_detalhe_investigator.php?dd0=' . $line['id_cep'] . '&dd90=' . checkpost($line['id_cep']) . '" class="link lt1">';
 			$sx .= chr(13);
-			$sx .= '<TR valign="top" bgcolor="#FFFFFF">';
-			$sx .= '<TD class="tabela01">' . $link;
-			$sx .= $line['cep_caae'];
-			$sx .= '<TD class="tabela01">' . $link;
-			$sx .= $line['cep_titulo'];
-			$sx .= '<TD class="tabela01">';
-			$sx .= stodbr($line['cep_atualizado']);
-			$sx .= '<TD class="tabela01">';
-			$sx .= $this -> mostra_status($line['cep_status']);
+			
+			$sx .= '<tr valign="top">
+					<td class="border01 lt1">'.$link2.$line['cep_caae'].'</A></td>
+					<td class="border01 lt2 padding5">'.$link.$line['cep_titulo'].'</A></td>
+					<td class="lt1 border01" align="center">'.stodbr($line['cep_atualizado']).'</td>
+					<td class="lt1 border01">'.msg($line['cep_pr_protocol']).'</td>
+					</tr>';		
+			
+			//$sx .= '<TD class="tabela01">';
+			//$sx .= $this -> mostra_status($line['cep_status']);
+			
+			
 		}
 		if ($id == 0) { $sx = '';
 		}

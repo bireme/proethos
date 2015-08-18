@@ -1,3 +1,11 @@
+.border01
+	{
+		border: 1px solid #e0e0e0;
+	}
+.padding5
+	{
+		padding: 5px;
+	}
 #xml_oms
 	{
 		width: 80px;

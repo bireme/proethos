@@ -66,6 +66,18 @@ if (trim($status) == '$')
 	echo '</form>';
 	}
 
+if (trim($status) == 'Z')
+	{
+	echo '<form method="post">';
+	echo '<input type="hidden" name="dd0" value="'.$dd[0].'">';
+	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
+	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
+	echo '<input type="hidden" name="dd5" value="TO_SUBMIT">';
+	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="form_submit">';
+	echo '</form>';
+	}
+
+
 /* Submissao */
 if (trim($status) == '@')
 	{

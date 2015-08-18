@@ -417,6 +417,7 @@ class submit {
 					$img = '<img src="img/icone_edit.png" height="20" title="view">';
 					break;
 				case 'Z' :
+					$page_link = 'protocol_submit.php';
 					$asta = '<font color="red">' . msg('problem') . '</font>';
 					break;
 				case 'A' :
@@ -424,6 +425,7 @@ class submit {
 					$img = '<img src="img/icone_view.png" height="20" title="view">';
 					break;
 				case '$' :
+					$page_link = 'protocol_submit.php';
 					$page_link = 'protocol_submit_detalhe.php';
 					$asta = msg('status_$');
 					$cor = '<font color="red">';
