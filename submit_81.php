@@ -28,7 +28,7 @@ $cep_recrutamento = $cep->get_cep_recrutamento($proto_cep);
 
 $cp =$cep->cp_monitoreo();
 
-/* Chave ID do registro*/
+/* Chave ID do register_shutdown_function(function)*/
 $dd[0] = $proto_cep;
 
 $form = new form;
