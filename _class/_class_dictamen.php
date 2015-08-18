@@ -348,7 +348,7 @@ class dictamen {
 			}
 			$sx .= chr(13);
 			$sx .= '<TR><TD colspan=2 class="lt0"><div id="dic' . strzero($r, 3) . '" ' . $stl . '>';
-			$sx .= msg('dictamen_' . $r) . '<BR>';
+			$sx .= msg('dic_pm_' . $r) . '<BR>';
 			$sx .= '<textarea rows=6 cols=80 style="width: 96%;" name="dd' . ($r + 20) . '" id="dd' . ($r + 20) . '">';
 			$sx .= $dd[($r + 20)];
 			$sx .= '</textarea>';
