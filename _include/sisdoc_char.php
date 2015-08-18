@@ -128,6 +128,7 @@ function format_fld($zq1,$zq2)
 				
 			
 			////////////////////// $
+			if ($zq2 == 'M') { $zqr =  msg($zq1); }
 			if ($zq2 == '$') { $zqr =  Number_format($zq1/100,2); }
 			////////////////////// $R
 			if (($zq2 == '$R') or ($zq2 == '2'))

@@ -319,6 +319,7 @@ if (strlen($http_redirect) > 0) {
 			echo chr(13) . chr(10) . '<TR ' . $xcol . ' valign=top>';
 			for ($kx = 1; $kx < count($cdf); $kx++) {
 				$ncp = $cdf[$kx];
+				$vlr = $line[$ncp];
 				$aln = '';
 				if (substr($masc[$kx], 0, 1) == '$') { $aln = 'align="right" ';
 				}
@@ -329,8 +330,10 @@ if (strlen($http_redirect) > 0) {
 				}
 				if (substr($masc[$kx], 0, 1) == '$') { $aln = 'align="right" ';
 				}
+				if (substr($masc[$kx], 0, 1) == '#') { $aln = 'align="right" ';
+				}
 				echo '<TD ' . $aln . '>' . $linkv;
-				$vlr = $line[$ncp];
+				
 				if (substr($vlr,0,1) == '#') { $vlr = msg($vlr); };
 				echo format_fld($vlr, $masc[$kx]);
 			}

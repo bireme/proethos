@@ -74,6 +74,9 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name'] == 'ADMIN')) {
 		} else { array_push($menu, array(msg('admin_message'), msg('admin_message_disable'), 'admin_message_enable.php?dd1=0'));
 		}
 	}
+	
+	/* SQL Update */
+	array_push($menu, array(msg('admin_update'), msg('system_update'), 'admin_update.php'));
 
 	echo '<h1>' . msg('admin_menu_special') . '</h1>';
 	echo '<fieldset>';

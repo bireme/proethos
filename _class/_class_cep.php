@@ -257,12 +257,16 @@ class cep {
 			$sx .= '<form action="' . page() . '">' . $cr;
 			//$sx .= '<select name="dd1">' . $cr;
 			/* Busca emandas do SQL */
-			$sql = "select * from cep_amendment_type where amt_ativo = 1 order by amt_ord ";
+			$sql = "select * from cep_amendment_type
+							 where amt_ativo = 1 
+							order by amt_ord ";
 			$rlt = db_query($sql);
 			
 			
 			while ($line = db_read($rlt)) {
 				$btn = 'amendment_' . trim($line['amt_codigo']);
+				$btn = trim($line['amt_descrip']);
+				
 				$sx .= '<input type="radio" name="dd1" id="dd1" 
 							value="' . '001' . trim($line['amt_codigo']) . '"
 							>' . msg($btn) . '</br>' . $cr;
@@ -2224,8 +2228,8 @@ class cep {
 		$sp .= '<TD width="10%">' . msg('date_amendment');
 		$sp .= '<TD>' . msg('monitoring');
 
-		$sp .= '<TR class="lt2">';
-		$sp .= '<Td class="table_proj lt2" align="left" valign="top">';
+		$sp .= '<TR class="lt2" valign="top">';
+		$sp .= '<Td class="table_proj lt2" align="left" >';
 		$sp .= '&nbsp;' . stodbr($line['cep_data']);
 
 		$sp .= '<Td class="table_proj lt2" align="left">';
