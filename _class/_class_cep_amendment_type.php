@@ -42,40 +42,14 @@ class cep_amendment_type
 			}	
 		function updatex()
 			{
-				return(1);
-			}	
-		function faq()
-			{
-				global $LANG;
-				$sql = "select * from ".$this->tabela;
-				$sql .= " where faq_seccao = '".$this->faq_seccao."' ";
-				$sql .= " and faq_idioma = '".$LANG."' ";
-				$sql .= " and faq_ativo = 1";
-				$sql .= " order by faq_idioma, faq_ordem ";
+				global $base;
+				$c = 'amt';
+				$c1 = 'id_'.$c;
+				$c2 = $c.'_codigo';
+				$c3 = 5;
+				$sql = "update ".$this->tabela." set $c2 = lpad($c1,$c3,0) where $c2='' ";
+				if ($base=='pgsql') { $sql = "update ".$this->tabela." set $c2 = trim(to_char(id_".$c.",'".strzero(0,$c3)."')) where $c2='' "; }
 				$rlt = db_query($sql);
-				$sx = '';
-				$per = 0;
-				while ($line = db_read($rlt))
-					{
-						$per++;
-						$sx .= '<BR>'.$per.'&nbsp;<B>';
-						$sx .= '<A TAG="#fq'.$line['id_faq'].'"></A>';
-						$sx .= '<A HREF="#fq'.$line['id_faq'].'" style="lt2" onclick="mostra_answer('.$line['id_faq'].');">';
-						$sx .= trim($line['faq_pergunta']);
-						$sx .= '</A>';
-						$sx .= '</B>';
-						$sx .= '<div id="faq'.$line['id_faq'].'" style="display: none;" >'.chr(13);
-						$sx .= mst(trim($line['faq_resposta'])).chr(13);
-						$sx .= '</div>'.chr(13);
-					}
-					$sx .= '<script>'.chr(13);
-					$sx .= 'function mostra_answer(id) {'.chr(13);
-					$sx .= " var local = '#faq'+id; ".chr(13);			
-					$sx .= ' var tela01 = $(local).toggle("slow"); '.chr(13);			
-					$sx .= '}'.chr(13);			
-					$sx .= '</script>'.chr(13);
-				return($sx);
-				
 			}	
 	}
 ?>
