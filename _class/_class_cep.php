@@ -246,10 +246,15 @@ class cep {
 		if (strlen($dd[1]) == 0) {
 			$sx .= '<form action="' . page() . '">' . $cr;
 			//$sx .= '<select name="dd1">' . $cr;
-			for ($r = 1; $r <= 7; $r++) {
-				$btn = 'amendment_' . strzero($r, 3);
+			/* Busca emandas do SQL */
+			$sql = "select * from cep_amendment_type where amt_ativo = 1 order by amt_ord ";
+			$rlt = db_query($sql);
+			
+			
+			while ($line = db_read($rlt)) {
+				$btn = 'amendment_' . trim($line['amt_codigo']);
 				$sx .= '<input type="radio" name="dd1" id="dd1" 
-							value="' . '001' . strzero($r, 3) . '"
+							value="' . '001' . trim($line['amt_codigo']) . '"
 							>' . msg($btn) . '</br>' . $cr;
 			}
 
