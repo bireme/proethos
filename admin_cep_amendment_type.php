@@ -1,4 +1,4 @@
-<?php
+<?
  /**
   * Admin Menu
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
@@ -6,7 +6,7 @@
   * @access public
   * @version v0.13.46
   * @package ProEthos-Admin
-  * @subpackage Unit Register
+  * @subpackage faq
  */
 require("cab.php");
 
@@ -16,35 +16,29 @@ if ($ok==0) {
 	redirecina('main.php');
 }
 
-
-require("_class/_class_submit_manuscrito_field.php");
+global $acao,$dd,$cp,$tabela;
+require($include.'sisdoc_colunas.php');
 
 	/* Dados da Classe */
-	$clx = new fields;
+	require('_class/_class_cep_amendment_type.php');
+
+	$clx = new cep_amendment_type;
 	$tabela = $clx->tabela;
 	
-	echo '<h1>'.msg('amendment_003').'</h1>';
-	
-	/* Nao alterar - dados comuns */
-	$label = msg($tabela);
-	$http_edit = 'admin_submit_003_ed.php'; 
+	/* N�o alterar - dados comuns */
+	echo '<h1>'.msg('cep_amendment_type_cap').'</h1>';
+	$http_edit = 'admin_cep_amendment_type_ed.php'; 
 	//$http_ver = 'pibic_bolsa_tipo_detalhe.php'; 
 	$editar = True;
-	$http_redirect = 'admin_submit_003.php';
+	$http_redirect = $tabela.'.php';
 	$clx->row();
 	$busca = true;
 	$offset = 20;
-	//$pre_where = " e_mailing = '".$cl->mail_codigo."' ";
-	if ($order == 0) { $order  = $cdf[1]; }
-	
-	$order = ' sub_pag, sub_pos, sub_ordem ';
-	
-	$pre_where = " sub_projeto_tipo = '00003' ";
-	
+
 	echo '<TABLE width="'.$tab_max.'" align="center"><TR><TD>';
 	require($include.'sisdoc_row.php');	
-	echo '</table>';
-	echo '</div>';
+	echo '</table>';	
+echo '</div>';
 
-echo $hd->foot();
-?>
+echo $hd->foot();		
+?> 

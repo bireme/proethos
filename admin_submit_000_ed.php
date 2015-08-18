@@ -1,6 +1,13 @@
 <?php
 require("cab.php");
 
+/* Recupera tipo do formulario */
+$adm = $_SESSION['admin_amendment'];
+if (strlen($adm) == 0)
+	{
+		return('admin.php');
+	}
+
 /* Admin Common */
 $ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
 if ($ok==0) {
@@ -16,8 +23,8 @@ require($include.'_class_form.php');
 $form = new form;
 require("form_css.php");
 
-echo '<h1>'.msg('amendment_002').'</h1>';
-$dd[12] = '00002';
+echo '<h1>'.msg('amendment_'.$adm).'</h1>';
+$dd[12] = strzero($adm,5);
 
 	$cl = new fields;
 	$cp = $cl->cp();
@@ -35,7 +42,7 @@ $dd[12] = '00002';
 		{
 			echo 'Salvo';
 			$cl->updatex();
-			redirecina('admin_submit_002.php');
+			redirecina('admin_submit_000.php');
 		} else {
 			echo $tela;
 		}

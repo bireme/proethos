@@ -32,6 +32,8 @@ $cp =$cep->cp_monitoreo();
 $dd[0] = $proto_cep;
 
 $form = new form;
+require("form_css.php");
+
 $tela = $form->editar($cp, 'cep_protocolos');
 
 if($form->saved > 0) {
@@ -45,8 +47,6 @@ if($form->saved > 0) {
     echo $tela;
 }
 
-echo '<TR><TD colspan=2>'; 
-require('submit_pages.php');
 echo '</table>';
 
 if (($ok > 0) and (strlen($acao) > 0))

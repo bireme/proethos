@@ -17,25 +17,24 @@ require ("committee_admin.php");
 
 /* Admin Common */
 $ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
-if ($ok==0) {
+if ($ok == 0) {
 	redirecina('main.php');
 } else {
 	$menu = array();
 	array_push($menu, array(msg('admin_ghost'), msg('ghost'), 'admin_ghost_user.php'));
 	/* array_push($menu, array(msg('admin_post_mail'), msg('post_mail'), 'admin_ic.php')); */
 	array_push($menu, array(msg('dictamen'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php'));
-	}
+}
 
-	echo '<h1>' . msg('admin_menu') . '</h1>';
-	echo '<fieldset>';
-	$tela = menus($menu, "3");
-	echo $tela;
-	echo '</fieldset>';
+echo '<h1>' . msg('admin_menu') . '</h1>';
+echo '<fieldset>';
+$tela = menus($menu, "3");
+echo $tela;
+echo '</fieldset>';
 
 /* Admin Common */
 
-if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN')) 
-	{
+if (($perfil -> valid('#ADM')) or ($_SESSION['user_name'] == 'ADMIN')) {
 	$menu = array();
 	array_push($menu, array(msg('admin_customize'), msg('customize_logo'), 'admin_customize_logo.php'));
 	array_push($menu, array(msg('admin_customize'), msg('about_committe'), 'admin_committe.php'));
@@ -49,20 +48,22 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 	/* array_push($menu, array(msg('admin_tables'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php')); */
 
 	array_push($menu, array(msg('admin_submission'), msg('admin_submission'), 'admin_submit_1.php'));
-	array_push($menu, array(msg('admin_submission'), '__'.msg('amendment_001'), 'admin_submit_001.php'));
-	array_push($menu, array(msg('admin_submission'), '__'.msg('amendment_002'), 'admin_submit_002.php'));
-	array_push($menu, array(msg('admin_submission'), '__'.msg('amendment_003'), 'admin_submit_003.php'));
-	array_push($menu, array(msg('admin_submission'), '__'.msg('amendment_004'), 'admin_submit_004.php'));
-	array_push($menu, array(msg('admin_submission'), '__'.msg('amendment_005'), 'admin_submit_005.php'));
-	array_push($menu, array(msg('admin_submission'), '__'.msg('amendment_006'), 'admin_submit_006.php'));
-	array_push($menu, array(msg('admin_submission'), '__'.msg('amendment_007'), 'admin_submit_007.php'));
+
+	$sql = "select * from cep_amendment_type where amt_ativo = 1 order by amt_ord";
+	$rlt = db_query($sql);
+
+	while ($line = db_read($rlt)) {
+		array_push($menu, array(msg('admin_submission'), '__' . msg('amendment_'.trim($line['amt_codigo'])), 'admin_submit_000.php?dd90='.trim($line['amt_codigo'])));
+	}
+	
+	array_push($menu, array(msg('admin_submission'), msg('admin_cep_amendment_type'), 'admin_cep_amendment_type.php?dd90='.trim($line['amt_codigo'])));
 
 	array_push($menu, array(msg('admin_update'), msg('system_teste'), '_system_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_test_email'), '_system_email_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_php_info'), '_system_phpinfo.php'));
-	
+
 	$file = 'message.inf';
-	
+
 	if (file_exists($file)) {
 		array_push($menu, array(msg('admin_message'), msg('admin_message'), 'message.php'));
 		array_push($menu, array(msg('admin_message'), msg('admin_message_create'), 'message_create.php'));
@@ -72,7 +73,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 		if ($edit_mode == 0) { array_push($menu, array(msg('admin_message'), msg('admin_message_enable'), 'admin_message_enable.php?dd1=1'));
 		} else { array_push($menu, array(msg('admin_message'), msg('admin_message_disable'), 'admin_message_enable.php?dd1=0'));
 		}
-	}	
+	}
 
 	echo '<h1>' . msg('admin_menu_special') . '</h1>';
 	echo '<fieldset>';
@@ -81,7 +82,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name']=='ADMIN'))
 	echo '</fieldset>';
 }
 
-require("_version.php");
+require ("_version.php");
 
 echo '</div>';
 

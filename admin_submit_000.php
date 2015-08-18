@@ -10,6 +10,17 @@
  */
 require("cab.php");
 
+if (strlen($dd[90])>0)
+	{
+		$_SESSION['admin_amendment'] = $dd[90];
+		$adm = $dd[90];
+	} else {
+		$adm = $_SESSION['admin_amendment'];
+	}
+if (strlen($adm) == 0)
+	{
+		return('admin.php');
+	}
 /* Admin Common */
 $ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
 if ($ok==0) {
@@ -17,20 +28,26 @@ if ($ok==0) {
 }
 
 
+/* Redireciona se 008 */
+if ($adm == '008')
+	{
+		redirecina('admin_submit_blocked.php');
+		exit;
+	}
 require("_class/_class_submit_manuscrito_field.php");
 
 	/* Dados da Classe */
 	$clx = new fields;
 	$tabela = $clx->tabela;
 	
-	echo '<h1>'.msg('amendment_007').'</h1>';
+	echo '<h1>'.msg('amendment_'.$adm).'</h1>';
 	
 	/* Nao alterar - dados comuns */
 	$label = msg($tabela);
-	$http_edit = 'admin_submit_007_ed.php'; 
+	$http_edit = 'admin_submit_000_ed.php'; 
 	//$http_ver = 'pibic_bolsa_tipo_detalhe.php'; 
 	$editar = True;
-	$http_redirect = 'admin_submit_007.php';
+	$http_redirect = page();
 	$clx->row();
 	$busca = true;
 	$offset = 20;
@@ -39,7 +56,7 @@ require("_class/_class_submit_manuscrito_field.php");
 	
 	$order = ' sub_pag, sub_pos, sub_ordem ';
 	
-	$pre_where = " sub_projeto_tipo = '00007' ";
+	$pre_where = " sub_projeto_tipo = '".strzero($adm,5)."' ";
 	
 	echo '<TABLE width="'.$tab_max.'" align="center"><TR><TD>';
 	require($include.'sisdoc_row.php');	
