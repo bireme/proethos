@@ -175,10 +175,8 @@ $proj->le($protocolo);
 				break;
 			/*  Monitoreo 008 */
 			case '008':
-				$pag_max = 3;
-				if ($pag_page == 1) { require("submit_11.php"); }
-				if ($pag_page == 2) { require("submit_12.php"); }
-				if ($pag_page == 3) { require("submit_13.php"); }
+				$pag_max = 1;
+				if ($pag_page == 1) { require("submit_81.php"); }
 				break;
 
 

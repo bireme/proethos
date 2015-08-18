@@ -57,6 +57,16 @@ class cep {
 		$rlt = db_query($sql);
 	}
 
+	function cp_monitoreo() {
+
+		$cp = array();
+		array_push($cp, array('$H8', 'id_cep', '', False, True));
+		array_push($cp, array('$D', 'cep_recrutamento', msg('monitoreo_recrutamento'), True, True));
+		array_push($cp, array('$O pending:#pending &recruiting:#recruiting &suspended:#suspended &completed:#completed &other:#other', 'cep_recrutamento_status', msg('monitoreo_recrutamento_status'), True, True));
+
+		return $cp;
+	}
+
 	function cep_manual() {
 		global $tabela, $messa;
 		$tabela = 'cep_protocolos';
@@ -525,6 +535,19 @@ class cep {
 			}
 		}
 		return ($caae);
+	}
+
+	function get_cep_recrutamento($proto_cep) {
+
+		$sql = "SELECT cep_recrutamento FROM cep_protocolos WHERE cep_codigo = '$proto_cep'";
+		$query = db_query($sql);
+
+		if ($line = db_read($query)) {
+			return $line['cep_recrutamento'];
+		}
+
+		return NULL;
+
 	}
 
 	function cadastra_protocolo($protocolo, $titulo, $autor, $versao = '1') {
@@ -2202,7 +2225,7 @@ class cep {
 		$sp .= '<TD>' . msg('monitoring');
 
 		$sp .= '<TR class="lt2">';
-		$sp .= '<Td class="table_proj lt2" align="left">';
+		$sp .= '<Td class="table_proj lt2" align="left" valign="top">';
 		$sp .= '&nbsp;' . stodbr($line['cep_data']);
 
 		$sp .= '<Td class="table_proj lt2" align="left">';
@@ -2225,6 +2248,9 @@ class cep {
 			$sp .= '&nbsp;' . msg('no_start');
 		} else {
 			$sp .= '&nbsp;' . stodbr($line['cep_recrutamento']);
+			$sp .= '<BR><font class="lt1">';
+			$sp .= msg($line['cep_recrutamento_status']);
+			$sp .= '</font>';
 		}
 
 		$sp .= '<Td class="table_proj lt2" align="left">';

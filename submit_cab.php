@@ -51,6 +51,11 @@ $proj->le($protocolo);
 /* Classe que mostra os dados do protocolo */
 echo $proj->protocolo_mostrar();
 
+$proto_cep = strzero($_SESSION['proto_cep'], 7);
+
+// print "<pre>";
+// var_dump($proj);
+
 $clinic = round($proj->doc_clinic);
 ?>
 

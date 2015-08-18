@@ -23,6 +23,7 @@ class submit {
 	var $doc_status;
 	var $doc_xml;
 	var $amendment_type;
+	var $doc_research_main;
 
 	var $tabela = 'cep_submit_documento';
 
@@ -249,6 +250,7 @@ class submit {
 			$this -> doc_type = $line['doc_type'];
 			$this -> author_name = trim($line['us_nome']);
 			$this -> amendment_type = trim($line['doc_type']);
+			$this -> doc_research_main = trim($line['doc_research_main']);
 
 			if (strlen($this -> doc_1_titulo) == 0) { $this -> doc_1_titulo = msg('not_defined');
 			}
