@@ -56,7 +56,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name'] == 'ADMIN')) {
 		array_push($menu, array(msg('admin_submission'), '__' . msg('amendment_'.trim($line['amt_codigo'])), 'admin_submit_000.php?dd90='.trim($line['amt_codigo'])));
 	}
 	
-	array_push($menu, array(msg('admin_submission'), msg('admin_cep_amendment_type'), 'admin_cep_amendment_type.php?dd90='.trim($line['amt_codigo'])));
+	array_push($menu, array(msg('admin_submission'), msg('admin_amend_type'), 'admin_cep_amendment_type.php?dd90='.trim($line['amt_codigo'])));
 
 	array_push($menu, array(msg('admin_update'), msg('system_teste'), '_system_test.php'));
 	array_push($menu, array(msg('admin_update'), msg('system_test_email'), '_system_email_test.php'));
