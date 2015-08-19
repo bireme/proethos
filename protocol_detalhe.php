@@ -198,9 +198,9 @@ echo $pos -> show($status);
 			/*
 			 * Actions to project
 			 */
-
+			
 			$bt = $cep -> action_options($cep -> status);
-
+			
 			if (count($bt) > 0) {
 
 				echo '<table width="100%" border=0 class="table_normal" >';

@@ -718,6 +718,7 @@ class cep {
 	/* recption in committee */
 	function action_009() {
 		global $dd, $acao, $bgcor;
+		
 		$type = trim($this -> line['cep_tipo']);
 		$bb1 = msg('action_send_botton');
 		$sc .= '<Table width="100%" class="lt1" bgcolor="' . $bgcor . '">' . chr(13);
@@ -725,19 +726,21 @@ class cep {
 		$sc .= '<TD width=25 ><img src="img/icone_close.png" width="25" id="A009i" style="cursor: pointer;">';
 		$sx .= $sc;
 		$sx .= '<TR><TD class="lt0">' . msg('action_accept_manuscrit_inf');
+		
 		$sx .= '<TR><TD><form method="post" action="' . page() . '#A009">';
 		$sx .= '<input type="hidden" name="dd3" value="009">';
-		$sx .= '<TR><TD><input name="dd5" type="radio" value="1">' . msg('action_need_consultation');
-		$sx .= '<TR><TD><input name="dd5" type="radio" value="2">' . msg('action_accept_direct');
+		$sx .= '<TR><TD><input name="dd4" type="radio" value="1">' . msg('action_need_consultation');
+		$sx .= '<TR><TD><input name="dd4" type="radio" value="2">' . msg('action_accept_direct');
 		if ($type == 'AME') {
-			$sx .= '<TR><TD><input name="dd5" type="radio" value="3">' . msg('action_notification_only');
+			$sx .= '<TR><TD><input name="dd4" type="radio" value="3">' . msg('action_notification_only');
 		}
 		$sx .= '<TR><TD><input name="acao" type="submit" value="' . $bb1 . '"  class="form_submit">';
 		$sx .= '<TR><TD></form>';
 		/* Save Action */
+		
 		if (($acao == $bb1) and (strlen($dd[3]) > 0)) {
 			/* Necessita de Revisao */
-			if ($dd[5] == '1') {
+			if ($dd[4] == '1') {
 				$sx = $sc . '<TR><TD>';
 				$this -> altera_status_submit("Z");
 				$sx .= $this -> communication_members("email_new_avaliation");
@@ -746,7 +749,7 @@ class cep {
 				redirecina(page(), 5);
 			}
 			/* Nao aceita direto */
-			if ($dd[5] == '2') {
+			if ($dd[4] == '2') {
 				$sx = $sc . '<TR><TD>';
 				$this -> altera_status_submit("Z");
 				$this -> communication_research("email_manuscipt_accept");
@@ -754,7 +757,7 @@ class cep {
 				$this -> cep_status_alter("B");
 				redirecina(page());
 			}
-			if ($dd[5] == '3') {
+			if ($dd[4] == '3') {
 				$sx = $sc . '<TR><TD>';
 				$this -> altera_status_submit("Y");
 				$this -> cep_submit_status_alter('Z');
@@ -1979,7 +1982,7 @@ class cep {
 		if (strlen($caae) > 0) {
 			$sql = "update " . $this -> tabela . " 
 					set cep_status = '" . $op . "' 
-					where (cep_protocol = '$caae') 
+					where (cep_caae = '$caae') 
 					and cep_status = '" . $this -> status . "' ";
 			$this -> status = $op;
 		} else {
