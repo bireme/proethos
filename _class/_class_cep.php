@@ -1881,7 +1881,7 @@ class cep {
 	}	
 
 	function email_autores() {
-		$proto = $this -> id_cep;
+		$proto = $this -> protocolo_cep;
 		$sql = "select * from cep_team 
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
