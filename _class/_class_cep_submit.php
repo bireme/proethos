@@ -168,7 +168,6 @@ class submit {
 
 		$sx .= '</td>';
 		$sx .= '<TD colspan=2 valign="top" >' . msg('title') . '</td>';
-		$sx .= '<TD align="right">' . msg('protocolo');
 		$sx .= '<TR class="lt2">';
 
 		/* Titulo do trabalho */
@@ -179,9 +178,6 @@ class submit {
 		$sx .= $this -> mostra_titulo_anaconico();
 
 		$sx .= '</div></td>';
-
-		/* Protocolo */
-		$sx .= '<TD align="right" valign="top">' . $this -> doc_protocolo;
 
 		/* Header */
 		$sx .= '<TR>';
