@@ -864,10 +864,6 @@ class cep {
 	function action_015() {
 		global $dd, $acao, $perfil, $ss;
 
-		if (!($perfil -> valid('#MEM'))) {
-			return ('');
-		}
-
 		$bb1 = msg('action_survey');
 		$sc .= '<Table width="100%" class="lt1">' . chr(13);
 		$sc .= '<TR><TH colspan=2><h3><A name="A015">' . msg('action_accept_015');
