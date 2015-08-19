@@ -261,12 +261,11 @@ class cep {
 							 where amt_ativo = 1 
 							order by amt_ord ";
 			$rlt = db_query($sql);
-			
-			
+
 			while ($line = db_read($rlt)) {
 				$btn = 'amendment_' . trim($line['amt_codigo']);
 				$btn = trim($line['amt_descrip']);
-				
+
 				$sx .= '<input type="radio" name="dd1" id="dd1" 
 							value="' . '001' . trim($line['amt_codigo']) . '"
 							>' . msg($btn) . '</br>' . $cr;
@@ -482,31 +481,30 @@ class cep {
 		$sx .= '<TR class="lt0">
 				<TD colspan=4 align="center">
 					<font class="lt3">' . msg('approved_protocols') . '</font>';
-					
+
 		$sx .= '<TR class="lt1">
-				<TH width="10%">' . msg('caae').'</td>
-				<TH align="left">' . msg('protocol_title').'</td>
-				<TH width="10%">' . msg('last_update').'</td>
+				<TH width="10%">' . msg('caae') . '</td>
+				<TH align="left">' . msg('protocol_title') . '</td>
+				<TH width="10%">' . msg('last_update') . '</td>
 				<TH width="7%">' . msg('status');
 
 		while ($line = db_read($rlt)) {
-			
+
 			$id++;
 			$link = '<A HREF="protocol_detalhe_investigator.php?dd0=' . $line['id_cep'] . '&dd90=' . checkpost($line['id_cep']) . '" class="link lt2">';
 			$link2 = '<A HREF="protocol_detalhe_investigator.php?dd0=' . $line['id_cep'] . '&dd90=' . checkpost($line['id_cep']) . '" class="link lt1">';
 			$sx .= chr(13);
-			
+
 			$sx .= '<tr valign="top">
-					<td class="border01 lt1">'.$link2.$line['cep_caae'].'</A></td>
-					<td class="border01 lt2 padding5">'.$link.$line['cep_titulo'].'</A></td>
-					<td class="lt1 border01" align="center">'.stodbr($line['cep_atualizado']).'</td>
-					<td class="lt1 border01">'.msg($line['cep_pr_protocol']).'</td>
-					</tr>';		
-			
+					<td class="border01 lt1">' . $link2 . $line['cep_caae'] . '</A></td>
+					<td class="border01 lt2 padding5">' . $link . $line['cep_titulo'] . '</A></td>
+					<td class="lt1 border01" align="center">' . stodbr($line['cep_atualizado']) . '</td>
+					<td class="lt1 border01">' . msg($line['cep_pr_protocol']) . '</td>
+					</tr>';
+
 			//$sx .= '<TD class="tabela01">';
 			//$sx .= $this -> mostra_status($line['cep_status']);
-			
-			
+
 		}
 		if ($id == 0) { $sx = '';
 		}
@@ -1627,7 +1625,7 @@ class cep {
 
 			/* Não ocultar */
 			if ($action == '015') { $hd = '';
-				$sx .= $this -> action_015();
+
 			}
 			if ($dd[3] == $action) { $hd = '';
 			}
@@ -2125,7 +2123,7 @@ class cep {
 		$codigo = $line['cep_codigo'];
 		$clinic_st = round($line['cep_clinic']);
 		$protocol_cep = trim($line['cep_protocol']);
-		
+
 		$oms = new oms;
 
 		if ($clinic_st == 1) {
@@ -2151,11 +2149,10 @@ class cep {
 		$sp .= '    <Td colspan=3 class="table_proj">';
 		$sp .= msg('amendment__' . trim($line['cep_tipo']));
 		$sp .= '    <Td colspan=1 class="table_proj" align="right">';
-		if ($clinic_st == 1)
-			{
-				$sp .= $oms->icone($protocol_id);		
-			}
-		
+		if ($clinic_st == 1) {
+			$sp .= $oms -> icone($protocol_id);
+		}
+
 		$sp .= '</table>';
 
 		/* Title */
@@ -2169,7 +2166,8 @@ class cep {
 		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
+		$sp .= '<TR><Td colspan=6 class="table_proj">';
+		{
 			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
 			//$sp .= '<TR><TD colspan=2>';
 
@@ -2406,18 +2404,18 @@ class cep {
 
 		/* status */
 		switch ($parecer) {
-			case 'pm_APR':
+			case 'pm_APR' :
 				$s .= '<TD align="center" width="100">';
-				$s .= msg('aproved');					
+				$s .= msg('aproved');
 				break;
-				
-			case 'pm_NOT':
+
+			case 'pm_NOT' :
 				$s .= '<TD align="center" width="100">';
-				$s .= msg('not_aproved');	
+				$s .= msg('not_aproved');
 				break;
 			default :
 				$s .= '<TD align="center" width="100">';
-				$s .= '<font class="lt1">'.msg('in_review_list').'</font><BR>';
+				$s .= '<font class="lt1">' . msg('in_review_list') . '</font><BR>';
 				$s .= '<font class="lt3">' . $corf . $df . '</font>
 					<BR>
 					<font class="lt0">
@@ -2425,7 +2423,7 @@ class cep {
 				break;
 		}
 		$s .= '<TD rowspan=' . $vs . ' align="center" width="50">';
-			
+
 		$s .= $sx;
 		$s .= '<BR><I>';
 		$s .= '<nobr>';

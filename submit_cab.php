@@ -13,7 +13,8 @@ echo '<table width="100%" cellpadding=0 cellspacing=0 border=0 class="lt1">';
 
 /* informa o total de paginas do Header */
 /* Old - for ($r=1;$r < 7;$r++) */ 
-for ($r=1;$r < $tot_paginas;$r++)
+
+for ($r=1;$r <= $tot_paginas;$r++)
 	{
 		//$edit_mode = True;
 		if ($doc_tipo != 'PROJE')

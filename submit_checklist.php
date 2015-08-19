@@ -129,7 +129,7 @@ while ($line = db_read($rlt)) {
 					echo '</font>';
 					echo '<TD align="center">';
 					echo $link;
-					echo '<TD align="center">' . $msg_nok;
+					echo $msg_nok;
 					echo '</A>';
 					$xok = 0;
 				}
