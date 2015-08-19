@@ -1840,6 +1840,8 @@ class cep {
 		$texto = troca($texto,'$INFORMACION_DEL_PROTOCOLO',$sx);
 		$texto = troca($texto,'$PROTOCOL_INFORMATION',$sx);
 		
+		$texto = troca($texto,'$INFORMACION_DEL_COMITTE',$sx);
+		$texto = troca($texto,'$COMMITTEE_INFORMATION',$sx);		
 
 		$emails = $this -> email_autores();
 
@@ -1847,9 +1849,34 @@ class cep {
 			{
 				$email = $emails[$r];
 				enviaremail($email, '', $subject, $texto);		
-			}
-		
+			}		
 	}
+	
+	function confirm_notify_by_email() {
+		global $LANG, $hd;
+		$ic = new ic;
+		$ic = $ic -> ic('email_notify_subm');
+		
+		$this->le($this->protocolo_submission);
+		$sx = $this -> mostra_email($this->line);
+
+		$texto = mst(utf8_decode($ic['text']));
+		$subject = utf8_decode($ic['title']);
+		
+		$texto = troca($texto,'$INFORMACION_DEL_PROTOCOLO',$sx);
+		$texto = troca($texto,'$PROTOCOL_INFORMATION',$sx);
+		
+		$texto = troca($texto,'$INFORMACION_DEL_COMITTE',$sx);
+		$texto = troca($texto,'$COMMITTEE_INFORMATION',$sx);		
+
+		$emails = $this -> email_autores();
+
+		for ($r=0;$r < count($emails);$r++)
+			{
+				$email = $emails[$r];
+				enviaremail($email, '', $subject, $texto);		
+			}		
+	}	
 
 	function email_autores() {
 		$proto = $this -> protocolo;
