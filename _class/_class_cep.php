@@ -1847,10 +1847,6 @@ class cep {
 
 		$emails = $this -> email_autores();
 		
-		echo '<HR>';
-		echo $texto;
-		echo '<HR>';
-
 		for ($r=0;$r < count($emails);$r++)
 			{
 				$email = $emails[$r];
@@ -1868,7 +1864,7 @@ class cep {
 		$ic = new ic;
 		$ic = $ic -> ic('email_notify_subm');
 		
-		$this->le($this->protocolo_submission);
+		$this->le($this->protocolo_cep);
 		$sx = $this -> mostra_email($this->line);
 
 		$texto = mst(utf8_decode($ic['text']));
