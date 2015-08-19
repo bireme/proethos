@@ -367,6 +367,7 @@ function msg($s) {
 			}
 			
 			if(!in_array(page(), $array_check)) {
+				if (!is_array($array_check)) { $array_check = array(); }
 				array_push($array_check, page());
 			}
 			
