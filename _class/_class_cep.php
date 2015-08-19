@@ -1854,7 +1854,7 @@ class cep {
 		for ($r=0;$r < count($emails);$r++)
 			{
 				$email = $emails[$r];
-				echo '<BR>'.msg('send_to_email').':'.$email;
+				//echo '<BR>'.msg('send_to_email').':'.$email;
 				enviaremail($email, '', $subject, $texto);		
 			}		
 	}
@@ -1887,7 +1887,7 @@ class cep {
 		for ($r=0;$r < count($emails);$r++)
 			{
 				$email = $emails[$r];
-				echo '<BR>'.msg('send_to_email').':'.$email;
+				//echo '<BR>'.msg('send_to_email').':'.$email;
 				enviaremail($email, '', $subject, $texto);		
 			}		
 	}	
@@ -1958,7 +1958,6 @@ class cep {
 		$destino = $destino . $fdestino;
 		$dd[0] = $this -> protocolo_submission;
 		require ("submit_pdf_projeto.php");
-
 		$ged = new ged;
 		$ged -> tabela = 'cep_ged_documento';
 		$ged -> protocol = $this -> protocolo_submission;

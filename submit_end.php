@@ -71,7 +71,7 @@ if ($ok == 1)
 	$cep->cep_historic_append('SUB',msg('submitted_by_the_author'));
 	
 	/* Step 9 */
-	//$proj->protocolo_altera_status($protocolo,'@','A');
+	$proj->protocolo_altera_status($protocolo,'@','A');
 	
 	/* Step 10 */
 	$cep->confirm_notify_by_email();

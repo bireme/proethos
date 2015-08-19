@@ -1,6 +1,6 @@
 <?php	
 				$site='http://www.paho.org/proethos/';
-				$institution_name='proethos@paho.org';
+				$institution_name='ComitÊ de ética de são paulo';
 				$institution_site='http://www.paho.org/proethos/';
 				$institution_address='';
 				$institution_city='Washington DC';
