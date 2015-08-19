@@ -37,9 +37,8 @@ class cep {
 			$author = trim($line['ct_author']);
 			$type = trim($line['ct_type']);
 			$table = "cep_team";
-			//echo '<BR>'.$protocol;
+			
 			$tm -> team_insert_author($author, $protocol, $table, $type);
-			echo '<BR>'.$author.'-'.$protocol.'-'.$table;
 		}
 	}
 
@@ -1832,11 +1831,13 @@ class cep {
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
 		
-		$this->le($this->protocolo_submission);
+		$this->le($this->protocolo_cep);
 		$sx = $this -> mostra_email($this->line);
 
 		$texto = mst(utf8_decode($ic['text']));
 		$subject = utf8_decode($ic['title']);
+		
+		$texto = troca($texto,'$TITLE',$sx);
 		
 		$texto = troca($texto,'$INFORMACION_DEL_PROTOCOLO',$sx);
 		$texto = troca($texto,'$PROTOCOL_INFORMATION',$sx);
@@ -1853,13 +1854,17 @@ class cep {
 		for ($r=0;$r < count($emails);$r++)
 			{
 				$email = $emails[$r];
-				echo '<BR>Enviando para :'.$email;
+				echo '<BR>'.msg('send_to_email').':'.$email;
 				enviaremail($email, '', $subject, $texto);		
 			}		
 	}
 	
 	function confirm_notify_by_email() {
 		global $LANG, $hd;
+		
+		$email_cep = $hd->email_replay;
+		$email_nome = $hd->title;
+		
 		$ic = new ic;
 		$ic = $ic -> ic('email_notify_subm');
 		
@@ -1871,15 +1876,18 @@ class cep {
 		
 		$texto = troca($texto,'$INFORMACION_DEL_PROTOCOLO',$sx);
 		$texto = troca($texto,'$PROTOCOL_INFORMATION',$sx);
+		$texto = troca($texto,'$TITLE',$sx);
 		
 		$texto = troca($texto,'$INFORMACION_DEL_COMITTE',$sx);
 		$texto = troca($texto,'$COMMITTEE_INFORMATION',$sx);		
 
-		$emails = $this -> email_autores();
+		$emails = array();
+		array_push($emails,$email_cep);
 
 		for ($r=0;$r < count($emails);$r++)
 			{
 				$email = $emails[$r];
+				echo '<BR>'.msg('send_to_email').':'.$email;
 				enviaremail($email, '', $subject, $texto);		
 			}		
 	}	
@@ -1890,7 +1898,6 @@ class cep {
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
 			";
-			echo '<HR>'.$sql;
 		$rlt = db_query($sql);
 		$emails = array();
 		while ($line = db_read($rlt)) {

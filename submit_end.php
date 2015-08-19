@@ -33,7 +33,6 @@ $dd[0] = $pag_id;
 $protocolo = strzero($dd[0],7);
 
 echo '<H2>'.msg('submission_end_title').'</h2>';
-echo msg('protocolo').' '.$protocolo;
 echo '<BR><BR>';
 
 	/* Checa diretorio de submissão do pdf */
@@ -47,7 +46,6 @@ $proj->le($dd[0]);
 $ok = $cep->cadastra_protocolo($protocolo,'[]'.$proj->doc_1_titulo,$autor);
 if ($ok == 1)
 	{
-		
 	/* Step 2 */
 	$protocolo_cep = $cep->recupera_protocolo_submissao($protocolo,'1');
 	$cep->protocolo = $protocolo_cep;
@@ -56,9 +54,9 @@ if ($ok == 1)
 
 	/* Step 3 */
 	$cep->limpa_projetos_anteriores();
-	
+
 	/* Step 4 */
-	$cep->create_pdf_submit_file();
+	$cep->create_pdf_submit_file();	
 	
 	/* Step 5 */
 	$cep->transfere_autores();
@@ -76,6 +74,7 @@ if ($ok == 1)
 	//$proj->protocolo_altera_status($protocolo,'@','A');
 	
 	/* Step 10 */
+	$cep->confirm_notify_by_email();
 	$cep->confirm_submission_by_email();
 	
 	echo '<div style="text-align: justify; width: 80%">';
@@ -83,6 +82,7 @@ if ($ok == 1)
 	echo '</div>';
 	}	
 echo '</div>';
+echo '<font class="lt0">'.msg('protocolo').' '.$protocolo.'</font>';
 echo $hd->foot();
 ?>
 

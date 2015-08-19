@@ -1,18 +1,18 @@
 <?php	
 				$site='http://www.paho.org/proethos/';
-				$institution_name='Committee - ProEthos';
+				$institution_name='proethos@paho.org';
 				$institution_site='http://www.paho.org/proethos/';
 				$institution_address='';
-				$institution_city='Washington';
+				$institution_city='Washington DC';
 				$institution_country='United States of America';
-				$institution_phone='41';
+				$institution_phone='55 11 55769800';
 				
 				$harvestig='0';
 				$harvesting_key='';
 				$institution_logo='';
-				$admin_nome='Proethos - PAHO';
-				$admin_email='rene@sisdoc.com.br';
-				$email_adm='rene@sisdoc.com.br';
+				$admin_nome='Proethos';
+				$admin_email='appwp';
+				$email_adm='appwp';
 				$committe='PAHO';
 				
 				$language='en_US';
