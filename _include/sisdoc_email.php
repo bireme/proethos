@@ -38,7 +38,7 @@ function enviaremail($para, $blank, $titulo, $texto) {
 
 			$mail -> email = $email_from;
 			$mail -> email_replay = $email_replay;
-			$mail -> email_name = $email_from_name;
+			$mail -> email_name = utf8_decode($email_from_name);
 
 			$mail -> email_user = $email_user;
 			$mail -> email_pass = $email_pass;
@@ -57,7 +57,7 @@ function enviaremail($para, $blank, $titulo, $texto) {
 
 			$mail -> email = $email_from;
 			$mail -> email_replay = $email_replay;
-			$mail -> email_name = $email_from_name;
+			$mail -> email_name = utf8_decode($email_from_name);
 
 			$mail -> email_user = $email_user;
 			$mail -> email_pass = $email_pass;
