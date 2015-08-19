@@ -1,4 +1,4 @@
-<?php
+6<?php
 require('fphp-170/fpdf.php');
 $versao_pdf = '0.0.36a';
 $ln=4;

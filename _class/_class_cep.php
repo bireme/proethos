@@ -1825,15 +1825,24 @@ class cep {
 		return (1);
 	}
 
+	/* e-mail de confirmação de envio de protocolo */
 	function confirm_submission_by_email() {
 		global $LANG;
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
+		
+		$this->le($this->protocolo_submission);
+		$sx = $this -> mostra_email($this->line);
 
-		$texto = $ic['text'];
-		$subject = $ic['title'];
+		$texto = utf8_decode($ic['text']);
+		$subject = utf8_decode($ic['title']);
+		
+		$texto = troca($texto,'$TITLE',$sx);
+		
 
 		$emails = $this -> email_autores();
+		
+		print_r($emails);
 
 		enviaremail('renefgj@gmail.com', '', $subject, $texto);
 	}
@@ -1954,13 +1963,15 @@ class cep {
 		$sql .= " where id_cep = " . sonumero("0" . $this -> id_cep);
 
 		$rlt = db_query($sql);
-		$this -> line = db_read($rlt);
+		$line = db_read($rlt);
+		$this -> line = $line;
 		$this -> protocolo = trim($this -> line['cep_protocol']);
 		$this -> codigo = $this -> line['cep_codigo'];
 		$this -> status = $this -> line['cep_status'];
 		$this -> cep_dictamen = $this -> line['cep_dictamen'];
 		$this -> protocolo_submission = $this -> line['cep_fr'];
 		$this -> caae = trim($line['cep_caae']);
+
 		return (1);
 	}
 
@@ -2440,6 +2451,49 @@ class cep {
 		}
 		$s .= msg('cep_status_' . $line['cep_status']);
 		$s .= '<tr><TD colspan=4>';
+		$s .= '<HR size=1 width=50% >';
+		return ($s);
+	}
+
+	function mostra_email($line) {
+		global $edit_mode;
+		$vs = 2;
+		$sta = trim($line['cep_status']);
+		/* investigador */
+		$sx = '<TR><TD>' . msg('research_name') . ': <B>' . $line['us_nome'] . '</B>';
+		$vs = 3;
+
+		$status = trim($line['cep_status']);
+		$parecer = trim($line['cep_pr_protocol']);
+
+		$dias = $line['cep_atualizado'];
+
+		/* Line 1*/
+		$s = '<table width="100%" cellpadding=5 cellspacing=0 border=0>';
+		$s .= '<TR valign="top"  class="table_proj">';
+
+		/* CAAE - NIEC */
+		$s .= '<td rowspan=' . $vs . ' width="5%" class="caae"><NOBR>';
+		$caae = trim($line['cep_caae']);
+		if (strlen($caae) > 0) { $s .= $caae . '<BR>';
+		}
+		$s .= trim($line['cep_protocol']);
+		$s .= '/';
+		$s .= trim($line['cep_versao']);
+
+		/* icon type */
+		$type = trim($line['cep_tipo']);
+
+		/* title */
+		$s .= '<TD><B><I>';
+		$s .= $line['cep_titulo'];
+
+		$s .= '<TD rowspan=' . $vs . ' align="center" width="50">';
+
+		$s .= $sx;
+		$s .= '<BR><I>';
+		$s .= '<tr><TD colspan=4>';
+		$s .= '</table>';
 		$s .= '<HR size=1 width=50% >';
 		return ($s);
 	}

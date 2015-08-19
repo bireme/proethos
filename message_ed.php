@@ -36,7 +36,14 @@ $form = new form;
 			$cl->updatex();
 			redirecina('message.php');
 		} else {
+			echo '<table width="100%" class="lt1">';
+			echo '<tr valign="top">';
+			echo '<td>';
 			echo $tela;
+			echo '<td width="300">';
+			echo '<B>'.msg('message_page').'</b><HR>';
+			echo $cl->mostra_page($dd[0]);
+			echo '</table>';
 		}
 	echo '</div>';
 echo $hd->foot();

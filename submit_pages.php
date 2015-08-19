@@ -4,6 +4,7 @@ echo '
 <table class="tabela00">
 	<TR>
 		<TD>'.msg('pages').'</TD>';
+
 for ($r=1;$r <=$pag_max ; $r++) 
 	{
 		

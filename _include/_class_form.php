@@ -1613,7 +1613,7 @@ class form
 					';
 				}
 				elseif(is_string($fonteDados) && preg_match('/^[^ ]+$/', strtolower($fonteDados))){
-					//XXX n�o testado!
+					/* nao testado! */
 					$jsAutocompleteSource = '
 						function( request, response ) {
 							$.getJSON( "'.$fonteDados.'", {
@@ -1624,7 +1624,7 @@ class form
 				}
 				else{
 					var_dump($fonteDados);	
-					die('ERRO type_ATAGS(): Fonte de dados inv�lida, vazia ou n�o suportada.');
+					die('ERRO type_ATAGS(): Fonte de dados invalida, vazia ou nao suportada.');
 				}
 
 				return '

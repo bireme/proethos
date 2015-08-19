@@ -28,7 +28,8 @@ require($include.'sisdoc_colunas.php');
 	$tabela = $clx->tabela;
 	
 	$label = msg("mensagens");
-	$http_edit = 'message_ed.php'; 
+	$http_edit = 'message_ed.php';
+	$http_ver = 'message_ed.php'; 
 	$editar = True;
 	
 	//$http_ver = 'cliente_ver.php';

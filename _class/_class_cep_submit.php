@@ -82,10 +82,14 @@ class submit {
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
 
+		echo '<HR>';
 		$title = $this -> doc_1_titulo;
 
-		$texto = $ic['text'];
-		$subject = $ic['title'];
+		
+		$texto = uft8_decode($ic['text']);
+		$subject = utf8_decode($ic['title']);
+		
+		print_r($ic);
 
 		$emails = $this -> email_autores();
 

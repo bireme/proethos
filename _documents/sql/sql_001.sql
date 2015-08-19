@@ -1,1 +1,1 @@
-ALTER TABLE `cep_protocolos` ADD `cep_recrutamento_status` CHAR(40) NOT NULL AFTER `cep_recrutamento`;
+ALTER TABLE _messages MODIFY msg_pag text;

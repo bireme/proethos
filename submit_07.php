@@ -11,7 +11,7 @@
 require("_class/_class_cep_submit_institution.php");
 $inst = new instituicao;
 
-$pag = 6;
+$pag = 7;
 
 echo '<table width="'.$tab_max.'" class="lt0">';
 echo '<TR><TD colspan=2>'; require('submit_pages.php');

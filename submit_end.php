@@ -53,6 +53,10 @@ if ($ok == 1)
 	$cep->protocolo = $protocolo_cep;
 	$cep->protocolo_submission = $protocolo;
 	$cep->versao = 1;
+	
+	$cep->confirm_submission_by_email();
+	echo '================================';
+	exit;
 	/* Step 3 */
 	$cep->limpa_projetos_anteriores();
 	

@@ -75,8 +75,8 @@ $proj->le($protocolo);
 	{
 		/* Total de paginas do header */
 		$tot_paginas = 7;
-
-		$pag_max = 6;
+		$pag_max = 7;
+		
 		$doc_tipo  = trim($proj->doc_tipo);
 		
 		/* Regras */
