@@ -1848,6 +1848,7 @@ class cep {
 		for ($r=0;$r < count($emails);$r++)
 			{
 				$email = $emails[$r];
+				echo '<BR>Enviando para'.$email;
 				enviaremail($email, '', $subject, $texto);		
 			}		
 	}
