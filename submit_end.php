@@ -53,10 +53,7 @@ if ($ok == 1)
 	$cep->protocolo = $protocolo_cep;
 	$cep->protocolo_submission = $protocolo;
 	$cep->versao = 1;
-	
-	$cep->confirm_submission_by_email();
-	echo '================================';
-	exit;
+
 	/* Step 3 */
 	$cep->limpa_projetos_anteriores();
 	
@@ -76,7 +73,7 @@ if ($ok == 1)
 	$cep->cep_historic_append('SUB',msg('submitted_by_the_author'));
 	
 	/* Step 9 */
-	$proj->protocolo_altera_status($protocolo,'@','A');
+	//$proj->protocolo_altera_status($protocolo,'@','A');
 	
 	/* Step 10 */
 	$cep->confirm_submission_by_email();

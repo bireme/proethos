@@ -82,9 +82,7 @@ class submit {
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
 
-		echo '<HR>';
 		$title = $this -> doc_1_titulo;
-
 		
 		$texto = uft8_decode($ic['text']);
 		$subject = utf8_decode($ic['title']);

@@ -1834,21 +1834,25 @@ class cep {
 		$this->le($this->protocolo_submission);
 		$sx = $this -> mostra_email($this->line);
 
-		$texto = utf8_decode($ic['text']);
+		$texto = mst(utf8_decode($ic['text']));
 		$subject = utf8_decode($ic['title']);
 		
-		$texto = troca($texto,'$TITLE',$sx);
+		$texto = troca($texto,'$INFORMACION_DEL_PROTOCOLO',$sx);
+		$texto = troca($texto,'$PROTOCOL_INFORMATION',$sx);
 		
 
 		$emails = $this -> email_autores();
-		
-		print_r($emails);
 
-		enviaremail('renefgj@gmail.com', '', $subject, $texto);
+		for ($r=0;$r < count($emails);$r++)
+			{
+				$email = $emails[$r];
+				enviaremail($email, '', $subject, $texto);		
+			}
+		
 	}
 
 	function email_autores() {
-		$proto = $this -> protocolo_cep;
+		$proto = $this -> protocolo;
 		$sql = "select * from cep_team 
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
