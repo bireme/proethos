@@ -864,6 +864,12 @@ class cep {
 	function action_015() {
 		global $dd, $acao, $perfil, $ss;
 
+		$sx .= $this -> survey_show();
+
+		if (!($perfil -> valid('#MEM'))) {
+			return ($sx);
+		}
+
 		$bb1 = msg('action_survey');
 		$sc .= '<Table width="100%" class="lt1">' . chr(13);
 		$sc .= '<TR><TH colspan=2><h3><A name="A015">' . msg('action_accept_015');
@@ -896,7 +902,7 @@ class cep {
 			}
 			redirecina(page());
 		}
-		$sx .= $this -> survey_show();
+		
 		return ($sx);
 	}
 
