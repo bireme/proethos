@@ -1880,13 +1880,12 @@ class cep {
 	}	
 
 	function email_autores() {
-		$proto = $this -> protocolo_cep;
-		print_r($this);
+		$proto = $this -> id_cep;
 		$sql = "select * from cep_team 
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
 			";
-			echo $sql;
+			echo '<HR>'.$sql;
 		$rlt = db_query($sql);
 		$emails = array();
 		while ($line = db_read($rlt)) {
