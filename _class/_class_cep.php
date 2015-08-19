@@ -1885,6 +1885,7 @@ class cep {
 						inner join usuario on ct_author = us_codigo
 					where ct_protocol = '$proto'
 			";
+			echo $sql;
 		$rlt = db_query($sql);
 		$emails = array();
 		while ($line = db_read($rlt)) {
