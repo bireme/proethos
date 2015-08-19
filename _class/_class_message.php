@@ -360,6 +360,8 @@ function msg($s) {
 			$line = db_read($rlt);
 			
 			$array_check = $line['msg_pag'];
+			echo '->'.$array_check;
+			
 			if(strlen(trim($array_check)) == 0) {
 				$array_check = array();	
 			} else {
