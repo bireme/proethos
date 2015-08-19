@@ -38,7 +38,8 @@ class cep {
 			$type = trim($line['ct_type']);
 			$table = "cep_team";
 			//echo '<BR>'.$protocol;
-			$tm -> team_insert_author($author, $protocol, $table, $type = 'N');
+			$tm -> team_insert_author($author, $protocol, $table, $type);
+			echo '<BR>'.$author.'-'.$protocol.'-'.$table;
 		}
 	}
 
