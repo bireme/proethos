@@ -1845,11 +1845,15 @@ class cep {
 		$texto = troca($texto,'$COMMITTEE_INFORMATION',$sx);		
 
 		$emails = $this -> email_autores();
+		
+		echo '<HR>';
+		echo $texto;
+		echo '<HR>';
 
 		for ($r=0;$r < count($emails);$r++)
 			{
 				$email = $emails[$r];
-				echo '<BR>Enviando para'.$email;
+				echo '<BR>Enviando para :'.$email;
 				enviaremail($email, '', $subject, $texto);		
 			}		
 	}
