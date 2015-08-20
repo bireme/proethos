@@ -110,7 +110,7 @@ class usuario
 		}
 	 
     /**
-     * Liberar Usu�rio
+     * Liberar Usuario
      * @return Booblean
      */
 		function LiberarUsuario()

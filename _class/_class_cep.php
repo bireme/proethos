@@ -865,7 +865,8 @@ class cep {
 		global $dd, $acao, $perfil, $ss;
 
 		$sx .= $this -> survey_show();
-
+		
+		/* Solo membros puende opinar */
 		if (!($perfil -> valid('#MEM'))) {
 			return ($sx);
 		}
@@ -974,6 +975,8 @@ class cep {
 				redirecina(page());
 			}
 			if ($dd[8] == '2') {
+				echo '===========================';
+				exit;
 				$this -> niec_save('', 1, 1);
 				$this -> cep_historic_append("016", "manuscript_isent");
 				$this -> cep_status_alter("D");
