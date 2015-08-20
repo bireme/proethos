@@ -456,7 +456,7 @@ class cep {
 		$this -> amendment_protocol = $protocol;
 
 		/* Recupera autores */
-		$this -> copy_authors($this -> protocolo, $this -> amendment_protocol = $protocol);
+		//$this -> copy_authors($this -> protocolo, $this -> amendment_protocol = $protocol);
 
 		return ($sx);
 
