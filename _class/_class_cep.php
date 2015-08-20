@@ -140,7 +140,7 @@ class cep {
 		}
 		return ($wh);
 	}
-	
+
 	function confirm_monitoreo_by_email() {
 		global $LANG;
 
@@ -149,7 +149,7 @@ class cep {
 		$ic = $ic -> ic('email_monitoreo_subm');
 
 		$title = $this -> doc_1_titulo;
-		
+
 		$texto = utf8_decode($ic['text']);
 		$subject = utf8_decode($ic['title']);
 
@@ -162,13 +162,12 @@ class cep {
 		echo '<h3>' . $subjec . '</h3>';
 		for ($r = 0; $r < count($emails); $r++) {
 			echo 'sending to ' . $emails[$r];
-			enviaremail($emails[$r], '', '#2'.$subject, $texto);
-			
-			enviaremail($emails[$r], '', '#1'.utf8_decode($subject), utf8_decode($texto));
+			enviaremail($emails[$r], '', '#2' . $subject, $texto);
+
+			enviaremail($emails[$r], '', '#1' . utf8_decode($subject), utf8_decode($texto));
 		}
 		exit ;
 	}
-	
 
 	function protocolos_search($sta) {
 		global $ss;
@@ -601,6 +600,7 @@ class cep {
 			$title_work = $line['doc_1_titulo'];
 			$title_public = $line['doc_1_titulo_public'];
 			$type = trim($line['doc_tipo']);
+			$caae_original = trim($line['doc_caae']);
 			$caae = $this -> next_caae(trim($line['doc_caae']));
 			$clinic = round($line['doc_clinic']);
 			$doc_type = trim($line['doc_tipo']);
@@ -636,7 +636,7 @@ class cep {
 					cep_local_realizacao, cep_status, cep_ata,
 					cep_dt_parecer, cep_titulacao, cep_grupo,
 					
-					cep_conhecimento, cep_caae, cep_atualizado,
+					cep_conhecimento, cep_caae, cep_caae_original, cep_atualizado,
 					cep_atual, cep_relator, cep_reuniao,
 					cep_st_parecer, cep_nr_parecer, cep_revisor,
 					
@@ -654,7 +654,7 @@ class cep {
 					'','A','',
 					19000101,'','I',
 					
-					'','$caae',$data,
+					'','$caae','$caae_original',$data,
 					'','',19000101,
 					'','','',
 					
@@ -982,8 +982,7 @@ class cep {
 		$sql = "select * from cep_protocolos where cep_caae = '$caae' ";
 		$rlt = db_query($sql);
 		$line = db_read($rlt);
-		print_r($line);
-		echo '<HR>';
+
 		if (strlen($situacao) > 0) {
 			$up = ", cep_pr_protocol = 'pm_$situacao' ";
 		}
@@ -1374,16 +1373,15 @@ class cep {
 		$proto = $this -> protocolo;
 		$sql = "select * from cep_parecer where pr_protocol = '$proto' order by id_pr desc ";
 		$rlt = db_query($sql);
-		
-		if ($line = db_read($rlt))
-			{
+
+		if ($line = db_read($rlt)) {
 			$tipo = trim($line['pr_situacao']);
 			$sql = "update cep_protocolos set 
 					cep_pr_protocol = 'pm_" . $tipo . "'
 					where cep_protocol = '$proto' 
 			";
 			$rlt = db_query($sql);
-			}
+		}
 		return (1);
 	}
 
@@ -1708,9 +1706,10 @@ class cep {
 			/* trata do except */
 			if ($expect == '1') {
 				$no_show = '#002#005#012';
-				if (strpos($no_show,$action) > 0) { $show = 0; }
+				if (strpos($no_show, $action) > 0) { $show = 0;
+				}
 			}
-			
+
 			if ($show == 1) {
 				$sx .= chr(13) . '<TR>';
 				$sx .= '<TD width=5>';
@@ -1985,10 +1984,21 @@ class cep {
 
 	function email_autores() {
 		$proto = $this -> protocolo_cep;
-		$sql = "select * from cep_team 
-						inner join usuario on ct_author = us_codigo
-					where ct_protocol = '$proto'
+		/* busca o numero do caae */
+		$caae = trim($this -> line['cep_caae_original']);
+
+		/* recupera o caae original */
+		if (strlen($caae) == 0) { $caae = $this -> line['cep_caae'];
+		}
+
+		$sql = "select * from cep_protocolos
+					left join cep_team on ct_protocol = cep_protocol
+					inner join usuario on us_codigo = ct_author
+					left join ajax_pais on us_country = pais_codigo
+				where cep_caae = '$caae' 
+				order by ct_type
 			";
+
 		$rlt = db_query($sql);
 		$emails = array();
 		while ($line = db_read($rlt)) {
@@ -2231,12 +2241,22 @@ class cep {
 	}
 
 	function investigadores($line) {
-		$sql = "select * from cep_team 
-			inner join usuario on us_codigo = ct_author
-			left join ajax_pais on us_country = pais_codigo
-				where ct_protocol = '" . $this -> protocolo . "' 
+
+		/* busca o numero do caae */
+		$caae = trim($this -> line['cep_caae_original']);
+
+		/* recupera o caae original */
+		if (strlen($caae) == 0) { $caae = $this -> line['cep_caae'];
+		}
+
+		$sql = "select * from cep_protocolos
+					left join cep_team on ct_protocol = cep_protocol
+					inner join usuario on us_codigo = ct_author
+					left join ajax_pais on us_country = pais_codigo
+				where cep_caae = '$caae' 
 				order by ct_type
 			";
+
 		$rlt = db_query($sql);
 		$sp = '';
 		while ($line = db_read($rlt)) {
@@ -2312,13 +2332,14 @@ class cep {
 		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">';
-		{
-			$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
-			//$sp .= '<TR><TD colspan=2>';
+		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
+			$tipo = $this -> line['cep_tipo'];
+			if ($tipo == 'PRO') {
+				$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';
+				//$sp .= '<TR><TD colspan=2>';
 
-			$sp .= chr(13) . '<script type="text/javascript">';
-			$sp .= chr(13) . '$("#new_author").click(function() {
+				$sp .= chr(13) . '<script type="text/javascript">';
+				$sp .= chr(13) . '$("#new_author").click(function() {
 							$("#new_author").hide();
 							$("#team").show();
 							var $tela = $.ajax({ url: "team_ajax_cep.php", type: "POST", 
@@ -2327,7 +2348,8 @@ class cep {
 								.fail(function() { alert("error"); })
  								.success(function(data) { $("#team").html(data); });
 							});';
-			$sp .= chr(13) . '</script>';
+				$sp .= chr(13) . '</script>';
+			}
 		}
 
 		$sp .= $this -> investigadores($line);
