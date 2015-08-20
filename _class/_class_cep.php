@@ -941,7 +941,7 @@ class cep {
 			}
 
 			$sx .= '<TD ' . $bgy . ' width="20" align="center" class="border1">' . msg("yes");
-			$sx .= '<TD ' . $bgN . ' width="20" align="center" class="border1">' . msg('no');
+			$sx .= '<TD ' . $bgn . ' width="20" align="center" class="border1">' . msg('no');
 
 		}
 		$sx .= '</table>';
@@ -1345,13 +1345,16 @@ class cep {
 		$proto = $this -> protocolo;
 		$sql = "select * from cep_parecer where pr_protocol = '$proto' order by id_pr desc ";
 		$rlt = db_query($sql);
-		$line = db_read($rlt);
-		$tipo = trim($line['pr_situacao']);
-		$sql = "update cep_protocolos set 
+		
+		if ($line = db_read($rlt))
+			{
+			$tipo = trim($line['pr_situacao']);
+			$sql = "update cep_protocolos set 
 					cep_pr_protocol = 'pm_" . $tipo . "'
 					where cep_protocol = '$proto' 
-		";
-		$rlt = db_query($sql);
+			";
+			$rlt = db_query($sql);
+			}
 		return (1);
 	}
 
