@@ -21,9 +21,6 @@ echo '<B>'.msg('submit_checklist').'</B>';
 require('submit_checklist.php');
 		
 		echo '<BR>';
-		echo '<a href="javascript:newxy2(\'submit_pdf.php?dd0='.$protocolo.'&dd90='.checkpost($protocolo.$secu).'\',900,800);">';
-		echo msg('create_PDF');
-		echo '</A>';
 		
 		$sx = '<span id="create_pdf" class="form_submit">'.msg('create_PDF').'</span>';
 		$sx .= '

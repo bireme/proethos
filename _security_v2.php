@@ -204,6 +204,15 @@ class usuario
 						$this->user_erro = $mt1;
 						$this->user_perfil = $nm7;
 						$this->user_codigo = $nm8;
+						
+						$_SESSION["user_chk"] = $md5;
+						$_SESSION['user_login'] = $nm1;
+						$_SESSION['user_nome'] = $nm2;
+						$_SESSION['user_nivel'] = $nm3;
+						$_SESSION['user_id'] = $nm6;
+						$_SESSION['user_perfil'] = $nm7;
+						$_SESSION['user_codigo'] = $nm8;
+									
 						$user_id = $nm6;
 						$user_login = $nm1;
 						$user_nivel = $nm3;

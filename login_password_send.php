@@ -10,7 +10,6 @@
     */
     
 require('db.php');
-require($include.'sisdoc_email.php');
 
 require($include.'_class_form.php');
 $form = new form;
@@ -19,6 +18,8 @@ require("form_css.php");
 /* load config committee */		
 require("_class/_class_header_proethos.php");
 $hd = new header;
+
+require($include.'sisdoc_email.php');
 
 require('_class/_class_ic.php');
 $ic = new ic;

@@ -99,6 +99,7 @@ $proj->le($protocolo);
 			/* EMENDA - logica antiga */
 			case 'AMEND':
 				$pag_max = 3;
+				$tot_paginas = 3;	
 				if ($pag_page == 1) { require("submit_11.php"); }
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
@@ -129,6 +130,7 @@ $proj->le($protocolo);
 			/* Evento adverso */
 			case '001':
 				$pag_max = 3;
+				$tot_paginas = 3;	
 				if ($pag_page == 1) { require("submit_11.php"); }
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
@@ -144,6 +146,7 @@ $proj->le($protocolo);
 			/*  Monitoreo 007 */
 			default:
 				$pag_max = 3;
+				$tot_paginas = 3;	
 				if ($pag_page == 1) { require("submit_11.php"); }
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }

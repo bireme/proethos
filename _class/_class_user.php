@@ -137,11 +137,11 @@ class users
 					$ref = "send_email_text";
 					$ttt = $ic->ic($ref);
 					$email1 = trim($line['us_email']);
-					$text = $ttt['text'];
-					$subj = $ttt['title'];
-					$text .= '<BR><BR>Password: <B>'.$line['us_senha'].'</B>';
+					$text = utf8_decode($ttt['text']);
+					$subj = utf8_decode($ttt['title']);
+					$text .= '<BR><BR>'.msg('password').': <B>'.$line['us_senha'].'</B>';
 					enviaremail($email1,'',$subj,$text);
-					echo '<BR>Send mail to '.$email1;
+					echo '<BR>'.msg('send_mail_to').' '.$email1;
 					$ok = 'send_email_ok';
 				} else {
 					$ok = 'invalid_email';
