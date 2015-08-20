@@ -65,7 +65,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name'] == 'ADMIN')) {
 	$file = 'message.inf';
 
 	if (file_exists($file)) {
-		array_push($menu, array(msg('admin_message'), msg('admin_message'), 'message.php'));
+		array_push($menu, array(msg('admin_message'), msg('admin_message_list'), 'message.php'));
 		array_push($menu, array(msg('admin_message'), msg('admin_message_create'), 'message_create.php'));
 		array_push($menu, array(msg('admin_message'), msg('admin_message_row'), 'message_row.php'));
 		//array_push($menu, array(msg('admin_message'), msg('admin_utf8_convert'), 'message_convert_utf8.php'));

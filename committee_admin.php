@@ -25,7 +25,7 @@ if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> vali
 
 	array_push($menu, array(msg('admin_post_mail'), msg('post_mail'), 'admin_ic.php'));
 
-	array_push($menu, array(msg('admin_faq'), msg('admin_faq'), 'admin_faq.php'));
+	array_push($menu, array(msg('admin_faq'), msg('admin_faq_list'), 'admin_faq.php'));
 
 	if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS'))) {
 		array_push($menu, array(msg('admin_perfil'), msg('users'), 'admin_user.php'));
