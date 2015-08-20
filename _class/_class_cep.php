@@ -975,10 +975,12 @@ class cep {
 				redirecina(page());
 			}
 			if ($dd[8] == '2') {
-				echo '===========================';
-				exit;
+				print_r($this);
+				echo '<BR>'.msg('manuscript_isent-01');
 				$this -> niec_save('', 1, 1);
+				echo '<BR>'.msg('manuscript_isent-02');
 				$this -> cep_historic_append("016", "manuscript_isent");
+				echo '<BR>'.msg('manuscript_isent-03');
 				$this -> cep_status_alter("D");
 				redirecina(page());
 			}
