@@ -66,7 +66,7 @@ class ged
 					$sx .= '<input type="hidden" value="'.$tp.'" id="filetype_1">';
 				}
 				$sx .= '
-				<input type="button" value="'.msg('upload').'" id="fileup">
+				<input type="button" value="'.msg('upload',1).'" id="fileup">
 				<input type="hidden" id="filetype_2" value="">
 				<input type="hidden" id="filetype_3" value="">
 				<script>

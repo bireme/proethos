@@ -129,7 +129,7 @@ class cep_comment
 				$sx .= '</form>';
 				$sx .= '</div>';
 				/** **/
-				$sx .= '<input id="mst" type="button" value="'.msg('comment_add').'" onclick="mostrar();"  style="'.$disp2.'">';
+				$sx .= '<input id="mst" type="button" value="'.msg('comment_add',1).'" onclick="mostrar();"  style="'.$disp2.'">';
 				$sx .= chr(13).'<script>
 					      $("#mst").click(function () {
 					      		$("#posted").fadeIn("slow"); 

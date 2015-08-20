@@ -41,7 +41,7 @@ class team
 				$sx .= '</div>';
 				
 				$sx .= '<div id="newuser_bt">';
-				$sx .= '<input type="button" id="newuser_form" value="'.msg('add_new_member').'" class="botao-submit bnt">';
+				$sx .= '<input type="button" id="newuser_form" value="'.msg('add_new_member',1).'" class="botao-submit bnt">';
 				$sx .= '</div>';
 							
 				$sx .= chr(13).'<script type="text/javascript">';

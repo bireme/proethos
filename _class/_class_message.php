@@ -48,21 +48,19 @@ class message {
 	 */
 	var $LANG = 'en';
 	var $tabela = '_messages';
-	
-	function mostra_page($id)
-		{
-			$sx = '';
-			$sql = "select * from ".$this->tabela." where id_msg = ".sonumero($id);
-			$rlt= db_query($sql);
-			$line = db_read($rlt);
-			$pag = $line['msg_pag'];
-			$pag_array = unserialize($pag);
-			for ($r=0;$r < count($pag_array);$r++)
-				{
-					$sx .= $pag_array[$r].'<br>';
-				}
-			return($sx);
+
+	function mostra_page($id) {
+		$sx = '';
+		$sql = "select * from " . $this -> tabela . " where id_msg = " . sonumero($id);
+		$rlt = db_query($sql);
+		$line = db_read($rlt);
+		$pag = $line['msg_pag'];
+		$pag_array = unserialize($pag);
+		for ($r = 0; $r < count($pag_array); $r++) {
+			$sx .= $pag_array[$r] . '<br>';
 		}
+		return ($sx);
+	}
 
 	function convert_to_utf8() {
 		$sql = "select * from " . $this -> tabela;
@@ -78,7 +76,7 @@ class message {
 									where id_msg = " . $line['id_msg'];
 				$rrr = db_query($sql);
 				echo '<BR>' . $tx . '-' . $tx2;
-				echo '==' . codificacao($tx);				
+				echo '==' . codificacao($tx);
 			}
 
 		}
@@ -232,7 +230,8 @@ class message {
 			$sx = '';
 
 			/* Construi arquivo */
-			$sv = ''; /* validacoes de traduca */
+			$sv = '';
+			/* validacoes de traduca */
 			$sv .= '$messav = array(' . $cr;
 			$sx = '<?php' . $cr;
 			$sx .= '/* Arquivo de Mensagens das paginas */' . $cr;
@@ -241,8 +240,8 @@ class message {
 			$it = 0;
 			echo '<table width="100%" class="border01">';
 			echo '<tr><td>';
-			echo 'Language: '.$pags[$ro].'<BR>';
-			
+			echo 'Language: ' . $pags[$ro] . '<BR>';
+
 			while ($xline = db_read($rlt)) {
 				$xlan = trim($xline['msg_language']);
 				$xfile = trim($xline['msg_field']);
@@ -252,14 +251,14 @@ class message {
 					if ($it > 0) { $sv .= $cr . ') ,';
 					}
 					/* mensagens */
-					
+
 					/* validacao */
 					$sv .= $cr;
 					$sv .= '/* New Language ' . $xline['msg_language'] . ' */';
 					$sv .= $cr;
 					$sv .= "'" . $xline['msg_language'] . "'=>";
 					$sv .= " array(" . $cr;
-					
+
 					/* mensagens */
 					$sx .= $cr;
 					$sx .= '/* New Language ' . $xline['msg_language'] . ' */';
@@ -273,24 +272,25 @@ class message {
 				if ($it > 0) { $sx .= ',' . $cr;
 				}
 				if ($it > 0) { $sv .= ',' . $cr;
-				}				
-				
+				}
+
 				$page_banco = $line['msg_pag'];
-				if(!strlen(trim($page_banco)) == 0) {
+				if (!strlen(trim($page_banco)) == 0) {
 					$page_banco = unserialize($page_banco);
 				} else {
 					$page_banco = array();
 				}
-				
+
 				$pages = ' array(';
-				$i=0;
-				foreach($page_banco as $key => $value) {
-					if ($i > 0) { $pages .= ', '; }						
+				$i = 0;
+				foreach ($page_banco as $key => $value) {
+					if ($i > 0) { $pages .= ', ';
+					}
 					$pages .= "'$key' => '$value' ";
 					$i++;
 				}
 				$pages .= ')';
-				
+
 				$sx .= "             '" . trim($xline['msg_field']) . "'=>'" . trim(($xline['msg_content'])) . "' ";
 				$sv .= "             '" . trim($xline['msg_field']) . "'=>" . $pages . " ";
 				$it++;
@@ -301,10 +301,10 @@ class message {
 			$sx .= $cr . ')';
 			$sx .= '); ';
 			$sx .= $cr;
-			
+
 			$sv .= $cr . ')';
 			$sv .= '); ';
-			$sv .= $cr;			
+			$sv .= $cr;
 
 			/* Salvar arquivo */
 			$arq = 'messages/msg_' . trim($pags[$ro]);
@@ -342,48 +342,51 @@ class message {
  * Mostra mensagem de texto conforme o conteï¿½do gravado
  * Caso nao exista a mensagem, envia para funcao de cadastrar nova
  */
-function msg($s) {
+function msg($s, $ed = 0) {
 	global $LANG;
-	global $messa,$messav;
+	global $messa, $messav;
 	global $gerar, $edit_mode;
 	$s = substr($s, 0, 40);
 	$gerar = 0;
 
 	/* verifica se existe $s no array de traducao */
 	if (isset($messa[$LANG][$s])) {
-		
-		/* valida se existe pagina dentro do array de validacao */
-		if(!in_array(page(), $messav[$LANG][$s])) {
-			
-			$sql = "select msg_pag from _messages where msg_field = '$s'";
-			$rlt = db_query($sql);
-			$line = db_read($rlt);
-			
-			$array_check = $line['msg_pag'];
-			//echo '<br>->'.$s.'---'.$array_check.'-';
-			
-			if(strlen(trim($array_check)) == 0) {
-				$array_check = array();	
-			} else {
-				$array_check = unserialize($array_check);
+
+		/* se mode de edicao habilitado */
+		if (($edit_mode == 1) and ($ed == 0)) {
+			/* valida se existe pagina dentro do array de validacao */
+			if (!in_array(page(), $messav[$LANG][$s])) {
+
+				$sql = "select msg_pag from _messages where msg_field = '$s'";
+				$rlt = db_query($sql);
+				$line = db_read($rlt);
+
+				$array_check = $line['msg_pag'];
+
+				if (strlen(trim($array_check)) == 0) {
+					$array_check = array();
+				} else {
+					$array_check = unserialize($array_check);
+				}
+
+				if (!is_array($array_check)) { $array_check = array();
+				}
+
+				if (!in_array(page(), $array_check)) {
+					array_push($array_check, page());
+				}
+
+				$page = serialize($array_check);
+				$sql = "update _messages set msg_pag = '$page' where msg_field = '$s' ";
+				$rlt = db_query($sql);
 			}
-			
-			if (!is_array($array_check)) { $array_check = array(); }
-			
-			if(!in_array(page(), $array_check)) {				
-				array_push($array_check, page());
-			}
-			
-			$page = serialize($array_check);
-			$sql = "update _messages set msg_pag = '$page' where msg_field = '$s' ";
-			$rlt = db_query($sql);
 		}
-				
-				/* salva */
-				
-			
+
+		/* salva */
 
 		/* Campos para editar mensagens */
+		if ($ed == 0)
+		{
 		$img = '<A href="javascript:newxy2(';
 		$img .= "'message_ed_pop.php?dd2=" . page() . "&dd1=" . $s;
 		$img .= "',600,600);";
@@ -393,6 +396,9 @@ function msg($s) {
 		if ($edit_mode != 1) { $img = '';
 		}
 		$link = $img;
+		} else {
+		$link = '';
+		}
 		return ($messa[$LANG][$s] . $link);
 	} else {
 		$msg = new message;

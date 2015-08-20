@@ -1563,9 +1563,9 @@ class cep {
 				$ic = new ic;
 				$codi = 'indicate_email';
 				$icr = $ic -> ic($codi);
-				$txt = $icr['text'];
+				$txt = utf8_decode($icr['text']);
 				$protocol = trim($this -> line['cep_caae']);
-				$subject = $icr['title'];
+				$subject = utf8_decode($icr['title']);
 				$nnn = trim($line['us_nome']);
 				$txt = mst(troca($txt, '$name', $nnn));
 				$txt = mst(troca($txt, '$protocol', $protocol));

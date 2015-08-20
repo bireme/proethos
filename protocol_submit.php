@@ -62,7 +62,7 @@ if (trim($status) == '$')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_SUBMIT">';
-	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="form_submit">';
+	echo '<input type="submit" value="'.msg('submit_send_to_edit',1).'" class="form_submit">';
 	echo '</form>';
 	}
 
@@ -73,7 +73,7 @@ if (trim($status) == 'Z')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_SUBMIT">';
-	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="form_submit">';
+	echo '<input type="submit" value="'.msg('submit_send_to_edit',1).'" class="form_submit">';
 	echo '</form>';
 	}
 
@@ -89,7 +89,7 @@ if (trim($status) == '@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_SUBMIT">';
-	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="form_submit">';
+	echo '<input type="submit" value="'.msg('submit_send_to_edit',1).'" class="form_submit">';
 	echo '</form>';
 
 	echo '<TD>';
@@ -98,7 +98,7 @@ if (trim($status) == '@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_CANCEL_ASK">';
-	echo '<input type="submit" value="'.msg('cancel_this_project').'" class="form_submit">';
+	echo '<input type="submit" value="'.msg('cancel_this_project',1).'" class="form_submit">';
 	echo '</form>';
 	}
 	
@@ -112,7 +112,7 @@ if (trim($status) == '@@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_CANCEL">';
-	echo '<input type="submit" value="'.msg('confirm_cancel').'" class="form_submit">';
+	echo '<input type="submit" value="'.msg('confirm_cancel',1).'" class="form_submit">';
 	echo '</form>';
 
 	echo '<TD>';
@@ -121,7 +121,7 @@ if (trim($status) == '@@')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="">';
-	echo '<input type="submit" value="'.msg('botton_return').'" class="form_submit">';
+	echo '<input type="submit" value="'.msg('botton_return',1).'" class="form_submit">';
 	echo '</form>';
 	}	
 	

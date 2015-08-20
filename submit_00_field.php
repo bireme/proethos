@@ -215,7 +215,7 @@ while ($line = db_read($rlt))
 	/* Termo */
 		$s .= '<form action="submit.php" method="post">';
 		$s .= '<BR>';
-		$s .= '<input type="submit" name="acao" value="'.msg('save_next').'" class="big_botton">';
+		$s .= '<input type="submit" name="acao" value="'.msg('save_next',1).'" class="big_botton">';
 		$s .= '</form>';
 		$ok = 1;
 		if (($ok > 0) and (strlen($acao) > 0))

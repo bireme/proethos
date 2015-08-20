@@ -191,7 +191,7 @@ class parecer_avaliation
 				$sa .= '<BR><BR>';
 				$sa .= '<input type="checkbox" name="dd29" value="1">'.msg('definitive_version');
 				$sa .= '<BR><BR>';
-				$sa .= '<input type="submit" name="acao" value="'.msg('check_list_save').'">';
+				$sa .= '<input type="submit" name="acao" value="'.msg('check_list_save',1).'">';
 				$sa .= '</form>';
 				$sa .= '</div>';
 				return($sa);
@@ -363,7 +363,7 @@ class parecer_avaliation
 			$sa .= '<th>e-mail<TH>'.msg('indicate_data');
 			$sa .= '<TH>'.msg('indicate_status');
 			$sa .= $sx;
-			$sa .= '<TR><TD colspan=5><input type="submit" value="'.msg('define_evaluator_btn').'" name="dd6">';
+			$sa .= '<TR><TD colspan=5><input type="submit" value="'.msg('define_evaluator_btn',1).'" name="dd6">';
 			$sa .= '<TR><TD></form>';
 			$sa .= '</table>';
 			//$this->cep_historic_append($ac,msg('protocol_accept'));

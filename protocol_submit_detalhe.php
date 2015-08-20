@@ -55,7 +55,7 @@ if (trim($status) == '$')
 	echo '<input type="hidden" name="dd1" value="'.$dd[1].'">';
 	echo '<input type="hidden" name="dd2" value="'.$dd[2].'">';
 	echo '<input type="hidden" name="dd5" value="TO_SUBMIT">';
-	echo '<input type="submit" value="'.msg('submit_send_to_edit').'" class="form_submit">';
+	echo '<input type="submit" value="'.msg('submit_send_to_edit',1).'" class="form_submit">';
 	echo '</form>';
 	}
 

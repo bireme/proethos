@@ -153,7 +153,7 @@ class comunication
 			$sa .= '<TR valign="top"><TD>'.msg('mail_content').'<TD>';
 			$sa .= '<textarea name="dd46" cols=50 rows=5 style="width: 99%;" >'.$dd[46].'</textarea>';
 			$sa .= '<TR><TD colspan=2>';
-			$sa .= '<input type="submit" name="acao" value="'.msg('send_mail').'">';
+			$sa .= '<input type="submit" name="acao" value="'.msg('send_mail',1).'">';
 			$sa .= '</table>';
 			$sa .= '</form>';
 			return($sa);

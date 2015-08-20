@@ -105,7 +105,7 @@ class budget
 			$sx .= gets('dd3a',$dd[3],'$S80',msg('budget_desc'),0,1,'','','');
 			$sx .= gets('dd5a',$dd[5],'$I8'.$op,msg('budget_vlr'),'','');
 			$sx .= gets('dd4a',$dd[4],'$I8'.$op,msg('budget_qt'),'','');
-			$sx .= '<TR><TD colspan=2><input type="button" id="budget_post" value="'.msg('budget_post').'">';
+			$sx .= '<TR><TD colspan=2><input type="button" id="budget_post" value="'.msg('budget_post',1).'">';
 			$sx .= '</table>';
 			$sx .= '</div>';
 			
@@ -244,7 +244,7 @@ class budget
 			$sx .= gets('dd6a',$dd[6],'$S80',$dd[6],0,1,'','form_textarea_full','');
 			$sx .= gets('dd7a',$dd[7],'$O '.$op,$dd[7],'','');
 			$sx .= gets('dd8a',$dd[8],'$O '.$op,$dd[8],'','');
-			$sx .= '<TD><input type="button" id="crono_post" value="'.msg('crono_post').'">';
+			$sx .= '<TD><input type="button" id="crono_post" value="'.msg('crono_post',1).'">';
 			$sx .= '</table>';
 			$sx .= '</div>';
 			
