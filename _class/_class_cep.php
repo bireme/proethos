@@ -37,7 +37,7 @@ class cep {
 			$author = trim($line['ct_author']);
 			$type = trim($line['ct_type']);
 			$table = "cep_team";
-			
+
 			$tm -> team_insert_author($author, $protocol, $table, $type);
 		}
 	}
@@ -718,7 +718,7 @@ class cep {
 	/* recption in committee */
 	function action_009() {
 		global $dd, $acao, $bgcor;
-		
+
 		$type = trim($this -> line['cep_tipo']);
 		$bb1 = msg('action_send_botton');
 		$sc .= '<Table width="100%" class="lt1" bgcolor="' . $bgcor . '">' . chr(13);
@@ -726,7 +726,7 @@ class cep {
 		$sc .= '<TD width=25 ><img src="img/icone_close.png" width="25" id="A009i" style="cursor: pointer;">';
 		$sx .= $sc;
 		$sx .= '<TR><TD class="lt0">' . msg('action_accept_manuscrit_inf');
-		
+
 		$sx .= '<TR><TD><form method="post" action="' . page() . '#A009">';
 		$sx .= '<input type="hidden" name="dd3" value="009">';
 		$sx .= '<TR><TD><input name="dd4" type="radio" value="1">' . msg('action_need_consultation');
@@ -737,7 +737,7 @@ class cep {
 		$sx .= '<TR><TD><input name="acao" type="submit" value="' . $bb1 . '"  class="form_submit">';
 		$sx .= '<TR><TD></form>';
 		/* Save Action */
-		
+
 		if (($acao == $bb1) and (strlen($dd[3]) > 0)) {
 			/* Necessita de Revisao */
 			if ($dd[4] == '1') {
@@ -865,7 +865,7 @@ class cep {
 		global $dd, $acao, $perfil, $ss;
 
 		$sx .= $this -> survey_show();
-		
+
 		/* Solo membros puende opinar */
 		if (!($perfil -> valid('#MEM'))) {
 			return ($sx);
@@ -903,7 +903,7 @@ class cep {
 			}
 			redirecina(page());
 		}
-		
+
 		return ($sx);
 	}
 
@@ -948,17 +948,16 @@ class cep {
 		return ($sx);
 	}
 
-	function cep_salva_decision($caae, $acomp, $situacao='') {
+	function cep_salva_decision($caae, $acomp, $situacao = '') {
 		$data = date("Ymd");
 		$sql = "select * from cep_protocolos where cep_caae = '$caae' ";
 		$rlt = db_query($sql);
 		$line = db_read($rlt);
 		print_r($line);
 		echo '<HR>';
-		if (strlen($situacao) > 0)
-			{
-				$up = ", cep_pr_protocol = 'pm_$situacao' ";
-			}
+		if (strlen($situacao) > 0) {
+			$up = ", cep_pr_protocol = 'pm_$situacao' ";
+		}
 		$sql = "update cep_protocolos set 
 							cep_monitoring = " . round($acomp) . ",
 							cep_atualizado = $data,
@@ -967,7 +966,7 @@ class cep {
 							$up
 					where cep_caae = '$caae' ";
 
-		$rlt = db_query($sql);	
+		$rlt = db_query($sql);
 		return (1);
 	}
 
@@ -990,7 +989,7 @@ class cep {
 		$sx .= '<TR><TD><input name="acao" type="submit" value="' . $bb1 . '"  class="form_submit">';
 		$sx .= '<TR><TD></form>';
 		$sx .= '</table>';
-		
+
 		if ((strlen($acao) > 0) and (strlen($dd[8]) > 0)) {
 			if ($dd[8] == '1') {
 				$this -> cep_historic_append("016", "manuscript_accepted_direct");
@@ -998,19 +997,19 @@ class cep {
 				redirecina(page());
 			}
 			if ($dd[8] == '2') {
-					
+
 				/* gera numero automatico do caae */
 				$this -> niec_save('', 1, 1);
 
 				/* recupera numero do caae */
-				$caae = $this->caae;
+				$caae = $this -> caae;
 
 				/* salva historic */
 				$this -> cep_historic_append("016", "manuscript_isent");
-				
+
 				/* Salva decision */
-				$this->cep_salva_decision($caae, '-1', 'NOA');
-				
+				$this -> cep_salva_decision($caae, '-1', 'NOA');
+
 				/* Altera Status do protocolo */
 				$this -> cep_status_alter("D");
 				redirecina(page());
@@ -1082,13 +1081,13 @@ class cep {
 		if (!($line = db_read($rlt))) {
 			$sql = "update cep_protocolos set cep_caae = '" . trim($caae) . "' where id_cep = " . $this -> id_cep;
 			$rlt = db_query($sql);
-			$this->caae = trim($caae);
+			$this -> caae = trim($caae);
 			return (1);
 		} else {
 			if ($line['id_cep'] == $this -> id_cep) {
 				$sql = "update cep_protocolos set cep_caae = '" . trim($caae) . "' where id_cep = " . $this -> id_cep;
 				$rlt = db_query($sql);
-				$this->caae = trim($caae);
+				$this -> caae = trim($caae);
 				return (1);
 			} else {
 				echo '<img src="img/icone_error.png" width=64 align="left">';
@@ -1655,74 +1654,97 @@ class cep {
 	function action_display($bt) {
 		global $dd, $acao, $ss, $perfil;
 		$js = '';
+
+		/* Tipo de aprovacao */
+		$tipo_aprovacao = $this -> line['cep_pr_protocol'];
+
+		/* Except */
+		if ($tipo_aprovacao == 'pm_NOA') {
+			$expect = 1;
+
+		} else {
+			$expect = 0;
+		}
+
 		$sx .= '<table width="100%" class="lt2">';
 		for ($r = 0; $r < count($bt); $r++) {
 			$action = $bt[$r][1];
 			$color = $bt[$r][2];
 			$caption = $bt[$r][0];
+			$show = 1;
 
-			$sx .= chr(13) . '<TR>';
-			$sx .= '<TD width=5>';
-			$sx .= '<input type="button" id="chk' . $r . '" value="' . msg($caption) . '" style="width: 300px; height: 30px;">';
-			$hd = 'style="display: none;"';
-
-			/* Não ocultar */
-			if ($action == '015') { $hd = '';
-
+			/* trata do except */
+			if ($expect == '1') {
+				$no_show = '#002#005#012';
+				if (strpos($no_show,$action) > 0) { $show = 0; }
 			}
-			if ($dd[3] == $action) { $hd = '';
-			}
-			$sx .= '<TR><TD>';
-			$sx .= chr(13);
-			$sx .= '<div id="chkdiv' . $r . '" ' . $hd . '>' . chr(13);
+			
+			if ($show == 1) {
+				$sx .= chr(13) . '<TR>';
+				$sx .= '<TD width=5>';
+				$sx .= '<input type="button" id="chk' . $r . '" value="' . msg($caption) . '" style="width: 300px; height: 30px;">';
+				$hd = 'style="display: none;"';
 
-			/* */
-			if ($action == '003') { $sx .= $this -> action_003();
-			}
+				/* Não ocultar */
+				if ($action == '015') { $hd = '';
 
-			/* Indicar para Reunião */
-			if ($action == '011') { $sx .= $this -> action_011();
-			}
-
-			/* Aceitar projeto para avaliação */
-			if ($action == '009') { $sx .= $this -> action_009();
-			}
-
-			/* Somente to Admin and Secretary */
-			if ($perfil -> valid('#ADM#SCR#COO')) {
-				/* Indicar avaliadores */
-				if ($action == '002') { $sx .= $this -> action_002();
 				}
-				/* Indicar avaliadores adhoc */
-				if ($action == '005') { $sx .= $this -> action_005();
+				if ($dd[3] == $action) { $hd = '';
 				}
-				/* Informar o número do NIEC */
-				if ($action == '017') { $sx .= $this -> action_017();
-				}
-			}
-			if ($action == '015') { $sx .= $this -> action_015();
-			}
-			if ($action == '016') { $sx .= $this -> action_016();
-			}
-			if ($action == '012') { $sx .= $this -> action_012();
-			}
-			if ($action == '013') { $sx .= $this -> action_013();
-			}
-			if ($action == '014') { $sx .= $this -> action_014();
-			}
-			if ($action == '020') { $sx .= $this -> action_020();
-			}
-			if ($action == '021') { $sx .= $this -> action_021();
-			}
-			$sx .= '<font class="lt0">' . $action . '</font>';
-			$sx .= '</div>' . chr(13);
+				$sx .= '<TR><TD>';
+				$sx .= chr(13);
+				$sx .= '<div id="chkdiv' . $r . '" ' . $hd . '>' . chr(13);
 
-			$js .= chr(13) . ' $("#chk' . $r . '").click(function () {
+				/* */
+				if ($action == '003') { $sx .= $this -> action_003();
+				}
+
+				/* Indicar para Reunião */
+				if ($action == '011') { $sx .= $this -> action_011();
+				}
+
+				/* Aceitar projeto para avaliação */
+				if ($action == '009') { $sx .= $this -> action_009();
+				}
+
+				/* Somente to Admin and Secretary */
+				if ($perfil -> valid('#ADM#SCR#COO')) {
+					if ($expect == 0) {
+						/* Indicar avaliadores */
+						if ($action == '002') { $sx .= $this -> action_002();
+						}
+						/* Indicar avaliadores adhoc */
+						if ($action == '005') { $sx .= $this -> action_005();
+						}
+						/* Informar o número do NIEC */
+						if ($action == '017') { $sx .= $this -> action_017();
+						}
+					}
+				}
+				if ($action == '015') { $sx .= $this -> action_015();
+				}
+				if ($action == '016') { $sx .= $this -> action_016();
+				}
+				if ($action == '012') { $sx .= $this -> action_012();
+				}
+				if ($action == '013') { $sx .= $this -> action_013();
+				}
+				if ($action == '014') { $sx .= $this -> action_014();
+				}
+				if ($action == '020') { $sx .= $this -> action_020();
+				}
+				if ($action == '021') { $sx .= $this -> action_021();
+				}
+				$sx .= '<font class="lt0">' . $action . '</font>';
+				$sx .= '</div>' . chr(13);
+
+				$js .= chr(13) . ' $("#chk' . $r . '").click(function () {
 							 $("#chkdiv' . $r . '").toggle(\'slow\'); }); 
 					';
-			$js .= chr(13) . ' $("#A' . $action . 'i").click(function () {
+				$js .= chr(13) . ' $("#A' . $action . 'i").click(function () {
 							 $("#chkdiv' . $r . '").toggle(\'slow\'); }); 
 					';
+			}
 		}
 		$sx .= '</table>';
 
@@ -1873,63 +1895,61 @@ class cep {
 		global $LANG;
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
-		
-		$this->le($this->protocolo_cep);
-		$sx = $this -> mostra_email($this->line);
+
+		$this -> le($this -> protocolo_cep);
+		$sx = $this -> mostra_email($this -> line);
 
 		$texto = mst(utf8_decode($ic['text']));
 		$subject = utf8_decode($ic['title']);
-		
-		$texto = troca($texto,'$TITLE',$sx);
-		
-		$texto = troca($texto,'$INFORMACION_DEL_PROTOCOLO',$sx);
-		$texto = troca($texto,'$PROTOCOL_INFORMATION',$sx);
-		
-		$texto = troca($texto,'$INFORMACION_DEL_COMITTE',$sx);
-		$texto = troca($texto,'$COMMITTEE_INFORMATION',$sx);		
+
+		$texto = troca($texto, '$TITLE', $sx);
+
+		$texto = troca($texto, '$INFORMACION_DEL_PROTOCOLO', $sx);
+		$texto = troca($texto, '$PROTOCOL_INFORMATION', $sx);
+
+		$texto = troca($texto, '$INFORMACION_DEL_COMITTE', $sx);
+		$texto = troca($texto, '$COMMITTEE_INFORMATION', $sx);
 
 		$emails = $this -> email_autores();
-		
-		for ($r=0;$r < count($emails);$r++)
-			{
-				$email = $emails[$r];
-				//echo '<BR>'.msg('send_to_email').':'.$email;
-				enviaremail($email, '', $subject, $texto);		
-			}		
+
+		for ($r = 0; $r < count($emails); $r++) {
+			$email = $emails[$r];
+			//echo '<BR>'.msg('send_to_email').':'.$email;
+			enviaremail($email, '', $subject, $texto);
+		}
 	}
-	
+
 	function confirm_notify_by_email() {
 		global $LANG, $hd;
-		
-		$email_cep = $hd->email_replay;
-		$email_nome = $hd->title;
-		
+
+		$email_cep = $hd -> email_replay;
+		$email_nome = $hd -> title;
+
 		$ic = new ic;
 		$ic = $ic -> ic('email_notify_subm');
-		
-		$this->le($this->protocolo_cep);
-		$sx = $this -> mostra_email($this->line);
+
+		$this -> le($this -> protocolo_cep);
+		$sx = $this -> mostra_email($this -> line);
 
 		$texto = mst(utf8_decode($ic['text']));
 		$subject = utf8_decode($ic['title']);
-		
-		$texto = troca($texto,'$INFORMACION_DEL_PROTOCOLO',$sx);
-		$texto = troca($texto,'$PROTOCOL_INFORMATION',$sx);
-		$texto = troca($texto,'$TITLE',$sx);
-		
-		$texto = troca($texto,'$INFORMACION_DEL_COMITTE',$sx);
-		$texto = troca($texto,'$COMMITTEE_INFORMATION',$sx);		
+
+		$texto = troca($texto, '$INFORMACION_DEL_PROTOCOLO', $sx);
+		$texto = troca($texto, '$PROTOCOL_INFORMATION', $sx);
+		$texto = troca($texto, '$TITLE', $sx);
+
+		$texto = troca($texto, '$INFORMACION_DEL_COMITTE', $sx);
+		$texto = troca($texto, '$COMMITTEE_INFORMATION', $sx);
 
 		$emails = array();
-		array_push($emails,$email_cep);
+		array_push($emails, $email_cep);
 
-		for ($r=0;$r < count($emails);$r++)
-			{
-				$email = $emails[$r];
-				//echo '<BR>'.msg('send_to_email').':'.$email;
-				enviaremail($email, '', $subject, $texto);		
-			}		
-	}	
+		for ($r = 0; $r < count($emails); $r++) {
+			$email = $emails[$r];
+			//echo '<BR>'.msg('send_to_email').':'.$email;
+			enviaremail($email, '', $subject, $texto);
+		}
+	}
 
 	function email_autores() {
 		$proto = $this -> protocolo_cep;
