@@ -967,7 +967,7 @@ class cep {
 		$sx .= '<TR><TD><input name="acao" type="submit" value="' . $bb1 . '"  class="form_submit">';
 		$sx .= '<TR><TD></form>';
 		$sx .= '</table>';
-
+		print_r($dd);
 		if ((strlen($acao) > 0) and (strlen($dd[8]) > 0)) {
 			if ($dd[8] == '1') {
 				$this -> cep_historic_append("016", "manuscript_accepted_direct");
