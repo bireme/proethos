@@ -949,12 +949,17 @@ class cep {
 	}
 
 	function cep_salva_decision($caae, $acomp, $situacao='') {
+		$data = date("Ymd");
+		
 		if (strlen($situacao) > 0)
 			{
 				$up = ", cep_pr_protocol = 'pm_$situacao' ";
 			}
 		$sql = "update cep_protocolos set 
-							cep_monitoring = " . round($acomp) . "
+							cep_monitoring = " . round($acomp) . ",
+							cep_atualizado = $data,
+							cep_aproved = $data,
+							cep_dt_parecer = $data
 							$up
 					where cep_protocol = '$caae' ";
 		$rlt = db_query($sql);
@@ -980,26 +985,29 @@ class cep {
 		$sx .= '<TR><TD><input name="acao" type="submit" value="' . $bb1 . '"  class="form_submit">';
 		$sx .= '<TR><TD></form>';
 		$sx .= '</table>';
-		print_r($dd);
+		
 		if ((strlen($acao) > 0) and (strlen($dd[8]) > 0)) {
 			if ($dd[8] == '1') {
 				$this -> cep_historic_append("016", "manuscript_accepted_direct");
 				$this -> cep_status_alter("B");
 				redirecina(page());
 			}
-			if ($dd[8] == '2') {	
+			if ($dd[8] == '2') {
+					
 				/* gera numero automatico do caae */
 				$this -> niec_save('', 1, 1);
-				echo '<HR>1.';
+
 				/* recupera numero do caae */
 				$caae = $this->caae;
-				echo '<HR>2.';
+
+				/* salva historic */
 				$this -> cep_historic_append("016", "manuscript_isent");
-				echo '<HR>3.';
+				
 				/* Salva decision */
 				$this->cep_salva_decision($caae, '-1', 'NOA');
-				echo '<HR>4.';
-				$this -> cep_status_alter("D");
+				
+				/* Altera Status do protocolo */
+				$this -> cep_status_alter("E");
 				redirecina(page());
 			}
 		}
@@ -1069,13 +1077,13 @@ class cep {
 		if (!($line = db_read($rlt))) {
 			$sql = "update cep_protocolos set cep_caae = '" . trim($caae) . "' where id_cep = " . $this -> id_cep;
 			$rlt = db_query($sql);
-			$this->caae = $trim($caae);
+			$this->caae = trim($caae);
 			return (1);
 		} else {
 			if ($line['id_cep'] == $this -> id_cep) {
 				$sql = "update cep_protocolos set cep_caae = '" . trim($caae) . "' where id_cep = " . $this -> id_cep;
 				$rlt = db_query($sql);
-				$this->caae = $trim($caae);
+				$this->caae = trim($caae);
 				return (1);
 			} else {
 				echo '<img src="img/icone_error.png" width=64 align="left">';
