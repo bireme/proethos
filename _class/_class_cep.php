@@ -162,9 +162,7 @@ class cep {
 		echo '<h3>' . $subjec . '</h3>';
 		for ($r = 0; $r < count($emails); $r++) {
 			echo 'sending to ' . $emails[$r];
-			enviaremail($emails[$r], '', '#2' . $subject, $texto);
-
-			enviaremail($emails[$r], '', '#1' . utf8_decode($subject), utf8_decode($texto));
+			enviaremail($emails[$r], '', $subject, $texto);
 		}
 		exit ;
 	}
@@ -1458,8 +1456,8 @@ class cep {
 	function email_communicate_investigator() {
 		global $ic;
 		$ttt = $ic -> ic("communicate_investig");
-		$subj = $ttt['title'];
-		$txt = $ttt['text'];
+		$subj = utf8_decode($ttt['title']);
+		$txt = utf8_decode($ttt['text']);
 
 		$nome = $this -> line['us_nome'];
 		$email1 = $this -> line['us_email'];
