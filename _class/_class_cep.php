@@ -948,6 +948,19 @@ class cep {
 		return ($sx);
 	}
 
+	function cep_salva_decision($caae, $acomp, $situacao='') {
+		if (strlen($situacao) > 0)
+			{
+				$up = ", cep_pr_protocol = 'pm_$situacao' ";
+			}
+		$sql = "update cep_protocolos set 
+							cep_monitoring = " . round($acomp) . "
+							$up
+					where cep_protocol = '$caae' ";
+		$rlt = db_query($sql);
+		return (1);
+	}
+
 	function action_016() {
 		global $dd, $acao, $perfil;
 
@@ -980,15 +993,15 @@ class cep {
 				
 				/* gera numero automatico do caae */
 				$this -> niec_save('', 1, 1);
-				
+				echo '1.';
 				/* recupera numero do caae */
 				$caae = $this->caae;
-				
+				echo '2.';
 				$this -> cep_historic_append("016", "manuscript_isent");
-				
+				echo '3.';
 				/* Salva decision */
 				$this->cep_salva_decision($caae, '-1', 'NOA');
-				
+				echo '4.';
 				$this -> cep_status_alter("D");
 				redirecina(page());
 			}
