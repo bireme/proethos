@@ -967,9 +967,7 @@ class cep {
 							$up
 					where cep_caae = '$caae' ";
 
-		$rlt = db_query($sql);
-					echo $sql;
-					exit;		
+		$rlt = db_query($sql);	
 		return (1);
 	}
 
@@ -1014,7 +1012,7 @@ class cep {
 				$this->cep_salva_decision($caae, '-1', 'NOA');
 				
 				/* Altera Status do protocolo */
-				//$this -> cep_status_alter("D");
+				$this -> cep_status_alter("D");
 				redirecina(page());
 			}
 		}
