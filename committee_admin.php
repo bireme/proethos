@@ -13,7 +13,7 @@ if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> vali
 	$menu = array();
 	array_push($menu, array(msg('admin_protocols'), msg('protocols_new'), 'admin_protocols.php'));
 
-	array_push($menu, array(msg('admin_research'), msg('admin_research'), 'admin_user.php'));
+	array_push($menu, array(msg('admin_research'), msg('admin_research_list'), 'admin_user.php'));
 
 	array_push($menu, array(msg('admin_calender_type'), msg('scheduled_meeting'), 'meeting_scheduled.php'));
 	//array_push($menu,array(msg('admin_metting'),msg('minutes_meeting'),'meeting_minutes.php'));
