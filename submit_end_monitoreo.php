@@ -59,7 +59,7 @@ if ($ok == 1)
 	$cep->create_pdf_submit_file();
 	
 	/* Step 5 */
-	$cep->transfere_autores();
+	//$cep->transfere_autores();
 	
 	/* Step 6 */
 	$cep->envia_arquivos_submissao_apreciacao();
