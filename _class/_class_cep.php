@@ -950,7 +950,7 @@ class cep {
 
 	function cep_salva_decision($caae, $acomp, $situacao='') {
 		$data = date("Ymd");
-		$sql = "select * from cep_protocolos where cep_protocol = '$caae' ";
+		$sql = "select * from cep_protocolos where cep_caae = '$caae' ";
 		$rlt = db_query($sql);
 		$line = db_read($rlt);
 		print_r($line);
@@ -965,7 +965,7 @@ class cep {
 							cep_aproved = $data,
 							cep_dt_parecer = $data
 							$up
-					where cep_protocol = '$caae' ";
+					where cep_caae = '$caae' ";
 
 		$rlt = db_query($sql);
 					echo $sql;
