@@ -15,10 +15,10 @@ if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> vali
 	
 	$menu = array();
 	array_push($menu, array(msg('admin_protocols'), msg('protocols_new'), 'admin_protocols.php'));
-	array_push($menu, array(msg('admin_research'), msg('admin_research'), 'admin_user.php'));
+	array_push($menu, array(msg('admin_research'), msg('admin_research_list'), 'admin_user.php'));
 	array_push($menu, array(msg('admin_calender_type'), msg('scheduled_meeting'), 'meeting_scheduled.php'));
 	array_push($menu, array(msg('admin_post_mail'), msg('post_mail'), 'admin_ic.php'));
-	array_push($menu, array(msg('admin_faq'), msg('admin_faq'), 'admin_faq.php'));
+	array_push($menu, array(msg('admin_faq'), msg('admin_faq_list'), 'admin_faq.php'));
 
 	echo '<div class="border1 pad5 ml2 mt20">';
 	echo '<h1>' . msg('secretary_menu') . '</h1>';

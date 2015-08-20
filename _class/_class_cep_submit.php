@@ -49,31 +49,6 @@ class submit {
 		return (1);
 	}
 
-	function confirm_monitoreo_by_email() {
-		global $LANG;
-
-		/**** ENVIO DE E-MAIL *****/
-		$ic = new ic;
-		$ic = $ic -> ic('email_confirm_moni');
-
-		$title = $this -> doc_1_titulo;
-
-		$texto = $ic['text'];
-		$subject = $ic['title'];
-
-		$emails = $this -> email_autores();
-
-		$texto = troca($texto, '$TITLE', $title);
-		$texto = troca($texto, '$CAAE', $protocolo);
-		$texto = troca($texto, '$TITLE', $title);
-
-		echo '<h3>' . $subjec . '</h3>';
-		for ($r = 0; $r < count($emails); $r++) {
-			echo 'sending to ' . $emails[$r];
-			enviaremail($emails[$r], '', utf8_decode($subject), utf8_decode($texto));
-		}
-		exit ;
-	}
 
 	function confirm_submission_by_email() {
 		global $LANG;
@@ -84,7 +59,7 @@ class submit {
 
 		$title = $this -> doc_1_titulo;
 		
-		$texto = uft8_decode($ic['text']);
+		$texto = utf8_decode($ic['text']);
 		$subject = utf8_decode($ic['title']);
 		
 		print_r($ic);

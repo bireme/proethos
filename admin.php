@@ -47,7 +47,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name'] == 'ADMIN')) {
 
 	/* array_push($menu, array(msg('admin_tables'), msg('admin_parecer_modelo'), 'admin_parecer_modelo.php')); */
 
-	array_push($menu, array(msg('admin_submission'), msg('admin_submission'), 'admin_submit_1.php'));
+	array_push($menu, array(msg('admin_submission'), msg('admin_submission_field'), 'admin_submit_1.php'));
 
 	$sql = "select * from cep_amendment_type where amt_ativo = 1 order by amt_ord";
 	$rlt = db_query($sql);
@@ -76,7 +76,7 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name'] == 'ADMIN')) {
 	}
 	
 	/* SQL Update */
-	array_push($menu, array(msg('admin_update'), msg('system_update'), 'admin_update.php'));
+	array_push($menu, array(msg('admin_update_system'), msg('system_update_system'), 'admin_update.php'));
 
 	echo '<h1>' . msg('admin_menu_special') . '</h1>';
 	echo '<fieldset>';

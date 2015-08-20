@@ -33,7 +33,6 @@ $dd[0] = $pag_id;
 $protocolo = strzero($dd[0],7);
 
 echo '<H2>'.msg('submit_end_monitoreo').'</h2>';
-//echo msg('protocolo').' '.$protocolo;
 echo '<BR><BR>';
 
 	/* Checa diretorio de submissão do pdf */
@@ -75,6 +74,7 @@ if ($ok == 1)
 	$proj->protocolo_altera_status($protocolo,'@','A');
 	
 	/* Step 10 */
+	$cep->confirm_notify_by_email();
 	$cep->confirm_monitoreo_by_email();
 	
 	echo '<div style="text-align: justify; width: 80%">';

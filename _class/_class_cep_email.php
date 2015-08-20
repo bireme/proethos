@@ -44,6 +44,7 @@ class comunication
 						left join usuario on email_log = us_codigo
 						where email_protocolo = '".$this->protocolo."' 
 						order by email_id_msg, email_data desc, email_hora desc ";
+						echo $sql;
 				$rlt = db_query($sql);
 				
 				$sx = '<TABLE width=100% class="lt1" border=0 cellpadding=3 cellspacing=0>';

@@ -140,6 +140,35 @@ class cep {
 		}
 		return ($wh);
 	}
+	
+	function confirm_monitoreo_by_email() {
+		global $LANG;
+
+		/**** ENVIO DE E-MAIL *****/
+		$ic = new ic;
+		$ic = $ic -> ic('email_monitoreo_subm');
+
+		$title = $this -> doc_1_titulo;
+		
+		$texto = utf8_decode($ic['text']);
+		$subject = utf8_decode($ic['title']);
+
+		$emails = $this -> email_autores();
+
+		$texto = troca($texto, '$TITLE', $title);
+		$texto = troca($texto, '$CAAE', $protocolo);
+		$texto = troca($texto, '$TITLE', $title);
+
+		echo '<h3>' . $subjec . '</h3>';
+		for ($r = 0; $r < count($emails); $r++) {
+			echo 'sending to ' . $emails[$r];
+			enviaremail($emails[$r], '', '#2'.$subject, $texto);
+			
+			enviaremail($emails[$r], '', '#1'.utf8_decode($subject), utf8_decode($texto));
+		}
+		exit ;
+	}
+	
 
 	function protocolos_search($sta) {
 		global $ss;
