@@ -950,7 +950,11 @@ class cep {
 
 	function cep_salva_decision($caae, $acomp, $situacao='') {
 		$data = date("Ymd");
-		
+		$sql = "select * from cep_protocolos where cep_protocol = '$caae' ";
+		$rlt = db_query($sql);
+		$line = db_read($rlt);
+		print_r($line);
+		echo '<HR>';
 		if (strlen($situacao) > 0)
 			{
 				$up = ", cep_pr_protocol = 'pm_$situacao' ";
@@ -962,7 +966,10 @@ class cep {
 							cep_dt_parecer = $data
 							$up
 					where cep_protocol = '$caae' ";
+
 		$rlt = db_query($sql);
+					echo $sql;
+					exit;		
 		return (1);
 	}
 
@@ -1007,7 +1014,7 @@ class cep {
 				$this->cep_salva_decision($caae, '-1', 'NOA');
 				
 				/* Altera Status do protocolo */
-				$this -> cep_status_alter("E");
+				//$this -> cep_status_alter("E");
 				redirecina(page());
 			}
 		}
