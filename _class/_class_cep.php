@@ -987,21 +987,18 @@ class cep {
 				$this -> cep_status_alter("B");
 				redirecina(page());
 			}
-			if ($dd[8] == '2') {
-				print_r($this);
-				exit;
-				
+			if ($dd[8] == '2') {	
 				/* gera numero automatico do caae */
 				$this -> niec_save('', 1, 1);
-				echo '1.';
+				echo '<HR>1.';
 				/* recupera numero do caae */
 				$caae = $this->caae;
-				echo '2.';
+				echo '<HR>2.';
 				$this -> cep_historic_append("016", "manuscript_isent");
-				echo '3.';
+				echo '<HR>3.';
 				/* Salva decision */
 				$this->cep_salva_decision($caae, '-1', 'NOA');
-				echo '4.';
+				echo '<HR>4.';
 				$this -> cep_status_alter("D");
 				redirecina(page());
 			}
