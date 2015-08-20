@@ -1014,7 +1014,7 @@ class cep {
 				$this->cep_salva_decision($caae, '-1', 'NOA');
 				
 				/* Altera Status do protocolo */
-				//$this -> cep_status_alter("E");
+				//$this -> cep_status_alter("D");
 				redirecina(page());
 			}
 		}
