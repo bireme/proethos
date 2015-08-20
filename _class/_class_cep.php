@@ -976,11 +976,19 @@ class cep {
 			}
 			if ($dd[8] == '2') {
 				print_r($this);
-				echo '<BR>'.msg('manuscript_isent-01');
+				exit;
+				
+				/* gera numero automatico do caae */
 				$this -> niec_save('', 1, 1);
-				echo '<BR>'.msg('manuscript_isent-02');
+				
+				/* recupera numero do caae */
+				$caae = $this->caae;
+				
 				$this -> cep_historic_append("016", "manuscript_isent");
-				echo '<BR>'.msg('manuscript_isent-03');
+				
+				/* Salva decision */
+				$this->cep_salva_decision($caae, '-1', 'NOA');
+				
 				$this -> cep_status_alter("D");
 				redirecina(page());
 			}
@@ -1051,11 +1059,13 @@ class cep {
 		if (!($line = db_read($rlt))) {
 			$sql = "update cep_protocolos set cep_caae = '" . trim($caae) . "' where id_cep = " . $this -> id_cep;
 			$rlt = db_query($sql);
+			$this->caae = $trim($caae);
 			return (1);
 		} else {
 			if ($line['id_cep'] == $this -> id_cep) {
 				$sql = "update cep_protocolos set cep_caae = '" . trim($caae) . "' where id_cep = " . $this -> id_cep;
 				$rlt = db_query($sql);
+				$this->caae = $trim($caae);
 				return (1);
 			} else {
 				echo '<img src="img/icone_error.png" width=64 align="left">';
