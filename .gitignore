@@ -7,9 +7,7 @@ messages/msg_es.php
 messages/msg_fr.php
 messages/msg_pt_BR.php
 messages/msg_en_US.php
-messages/msg_en_US.php
-messages/msg_en_US.php
-messages/msg_en_US.php
-messages/msg_en_US.php
-messages/msg_en_US.php
-messages/msg_en_US.php
+
+document/*
+TODO
+.htaccess
