@@ -2745,5 +2745,154 @@ class cep {
 				)";
 	}
 
+    function create_xml_snapshot($protocol) {
+
+        //Instanciation of inherited class
+        $sql = "select * from cep_submit_documento ";
+        $sql .= "where doc_protocolo = '".$dd[0]."' ";
+        $rlt = db_query($sql);
+        if ($line = db_read($rlt))
+            {
+            $prj_tp = trim($line['doc_tipo']);
+            $titulo = utf8_decode(trim($line['doc_1_titulo']));
+            $titp = utf8_decode(trim($line['doc_1_titulo_public']));
+            $data_submit = stodbr($line['doc_dt_atualizado']);
+            $subt   = '';
+            }
+        require("_ged_config.php");
+        $ged->protocol = $dd[0];
+        $sql = "select * from cep_submit_manuscrito_field ";
+        $sql .= " left join cep_submit_documento_valor on sub_codigo = spc_codigo ";
+        $sql .= " where spc_projeto = '".$dd[0]."'";
+        $sql .= " and sub_ativo = 1 ";
+        $sql .= " order by sub_pag, sub_pos, sub_ordem ";
+        $rlt = db_query($sql);
+
+        $lines = array();
+
+        $output = array();
+        while ($line = db_read($rlt)) {
+
+            $output['protocol_id'] = $protocol;
+            $output['title'] = $titulo;
+            $output['type'] = $prj_tp;
+            $output['titp'] = $titp;
+            $output['submit_date'] = $data_submit;
+
+            // TEAM
+            $output['team'] = array();
+
+            // verifica o total
+            $sql = "select count(*) as total from cep_submit_team ";
+            $sql .= " where ct_protocol = '".$protocol."'  ";
+            $xrlt = db_query($sql);     
+            $xline = db_read($xrlt);
+
+            // se o total for maior que zero, continua
+            if ($xline['total'] > 0) {           
+
+                $sql = "select * from cep_submit_team
+                        inner join usuario on ct_author = us_codigo
+                        left join ajax_pais on us_country = pais_codigo
+                        where ct_protocol = '$protocol'
+                        order by ct_type
+                ";      
+                $xrlt = db_query($sql);
+
+                while ($xline = db_read($xrlt)) {
+
+                    $current = array();
+                    $current['name'] = $xline['us_nome'];
+                    $current['email'] = $xline['us_email'];
+                    $current['country'] = $xline['pais_nome'];
+                    $current['contact'] = $xline['ct_type'] == 'C' ? "*" : "";
+
+                    $output['team'][] = $current;
+                }
+            }
+
+            // FILES
+
+            // pega os arquivos
+            $sql = "select * from ".$ged->tabela;
+            $sql .= " left join ".$ged->tabela."_tipo on doc_tipo = doct_codigo ";
+            $sql .= " where doc_dd0 = '".$ged->protocol."' and doc_ativo=1 ";
+            $xrlt = db_query($sql);
+            $tot = 0;
+
+            $output['files'] = array();
+            
+            while ($xline = db_read($xrlt)) {
+
+                $current = array();
+                $current['nam'] = $xline['doct_nome'];
+                $current['filename'] = $xline['doc_filename'];
+                $current['size'] = $xline['doc_size'];
+                $current['date'] = $xline['doc_data'];
+                $current['hour'] = $xline['doc_hora'];
+
+                $output['files'][] = $current;
+
+            }
+
+            if(!empty($line['spc_content']) and (!empty($line['sub_descricao']) or !empty($line['sub_id']))) {
+
+                $key = empty($line['sub_descricao']) ? $line['sub_id'] : $line['sub_descricao'];
+
+                if(!isset($output[slugify($key)])) {
+                    $output[slugify($key)] = $line['spc_content'];
+                }
+            }
+        }
+
+        // print "<pre>";
+        // var_dump($output);
+
+        // criando o xml
+        $dom = new domDocument; 
+        $dom->formatOutput = true; 
+
+        $root = $dom->appendChild($dom->createElement( "document" ));
+        $sxe = simplexml_import_dom( $dom );
+
+        foreach($output as $key => $value) {
+
+            if(!is_array($value)) {
+                $sxe->addChild($key, $value); 
+
+            } else {
+
+                $child = $sxe->addChild($key); 
+                foreach($value as $item) {
+                    foreach($item as $k => $v) {
+                        $child->addChild($k, $v); 
+                    }
+                }
+            }
+        }
+
+        $xml_content = $sxe->asXML(); 
+
+        // cria o path caso nao exista
+        $filepath = __DIR__ . '/../document/xml';
+        if(!file_exists($filepath)) {
+            mkdir($filepath, 0775);
+        }
+
+        $sql = "SELECT count(*) as total FROM cep_submit_xml WHERE protocol = '$protocol'";
+        $xrlt = db_query($sql);     
+        $xline = db_read($xrlt);
+
+        // calcula o total
+        $total = (int)$xline['total'];
+        $total += 1;
+
+        $filename = $filepath . "/$protocol-$total.xml";
+        $write = file_put_contents($filename, $xml_content);
+
+        $sql = "insert into cep_submit_xml (protocol, filepath) VALUES ('$protocol', '$filename')";
+        $rlt = db_query($sql);
+    }
+
 }
 ?>

@@ -43,6 +43,7 @@ echo '<BR><BR>';
 	
 $proj->le($dd[0]);
 /* Step 1 */
+
 $ok = $cep->cadastra_protocolo($protocolo,'[]'.$proj->doc_1_titulo,$autor);
 if ($ok == 1)
 	{
@@ -51,6 +52,9 @@ if ($ok == 1)
 	$cep->protocolo = $protocolo_cep;
 	$cep->protocolo_submission = $protocolo;
 	$cep->versao = 1;
+
+    // criando xml de snapshot
+    $cep->create_xml_snapshot($protocolo);
 
 	/* Step 3 */
 	$cep->limpa_projetos_anteriores();
