@@ -1,4 +1,6 @@
 <?php
+
+print '<pre>';
 $email_debug = 1;
 $email_auth = 'AUTH';
 $body = '<h1>Congratulations!</h1>This email was sent by Method #2';

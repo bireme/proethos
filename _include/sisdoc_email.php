@@ -146,11 +146,15 @@ class email {
 
 	function method_2_mail() {
 
+		$from = $this -> email;
+		if(!strpos('@', $from) > 0) {
+			$from .= "@paho.org";
+		}
+
 		/* Recupera dados */
 		$smtp = $this -> email_smtp;
 		$user = $this -> email_user;
 		$pass = $this -> email_pass;
-		$from = $this -> email;
 		$form_name = $this -> email_name;
 		$replay = $this -> email_replay;
 		$email_to = $this -> to;
@@ -160,8 +164,7 @@ class email {
 		/* Iniciar objeto */
 		$mail = new PHPMailer;
 		$mail -> isSMTP();
-		$mail -> SMTPDebug = 0;
-		$mail -> Debugoutput = 'html';
+		$mail -> SMTPDebug = $this -> debug;
 		$mail -> Host = $smtp;
 		$mail -> Port = 25;
 		$mail -> SMTPAuth = true;
