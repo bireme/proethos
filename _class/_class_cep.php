@@ -2747,9 +2747,13 @@ class cep {
 
     function create_xml_snapshot($protocol) {
 
+    	global $dd;
+
         //Instanciation of inherited class
         $sql = "select * from cep_submit_documento ";
         $sql .= "where doc_protocolo = '".$dd[0]."' ";
+
+
         $rlt = db_query($sql);
         if ($line = db_read($rlt))
             {
@@ -2763,7 +2767,7 @@ class cep {
         $ged->protocol = $dd[0];
         $sql = "select * from cep_submit_manuscrito_field ";
         $sql .= " left join cep_submit_documento_valor on sub_codigo = spc_codigo ";
-        $sql .= " where spc_projeto = '".$dd[0]."'";
+        $sql .= " where CAST( spc_projeto AS UNSIGNED ) = '".$dd[0]."'";
         $sql .= " and sub_ativo = 1 ";
         $sql .= " order by sub_pag, sub_pos, sub_ordem ";
         $rlt = db_query($sql);
@@ -2847,6 +2851,7 @@ class cep {
 
         // print "<pre>";
         // var_dump($output);
+        // die;
 
         // criando o xml
         $dom = new domDocument; 
@@ -2873,26 +2878,49 @@ class cep {
 
         $xml_content = $sxe->asXML(); 
 
-        // cria o path caso nao exista
-        $filepath = __DIR__ . '/../document/xml';
-        if(!file_exists($filepath)) {
-            mkdir($filepath, 0775);
-        }
+        global $dd, $include, $ged;
+		
+		$destino = 'document/' . date("Y") . '/' . date("m") . '/';
+		
+		$fdestino = "XML-" . $this -> protocolo_submission . '-' . substr(md5($this -> protocolo_submission . date("Ymdhis")), 0, 5) . '-v' . $this -> versao . '.xml';
+		$destino = $destino . $fdestino;
+		$dd[0] = $this -> protocolo_submission;
 
-        $sql = "SELECT count(*) as total FROM cep_submit_xml WHERE protocol = '$protocol'";
-        $xrlt = db_query($sql);     
-        $xline = db_read($xrlt);
+        $write = file_put_contents($destino, $xml_content);
+		
+		$ged = new ged;
+		$ged -> tabela = 'cep_ged_documento';
+		$ged -> protocol = $this -> protocolo_submission;
+		$ged -> file_type = 'XML';
+		$ged -> file_name = $fdestino;
+		$ged -> file_data = date("Ymd");
+		$ged -> file_time = date("H:i");
+		$ged -> file_saved = $destino;
+		$ged -> file_size = filesize($destino);
+		$ged -> save();
+        
+		return ($destino);
 
-        // calcula o total
-        $total = (int)$xline['total'];
-        $total += 1;
+        // // cria o path caso nao exista
+        // $filepath = __DIR__ . '/../document/xml';
+        // if(!file_exists($filepath)) {
+        //     mkdir($filepath, 0775);
+        // }
 
-        $filename = $filepath . "/$protocol-$total.xml";
-        $write = file_put_contents($filename, $xml_content);
+        // $sql = "SELECT count(*) as total FROM cep_submit_xml WHERE protocol = '$protocol'";
+        // $xrlt = db_query($sql);     
+        // $xline = db_read($xrlt);
 
-        $sql = "insert into cep_submit_xml (protocol, filepath) VALUES ('$protocol', '$filename')";
-        $rlt = db_query($sql);
+        // // calcula o total
+        // $total = (int)$xline['total'];
+        // $total += 1;
+
+        // $filename = $filepath . "/$protocol-$total.xml";
+
+        // $sql = "insert into cep_submit_xml (protocol, filepath) VALUES ('$protocol', '$filename')";
+        // $rlt = db_query($sql);
     }
 
 }
 ?>
+
