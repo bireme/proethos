@@ -2749,6 +2749,9 @@ class cep {
 
     	global $dd;
 
+    	$protocol = $this -> protocolo_submission;
+    	$dd[0] = $this -> protocolo_submission;;
+
         //Instanciation of inherited class
         $sql = "select * from cep_submit_documento ";
         $sql .= "where doc_protocolo = '".$dd[0]."' ";

@@ -53,11 +53,11 @@ if ($ok == 1)
 	$cep->protocolo_submission = $protocolo;
 	$cep->versao = 1;
 
-    // criando xml de snapshot
-    $cep->create_xml_snapshot($protocolo);
-
 	/* Step 3 */
 	$cep->limpa_projetos_anteriores();
+	
+    // criando xml de snapshot
+    $cep->create_xml_snapshot($protocolo);
 
 	/* Step 4 */
 	$cep->create_pdf_submit_file();	

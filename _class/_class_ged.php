@@ -271,6 +271,7 @@ class ged
 				$sql .= " order by doc_data desc, doc_hora desc, id_doc desc ";
 				$rlt = db_query($sql);
 				$tot = 0;
+				print $sql;
 				while ($line = db_read($rlt))
 					{
 						$ativo = $line['doc_ativo'];
