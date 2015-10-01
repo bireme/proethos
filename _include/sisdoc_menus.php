@@ -1,4 +1,19 @@
 <?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+
 /**
 * @author Rene F. Gabriel Junior <rene@sisdoc.com.br>
 * @copyright © Pan American Health Organization, 2013. All rights reserved.
@@ -42,6 +57,21 @@ if (strlen($include) == 0) { exit; }
 .menu_li a:hover { text-decoration: underline; color: Navy;  }
 </style>
 <?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+
 
 function menus($menu,$tipo)
 	{
@@ -62,15 +92,60 @@ if ((isset($dd[1])) and (strlen($dd[1]) > 0))
 	if ($tipo == '1')
 		{
 			?>
-			<TABLE width="<?php echo $tab_max;?>" align="center" border="0">
+			<TABLE width="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $tab_max;?>" align="center" border="0">
 			<TR><TD colspan="4">
 				<FONT class="lt3">
 				</FONT><FORM method="post" action="">
 				</TD></TR>
 			</TABLE>
-			<TABLE width="<?php echo $tab_max;?>" align="center" border="0">
+			<TABLE width="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $tab_max;?>" align="center" border="0">
 			<TR>
 			<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+
 				$xcol=0;
 				$seto = "X";
 				for ($x=0;$x <= count($menu); $x++)
@@ -101,6 +176,21 @@ if ((isset($dd[1])) and (strlen($dd[1]) > 0))
 			?>
 			</TABLE></FORM>		
 			<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+
 		}
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 	/////////////////////////////////// Tipo 2
