@@ -115,12 +115,17 @@ for root, dirs, files in os.walk(rootpath):
 			if not changed:
 				content = "<?php\n%s\n?>\n\n%s" % (newdisclaimer, content)
 		
-
-		if extension is '.css':
+		elif extension is '.css':
 
 			newdisclaimer = "/*\n%s\n*/\n" % disclaimer_content
 			content = "%s\n\n%s" % (newdisclaimer, content)
 
+		elif extension is '.js':
+			continue
+
+		elif extension is '.py':
+			continue
+		
 		if len(content.split("\n")) > 25:
 			for i in range(25):
 				print content.split("\n")[i].strip()
@@ -130,13 +135,13 @@ for root, dirs, files in os.walk(rootpath):
 
 
 		# raw_input()
-		time.sleep(1)
+		# time.sleep(1)
 
-		# try:
-		# 	with open(file, 'w') as output:
-		# 		output.write(content)
-		# except IOError:
-		# 	pass
+		try:
+			with open(file, 'w') as output:
+				output.write(content)
+		except IOError:
+			pass
 
 os.system("clear")
 print "Total: %s" % total
