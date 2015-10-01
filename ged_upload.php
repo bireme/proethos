@@ -51,7 +51,7 @@ body
 	}
 </style>
 
-<?
+<?php
 // This file is part of the ProEthos Software. 
 // 
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
@@ -66,7 +66,6 @@ body
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-php
 	/* Mensagens */
 	$tabela = 'ged_upload';
 	$link_msg = 'messages/msg_'.$tabela.'.php';
