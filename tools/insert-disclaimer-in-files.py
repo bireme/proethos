@@ -6,6 +6,7 @@ import sys
 import time
 
 available_extensions = ['.py', '.php', '.css', '.js']
+available_extensions = ['.py', '.php', ]
 
 paths_exception = ['/libs/email/']
 
@@ -118,11 +119,12 @@ for root, dirs, files in os.walk(rootpath):
 				print content.split("\n")[i].strip()
 
 		# raw_input()
-		time.sleep(1)
+		# time.sleep(1)
 
-		with open(file, 'w') as output:
-			output.write(content)
+		# with open(file, 'w') as output:
+		# 	output.write(content)
 
+os.system("clear")
 print "Total: %s" % total
 print "Exists: %s" % exists
 print "Error: %s" % error
