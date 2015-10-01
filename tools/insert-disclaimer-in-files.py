@@ -8,7 +8,7 @@ import time
 available_extensions = ['.py', '.php', '.css', '.js']
 # available_extensions = ['.py', '.php', ]
 
-paths_exception = ['/libs/email/']
+paths_exception = ['/libs/email/', '/jquery', 'calender_']
 
 disclaimer_content = """This file is part of the ProEthos Software. 
 
@@ -121,7 +121,13 @@ for root, dirs, files in os.walk(rootpath):
 			content = "%s\n\n%s" % (newdisclaimer, content)
 
 		elif extension is '.js':
-			continue
+
+			# adiciona como comentário
+			newdisclaimer = ""
+			for line in disclaimer_content.split("\n"):
+				newdisclaimer += "// %s\n" % line
+			
+			content = "%s\n\n%s" % (newdisclaimer, content)
 
 		elif extension is '.py':
 			continue
