@@ -1,4 +1,19 @@
 <?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+
  /**
   * Menssages
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
@@ -73,13 +88,133 @@ require($include.'sisdoc_debug.php');
 	$idm = $cl->idioma();
 	
 	?>
-	<form method="post" action="<?php echo page();?>">
-	<input type="hidden" name="dd1" value="<?php echo $dd[1];?>">
-	<input type="hidden" name="dd2" value="<?php echo $dd[2];?>">
-	<input type="hidden" name="dd3" value="<?php echo $dd[3];?>">
-	<input type="hidden" name="dd4" value="<?php echo $dd[4];?>">
-	<input type="submit" name="acao" value="<?php echo msg('save');?>">
-	<TABLE width="<?php echo $tab_max;?>" align="center" bgcolor="<?php echo $tab_color;?>"><TR><TD><?
+	<form method="post" action="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo page();?>">
+	<input type="hidden" name="dd1" value="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $dd[1];?>">
+	<input type="hidden" name="dd2" value="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $dd[2];?>">
+	<input type="hidden" name="dd3" value="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $dd[3];?>">
+	<input type="hidden" name="dd4" value="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $dd[4];?>">
+	<input type="submit" name="acao" value="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo msg('save');?>">
+	<TABLE width="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $tab_max;?>" align="center" bgcolor="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo $tab_color;?>"><TR><TD><?
 	for ($r=0;$r < count($cps);$r++)
 	{
 		$idi = trim($cps[$r][1]);
@@ -96,7 +231,22 @@ require($include.'sisdoc_debug.php');
 	}
 	$tit = msg("titulo");
 	?></TD></TR></TABLE>
-	<input type="submit" name="acao" value="<?php echo msg('save');?>">
+	<input type="submit" name="acao" value="<?php
+// This file is part of the ProEthos Software. 
+// 
+// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
+// ProEthos under the terms of the ProEthos License as published by PAHO, which
+// restricts commercial use of the Software. 
+// 
+// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the ProEthos License for more details. 
+// 
+// You should have received a copy of the ProEthos License along with the ProEthos
+// Software. If not, see
+// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
+
+ echo msg('save');?>">
 	</form><?	
 	
 	/** Caso o registro seja validado */

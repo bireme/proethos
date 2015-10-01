@@ -6,7 +6,7 @@ import sys
 import time
 
 available_extensions = ['.py', '.php', '.css', '.js']
-available_extensions = ['.py', '.php', ]
+# available_extensions = ['.py', '.php', ]
 
 paths_exception = ['/libs/email/']
 
@@ -39,9 +39,14 @@ for root, dirs, files in os.walk(rootpath):
 
 		file = os.path.join(root, file)
 
+		is_exception = False
 		for path in paths_exception:
-			if path in file:
-				continue
+			if path in unicode(file):
+				is_exception = True
+				break
+
+		if is_exception:
+			continue
 		
 		is_allowed = False
 		extension = None
@@ -60,7 +65,6 @@ for root, dirs, files in os.walk(rootpath):
 			content = handle.read().strip()
 
 		if disclaimer_content.split("\n")[0].strip() in content:
-			print disclaimer_content.split("\n")[0].strip()
 			exists += 1
 			continue
 
@@ -111,6 +115,12 @@ for root, dirs, files in os.walk(rootpath):
 			if not changed:
 				content = "<?php\n%s\n?>\n\n%s" % (newdisclaimer, content)
 		
+
+		if extension is '.css':
+
+			newdisclaimer = "/*\n%s\n*/\n" % disclaimer_content
+			content = "%s\n\n%s" % (newdisclaimer, content)
+
 		if len(content.split("\n")) > 25:
 			for i in range(25):
 				print content.split("\n")[i].strip()
@@ -118,11 +128,15 @@ for root, dirs, files in os.walk(rootpath):
 			for i in range(len(content.split("\n"))):
 				print content.split("\n")[i].strip()
 
-		# raw_input()
-		# time.sleep(1)
 
-		# with open(file, 'w') as output:
-		# 	output.write(content)
+		# raw_input()
+		time.sleep(1)
+
+		# try:
+		# 	with open(file, 'w') as output:
+		# 		output.write(content)
+		# except IOError:
+		# 	pass
 
 os.system("clear")
 print "Total: %s" % total
