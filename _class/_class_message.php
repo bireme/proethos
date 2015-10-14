@@ -1,18 +1,17 @@
 <?php
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
 
 /**
  * Mensagens
@@ -229,6 +228,13 @@ class message {
 	 */
 	function language_page_create() {
 		$cr = chr(13) . chr(10);
+
+		$domtree = new DOMDocument('1.0', 'UTF-8');
+		/* create the root element of the xml tree */
+		$xmlRoot = $domtree -> createElement("xml");
+		/* append it to the document created */
+		$xmlRoot = $domtree -> appendChild($xmlRoot);
+
 		$pags = array();
 		$sql = "select msg_language from " . $this -> tabela . " group by msg_language";
 		$rlt = db_query($sql);
@@ -272,9 +278,26 @@ class message {
 			echo '<tr><td>';
 			echo 'Language: ' . $pags[$ro] . '<BR>';
 
+			/* Create XML */
+
 			while ($xline = db_read($rlt)) {
 				$xlan = trim($xline['msg_language']);
 				$xfile = trim($xline['msg_field']);
+				$xpage = trim($xline['msg_content']);
+				$xfile = troca($xfile,'&','[e]');
+				$xpage = troca($xpage,'&','[e]');
+				if (strlen($xfile) > 0) {
+					if ($xfile != $xpage)
+						{
+						$currentReg = $domtree -> createElement("reg");
+						$xmlRoot -> appendChild($currentReg);
+						$currentReg -> appendChild($domtree -> createElement('msg_language', $xlan));
+						$currentReg -> appendChild($domtree -> createElement('msg_field', $xfile));
+						$currentReg -> appendChild($domtree -> createElement('msg_content', $xpage));
+						}
+					
+				}
+
 				if ($xlan != $idio) {
 					if ($it > 0) { $sx .= $cr . ') ,';
 					}
@@ -297,6 +320,7 @@ class message {
 					$sx .= " array(" . $cr;
 					$it = 0;
 					$idio = $xlan;
+
 				}
 
 				if ($it > 0) { $sx .= ',' . $cr;
@@ -344,8 +368,10 @@ class message {
 			fwrite($fld, '?>');
 			fclose($fld);
 		}
-		$arq = page();
 
+		/* XML */
+		$arq = 'messages/msg.xml';
+		$domtree -> save($arq);
 	}
 
 	/** Gerar codigo das mensagens */
@@ -415,19 +441,18 @@ function msg($s, $ed = 0) {
 		/* salva */
 
 		/* Campos para editar mensagens */
-		if ($ed == 0)
-		{
-		$img = '<A href="javascript:newxy2(';
-		$img .= "'message_ed_pop.php?dd2=" . page() . "&dd1=" . $s;
-		$img .= "',600,600);";
-		$img .= '">';
-		$img .= '<img src=img/icone_alert.png width=10 border=0>';
-		$img .= '</A>';
-		if ($edit_mode != 1) { $img = '';
-		}
-		$link = $img;
+		if ($ed == 0) {
+			$img = '<A href="javascript:newxy2(';
+			$img .= "'message_ed_pop.php?dd2=" . page() . "&dd1=" . $s;
+			$img .= "',600,600);";
+			$img .= '">';
+			$img .= '<img src=img/icone_alert.png width=10 border=0>';
+			$img .= '</A>';
+			if ($edit_mode != 1) { $img = '';
+			}
+			$link = $img;
 		} else {
-		$link = '';
+			$link = '';
 		}
 		return ($messa[$LANG][$s] . $link);
 	} else {
