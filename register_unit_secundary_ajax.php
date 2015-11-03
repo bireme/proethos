@@ -1,19 +1,4 @@
 <?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-
  /**
   * Register Unit
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
@@ -65,164 +50,14 @@ $linka = 'register_unit_ajax.php?dd1='.$protocol.'&dd2=add&dd3='.$autor.'&dd4='.
 $linkr = 'register_unit_ajax.php?dd1='.$protocol.'&dd2=del&dd3='.$autor.'&dd4='.$campo.'&dd6='.$ref.'&dd90='.checkpost($protocol.$campo);
 ?>
 <table width="100%" class="lt1" cellspacing="0" cellpadding="3" border=0>
-	<TR><TD><?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=msg('reg_unit');?></TD><TD><select name="<?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=$reg_id;?>a" id="<?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=$reg_id;?>a"><?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=$op;?></select></TD></TR>
-	<TR><TD><?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=msg('reg_number');?></TD><td><input type="text" size=20 maxlength="20" id="<?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=$reg_id;?>b">
-		<input type="button" name="<?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=$reg_id;?>z" id="<?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=$reg_id;?>z" value="<?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-=msg('reg_botao');?>" />
+	<TR><TD><?=msg('reg_unit');?></TD><TD><select name="<?=$reg_id;?>a" id="<?=$reg_id;?>a"><?=$op;?></select></TD></TR>
+	<TR><TD><?=msg('reg_number');?></TD><td><input type="text" size=20 maxlength="20" id="<?=$reg_id;?>b">
+		<input type="button" name="<?=$reg_id;?>z" id="<?=$reg_id;?>z" value="<?=msg('reg_botao');?>" />
 	</td></TR>
 </table>
 <BR><BR>
 
 <?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-
 /**
  * Listar dados cadastrados de registros
  */
@@ -245,21 +80,6 @@ $linkr = 'register_unit_ajax.php?dd1='.$protocol.'&dd2=del&dd3='.$autor.'&dd4='.
 	?>
 	</table>
 <?
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-
 echo '</field>';
 }
 ?>

@@ -1,19 +1,4 @@
 <?php
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
-
  /**
   * Sumissão de protocolo de pesquisa
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
@@ -49,43 +34,13 @@ echo $scripts;
 
 <script type="text/javascript">
 var $tela = $.ajax({ url: "submit_ajax.php", type: "POST", 
-			data: { dd11: "<?=$protocolo;?>", dd10: "budget" ,dd12: "<?php
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
- echo $bud->protocolo; ?>" }
+			data: { dd11: "<?=$protocolo;?>", dd10: "budget" ,dd12: "<?php echo $bud->protocolo; ?>" }
 			})
 			.fail(function() { alert("error"); })
  			.success(function(data) { $("#budget").html(data); });
 			;
 var $tela = $.ajax({ url: "submit_ajax.php", type: "POST", 
-			data: { dd11: "<?=$protocolo;?>", dd10: "crono" ,dd12: "<?php
-// This file is part of the ProEthos Software. 
-// 
-// Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
-// ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
-// ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
-// You should have received a copy of the ProEthos License along with the ProEthos
-// Software. If not, see
-// https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
- echo $bud->protocolo; ?>" }
+			data: { dd11: "<?=$protocolo;?>", dd10: "crono" ,dd12: "<?php echo $bud->protocolo; ?>" }
 			})
 			.fail(function() { alert("error"); })
  			.success(function(data) { $("#crono").html(data); });
