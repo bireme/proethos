@@ -103,14 +103,14 @@ for root, dirs, files in os.walk(rootpath):
 			if not tag in line:
 				tag = "<?"
 
-			if tag in line:
+			# if tag in line:
 		
-				# faz o replace da tag
-				newline = line.replace(tag, "%s\n%s\n" % (tag, newdisclaimer))
+			# 	# faz o replace da tag
+			# 	newline = line.replace(tag, "%s\n%s\n" % (tag, newdisclaimer))
 
-				# faz o replace no content
-				content = content.replace(line, newline)
-				changed = True
+			# 	# faz o replace no content
+			# 	content = content.replace(line, newline)
+			# 	changed = True
 
 			if not changed:
 				content = "<?php\n%s\n?>\n\n%s" % (newdisclaimer, content)
