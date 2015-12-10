@@ -24,7 +24,7 @@
  * @package ProEthos
  * @subpackage Secretary
  */
-if (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> valid('#SCR'))) {
+if (($perfil -> valid('#ADM')) or ($perfil -> valid('#COO')) or ($perfil -> valid('#MAS')) or ($perfil -> valid('#SCR'))) {
 	$menu = array();
 	array_push($menu, array(msg('admin_protocols'), msg('protocols_new'), 'admin_protocols.php'));
 

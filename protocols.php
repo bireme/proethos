@@ -34,7 +34,7 @@ require ($include . 'sisdoc_data.php');
 require ("_class/_class_cep.php");
 $cep = new cep;
 
-$ok1 = (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> valid('#MEM')) or ($perfil -> valid('#SCR')));
+$ok1 = (($perfil -> valid('#ADM')) or ($perfil -> valid('#MAS')) or ($perfil -> valid('#MEM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
 $ok2 = (($perfil -> valid('#ADC')) and ($dd[1] == 'Z'));
 
 if ($ok1 or $ok2) {

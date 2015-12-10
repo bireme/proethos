@@ -30,6 +30,7 @@ $active_page = 'admin';
 require ("cab.php");
 require ($include . 'sisdoc_menus.php');
 
+/*********************** Menu do Comite *******************/
 require ("committee_admin.php");
 
 /* Admin Common */
