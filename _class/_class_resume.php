@@ -209,7 +209,7 @@ class resume
 				$sx .=  '<Table width="100%" class="table_resume" border=1 >';
 				/* Protocolo em Submissao */
 				
-				$size = 15;
+				$size = 13;
 				$sx .= '<TR  class="table_resume_th" align="center"> ';
 				if ($perfil->valid("#SCR#COO#ADM"))
 					{ $sx .= '<TH width="'.$size.'%" align="center">'.msg('subm_to_accept'); }
@@ -224,7 +224,6 @@ class resume
 					{ $sx .= '<TH width="'.$size.'%" align="center">'.msg('pesq_revisao'); }
 				$sx .= '<TH width="'.$size.'%" align="center">'.msg('pesq_assignada');
 				$sx .= '<TH width="'.$size.'%" align="center">'.msg('pesq_reunion');
-				$sx .= '<TH width="'.$size.'%" align="center">'.msg('pesq_filed');
 				if (($tp[7] > 0) and ($perfil->valid("#SCR#COO#ADM")))
 					{ $sx .= '<TD width="'.$size.'%" align="center"><B>'.msg('research_ongoing'); }
 				
@@ -252,7 +251,6 @@ class resume
 					
 				$sx .= '<TD align="center">'.$link[3].round($tp[3]).'</A>';
 				$sx .= '<TD align="center">'.$link[4].round($tp[4]).'</A>';
-				$sx .= '<TD align="center">'.$link[5].round($tp[5]).'</A>';
 				/* Finalizados */
 				if (($tp[7] > 0) and ($perfil->valid("#SCR#COO#ADM")))
 					{ $sx .= '<TD  align="center">'.$link[7].round($tp[7]).'</A>'; }
