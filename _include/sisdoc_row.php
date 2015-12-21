@@ -205,11 +205,11 @@ if (strlen($http_redirect) > 0) {
 	/* Se a busca estiver habilitada mostra cabe�alho */
 	if ($busca == true) {
 		/* Labels - Idiomas */
-		$bt_filter = 'Filtrar';
-		$bt_filter_clear = 'Limpar filtro';
-		$bt_new = 'Novo';
-		$bt_search = 'Filtrar';
-		$cap_show = 'Mostrar';
+		$bt_filter = msg('filter');
+		$bt_filter_clear = msg('filter_clean');
+		$bt_new = msg('new_record');
+		$bt_search = msg('search');
+		$cap_show = msg('show');
 
 		echo '<TABLE width="' . $tab_max . '" cellpadding="0" cellspacing="0" class="lt0" border="0" class="row_table">';
 		echo '<TR valign="top" >';
@@ -232,7 +232,7 @@ if (strlen($http_redirect) > 0) {
 		echo '<input type="hidden" name="dd50" value="filtrar">';
 
 		/* Pesquisar em */
-		echo '<TD width="5" class="border_abnt"><NOBR>&nbsp;em&nbsp;</TD>';
+		echo '<TD width="5" class="border_abnt"><NOBR>&nbsp;'.msg('filter_in').'&nbsp;</TD>';
 		echo '<TD width="5" class="border_abnt"><select name="dd2" size="1" class="IMG">';
 		echo $cp_ed;
 		echo '</select>';
