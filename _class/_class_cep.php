@@ -2257,16 +2257,21 @@ class cep {
 
 		/* busca o numero do caae */
 		$caae = trim($this -> line['cep_caae_original']);
-
+		
 		/* recupera o caae original */
 		if (strlen($caae) == 0) { $caae = $this -> line['cep_caae'];
 		}
 
+		if (strlen($caae) == 0) { $caae = $this->line['cep_codigo']; 
+			$wh = " cep_codigo = '$caae' ";
+		} else {
+			$wh = " cep_caae = '$caae' ";
+		}
 		$sql = "select * from cep_protocolos
 					left join cep_team on ct_protocol = cep_protocol
 					inner join usuario on us_codigo = ct_author
 					left join ajax_pais on us_country = pais_codigo
-				where cep_caae = '$caae' 
+				where $wh 
 				order by ct_type
 			";
 
@@ -2364,7 +2369,6 @@ class cep {
 				$sp .= chr(13) . '</script>';
 			}
 		}
-
 		$sp .= $this -> investigadores($line);
 
 		/* Protocolo de submissão */
