@@ -1,21 +1,18 @@
 <?php
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?
 /**
  * Admin Menu
  * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
@@ -29,8 +26,30 @@ require ("cab.php");
 
 /* Admin Common */
 $ok = (($perfil -> valid('#ADM')) or ($perfil -> valid('#SCR')) or ($perfil -> valid('#COO')));
-if ($ok==0) {
+if ($ok == 0) {
 	redirecina('main.php');
+}
+
+/* Borrar arquivo */
+if (($dd[5] == 'DEL') and ($dd[7] == '1')){
+	if ($dd[6] == 'logo1') {
+		$dest = 'document/proethos_logo_1.jpg';
+		if (file_exists($dest)) {
+			unlink($dest);
+		}
+	}
+	if ($dd[6] == 'logo2') {
+		$dest = 'document/proethos_logo_1.png';
+		if (file_exists($dest)) {
+			unlink($dest);
+		}
+	}
+	if ($dd[6] == 'logo3') {
+		$dest = 'document/proethos_logo_2.png';
+		if (file_exists($dest)) {
+			unlink($dest);
+		}
+	}
 }
 
 /*
@@ -87,6 +106,18 @@ echo '<input type="file" name="userfile" id="file"> <br />';
 echo '<input type="hidden" name="dd1" value="logo1"> <br />';
 echo '<input type="submit" value="' . strip_tags(msg('submit_file')) . '">';
 echo '</form>';
+
+/* Borrar arquivo */
+$dest = 'document/proethos_logo_1.jpg';
+if (file_exists($dest)) {
+	echo '<form action="' . page() . '" method="post">';
+	echo '<input type="hidden" name="dd6" value="logo1"> <br />';
+	echo '<input type="hidden" name="dd5" value="DEL"> <br />';
+	echo '<input type="checkbox" name="dd7" value="1"> '.msg('confirm_del_file').'<br />';	
+	echo '<input type="submit" value="' . strip_tags(msg('borrar_file')) . '">';
+	echo '</form>';
+}
+
 echo $erro1;
 echo '</fieldset>';
 echo '</TD></tr>';
@@ -103,6 +134,18 @@ echo '<input type="file" name="userfile" id="file"> <br />';
 echo '<input type="hidden" name="dd1" value="logo2"> <br />';
 echo '<input type="submit" value="' . strip_tags(msg('submit_file')) . '">';
 echo '</form>';
+
+/* Borrar arquivo */
+$dest = 'document/proethos_logo_1.png';
+if (file_exists($dest)) {
+	echo '<form action="' . page() . '" method="post">';
+	echo '<input type="hidden" name="dd6" value="logo2"> <br />';
+	echo '<input type="hidden" name="dd5" value="DEL"> <br />';
+	echo '<input type="checkbox" name="dd7" value="1"> '.msg('confirm_del_file').'<br />';	
+	echo '<input type="submit" value="' . strip_tags(msg('borrar_file')) . '">';
+	echo '</form>';
+}
+
 echo '</fieldset>';
 echo '</TD></tr>';
 
@@ -117,6 +160,18 @@ echo '<input type="file" name="userfile" id="file"> <br />';
 echo '<input type="hidden" name="dd1" value="logo3"> <br />';
 echo '<input type="submit" value="' . strip_tags(msg('submit_file')) . '">';
 echo '</form>';
+
+/* Borrar arquivo */
+$dest = 'document/proethos_logo_2.png';
+if (file_exists($dest)) {
+	echo '<form action="' . page() . '" method="post">';
+	echo '<input type="hidden" name="dd6" value="logo3"> <br />';
+	echo '<input type="hidden" name="dd5" value="DEL"> <br />';
+	echo '<input type="checkbox" name="dd7" value="1"> '.msg('confirm_del_file').'<br />';
+	echo '<input type="submit" value="' . strip_tags(msg('del_file')) . '">';
+	echo '</form>';
+}
+
 echo '</fieldset>';
 echo '</TD></tr>';
 echo '</TABLE>';
