@@ -46,7 +46,9 @@ require($include.'sisdoc_debug.php');
 	$tabela = $clx->tabela;
 	
 	$label = msg("protocols");
-	$http_edit = troca(page(),'.php','_ed.php'); 
+	$http_edit = troca(page(),'.php','_ed.php');
+	$http_ver = 'protocol_detalhe.php'; 
+
 	$http = page();
 	$editar = True;
 	

@@ -84,6 +84,7 @@ class resume
 					{
 						$total = round($line['total']);
 						$sta = trim($line['doc_status']);
+
 						/* Protocolos devolvidos para correção */
 						if ($sta == '$') { $tp[9] = $tp[9] + $total; }
 						if ($sta == '@') { $tp[0] = $tp[0] + $total; }
@@ -95,7 +96,7 @@ class resume
 						if ($sta == 'P') { $tp[4] = $tp[4] + $total; }
 						if ($sta == 'H') { $tp[2] = $tp[2] + $total; }
 						/* Protocolo Aprovado com recomendacao */
-						if ($sta == 'Z') { $tp[9] = $tp[9] + $total; }
+						//if ($sta == 'Z') { $tp[9] = $tp[9] + $total; }
 						
 					}
 				
@@ -122,7 +123,8 @@ class resume
 				$sx .= '<TH width="'.$sz.'%" align="center">'.msg('prot_rejected');
 				$sx .= '<TH width="'.$sz.'%" align="center">'.msg('prot_aproved');
 				
-				if ($tp[9] > 0) { $link[9] = '<A HREF="research_list.php?dd2='.md5(date("Ymd")).'&dd1=problem" class="table_resume_td">'; }				
+				if ($tp[9] > 0) { $link[9] = '<A HREF="research_list.php?dd2='.md5(date("Ymd")).'&dd1=problem" class="table_resume_td">'; }
+								
 				if ($tp[0] > 0) { $link[0] = '<A HREF="research.php?dd1=@" class="table_resume_td">'; }
 				if ($tp[1] > 0) { $link[1] = '<A HREF="research.php?dd1=A" class="table_resume_td">'; }
 				if ($tp[2] > 0) { $link[2] = '<A HREF="research.php?dd1=B" class="table_resume_td">'; }
