@@ -1806,7 +1806,8 @@ class cep {
 		/* se status @ */
 
 		/* valida se já exist dictamen */
-		$sql = "select * from cep_ged_documento where doc_dd0 = '" . $this -> protocolo . "' and doc_tipo = 'DICTM' and doc_ativo = 1";
+		$sql = "select * from cep_ged_documento 
+				WHERE doc_dd0 = '" . $this -> protocolo . "' and doc_tipo = 'DICTM' and doc_ativo = 1";
 		$rlt = db_query($sql);
 		$exist = 0;
 		$wh = '';

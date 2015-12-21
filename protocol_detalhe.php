@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?
 /**
  * Protocol
  * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
@@ -37,20 +34,19 @@ require ("form_css.php");
 
 require ($include . "sisdoc_email.php");
 require ($include . "sisdoc_data.php");
-
 require ($include . "sisdoc_debug.php");
 //require($include."sisdoc_autor.php");
-
 require ('_class/_class_oms.php');
 require ('_class/_class_position.php');
 require ('_class/_class_ic.php');
-$ic = new ic;
 require ('_class/_class_cep_email.php');
-$comu = new comunication;
-require ("_class/_class_cep.php");
-$cep = new cep;
-
 require ('_class/_class_cep_comment.php');
+require ("_class/_class_cep.php");
+
+$cep = new cep;
+$ic = new ic;
+$comu = new comunication;
+
 
 require ('_ged_config.php');
 $comme = new cep_comment;
@@ -152,6 +148,7 @@ echo $pos -> show($status);
 			echo '<TR class="hd"><TD>' . msg('messages_with_investigator');
 			echo '</table>';
 
+			/***************************************************************************************/
 			echo '<div id="mail">';
 			echo '<fieldset><legend>' . msg('messages_with_investigator') . '</legend>';
 			echo '<table width="100%" cellpadding=0 cellspacing=8 border=0 class="lt1">';
@@ -160,6 +157,9 @@ echo $pos -> show($status);
 			echo '<TD>';
 			echo '<div id="bhc" style="cursor: pointer;">' . $comu -> show_resume() . '</div>';
 			echo '<div id="the_email_show" style="display:none;">';
+			
+			
+			/***************************************************************************************/
 			echo '<table width="100%" bgcolor="#F0F0F0">';
 			echo '<TR valign="top"><TD>';
 			echo '<font class="lt2">' . msg('comunication') . '</font>';
@@ -168,6 +168,8 @@ echo $pos -> show($status);
 			echo $comu -> display();
 			echo '</table>';
 			echo '</div><BR>';
+			
+			/***************************************************************************************/
 			echo $postnew;
 			echo '</table>';
 			echo '</fieldset>';

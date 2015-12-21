@@ -93,8 +93,145 @@ class update_system {
 					echo '<br>'.msg('update').' 005 '.msg('successful');					
 				}			
 		}			
+	function update06()
+		{
+			/***********/
+			$sql = "select * from cep_action 
+							where action_code = '020'
+					";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					echo '<br>'.msg('already update - 006A');
+				} else {
+					$sql = "INSERT cep_action 
+								(action_status, action_descricao, action_caption,
+								action_ativa, action_code, action_color)
+								values
+								('D','upload_draft_opinion','upload_draft_opinion',
+								1,'020','#000000')";	
+					$rlt = db_query($sql);
+					echo '<br>'.msg('update').' 006A '.msg('successful');					
+				}	
+			/***********/				
+			$sql = "select * from cep_action_permission 
+							where actionp_action = '020'
+							and actionp_perfil = '#SCR'
+					";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					echo '<br>'.msg('already update - 006B');
+				} else {
+					$sql = "INSERT cep_action_permission 
+								(actionp_action, actionp_perfil)
+								values
+								('020','#SCR')";	
+					$rlt = db_query($sql);
+					echo '<br>'.msg('update').' 006B '.msg('successful');					
+				}
+			/***********/
+			$sql = "select * from cep_action_permission 
+							where actionp_action = '020'
+							and actionp_perfil = '#ADM'
+					";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					echo '<br>'.msg('already update - 006C');
+				} else {
+					$sql = "INSERT cep_action_permission 
+								(actionp_action, actionp_perfil)
+								values
+								('020','#ADM')";	
+					$rlt = db_query($sql);
+					echo '<br>'.msg('update').' 006C '.msg('successful');					
+				}	
+				
+			/***************/
 			
-	
+			$sql = "select * from cep_ged_documento_tipo 
+							where doct_codigo = 'DICTM'
+					";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					echo '<br>'.msg('already update - 006D');
+				} else {
+					$sql = "INSERT cep_ged_documento_tipo 
+								(doct_codigo, doct_nome,doct_publico,
+								doct_avaliador, doct_autor, doct_restrito,
+								doct_ativo)
+								values
+								('DICTM','Opinión interina',1,
+								0,1,0,
+								1
+								)";	
+					$rlt = db_query($sql);
+					echo '<br>'.msg('update').' 006D '.msg('successful');					
+				}						
+		}	
+	function update07()
+		{
+			/***********/
+			$sql = "select * from cep_action 
+							where action_code = '021'
+							and action_descricao = 'send_to_secretary'
+					";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					echo '<br>'.msg('already update - 007A');
+				} else {
+					/* remove other registers */
+					$sql = "DELETE FROM cep_action where action_code = '021' ";
+					$rlt = db_query($sql);
+					
+					/* inser new register */
+					$sql = "INSERT cep_action 
+								(action_status, action_descricao, action_caption,
+								action_ativa, action_code, action_color)
+								values
+								('D','send_to_secretary','send_to_secretary',
+								1,'021','#000000')";	
+					$rlt = db_query($sql);
+					echo '<br>'.msg('update').' 007A '.msg('successful');					
+				}	
+			/***********/				
+			$sql = "select * from cep_action_permission 
+							where actionp_action = '021'
+							and actionp_perfil = '#SCR'
+					";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					echo '<br>'.msg('already update - 007B');
+				} else {
+					$sql = "INSERT cep_action_permission 
+								(actionp_action, actionp_perfil)
+								values
+								('021','#SCR')";	
+					$rlt = db_query($sql);
+					echo '<br>'.msg('update').' 006B '.msg('successful');					
+				}
+			/***********/
+			$sql = "select * from cep_action_permission 
+							where actionp_action = '021'
+							and actionp_perfil = '#ADM'
+					";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt))
+				{
+					echo '<br>'.msg('already update - 007C');
+				} else {
+					$sql = "INSERT cep_action_permission 
+								(actionp_action, actionp_perfil)
+								values
+								('021','#ADM')";	
+					$rlt = db_query($sql);
+					echo '<br>'.msg('update').' 007C '.msg('successful');					
+				}		
+		}	
 	
 	function lista_arquivos() {
 		/* Update 2015-10-14 */
@@ -103,6 +240,8 @@ class update_system {
 		$this->update03();
 		$this->update04();
 		$this->update05();
+		$this->update06();
+		$this->update07();
 		
 		
 		/* Update 2015-10-15 */

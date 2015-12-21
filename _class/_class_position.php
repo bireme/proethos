@@ -25,6 +25,7 @@ class position
 				if ($status == 'B') { $ini = 2; }
 				if ($status == 'C') { $ini = 3; }
 				if ($status == 'D') { $ini = 4; }
+				if ($status == 'D') { $ini = 5; }
 				if ($status == 'E') { $ini = 5; }
 				if ($status == 'P') { $ini = 6; }
 				if ($status == 'H') { $ini = 1; }
