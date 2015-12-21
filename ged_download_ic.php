@@ -14,30 +14,23 @@
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
 
- /**
-  * Menssages
-  * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)
-  * @copyright © Pan American Health Organization, 2013. All rights reserved.
-  * @access public
-  * @version v.0.13.46
-  * @package Proethos
-  * @subpackage Menssages
- */
- 
-require('cab.php');
-
-$ln = new message;
-
-if (is_dir('messages'))
-	{ }
-else 
-	{ mkdir('messages'); }
-echo $ln->language_page_create();
-echo '<h2>';
-echo msg('message_create_with_success');
-echo '</h2>';
-
-echo $ln->mensagem_email();
-echo '</DIV>';
-echo $hd->foot();
-?>
+    /**
+     * Ged - Download file
+	 * @author Rene Faustino Gabriel Junior <renefgj@gmail.com> (Analista-Desenvolvedor)
+	 * @copyright © Pan American Health Organization, 2013. All rights reserved.
+	 * @access public
+     * @version v0.11.29
+	 * @package index
+	 * @subpackage ged
+    */
+   
+   //require("db.php");
+   $filename = 'messages/ic.xml';
+   if (file_exists($filename))
+   	{
+		header("Content-type: text/xml");
+   		readfile($filename);
+   	} else {
+   		echo 'File not found';
+   	}
+	

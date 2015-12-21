@@ -223,6 +223,46 @@ class message {
 		return (1);
 	}
 
+	/* Exportação das mensagens do sistema
+	 *
+	 */
+	function mensagem_email() {
+		$domtree = new DOMDocument('1.0', 'UTF-8');
+		/* create the root element of the xml tree */
+		$xmlRoot = $domtree -> createElement("xml");
+		/* append it to the document created */
+		$xmlRoot = $domtree -> appendChild($xmlRoot);
+
+		$sql = "select * from ic_noticia ";
+		$rlt = db_query($sql);
+
+		while ($xline = db_read($rlt)) {
+			$v1 = $xline['nw_dt_cadastro'];
+			$v2 = $xline['nw_secao'];
+			$v3 = $xline['nw_titulo'];
+			$v4 = $xline['nw_descricao'];
+			$v5 = $xline['nw_ref'];
+			$v6 = $xline['nw_idioma'];
+			
+			$v4 = troca($v4, '&', '[e]');
+			$v3 = troca($v3, '&', '[e]');
+			if (strlen($v1) > 0) {
+					$currentReg = $domtree -> createElement("ic");
+					$xmlRoot -> appendChild($currentReg);
+					$currentReg -> appendChild($domtree -> createElement('nw_dt_cadastro', $v1));
+					$currentReg -> appendChild($domtree -> createElement('nw_secao', $v2));
+					$currentReg -> appendChild($domtree -> createElement('nw_titulo', $v3));
+					$currentReg -> appendChild($domtree -> createElement('nw_descricao', $v4));
+					$currentReg -> appendChild($domtree -> createElement('nw_ref', $v5));
+					$currentReg -> appendChild($domtree -> createElement('nw_idioma', $v6));
+			}
+		/* XML */
+		$arq = 'messages/ic.xml';
+		$domtree -> save($arq);			
+
+		}
+	}
+
 	/**
 	 * Exportacao - criar arquivo com mensagens das paginas
 	 */
@@ -284,18 +324,17 @@ class message {
 				$xlan = trim($xline['msg_language']);
 				$xfile = trim($xline['msg_field']);
 				$xpage = trim($xline['msg_content']);
-				$xfile = troca($xfile,'&','[e]');
-				$xpage = troca($xpage,'&','[e]');
+				$xfile = troca($xfile, '&', '[e]');
+				$xpage = troca($xpage, '&', '[e]');
 				if (strlen($xfile) > 0) {
-					if ($xfile != $xpage)
-						{
+					if ($xfile != $xpage) {
 						$currentReg = $domtree -> createElement("reg");
 						$xmlRoot -> appendChild($currentReg);
 						$currentReg -> appendChild($domtree -> createElement('msg_language', $xlan));
 						$currentReg -> appendChild($domtree -> createElement('msg_field', $xfile));
 						$currentReg -> appendChild($domtree -> createElement('msg_content', $xpage));
-						}
-					
+					}
+
 				}
 
 				if ($xlan != $idio) {
