@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
   /**
   * Reports page
   * @author Rene F. Gabriel Junior <renefgj@gmail.com>

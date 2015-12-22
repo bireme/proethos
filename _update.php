@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
 require ("cab.php");
 
 echo '<h1>E-mail system check</h1>';

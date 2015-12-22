@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
 ob_start();
 session_start();
     /**

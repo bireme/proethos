@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
 			//$form -> required_message = 0;
 			//$form -> required_message_post = 0;
 			$form -> class_password = 'form_string';

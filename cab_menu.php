@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?
 $menuc = array();
 array_push($menuc,array('main.php',msg('home'),'home'));
 if (strlen($ss->user_codigo) > 0)

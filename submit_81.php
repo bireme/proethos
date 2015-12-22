@@ -13,9 +13,7 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
 
-<?php
  /**
   * Sumissão de protocolo de pesquisa
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)

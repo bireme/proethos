@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
 $email_debug = 1;
 $email_auth = 'AUTH';
 $body = '<h1>Congratulations!</h1>This email was sent by Method #2';

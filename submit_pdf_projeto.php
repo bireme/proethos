@@ -13,9 +13,7 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
 
-<?php
 require('fphp-170/fpdf.php');
 $versao_pdf = '0.0.36a';
 $ln=4;

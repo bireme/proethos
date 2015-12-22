@@ -13,16 +13,13 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
 	require('db.php');
 	// PHP5 Implementation - uses MySQLi.
 	// mysqli('localhost', 'yourUsername', 'yourPassword', 'yourDatabase');
 	
 		// Is there a posted query string?
 		if(isset($_POST['queryString'])) {
-			$queryString = troca($_POST['queryString'],"'","´");
+			$queryString = troca($_POST['queryString'],"'","Â´");
 			
 			// Is the string length greater than 0?
 			

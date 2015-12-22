@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
  /**
   * Admin Menu
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)

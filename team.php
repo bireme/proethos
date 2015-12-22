@@ -14,7 +14,6 @@
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
 ?>
-
 <script type="text/javascript">
 	function lookup(inputString) {
 		if(inputString.length == 0) {

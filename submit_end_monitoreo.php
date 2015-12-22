@@ -13,9 +13,7 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
 
-<?php
 require("cab.php");
 require("_class/_class_cep_submit.php");
 require("_class/_class_team.php");

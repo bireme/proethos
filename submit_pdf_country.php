@@ -13,9 +13,7 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
 
-<?php
 		
 				$sql = "select count(*) as total from cep_submit_country ";
 				$sql .= " where ctr_protocol = ".$protocol." and ctr_ativo=1 ";

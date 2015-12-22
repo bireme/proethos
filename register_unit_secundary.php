@@ -12,9 +12,7 @@
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-?>
 
-<?
  /**
   * Register Unit
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)

@@ -14,7 +14,6 @@
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
 ?>
-
 </div>
 <?php
 echo $hd->foot();

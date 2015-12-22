@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?php
  /**
   * Scheduled Popup
   * @author Rene Faustino Gabriel Junior  (Analista-Desenvolvedor)

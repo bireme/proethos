@@ -13,9 +13,6 @@
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 
-?>
-
-<?
 require("db.php");
 require("_class/_class_message.php");
 require($include.'sisdoc_colunas.php');
