@@ -260,6 +260,7 @@ class update_system {
 									where id_nw = " . $line['id_nw'];
 					$rlt = db_query($sql);
 					$up++;
+					echo '<br>'.$sql;
 				}
 			} else {
 				$sql = "insert into ic_noticia 
@@ -280,6 +281,7 @@ class update_system {
 							'$idioma',0,0)	
 							";
 				$rlt = db_query($sql);
+				//echo '<br>'.$sql;
 				$up++;
 			}
 		}
@@ -304,6 +306,7 @@ class update_system {
 			$id = $line['m'];
 			$sql = "delete from _messages where msg_language = '$lang' and msg_field = '$fld' and id_msg <> $id ";
 			$xrlt = db_query($sql);
+			//echo '<br>'.$sql;
 			$up++;
 		}
 		if ($up > 0) {
@@ -348,7 +351,7 @@ class update_system {
 									where id_msg = " . $line['id_msg'];
 					$rlt = db_query($sql);
 					$up++;
-					echo '<br>' . $sql;
+					//echo '<br>' . $ref.'-'.$idioma.'-'.$sql;
 				}
 
 			} else {
