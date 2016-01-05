@@ -134,7 +134,7 @@ class comunication
 						{
 							/* enviar e-mail */
 							$subject = msg('Email_comunication');
-							$text = $dd[46];
+							$text = mst($dd[46]);
 							
 							$text .= '<BR><BR>'.'Protocol:'.$this->protocolo;
 							

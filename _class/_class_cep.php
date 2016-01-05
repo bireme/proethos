@@ -165,8 +165,8 @@ class cep {
 
 		$title = $this -> doc_1_titulo;
 
-		$texto = utf8_decode($ic['text']);
-		$subject = utf8_decode($ic['title']);
+		$texto = mst($ic['text']);
+		$subject = ($ic['title']);
 
 		$emails = $this -> email_autores();
 
@@ -1471,8 +1471,8 @@ class cep {
 	function email_communicate_investigator() {
 		global $ic;
 		$ttt = $ic -> ic("communicate_investig");
-		$subj = utf8_decode($ttt['title']);
-		$txt = utf8_decode($ttt['text']);
+		$subj = ($ttt['title']);
+		$txt = mst($ttt['text']);
 
 		$nome = $this -> line['us_nome'];
 		$email1 = $this -> line['us_email'];
@@ -1603,14 +1603,14 @@ class cep {
 				$ic = new ic;
 				$codi = 'indicate_email';
 				$icr = $ic -> ic($codi);
-				$txt = utf8_decode($icr['text']);
+				$txt = $icr['text'];
 				$protocol = trim($this -> line['cep_caae']);
-				$subject = utf8_decode($icr['title']);
+				$subject = ($icr['title']);
 				$nnn = trim($line['us_nome']);
 				$txt = mst(troca($txt, '$name', $nnn));
-				$txt = mst(troca($txt, '$protocol', $protocol));
-				$txt = mst(troca($txt, '$title', $this -> line['cep_titulo']));
-				$txt = mst(troca($txt, '$link', $link));
+				$txt = troca($txt, '$protocol', $protocol);
+				$txt = troca($txt, '$title', $this -> line['cep_titulo']);
+				$txt = troca($txt, '$link', $link);
 
 				/* Enviar e-mail */
 				$email1 = trim($line['us_email']);
@@ -1619,7 +1619,6 @@ class cep {
 				}
 				if (strlen($email2) > 0) { enviaremail($email2, '', $subject, $txt);
 				}
-				enviaremail('renefgj@gmail.com', '', $subject, $txt);
 			}
 
 			$sx .= '<TR>';
@@ -1856,7 +1855,7 @@ class cep {
 		$email_title = $msg['title'];
 		$email_body = $msg['text'];
 
-		$email_body = troca($email_body, '$TITLE', $titulo);
+		$email_body = mst(troca($email_body, '$TITLE', $titulo));
 
 		$sql = "SELECT * FROM usuario_perfis_ativo
 						inner join usuario on up_usuario  = us_cracha

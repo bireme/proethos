@@ -74,10 +74,8 @@ class submit {
 
 		$title = $this -> doc_1_titulo;
 		
-		$texto = utf8_decode($ic['text']);
-		$subject = utf8_decode($ic['title']);
-		
-		print_r($ic);
+		$texto = mst($ic['text']);
+		$subject = ($ic['title']);
 
 		$emails = $this -> email_autores();
 
@@ -90,7 +88,7 @@ class submit {
 			echo 'sending to ' . $emails[$r];
 			enviaremail($emails[$r], '', '#2'.$subject, $texto);
 			
-			enviaremail($emails[$r], '', '#1'.utf8_decode($subject), utf8_decode($texto));
+			enviaremail($emails[$r], '', '#1'.$subject, $texto);
 		}
 		exit ;
 	}

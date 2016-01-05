@@ -91,7 +91,7 @@ if ($form->saved > 0)
 		$tx = $ic->ic($ic_cod);
 		
 		/* Cambia texto */		
-		$texto = $tx['text'];
+		$texto = mst($tx['text']);
 		$subtitle = $tx['title'];
 		
 		$texto = troca($texto,'$name',$name);

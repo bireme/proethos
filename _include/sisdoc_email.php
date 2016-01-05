@@ -1,18 +1,17 @@
 <?php
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
 
 /*
  * Sistema de e-mail
@@ -53,12 +52,12 @@ function enviaremail($para, $blank, $titulo, $texto) {
 
 			$mail -> email = $email_from;
 			$mail -> email_replay = $email_replay;
-			$mail -> email_name = utf8_decode($email_from_name);
+			$mail -> email_name = ($email_from_name);
 
 			$mail -> email_user = $email_user;
 			$mail -> email_pass = $email_pass;
 			$mail -> email_smtp = $email_smtp;
-			
+
 			$mail -> debug = round($email_debug);
 
 			$mail -> to = $para;
@@ -72,20 +71,19 @@ function enviaremail($para, $blank, $titulo, $texto) {
 
 			$mail -> email = $email_from;
 			$mail -> email_replay = $email_replay;
-			$mail -> email_name = utf8_decode($email_from_name);
+			$mail -> email_name = ($email_from_name);
 
 			$mail -> email_user = $email_user;
 			$mail -> email_pass = $email_pass;
 			$mail -> email_smtp = $email_smtp;
-			
+
 			$mail -> debug = round($email_debug);
 
-			$mail -> to = $para;			
+			$mail -> to = $para;
 			$mail -> method_1_mail();
 			break;
 	}
 }
-
 
 function checaemail($chemail) {
 	$result = count_chars($chemail, 0);
@@ -112,7 +110,7 @@ class email {
 	var $to = '';
 	var $cc = array();
 	var $cco = array();
-	
+
 	var $debug = 0;
 
 	/* Dados do enviador */
@@ -156,7 +154,7 @@ class email {
 		$headers .= "From: " . $form_name . " <" . $from . "> \r\n";
 
 		//	$body = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">'."\n".$body;
-		mail($to, $subject, $body, $headers) or die("<font color=red >Erro de envio do e-mail para ".$email_to.'</font>');
+		mail($to, $subject, $body, $headers) or die("<font color=red >Erro de envio do e-mail para " . $email_to . '</font>');
 	}
 
 	function method_2_mail() {
@@ -175,6 +173,7 @@ class email {
 		/* Iniciar objeto */
 		$mail = new PHPMailer;
 		$mail -> isSMTP();
+		$mail -> CharSet = "utf-8";
 		$mail -> SMTPDebug = 0;
 		$mail -> Debugoutput = 'html';
 		$mail -> Host = $smtp;
@@ -247,7 +246,6 @@ class email {
 		}
 		return ($sx);
 	}
-
 
 	function structure() {
 		$sql = "

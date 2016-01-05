@@ -152,8 +152,8 @@ class users
 					$ref = "send_email_text";
 					$ttt = $ic->ic($ref);
 					$email1 = trim($line['us_email']);
-					$text = utf8_decode($ttt['text']);
-					$subj = utf8_decode($ttt['title']);
+					$text = mst($ttt['text']);
+					$subj = ($ttt['title']);
 					$text .= '<BR><BR>'.msg('password').': <B>'.$line['us_senha'].'</B>';
 					enviaremail($email1,'',$subj,$text);
 					echo '<BR>'.msg('send_mail_to').' '.$email1;
