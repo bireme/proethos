@@ -101,7 +101,7 @@ $proj->le($protocolo);
 		/* Se não for projeto define total de paginas como 3 */
 		if ($doc_tipo != 'PROJE')
 			{
-					$tot_paginas = 4;		
+					$tot_paginas = 3;		
 			}
 		/*****/		
 		
