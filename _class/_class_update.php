@@ -405,7 +405,11 @@ class update_system {
 			
 			preg_match_all("/\<sub_informacao\>(.*?)\<\/sub_informacao\>/", $block, $sub_informacao);
 			preg_match_all("/\<sub_projeto_tipo\>(.*?)\<\/sub_projeto_tipo\>/", $block, $sub_projeto_tipo);
-			preg_match_all("/\<sub_ordem\>(.*?)\<\/sub_ordem\>/", $block, $sub_ordem);
+			preg_match_all("/\<sub_ordem\>(.*?)\<\/sub_ordem\>/", $block, $sub_ordem);			
+			
+			preg_match_all("/\<sub_pag\>(.*?)\<\/sub_pag\>/", $block, $sub_pag);
+			preg_match_all("/\<sub_obrigatorio\>(.*?)\<\/sub_obrigatorio\>/", $block, $sub_obrigatorio);
+			preg_match_all("/\<sub_editavel\>(.*?)\<\/sub_editavel\>/", $block, $sub_editavel);
 			
 			preg_match_all("/\<sub_pdf_title\>(.*?)\<\/sub_pdf_title\>/", $block, $sub_pdf_title);
 			preg_match_all("/\<sub_pdf_mostra\>(.*?)\<\/sub_pdf_mostra\>/", $block, $sub_pdf_mostra);
