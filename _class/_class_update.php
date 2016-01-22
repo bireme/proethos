@@ -380,9 +380,9 @@ class update_system {
 		$up = 0;
 		$new = 0;
 		$filename = "_documents/ged_download_fld.php.xml";
-		
+
 		$sql = "delete from cep_submit_manuscrito_field ";
-		$rlt = db_query($sql);		
+		$rlt = db_query($sql);
 
 		$xml = "";
 		$f = fopen($filename, 'r');
@@ -398,57 +398,57 @@ class update_system {
 			preg_match_all("/\<sub_pos\>(.*?)\<\/sub_pos\>/", $block, $sub_pos);
 			preg_match_all("/\<sub_field\>(.*?)\<\/sub_field\>/", $block, $sub_field);
 			preg_match_all("/\<sub_css\>(.*?)\<\/sub_css\>/", $block, $sub_css);
-			
+
 			preg_match_all("/\<sub_descricao\>(.*?)\<\/sub_descricao\>/", $block, $sub_descricao);
 			preg_match_all("/\<sub_ativo\>(.*?)\<\/sub_ativo\>/", $block, $sub_ativo);
 			preg_match_all("/\<sub_codigo\>(.*?)\<\/sub_codigo\>/", $block, $sub_codigo);
-			
+
 			preg_match_all("/\<sub_informacao\>(.*?)\<\/sub_informacao\>/", $block, $sub_informacao);
 			preg_match_all("/\<sub_projeto_tipo\>(.*?)\<\/sub_projeto_tipo\>/", $block, $sub_projeto_tipo);
-			preg_match_all("/\<sub_ordem\>(.*?)\<\/sub_ordem\>/", $block, $sub_ordem);			
-			
+			preg_match_all("/\<sub_ordem\>(.*?)\<\/sub_ordem\>/", $block, $sub_ordem);
+
 			preg_match_all("/\<sub_pag\>(.*?)\<\/sub_pag\>/", $block, $sub_pag);
 			preg_match_all("/\<sub_obrigatorio\>(.*?)\<\/sub_obrigatorio\>/", $block, $sub_obrigatorio);
 			preg_match_all("/\<sub_editavel\>(.*?)\<\/sub_editavel\>/", $block, $sub_editavel);
-			
+
 			preg_match_all("/\<sub_pdf_title\>(.*?)\<\/sub_pdf_title\>/", $block, $sub_pdf_title);
 			preg_match_all("/\<sub_pdf_mostra\>(.*?)\<\/sub_pdf_mostra\>/", $block, $sub_pdf_mostra);
 			preg_match_all("/\<sub_pdf_align\>(.*?)\<\/sub_pdf_align\>/", $block, $sub_pdf_align);
-			
+
 			preg_match_all("/\<sub_pdf_font_size\>(.*?)\<\/sub_pdf_font_size\>/", $block, $sub_pdf_font_size);
 			preg_match_all("/\<sub_pdf_space\>(.*?)\<\/sub_pdf_space\>/", $block, $sub_pdf_space);
 			preg_match_all("/\<sub_limite\>(.*?)\<\/sub_limite\>/", $block, $sub_limite);
-			
+
 			preg_match_all("/\<sub_caption\>(.*?)\<\/sub_caption\>/", $block, $sub_caption);
-			preg_match_all("/\<sub_id\>(.*?)\<\/sub_id\>/", $block, $sub_id);												
+			preg_match_all("/\<sub_id\>(.*?)\<\/sub_id\>/", $block, $sub_id);
 
 			$_sub_pos = $sub_pos[1][0];
 			$_sub_field = $sub_field[1][0];
-			$_sub_css = $sub_css[1][0];	
-			
+			$_sub_css = $sub_css[1][0];
+
 			$_sub_descricao = $sub_descricao[1][0];
 			$_sub_ativo = $sub_ativo[1][0];
 			$_sub_codigo = $sub_codigo[1][0];
-			
+
 			$_sub_pag = $sub_pag[1][0];
 			$_sub_obrigatorio = $sub_obrigatorio[1][0];
 			$_sub_editavel = $sub_editavel[1][0];
-								
+
 			$_sub_informacao = $sub_informacao[1][0];
 			$_sub_projeto_tipo = $sub_projeto_tipo[1][0];
 			$_sub_ordem = $sub_ordem[1][0];
-			
+
 			$_sub_pdf_title = $sub_pdf_title[1][0];
 			$_sub_pdf_mostra = $sub_pdf_mostra[1][0];
 			$_sub_pdf_align = $sub_pdf_align[1][0];
-			
-			$_sub_pdf_font_size	= $sub_pdf_font_size[1][0]; 				
+
+			$_sub_pdf_font_size = $sub_pdf_font_size[1][0];
 			$_sub_pdf_space = $sub_pdf_space[1][0];
 			$_sub_limite = $sub_limite[1][0];
-								
+
 			$_sub_caption = $sub_caption[1][0];
 			$_sub_id = $sub_id[1][0];
-			
+
 			$sql = "insert cep_submit_manuscrito_field 
 					(
 					sub_pos, sub_field, sub_css,
@@ -473,8 +473,8 @@ class update_system {
 					'$_sub_caption', '$_sub_id'
 					)
 					 ";
-					$RLT =db_query($sql);
-					//exit;
+			$RLT = db_query($sql);
+			//exit;
 			$new++;
 		}
 		if (($up + $new) > 0) {
@@ -483,6 +483,46 @@ class update_system {
 			echo '<br>' . msg('already update - 011');
 		}
 	}
+
+	function update12() {
+		$new = 0;
+		for ($r = 1; $r <= 10; $r++) {
+			$cod = strzero($r,3);
+			$sql = "select * from cep_amendment_type 
+							where amt_codigo = '$cod' ";
+			$rlt = db_query($sql);
+			if ($line = db_read($rlt)) {
+			} else {
+				$sql = "insert into cep_amendment_type 
+									(amt_codigo, amt_descrip, amt_form, amt_ord,amt_ativo)
+										values
+									('$cod','amendment_$cod','00$cod','$r',1);";
+				$rlt = db_query($sql);
+				$new++;
+			}
+		}
+		if (($new) > 0) {
+			echo '<br>' . msg('update') . ' 012 ' . msg('successful') . ' ' . $new . ' updated';
+		} else {
+			echo '<br>' . msg('already update - 012');
+		}
+
+	}
+
+	function update13() {
+		$sql = "select * from cep_amendment_type 
+							where amt_ativo = 1
+							and amt_codigo = '010'
+					";
+		$rlt = db_query($sql);
+		if (!($line = db_read($rlt))) {
+			echo '<br>' . msg('already update - 013');
+		} else {
+			$sql = "update cep_amendment_type set amt_ativo = 0 where amt_codigo = '010'";
+			$rlt = db_query($sql);
+			echo '<br>' . msg('update') . ' 013 ' . msg('successful');
+		}
+	}	
 
 	function lista_arquivos() {
 		/* Update 2015-10-14 */
@@ -495,8 +535,13 @@ class update_system {
 		$this -> update07();
 		$this -> update08();
 		$this -> update09();
-		$this -> update11();
+
 		/* Update 2015-10-15 */
+		$this -> update11();
+
+		/* Update 2016-01-21 */
+		$this -> update12();
+		$this -> update13();
 		return ('');
 	}
 
