@@ -154,6 +154,10 @@ function format_fld($zq1,$zq2)
 				 if (($LANG == 'pt_BR') or ($zq2 == '2'))
 				 	{ $zqr = troca(troca(troca($zqr,'.','#'),',','.'),'#','.'); }
 			}
+			////////////////////// C
+			if (substr($zq2,0,1) == 'C') 
+				{ $zqr =  '<CENTER>';
+				$zqr = $zqr . $zq1; }
 			////////////////////// #
 			if (substr($zq2,0,1) == '#') 
 				{ $zqr =  '<CENTER>';
@@ -232,6 +236,16 @@ function format_fld($zq1,$zq2)
 				if (($dta == '1') or ($dta == true) or ($dta=='S')) { $zqr = $zqr . 'SIM'; }
 				else { $zqr = $zqr . 'NAO'; }
 				}					
+			////////////////////// C
+			if (substr($zq2,0,2) == 'OB') 
+				{ $zqr =  '<CENTER>';
+					if ($zq1 == '1')
+						{
+							$zqr .= msg('yes');
+						} else {
+							$zqr .= msg('no');
+						}
+				}			
 			if ($zq2 == 'Z') 
 				{ 
 				$zqr =  '<CENTER>';

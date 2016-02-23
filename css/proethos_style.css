@@ -14,7 +14,14 @@ Software. If not, see
 https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 */
 
-
+.bg_silver
+	{
+		background-color: #e0e0e0;
+	}
+.radius5
+	{
+		border-radius: 10px;
+	}
 .border01
 	{
 		border: 1px solid #e0e0e0;
@@ -130,6 +137,7 @@ https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
 .lt3 { font-size: 20px; }
 .lt4 { font-size: 24px; }
 .lt5 { font-size: 32px; }
+.lt6 { font-size: 38px; }
 
 /* border */
 .border1 { border: 1px solid #000000; }

@@ -326,7 +326,6 @@ class update_system {
 		while ($data = fread($f, 4096)) { $xml .= $data;
 		}
 		fclose($f);
-
 		preg_match_all("/\<reg\>(.*?)\<\/reg\>/s", $xml, $bookblocks);
 
 		foreach ($bookblocks[1] as $block) {
@@ -340,7 +339,7 @@ class update_system {
 			$content = $content[1][0];
 			$idioma = $idioma[1][0];
 			$data = date("Ymd");
-
+			
 			$sql = "select * from _messages where msg_field = '$ref' and msg_language = '$idioma' ";
 			$rlt = db_query($sql);
 			if ($line = db_read($rlt)) {
@@ -353,7 +352,6 @@ class update_system {
 					$up++;
 					//echo '<br>' . $ref.'-'.$idioma.'-'.$sql;
 				}
-
 			} else {
 				$sql = "insert into _messages 
 							(
@@ -535,7 +533,10 @@ class update_system {
 		$this -> update07();
 		$this -> update08();
 		$this -> update09();
-
+		
+		/* Update Mensagens */
+		$this -> update10();
+		
 		/* Update 2015-10-15 */
 		$this -> update11();
 

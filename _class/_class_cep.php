@@ -302,7 +302,13 @@ class cep {
 							 where amt_ativo = 1 
 							order by amt_ord ";
 			$rlt = db_query($sql);
-
+			/* emenda */
+			$btn = 'amendment_' . trim($line['amt_codigo']);
+			$sx .= '<input type="radio" name="dd1" id="dd1" 
+					value="' . '001' . '"
+					>' . msg($btn) . '</br>' . $cr;
+			
+			
 			while ($line = db_read($rlt)) {
 				$btn = 'amendment_' . trim($line['amt_codigo']);
 				$btn = trim($line['amt_descrip']);

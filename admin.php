@@ -68,7 +68,11 @@ if (($perfil -> valid('#ADM')) or ($_SESSION['user_name'] == 'ADMIN')) {
 	$rlt = db_query($sql);
 
 	while ($line = db_read($rlt)) {
-		array_push($menu, array(msg('admin_submission'), '__' . msg('amendment_'.trim($line['amt_codigo'])), 'admin_submit_000.php?dd90='.trim($line['amt_codigo'])));
+		/* Oculta se for evento de recrutamento */
+		if (trim($line['amt_codigo']) != '008')
+			{
+				array_push($menu, array(msg('admin_submission'), '__' . msg('amendment_'.trim($line['amt_codigo'])), 'admin_submit_000.php?dd90='.trim($line['amt_codigo'])));
+			}
 	}
 	
 	array_push($menu, array(msg('admin_submission'), msg('admin_amend_type'), 'admin_cep_amendment_type.php?dd90='.trim($line['amt_codigo'])));

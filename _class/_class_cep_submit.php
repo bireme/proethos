@@ -72,9 +72,9 @@ class submit {
 		$ic = new ic;
 		$ic = $ic -> ic('email_confirm_subm');
 
-		$title = $this -> doc_1_titulo;
+		$title = utf8_decode($this -> doc_1_titulo);
 		
-		$texto = mst($ic['text']);
+		$texto = mst(utf8_decode($ic['text']));
 		$subject = ($ic['title']);
 
 		$emails = $this -> email_autores();

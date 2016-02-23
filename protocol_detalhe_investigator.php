@@ -43,7 +43,7 @@ require('_class/_class_cep_comment.php');
 require('_ged_config.php');
 $comme = new cep_comment;
 
-/* Projetct Identifier */
+/* Project Identifier */
 if (strlen($dd[0]) > 0)
 	{
 	if (!(checkpost($dd[0]) == $dd[90]))

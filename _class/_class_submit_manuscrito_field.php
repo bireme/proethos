@@ -71,6 +71,14 @@ class fields
 		$masc = array('', '', '','','','','','','','SN');
 		return (1);
 		}
+
+	function row2() {
+		global $cdf, $cdm, $masc;
+		$cdf = array('id_sub', 'sub_descricao','sub_field', 'sub_pos','sub_ordem','sub_obrigatorio');
+		$cdm = array('cod', msg('description'), msg('fields'),msg('pos'),msg('order'),msg('mandotary'));
+		$masc = array('', '', '','C','C','OB');
+		return (1);
+		}
 	
 	function updatex() {
 		global $base;

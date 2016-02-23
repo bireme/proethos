@@ -37,13 +37,17 @@ require("_class/_class_submit_manuscrito_field.php");
 	$clx = new fields;
 	$tabela = $clx->tabela;
 	
+	$pag = round('0'.$dd[10]);
+	if ($pag < 2) { $pag = 2; } 
+	if ($pag > 7) { $pag = 7; }
+	
 	/* Nao alterar - dados comuns */
 	$label = msg($tabela);
 	$http_edit = 'admin_submit_1_ed.php'; 
 	//$http_ver = 'pibic_bolsa_tipo_detalhe.php'; 
 	$editar = True;
 	$http_redirect = 'admin_submit_1.php';
-	$clx->row();
+	$clx->row2();
 	$busca = true;
 	$offset = 20;
 	//$pre_where = " e_mailing = '".$cl->mail_codigo."' ";
@@ -51,10 +55,26 @@ require("_class/_class_submit_manuscrito_field.php");
 	
 	$order = ' sub_pag, sub_pos, sub_ordem ';
 	
+	/* SQL Filter */
 	$pre_where = " sub_projeto_tipo = '00001' ";
+	$pre_where .= " AND sub_pag = '".$pag."' ";
+	
+	/* Mostra páginas */
+	echo '<table width="100%" class="tabela00" cellspacing="20">';
+	for ($r=1;$r <= 7;$r++)
+		{
+			$bg = '';
+			if ($r==$pag)
+					{
+						$bg = "bg_silver";
+					}
+			$link = '<A href="admin_submit_1.php?dd10='.$r.'" class="link lt6">';
+			echo '<td class="lt0 border1 pad5 radius5 '.$bg.'" align="center">'.msg('submit_page').'<br>'.$link.$r.'</a></td>';
+		}
+	echo '</table>';
 	
 	echo '<TABLE width="'.$tab_max.'" align="center"><TR><TD>';
-	require($include.'sisdoc_row.php');	
+	require($include.'sisdoc_fld.php');	
 	echo '</table>';
 	echo '</div>';
 
