@@ -63,6 +63,7 @@ if ($dd[0] != '1') {echo '<img src="img/icone_alert.png">';
 	array_push($tb, 'cep_survey');
 	array_push($tb, 'cep_team');
 	array_push($tb, 'ged_documento');
+	array_push($tb, 'calender');
 
 	for ($r = 0; $r < count($tb); $r++) {
 		$sql = "delete from " . $tb[$r] . ' where 1=1 ';

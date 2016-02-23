@@ -93,6 +93,8 @@ $sx = 'Projeto';
 	$status = trim($cep->line['cep_status']);
 	$tipo = $cep->line['cep_tipo'];
 	$situacao = trim($cep->line['cep_pr_protocol']);
+	
+	/* Abre opcoes de monitoreo se aprovado */
 		
 	if (($status == 'P') or ($status == 'Z'))
 	{

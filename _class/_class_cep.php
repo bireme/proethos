@@ -1,18 +1,17 @@
 <?
-// This file is part of the ProEthos Software. 
-// 
+// This file is part of the ProEthos Software.
+//
 // Copyright 2013, PAHO. All rights reserved. You can redistribute it and/or modify
 // ProEthos under the terms of the ProEthos License as published by PAHO, which
-// restricts commercial use of the Software. 
-// 
+// restricts commercial use of the Software.
+//
 // ProEthos is distributed in the hope that it will be useful, but WITHOUT ANY
 // WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-// PARTICULAR PURPOSE. See the ProEthos License for more details. 
-// 
+// PARTICULAR PURPOSE. See the ProEthos License for more details.
+//
 // You should have received a copy of the ProEthos License along with the ProEthos
 // Software. If not, see
 // https://raw.githubusercontent.com/bireme/proethos/master/LICENSE.txt
-
 
 /**
  * Ethics
@@ -294,8 +293,11 @@ class cep {
 		$sx .= msg('wdyd_amend_inf');
 
 		$sx .= '<div id="monitoring" style="display: none;">';
+
+		/* Se não tem acao */
 		if (strlen($dd[1]) == 0) {
 			$sx .= '<form action="' . page() . '">' . $cr;
+
 			//$sx .= '<select name="dd1">' . $cr;
 			/* Busca emandas do SQL */
 			$sql = "select * from cep_amendment_type
@@ -303,12 +305,12 @@ class cep {
 							order by amt_ord ";
 			$rlt = db_query($sql);
 			/* emenda */
-			$btn = 'amendment_' . trim($line['amt_codigo']);
+			$btn = 'amendment_010';
 			$sx .= '<input type="radio" name="dd1" id="dd1" 
-					value="' . '001' . '"
+					value="' . '001010' . '"
 					>' . msg($btn) . '</br>' . $cr;
-			
-			
+
+			/* outras modalidades */
 			while ($line = db_read($rlt)) {
 				$btn = 'amendment_' . trim($line['amt_codigo']);
 				$btn = trim($line['amt_descrip']);
@@ -321,13 +323,18 @@ class cep {
 			$sx .= '<input type="submit" value="' . msg('send_monitoreo') . '"  class="form_submit">' . $cr;
 			$sx .= '</form>';
 		} else {
+			/* se a acao foi selecionada */
 			$act = substr($dd[1], 0, 3);
 			$form = substr($dd[1], 3, 3);
 
-			if ($form == '00001') { $sx .= $this -> gp_form_00001($act);
+			/* Criar as acoes */
+
+			/* Emenda */
+			if ($form == '010') { $sx .= $this -> gp_form_emenda($act);
+			} else {
+				$sx .= $this -> gp_form($form, $act);
 			}
-			if ($form != '00001') { $sx .= $this -> gp_form($form, $act);
-			}
+
 		}
 		$sx .= '</div>';
 		$sx .= '</fieldset>';
@@ -357,7 +364,7 @@ class cep {
 
 			$rlt = db_query($sqlx);
 			$id = 0;
-			$sx = '<table width="100%" class="table_proj lt1">';
+			$sx = '<table width="100%" class="table_proj lt2">';
 			$sx .= '<TR class="hd"><TD colspan=5>' . msg('prj_type_AME');
 			$sx .= '<TR>';
 			$sx .= '<TH>' . msg('protocol');
@@ -372,18 +379,25 @@ class cep {
 				$idx = $line['id_cep'];
 				$link = '<A HREF="protocol_detalhe.php?dd0=' . $idx . '&dd90=' . checkpost($idx) . '">';
 
+				$cor = '<font>';
+
+				/* Altera cor se for aberto */
 				$sta = $line['doc_status'];
 				if ($sta == '@') { $sta = msg('cep_status_@');
+					$cor = '<font color="orange">';
 				}
 
 				$msgt = 'amendment_' . substr($line['doc_tipo'], 0, 3);
 				$sx .= '<TR>';
 				//$sx .= '<TD>'.$line['doc_caae'];
-				$sx .= '<TD align="center">' . $link . $line['doc_protocolo'];
-				$sx .= '<TD align="center">' . msg($msgt);
-				$sx .= '<TD width="5%" align="center">' . stodbr($line['doc_dt_atualizado']);
-				$sx .= '<TD align="center"><nobr>' . msg($sta);
-				$sx .= '<TD align="center"><nobr>' . msg($result);
+				$sx .= '<TD align="left">' . $link . $cor . $line['doc_protocolo'] . '</font></td>';
+				$sx .= '<TD align="left">' . $cor . msg($msgt) . '</font></td>';
+				$sx .= '<TD width="5%" align="left">' . $cor . stodbr($line['doc_dt_atualizado']) . '</font></td>';
+				;
+				$sx .= '<TD align="left"><nobr>' . $cor . msg($sta) . '</font></td>';
+				;
+				$sx .= '<TD align="center"><nobr>' . $cor . msg($result) . '</font></td>';
+				;
 			}
 
 			$sql = "select * from cep_protocolos where 
@@ -416,16 +430,17 @@ class cep {
 	}
 
 	/* Amendment Investigation */
-	function gp_form_00001($act) {
+	function gp_form_emenda($act) {
 		global $dd;
-		$this -> create_amendment($act);
+		
+		$this -> create_amendment('010');
 		$protocolo = round($this -> amendment_protocol);
-		redirecina('protocol_submit.php?dd0=' . $protocolo . '&dd90' . checkpost($protocolo));
+		$link = 'protocol_submit.php?dd0=' . $protocolo . '&dd5=TO_SUBMIT&dd90' . checkpost($protocolo);
+		redirecina($link);
 		return ($sx);
 	}
 
 	function create_amendment($tp) {
-
 		$this -> updatex_submit();
 		$title = $this -> line['cep_titulo'];
 		$titlep = $this -> line['cep_titulo_public'];
@@ -452,6 +467,7 @@ class cep {
 						where id_doc = " . round($line['id_doc']);
 			$rlt = db_query($sql);
 		} else {
+			$protocol = $line['doc_protocolo'];
 			$sql = "insert into cep_submit_documento 
 					(
 					doc_1_titulo, doc_1_titulo_public, doc_protocolo,
@@ -460,7 +476,7 @@ class cep {
 					doc_autor_principal, doc_research_main, doc_status,
 					doc_xml, doc_type, doc_caae
 					) values (
-					'$title','$titlep','',
+					'$title','$titlep','$protocolo',
 					'$type', $human, $clinic,
 					$data,'$hora',$update,
 					'$investigator','$investigator','@',
@@ -473,9 +489,6 @@ class cep {
 		if ($line = db_read($rlt)) { $protocol = $line['doc_protocolo'];
 		}
 		$this -> amendment_protocol = $protocol;
-
-		/* Recupera autores */
-		//$this -> copy_authors($this -> protocolo, $this -> amendment_protocol = $protocol);
 
 		return ($sx);
 
@@ -2263,12 +2276,12 @@ class cep {
 
 		/* busca o numero do caae */
 		$caae = trim($this -> line['cep_caae_original']);
-		
+
 		/* recupera o caae original */
 		if (strlen($caae) == 0) { $caae = $this -> line['cep_caae'];
 		}
 
-		if (strlen($caae) == 0) { $caae = $this->line['cep_codigo']; 
+		if (strlen($caae) == 0) { $caae = $this -> line['cep_codigo'];
 			$wh = " cep_codigo = '$caae' ";
 		} else {
 			$wh = " cep_caae = '$caae' ";
@@ -2356,7 +2369,8 @@ class cep {
 		$sp .= '<table width="100%" border=0 class="lt0">';
 		$sp .= '<TR><Td colspan=6>' . msg('project_investigador');
 		$sp .= '<Td align="right" width="10%">' . msg('protocol');
-		$sp .= '<TR><Td colspan=6 class="table_proj">'; {
+		$sp .= '<TR><Td colspan=6 class="table_proj">';
+		{
 			$tipo = $this -> line['cep_tipo'];
 			if ($tipo == 'PRO') {
 				$sp .= '<img src="img/icone_plus.png" align="right" height="16" id="new_author" alt="include_investigator">';

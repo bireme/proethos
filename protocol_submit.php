@@ -51,7 +51,11 @@ if ($acao == 'TO_SUBMIT')
 		$submit->protocolo_to_submit();
 		redirecina('submit.php?dd0='.$dd[0].'&dd90='.checkpost($dd[0]));	 
 	}
-	
+if ($acao == 'TO_AMED')
+	{
+		$submit->protocolo_to_submit();
+		redirecina('submit_amendment.php?dd0='.$dd[0].'&dd90='.checkpost($dd[0]));	 
+	}	
 
 echo '<h1>Protocolo: '.$submit->status_show($submit->doc_status).'</h1>';
 

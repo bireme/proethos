@@ -71,21 +71,31 @@ $pag = $_SESSION['proj_page'];
 $dd[0] = $pag_id;
 $protocolo = strzero($dd[0],7);
 
+$proj->le($protocolo);
+$prj= $proj->line;
+
+/* Protocolo */
+$proto_original = $protocolo;
+
+if ($proj->doc_type == '010')
+	{
+		$proto_original = $proj->doc_research_main;
+	}
 /* Classe de Budget */
 require("_class/_class_budget.php");
 $bud = new budget;
-$bud->protocol = $protocolo;
+$bud->protocol = $proto_original;
 
 /* Classe de Country */
 require("_class/_class_ajax_pais.php");
 $country = new country;
-$country->protocol = $protocolo;
+$country->protocol = $proto_original;
 
 /* Documents */
 require("_ged_config.php");
 $ged->protocol = $protocolo;
 $popup=1;
-$proj->le($protocolo);
+
 
 	{
 		/* Total de paginas do header */
@@ -166,7 +176,18 @@ $proj->le($protocolo);
 				if ($pag_page == 2) { require("submit_12.php"); }
 				if ($pag_page == 3) { require("submit_13.php"); }
 				break;
-
+			case '010':
+				$pag_max = 7;
+				$tot_paginas = 7;	
+				$protocolo = $proto_original;			
+				if ($pag_page == 1) { require("submit_01.php"); }
+				if ($pag_page == 2) { require("submit_02.php"); }
+				if ($pag_page == 3) { require("submit_03.php"); }
+				if ($pag_page == 4) { require("submit_04.php"); }
+				if ($pag_page == 5) { require("submit_05.php"); }
+				if ($pag_page == 6) { require("submit_06.php"); }
+				if ($pag_page == 7) { require("submit_07.php"); }
+				break;
 			}
 		//echo '</table>';
 		//echo '</fieldset>';
