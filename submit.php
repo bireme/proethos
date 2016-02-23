@@ -79,7 +79,7 @@ $proto_original = $protocolo;
 
 if ($proj->doc_type == '010')
 	{
-		$proto_original = $proj->doc_research_main;
+		//$proto_original = $proj->doc_research_main;
 	}
 /* Classe de Budget */
 require("_class/_class_budget.php");
@@ -113,12 +113,17 @@ $popup=1;
 			{
 					$tot_paginas = 3;		
 			}
+		/* emenda */
+		if ($doc_tipo == '010')
+			{
+				$tot_paginas = 7;
+			}
 		/*****/		
 		
 		/** Mostra Header ***/		
 		require("submit_cab.php");		
 		echo '<form method="post" action="'.page().'"><BR>';		
-
+		echo '=xx==>'.$doc_tipo;
 		switch ($doc_tipo)
 			{
 			/* EMENDA - logica antiga */
@@ -178,8 +183,8 @@ $popup=1;
 				break;
 			case '010':
 				$pag_max = 7;
-				$tot_paginas = 7;	
-				$protocolo = $proto_original;			
+				$tot_paginas = 7;		
+				$doc_tipo = '001';		
 				if ($pag_page == 1) { require("submit_01.php"); }
 				if ($pag_page == 2) { require("submit_02.php"); }
 				if ($pag_page == 3) { require("submit_03.php"); }

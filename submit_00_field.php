@@ -24,12 +24,19 @@ if (substr($doc_tipo,0,1) == '0' )
 		$prot = '00'.$doc_tipo;
 	}
 
+/* Emenda */
+if ($prot == '00010')
+	{
+		$prot = '00001';
+	}
+
 $ztabela = 'cep_submit_manuscrito_field';
 $sql = "select * from ".$ztabela."
 		left join cep_submit_documento_valor on spc_codigo = sub_codigo and spc_projeto = '$protocolo' 
 		where sub_projeto_tipo = '$prot' 
 		and sub_pag='$pag' and sub_ativo=1 
 		order by sub_pag, sub_pos, sub_ordem ";
+		
 $rlt = db_query($sql);
 
 echo '<TABLE align="center" width="'.$tab_max.'">';
