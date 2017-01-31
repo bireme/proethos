@@ -1,3 +1,7 @@
+---
+<h1>This version of ProEthos is depricated.</h1>
+<h2>The new version of ProEthos is available at https://github.com/bireme/proethos2</h2>
+---
 <h3>README for ProEthos</h3>
 
 ProEthos is an innovative platform for ethics review of human subjects research and it was developed by PAHO in collaboration with the Pontifical Catholic University of Paraná (Brazil) to facilitate the review process of ethics committees. This platform improves the quality of ethics review and the accountability, transparency and efficiency of review processes, and ultimately improves the protection of research participants and catalyzes ethical research.
